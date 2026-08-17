@@ -30,8 +30,9 @@
       "url": "https://www.datacenterdynamics.com/en/rss/" },
     { "id": "dck", "name": "Data Center Knowledge", "tier": "reported", "region": "global",
       "url": "https://www.datacenterknowledge.com/rss.xml" },
-    { "id": "aer", "name": "Alberta Energy Regulator", "tier": "primary", "region": "alberta",
-      "url": "https://www.aer.ca/rss" }
+    { "id": "gn-aer", "name": "Alberta Energy Regulator coverage", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=%22Alberta+Energy+Regulator%22&hl=en-CA&gl=CA&ceid=CA:en",
+      "note": "Replaced the direct aer.ca/rss feed, which returned HTTP 403 to the Actions runner on the first live run (bot-blocked). The AER site itself remains a primary reference in the library; this query covers its announcements via reporting until a reachable feed is found." }
   ],
   "watch": [
     { "id": "goa-hub", "name": "GoA — AI Data Centres in Alberta", "tier": "primary",
