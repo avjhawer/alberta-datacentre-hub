@@ -95,7 +95,11 @@ export function score(item, { tier = 'reported' } = {}) {
   }
 
   if (tier === 'primary') s += 4;                       // regulators outrank media
-  if (item.region === 'alberta') s += 3;                // this site's focus
+  // Alberta is weighted hard on purpose. The global feeds are high-volume
+  // (one industry outlet alone posts several items an hour), so without this
+  // an Alberta bylaw change loses the breaking band to routine US coverage.
+  if (item.region === 'alberta') s += 6;
+  else if (item.region === 'canada') s += 3;
 
   const ts = item.published ? Date.parse(item.published) : NaN;
   if (Number.isFinite(ts)) {

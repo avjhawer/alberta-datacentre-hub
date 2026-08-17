@@ -42,8 +42,8 @@
         <div class="grid grid-main-aside">
           <div class="card">
             <div class="card-head">
-              <h2>Latest developments</h2>
-              <div class="card-action"><a class="small" href="news.html">All news →</a></div>
+              <h2>Latest — Alberta &amp; Canada</h2>
+              <div class="card-action"><a class="small" href="news.html">All news, incl. global →</a></div>
             </div>
             <div id="latest-slot"><div class="empty-state">Loading…</div></div>
           </div>
@@ -170,8 +170,14 @@
       </div>`;
   }
 
-  /* ---- Latest developments -------------------------------------------- */
-  const latest = items.slice(0, 12);
+  /* ---- Latest developments ---------------------------------------------
+     Alberta first, then Canada. Global volume (DataCenterDynamics alone
+     posts many items an hour) would otherwise bury the material this site
+     exists for. Everything remains on the news page, unfiltered. */
+  const byRegion = (r) => items.filter(i => i.region === r);
+  const latest = [...byRegion('alberta'), ...byRegion('canada')].slice(0, 12);
+  const latestIsFocused = latest.length > 0;
+  if (!latestIsFocused) latest.push(...items.slice(0, 12));
   $('#latest-slot').innerHTML = latest.length ? `
     <ul class="feed">
       ${latest.map(i => `
