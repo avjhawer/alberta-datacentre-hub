@@ -109,7 +109,9 @@
         <td data-label="Source">${tierChip(p.sourceTier)}
           <a class="small" href="${esc(safeUrl(p.source))}" target="_blank" rel="noopener">Verify ↗</a></td>
       </tr>`).join('') : `
-      <tr><td colspan="6"><div class="empty-state">No confirmed records match.</div></td></tr>`;
+      <tr><td colspan="6"><div class="empty-state">
+        ${esc(proj.confirmedNote || 'No confirmed records.')}
+      </div></td></tr>`;
 
     $('#detail-slot').innerHTML = list.map(p => `
       <div class="card">
@@ -140,14 +142,25 @@
   A.makeSortable($('#proj'));
   A.registerPaletteItems(rows.map(p => ({ label: p.name, kind: 'Project', href: 'projects.html' })));
 
-  /* Reported bucket — empty by design at launch */
+  /* Reported bucket — leads, never facts. Each says what would confirm it. */
   const rep = proj.reported || [];
   $('#reported-slot').innerHTML = rep.length ? `
+    <p class="small secondary">${esc(proj.reportedNote || '')}</p>
     <ul class="feed">${rep.map(r => `
       <li class="feed-item">
-        <span class="headline">${esc(r.name)}</span>
-        <div class="feed-meta">${tierChip('reported')}<span>${esc(r.sourceName || '')}</span></div>
+        <span class="headline">${esc(r.name)}${r.capacityMW ? ` — ${esc(fmtNum(r.capacityMW))} MW` : ''}</span>
+        <div class="feed-meta">
+          ${tierChip('reported')}
+          ${A.statusBadge('warning', 'Unconfirmed')}
+          <span>${esc(r.municipality || '')}</span>
+        </div>
         <p class="summary">${esc(r.summary || '')}</p>
+        ${r.caution ? `<div class="notice" style="margin:var(--s-2) 0 0">
+          <strong>Read carefully:</strong> ${esc(r.caution)}</div>` : ''}
+        ${r.whatWouldConfirmIt ? `<p class="small muted" style="margin:var(--s-2) 0 0">
+          <strong>What would confirm it:</strong> ${esc(r.whatWouldConfirmIt)}</p>` : ''}
+        <p class="small" style="margin:var(--s-2) 0 0">
+          <a href="${esc(safeUrl(r.source))}" target="_blank" rel="noopener">${esc(r.sourceName)} ↗</a></p>
       </li>`).join('')}</ul>` : `
     <div class="empty-state">${esc(proj.reportedNote || 'Nothing here.')}</div>`;
 

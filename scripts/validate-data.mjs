@@ -182,16 +182,30 @@ if (library) {
 const grid = await read('grid');
 if (grid) {
   const f = 'grid.json';
-  for (const k of ['interimCapMW', 'allocatedMW', 'queueProjects', 'queueRequestedMW']) {
-    if (typeof grid[k] !== 'number') err(f, `${k} must be a number`);
+  // Figures are split by how well evidenced they are. The dashboard hero must
+  // draw from `verified`, so that block is required and must be primary-tier.
+  for (const block of ['verified', 'reported', 'fromRegulation']) {
+    if (!grid[block] || typeof grid[block] !== 'object') {
+      err(f, `missing "${block}" block — grid figures must be separated by how well evidenced they are`);
+      continue;
+    }
+    checkTier(f, block, grid[block].sourceTier);
+    checkUrl(f, block, grid[block].source);
   }
-  if (typeof grid.allocatedMW === 'number' && typeof grid.interimCapMW === 'number'
-      && grid.allocatedMW > grid.interimCapMW) {
-    warn(f, `allocatedMW (${grid.allocatedMW}) exceeds interimCapMW (${grid.interimCapMW}) — ` +
-            `check this is intended, the meter will render full`);
+  if (grid.verified && grid.verified.sourceTier !== 'primary') {
+    err(f, 'verified.sourceTier must be "primary" — the dashboard hero reads from this block');
   }
-  checkTier(f, 'root', grid.sourceTier);
-  checkUrl(f, 'root', grid.source);
+  for (const k of ['interimCapMW', 'allocatedMW']) {
+    if (typeof grid.verified?.[k] !== 'number') err(f, `verified.${k} must be a number`);
+  }
+  for (const k of ['queueProjects', 'queueRequestedMW']) {
+    if (typeof grid.reported?.[k] !== 'number') err(f, `reported.${k} must be a number`);
+  }
+  if (typeof grid.verified?.allocatedMW === 'number' && typeof grid.verified?.interimCapMW === 'number'
+      && grid.verified.allocatedMW > grid.verified.interimCapMW) {
+    warn(f, `verified.allocatedMW (${grid.verified.allocatedMW}) exceeds verified.interimCapMW ` +
+            `(${grid.verified.interimCapMW}) — the meter will render full`);
+  }
 }
 
 for (const n of ['precedents', 'tech', 'news', 'alerts']) await read(n);

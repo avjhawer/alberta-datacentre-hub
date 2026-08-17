@@ -57,23 +57,31 @@ function collectRecords(policy, grid, projects) {
     });
   }
 
-  if (grid?.source) {
+  // Grid figures are split by how well evidenced they are; check each block
+  // against its own citation so a drift in either is visible separately.
+  for (const block of ['verified', 'reported', 'fromRegulation']) {
+    const b = grid?.[block];
+    if (!b?.source) continue;
     recs.push({
-      file: 'grid.json', id: 'grid', label: 'Dashboard grid figures',
-      url: grid.source, tier: grid.sourceTier,
-      status: grid.verificationStatus,
-      claims: [grid.interimCapMW, grid.allocatedMW, grid.queueProjects,
-               grid.queueRequestedMW, grid.largeDataCentreThresholdMW]
-              .filter(n => typeof n === 'number' && n >= 100).map(String),
+      file: `grid.json (${block})`, id: `grid-${block}`,
+      label: `Grid figures — ${block}`,
+      url: b.source, tier: b.sourceTier,
+      claims: Object.entries(b)
+        .filter(([k, val]) => typeof val === 'number' && val >= 100 && !k.startsWith('_'))
+        .map(([, val]) => String(val)),
     });
   }
 
-  for (const p of projects?.confirmed || []) {
-    recs.push({
-      file: 'projects.json', id: p.id, label: p.name,
-      url: p.source, tier: p.sourceTier, status: p.verificationStatus,
-      claims: numericTokens([p.name, p.summary, p.capacityMW].join(' ')),
-    });
+  // Both buckets are checked: a `reported` record is still expected to be
+  // traceable to something, and confirming one is how it earns promotion.
+  for (const [bucket, list] of [['confirmed', projects?.confirmed], ['reported', projects?.reported]]) {
+    for (const p of list || []) {
+      recs.push({
+        file: `projects.json (${bucket})`, id: p.id, label: p.name,
+        url: p.source, tier: p.sourceTier, status: p.verificationStatus,
+        claims: numericTokens([p.name, p.summary, p.capacityMW].join(' ')),
+      });
+    }
   }
 
   return recs;

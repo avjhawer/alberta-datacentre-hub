@@ -1,18 +1,37 @@
 {
-  "_comment": "Aggregate grid figures for the dashboard. Aggregates only — named per-project allocations are deliberately not recorded. Update when AESO publishes new numbers; the daily change-watch will flag when its large-load page moves.",
-  "asOf": "2026-08-01",
-  "source": "https://www.aeso.ca/grid/connecting-to-the-grid/large-load-projects/",
-  "sourceName": "AESO — Large Load Projects",
-  "sourceTier": "primary",
-  "verificationStatus": "pending",
-  "interimCapMW": 1200,
-  "allocatedMW": 1200,
-  "capThrough": "2028",
-  "queueProjects": 29,
-  "queueRequestedMW": 19565,
-  "queueDemandGW": 16,
-  "largeDataCentreThresholdMW": 75,
-  "bridgedMaxYears": 3,
+  "_comment": "Aggregate grid figures, split deliberately into `verified` (found on AESO's own pages by scripts/verify-seeds.mjs) and `reported` (present only in media coverage). The dashboard must lead with a verified figure. Named per-project allocations are never recorded here. Re-run the Verify seeds workflow after changing anything in this file.",
+  "asOf": "2026-08-17",
+  "lastVerified": "2026-08-17",
+
+  "verified": {
+    "_note": "Confirmed present on the cited AESO pages by the seed verification run on 2026-08-17.",
+    "source": "https://www.aeso.ca/aeso/newsroom/aeso-announces-interim-approach-to-large-load-connections/",
+    "sourceName": "AESO — Interim approach to large load connections",
+    "sourceTier": "primary",
+    "interimCapMW": 1200,
+    "allocatedMW": 1200,
+    "capThrough": "2028"
+  },
+
+  "reported": {
+    "_note": "These figures did NOT appear on AESO's own pages when checked on 2026-08-17. They come from media summaries of the connection queue. The site shows them badged as reported, never as confirmed. Do not rely on them for a permit decision without checking AESO directly.",
+    "source": "https://www.aeso.ca/grid/connecting-to-the-grid/large-load-projects/",
+    "sourceName": "Media summaries of the AESO connection queue",
+    "sourceTier": "reported",
+    "queueProjects": 29,
+    "queueRequestedMW": 19565,
+    "queueDemandGW": 16
+  },
+
+  "fromRegulation": {
+    "_note": "Defined in the Alberta Data Centre Regulation, not an AESO publication.",
+    "source": "https://www.alberta.ca/datacentres/grid.html",
+    "sourceName": "Government of Alberta — Grid",
+    "sourceTier": "primary",
+    "largeDataCentreThresholdMW": 75,
+    "bridgedMaxYears": 3
+  },
+
   "notes": [
     "The 1,200 MW interim cap runs through 2028 and is reported as fully allocated.",
     "Named per-project allocations are not recorded here — only aggregates.",

@@ -86,44 +86,59 @@
 
   A.renderLiveStatus(news);
 
-  /* ---- Hero figure: demand against available capacity ------------------ */
-  if (grid) {
-    const ratio = grid.queueRequestedMW / Math.max(1, grid.interimCapMW);
+  /* ---- Hero figure -------------------------------------------------------
+     The hero leads with a VERIFIED figure. The queue-demand number is more
+     dramatic, but it does not appear on AESO's own pages — it comes from
+     media summaries — so it is shown below, badged as reported, rather than
+     presented as the headline fact. */
+  if (grid?.verified) {
+    const v = grid.verified, rep = grid.reported;
+    const full = v.allocatedMW >= v.interimCapMW;
     $('#hero-slot').innerHTML = `
-      <div class="eyebrow">Grid constraint · as of ${esc(A.fmtDate(grid.asOf))}</div>
-      <div class="hero-value">${esc(fmtCompact(grid.queueRequestedMW))}<span class="unit">MW sought</span></div>
+      <div class="eyebrow">Grid constraint · verified ${esc(A.fmtDate(grid.lastVerified))}</div>
+      <div class="hero-value">${esc(fmtNum(v.interimCapMW))}<span class="unit">MW${full ? ', fully allocated' : ''}</span></div>
       <p class="hero-caption">
-        Roughly <strong>${esc(fmtNum(grid.queueProjects))} projects</strong> are seeking grid connection in
-        Alberta — against an interim cap of <strong>${esc(fmtNum(grid.interimCapMW))} MW</strong> through
-        ${esc(grid.capThrough)}. That is about <strong>${ratio.toFixed(0)}&times;</strong> the capacity
-        available.
+        AESO's interim cap on large-load connections through ${esc(v.capThrough)}
+        ${full ? 'is reported as fully allocated' : 'remains partly available'}. Until it is raised or a
+        project brings its own generation, there is effectively no grid capacity to connect a new
+        data centre load.
       </p>
-      <p class="small muted" style="margin:var(--s-3) 0 0">
-        ${A.tierChip(grid.sourceTier)}
-        <a href="${esc(safeUrl(grid.source))}" target="_blank" rel="noopener">${esc(grid.sourceName)} ↗</a>
-        ${grid.verificationStatus === 'pending'
-          ? ' · <span title="Seeded from research summaries; confirm against the source before relying on it.">pending verification</span>' : ''}
-      </p>`;
+      <p class="small" style="margin:var(--s-3) 0 0">
+        ${A.tierChip(v.sourceTier)}
+        <a href="${esc(safeUrl(v.source))}" target="_blank" rel="noopener">${esc(v.sourceName)} ↗</a>
+      </p>
+      ${rep ? `
+        <div class="notice" style="margin:var(--s-4) 0 0">
+          <strong>Reported demand, not confirmed by AESO.</strong>
+          Media summaries put the connection queue at about
+          <strong>${esc(fmtNum(rep.queueProjects))} projects</strong> and roughly
+          <strong>${esc(fmtCompact(rep.queueRequestedMW))} MW</strong> of requested load —
+          many times the available cap. These figures were <em>not</em> found on AESO's own pages when
+          last checked, so treat them as indicative.
+          ${A.tierChip('reported')}
+          <a href="${esc(safeUrl(rep.source))}" target="_blank" rel="noopener">Check AESO directly ↗</a>
+        </div>` : ''}`;
 
     /* ---- Meter: a single ratio against a limit ------------------------- */
+    const reg = grid.fromRegulation;
     $('#meter-slot').innerHTML = C.meter({
       id: 'viz-cap',
       title: 'Interim large-load capacity',
-      limit: grid.interimCapMW,
+      limit: v.interimCapMW,
       unit: 'MW',
-      segments: [{ label: 'Allocated', value: grid.allocatedMW }],
+      segments: [{ label: 'Allocated', value: v.allocatedMW }],
       note: 'Aggregate only — named per-project allocations are deliberately not recorded here.',
     });
 
-    /* ---- KPI row ------------------------------------------------------- */
+    /* ---- KPI row. Each tile states whether its figure is confirmed. ----- */
     const kpis = [
-      { label: 'Interim connection cap', value: fmtNum(grid.interimCapMW), unit: 'MW',
-        foot: `Through ${esc(grid.capThrough)}` },
-      { label: 'Projects in the queue', value: fmtNum(grid.queueProjects), unit: '',
-        foot: `~${fmtCompact(grid.queueDemandGW)} GW of demand` },
-      { label: 'Large data centre threshold', value: fmtNum(grid.largeDataCentreThresholdMW), unit: 'MW',
+      { label: 'Interim connection cap', value: fmtNum(v.interimCapMW), unit: 'MW',
+        foot: `Through ${esc(v.capThrough)} · confirmed on AESO` },
+      { label: 'Projects in the queue', value: fmtNum(rep.queueProjects), unit: '',
+        foot: `~${fmtCompact(rep.queueDemandGW)} GW · reported, not confirmed` },
+      { label: 'Large data centre threshold', value: fmtNum(reg.largeDataCentreThresholdMW), unit: 'MW',
         foot: 'Data Centre Regulation' },
-      { label: 'Bridged access limit', value: grid.bridgedMaxYears, unit: 'yrs',
+      { label: 'Bridged access limit', value: reg.bridgedMaxYears, unit: 'yrs',
         foot: 'Then the connection lapses' },
     ];
     $('#kpi-slot').innerHTML = kpis.map(k => `

@@ -67,7 +67,7 @@ a plain-English request.
 | `policy.json` | Legislation, regulation, strategy, grid process | Yes |
 | `municipalities.json` | The municipal requirements matrix | Yes |
 | `projects.json` | Project tracker — primary sources only | Yes, carefully |
-| `grid.json` | The dashboard's headline figures | Yes |
+| `grid.json` | The dashboard's headline figures, split into `verified` / `reported` / `fromRegulation` | Yes |
 | `sources.json` | Feeds polled, and pages watched for changes | Yes |
 | `library.json` | Reference links | Yes |
 | `precedents.json` | Precedent jurisdictions and impact research | Yes |
@@ -143,13 +143,41 @@ history on GitHub and revert it in two clicks.
 
 ---
 
-## Verifying a seeded fact
+## Verifying facts against their sources
 
-The records shipped at launch were compiled from research summaries, and the
-grid figures and the AUC record are marked `"verificationStatus": "pending"`
-until each is confirmed against its source page. When you confirm one:
+Run the **Verify seeds** workflow (Actions tab → Verify seeds → Run workflow).
+It fetches every curated record's cited page and reports two things: whether
+the link still works, and whether the record's distinctive figures still appear
+on that page. It runs automatically every Monday to catch link rot.
 
-1. Open the record's source link and check the figure or wording still holds.
-2. Set `"verificationStatus": "verified"`.
-3. If it does not hold, correct it — or remove it. A missing record is better
-   than a wrong one.
+It does *not* prove a record is true — a page can be reachable and still not
+support the claim. It tells you which records to read by hand.
+
+**What the first run found (17 Aug 2026).** All 10 sources were reachable. The
+1,200 MW cap and its 2028 window were confirmed on AESO's own pages. Four
+figures were *not* found on the page they cited:
+
+| Figure | Cited to | What was done |
+|---|---|---|
+| 19,565 MW queue demand | AESO | Moved to `grid.reported`; the dashboard no longer leads with it |
+| 1,864 MW Greenlight | AUC homepage | Record moved from `confirmed` to `reported` |
+| $100B Alberta target | Strategy landing page | Lives in the strategy PDF, not the landing page |
+| $925.6M Budget 2025 | ISED landing page | Lives in the budget document |
+
+That is the process working as intended, not a failure. **When a figure cannot
+be found on its cited page, the fix is to re-cite it, demote it, or remove it —
+never to leave it sitting where a reader would take it as confirmed.**
+
+### The grid figures are split on purpose
+
+`grid.json` has three blocks:
+
+- **`verified`** — found on AESO's own pages. The dashboard hero must read from
+  here, and validation enforces that this block is `primary` tier.
+- **`reported`** — media summaries only. Rendered with a visible "not confirmed
+  by AESO" caveat.
+- **`fromRegulation`** — defined in the Data Centre Regulation rather than
+  published by AESO.
+
+If you update a figure, move it into the block that matches its evidence, then
+re-run Verify seeds.

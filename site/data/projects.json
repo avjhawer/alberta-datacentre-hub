@@ -1,6 +1,8 @@
 {
-  "_comment": "Project tracker. HARD RULE: this file never asserts that a development permit application exists. Only records confirmed by a primary source (a regulator decision, a municipal record, or a government publication) belong here, and each carries verificationStatus. Media-reported projects are NOT seeded — they reach the site through the live news feed where they are badged as reported coverage. See the 'No unverified project claims' section of MAINTENANCE.md.",
-  "confirmed": [
+  "_comment": "Project tracker. HARD RULE: this file never asserts that a development permit application exists. `confirmed` is reserved for records evidenced by a specific primary-source document — a numbered regulator decision, a municipal record, or a government publication. A link to a regulator's homepage is NOT evidence. Media-reported projects live in `reported`, are styled distinctly, and are never restated as fact.",
+  "confirmed": [],
+  "confirmedNote": "Empty. One candidate (an AUC-approved generation facility in Sturgeon County) was moved to 'reported' on 2026-08-17 because the seed verification run could not find its figures on the cited source — the citation pointed at the AUC homepage rather than a numbered decision. It will move here once someone confirms the decision number and links it directly.",
+  "reported": [
     {
       "id": "greenlight-electricity-centre",
       "name": "Greenlight Electricity Centre",
@@ -12,17 +14,16 @@
       "capacityNote": "Electricity generation capacity, not data centre IT load.",
       "decisionBody": "Alberta Utilities Commission",
       "decisionDate": "2026-06-01",
-      "stage": "Approved",
-      "stageStatus": "good",
-      "summary": "AUC approval for an electricity generation facility in Sturgeon County, northeast of Edmonton, expected to serve growing data centre demand.",
-      "caution": "This is an approval for a generation facility under the Hydro and Electric Energy Act. It is not a data centre development permit and should not be read as one.",
+      "stage": "Reported as approved",
+      "stageStatus": "neutral",
+      "summary": "Reported AUC approval for an electricity generation facility in Sturgeon County, northeast of Edmonton, expected to serve growing data centre demand.",
+      "caution": "This is a generation facility, not a data centre development permit, and should not be read as one. The AUC decision number has not been confirmed: the seed verification run on 2026-08-17 could not find the 1,864 MW figure on the cited page, because that citation points at the AUC homepage rather than a specific decision.",
+      "whatWouldConfirmIt": "An AUC decision number and its direct URL on auc.ab.ca. Add those and move this record into 'confirmed'.",
       "source": "https://www.auc.ab.ca/",
-      "sourceName": "Alberta Utilities Commission",
-      "sourceTier": "primary",
-      "verificationStatus": "pending",
-      "verificationNote": "Seeded from research summaries. Confirm the decision number and date against the AUC record before relying on this."
+      "sourceName": "Alberta Utilities Commission (homepage — not a decision link)",
+      "sourceTier": "reported",
+      "verificationStatus": "unconfirmed"
     }
   ],
-  "reported": [],
-  "reportedNote": "Empty by design. Projects that appear only in media coverage are not restated as fact here — read them in the news feed, where the outlet is named and the item is badged as reported."
+  "reportedNote": "Records here are leads, not facts. Each states what would be needed to confirm it."
 }
