@@ -1,0 +1,24 @@
+name: Verify seeds
+
+# Checks every curated record against the source it cites: is the link alive,
+# and do the record's figures still appear on that page? Run it after editing
+# curated data, and periodically to catch link rot.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '40 13 * * 1'   # Mondays, after the daily source watch
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check records against their cited sources
+        run: node scripts/verify-seeds.mjs
