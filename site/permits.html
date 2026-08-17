@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DP review tool — Alberta Data Centre Hub</title>
-<meta name="description" content="Structured development permit review for data centre applications, aligned to Alberta's approvals pathway.">
+<meta name="description" content="Assess a data centre development permit application against Alberta's regulations, area by area. Notes stay in your browser.">
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
@@ -19,54 +19,82 @@
 
       <div class="page-head">
         <h1>Development permit review</h1>
-        <p>A structured review aligned to the Government of Alberta's own approvals pathway, extended with
-           the criteria that precedent jurisdictions show are where these applications actually get
-           contested.</p>
+        <p>Enter what the application states, and the regulations it engages appear against each
+           area. Everything stays in this browser — nothing is uploaded.</p>
       </div>
 
-      <div class="alert-strip">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3l9 16H3zM12 9v5M12 17h.01"/></svg>
-        <div class="alert-body"><strong>Research aid, not a decision.</strong>
-          <span id="disclaimer"></span></div>
+      <!-- Projects -->
+      <section class="section" id="projects-slot"></section>
+
+      <div id="no-review" hidden>
+        <div class="empty-state">No review open. Start one above.</div>
       </div>
 
-      <div class="filterbar">
-        <button class="btn btn-primary" id="new-review">+ New review</button>
-        <select class="select-input" id="review-select" aria-label="Select review"></select>
-        <span class="spacer"></span>
-        <button class="btn" id="copy-summary">Copy summary</button>
-        <button class="btn" id="export-review">Export JSON</button>
-        <label class="btn" for="import-file">Import</label>
-        <input type="file" id="import-file" accept="application/json" hidden>
-        <button class="btn" id="print-review">Print / PDF</button>
-        <button class="btn" id="delete-review">Delete</button>
-      </div>
+      <div id="review-pane">
 
-      <div id="no-review">
-        <div class="card">
-          <div class="empty-state">
-            <p><strong>No review open.</strong></p>
-            <p class="small">Create one to begin. Everything you type stays in this browser — nothing is
-               uploaded, which is what makes it safe to keep pre-decision notes here.</p>
+        <!-- Parameters -->
+        <section class="section">
+          <div class="card">
+            <div class="card-head">
+              <h2>Project parameters</h2>
+              <div class="card-action"><span class="save-state" id="save-state">Saved</span></div>
+            </div>
+            <div id="params-slot"></div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <div id="review-body" hidden>
-        <section class="section" id="meta-slot"></section>
-        <section class="section" id="summary-slot"></section>
-        <div class="grid" id="sections-slot" style="gap:var(--s-4)"></div>
-      </div>
+        <!-- What the parameters trigger -->
+        <section class="section">
+          <div class="card card-accent" id="findings-slot"></div>
+        </section>
 
-      <datalist id="muni-list"></datalist>
+        <!-- Progress -->
+        <section class="section">
+          <div class="card" id="summary-slot"></div>
+        </section>
+
+        <!-- Toolbar -->
+        <section class="section">
+          <div class="toolbar">
+            <div class="seg" id="filter-slot" role="group" aria-label="Filter criteria">
+              <button class="seg-btn is-on" data-filter="all">All</button>
+              <button class="seg-btn" data-filter="open">Not assessed</button>
+              <button class="seg-btn" data-filter="flagged">Flagged</button>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn" id="btn-expand">Collapse all</button>
+              <button class="btn" id="btn-copy">Copy summary</button>
+              <button class="btn" id="btn-export">Export JSON</button>
+              <label class="btn" for="file-import">Import<input id="file-import" type="file"
+                     accept="application/json" hidden></label>
+              <button class="btn btn-primary" id="btn-print">Print</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Areas -->
+        <section class="section" id="sections-slot"></section>
+
+        <p class="small muted" style="margin-top:var(--s-5)">
+          This tool structures a review. It does not decide one — every figure it shows carries its
+          source and tier, and anything without a primary source is phrased as a question rather
+          than a requirement.
+        </p>
+      </div>
 
     </main>
   </div>
 </div>
 
+<!-- Undo bar for deletes -->
+<div class="undo-bar" id="undo-bar" role="status" hidden>
+  <span id="undo-msg"></span>
+  <button class="btn btn-small" id="undo-btn">Undo</button>
+  <button class="icon-btn" id="undo-close" aria-label="Dismiss">✕</button>
+</div>
+
 <script src="assets/app.js"></script>
+<script src="assets/rules.js"></script>
 <script src="assets/checklist.js"></script>
 </body>
 </html>

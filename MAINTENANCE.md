@@ -73,6 +73,7 @@ a plain-English request.
 | `precedents.json` | Precedent jurisdictions and impact research | Yes |
 | `tech.json` | Technology trends | Yes |
 | `checklist.json` | The DP review criteria | Yes — see the warning below |
+| `rules.json` | Thresholds the DP tool tests a project against | Yes — see below |
 | `news.json` | **Generated.** The aggregated feed | No |
 | `alerts.json` | **Generated.** Regulatory change alerts | No |
 | `watch-state.json` | **Generated.** Page hashes | No |
@@ -89,6 +90,27 @@ You can freely add, reword, reorder and remove criteria. One caution:
 > saved reviews are stored under, so changing one silently detaches the notes
 > and status already recorded against it. Add a new criterion with a new id
 > instead. The validator blocks duplicate ids for the same reason.
+
+### Editing the regulatory rules
+
+`rules.json` is what makes the DP tool react to a project's parameters. Each
+rule says: when this field crosses this value, show this finding.
+
+Two kinds, and the difference is enforced by CI:
+
+- **`"kind": "requirement"`** — states a legal obligation. Allowed *only* with a
+  `primary` source on a government or regulator site. Renders as **Requirement**.
+- **`"kind": "question"`** — something for you to establish. Renders as
+  **To establish**. Use this whenever you cannot cite the issuing body.
+
+If you add a requirement without a government source, validation fails with a
+message telling you to either change the kind or cite the regulator. That is
+deliberate: the tool is used to inform decisions, so it must never present a
+plausible-sounding rule as settled law.
+
+To add a rule, copy an existing one and change `when` (the field, operator and
+value), `title`, `detail`, `ask`, and the source. The `area` must match a
+section id in `checklist.json`.
 
 ---
 

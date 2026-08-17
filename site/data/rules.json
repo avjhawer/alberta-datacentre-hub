@@ -1,0 +1,347 @@
+{
+  "_comment": "Regulatory rules engine for the DP review tool. Each rule tests a project's stated parameters and reports what the regulations require. HARD RULE: a rule may only ASSERT a requirement when `sourceTier` is `primary` and the figure was confirmed on that source. Everything else is phrased as a question for the planner to resolve — `kind: \"question\"` — and must never read as a legal conclusion. Adding a rule with kind:\"requirement\" and a non-primary tier fails validation.",
+  "fields": [
+    {
+      "key": "capacityMW",
+      "label": "Stated IT load",
+      "unit": "MW",
+      "type": "number",
+      "help": "The load the application states, not the site's ultimate build-out."
+    },
+    {
+      "key": "municipality",
+      "label": "Municipality",
+      "type": "municipality",
+      "help": "Drives the land use rules pulled from the municipal matrix."
+    },
+    {
+      "key": "gridStatus",
+      "label": "Grid connection",
+      "type": "select",
+      "options": [
+        {
+          "value": "",
+          "label": "Not stated"
+        },
+        {
+          "value": "none",
+          "label": "No connection secured"
+        },
+        {
+          "value": "queued",
+          "label": "In the AESO queue"
+        },
+        {
+          "value": "bridged",
+          "label": "Bridged / interim connection"
+        },
+        {
+          "value": "behind-meter",
+          "label": "Behind-the-fence generation"
+        },
+        {
+          "value": "existing",
+          "label": "Existing sufficient connection"
+        }
+      ]
+    },
+    {
+      "key": "onSiteGenMW",
+      "label": "On-site generation",
+      "unit": "MW",
+      "type": "number",
+      "help": "Generation proposed on the site, including backup."
+    },
+    {
+      "key": "coolingType",
+      "label": "Cooling",
+      "type": "select",
+      "options": [
+        {
+          "value": "",
+          "label": "Not stated"
+        },
+        {
+          "value": "air",
+          "label": "Air-cooled"
+        },
+        {
+          "value": "closed-loop",
+          "label": "Closed-loop liquid"
+        },
+        {
+          "value": "evaporative",
+          "label": "Evaporative / open-loop"
+        },
+        {
+          "value": "hybrid",
+          "label": "Hybrid"
+        }
+      ]
+    },
+    {
+      "key": "waterSource",
+      "label": "Water source",
+      "type": "select",
+      "options": [
+        {
+          "value": "",
+          "label": "Not stated"
+        },
+        {
+          "value": "none",
+          "label": "No process water"
+        },
+        {
+          "value": "municipal",
+          "label": "Municipal supply"
+        },
+        {
+          "value": "groundwater",
+          "label": "Groundwater"
+        },
+        {
+          "value": "surface",
+          "label": "Surface water"
+        }
+      ]
+    },
+    {
+      "key": "annualWaterM3",
+      "label": "Annual water use",
+      "unit": "m³/yr",
+      "type": "number"
+    },
+    {
+      "key": "siteAreaHa",
+      "label": "Site area",
+      "unit": "ha",
+      "type": "number"
+    },
+    {
+      "key": "nearestReceptorM",
+      "label": "Nearest sensitive receptor",
+      "unit": "m",
+      "type": "number",
+      "help": "Distance to the closest dwelling, school or care facility."
+    }
+  ],
+  "rules": [
+    {
+      "id": "large-dc-threshold",
+      "area": "power-grid",
+      "kind": "requirement",
+      "when": {
+        "field": "capacityMW",
+        "op": ">=",
+        "value": 75
+      },
+      "severity": "serious",
+      "title": "Meets the large data centre threshold",
+      "detail": "At 75 MW or more the project is a large data centre for the purposes of Alberta's data centre framework, which is the trigger for the province's grid connection process rather than an ordinary load connection.",
+      "ask": "Confirm the stated load is the connection load and not just first-phase IT load. Ask what the ultimate build-out is.",
+      "source": "https://www.alberta.ca/datacentres/grid.html",
+      "sourceName": "Government of Alberta — Grid",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "under-large-threshold",
+      "area": "power-grid",
+      "kind": "question",
+      "when": {
+        "field": "capacityMW",
+        "op": "<",
+        "value": 75,
+        "alsoRequires": "capacityMW"
+      },
+      "severity": "info",
+      "title": "Below the 75 MW large data centre threshold",
+      "detail": "The stated load sits under the threshold that triggers the province's large-load process.",
+      "ask": "Check whether phasing or a later expansion would cross 75 MW. A staged application that ends above the threshold should be assessed as though it were there from the start.",
+      "source": "https://www.alberta.ca/datacentres/grid.html",
+      "sourceName": "Government of Alberta — Grid",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "aeso-cap-allocated",
+      "area": "power-grid",
+      "kind": "requirement",
+      "when": {
+        "field": "gridStatus",
+        "op": "in",
+        "value": [
+          "none",
+          "queued"
+        ]
+      },
+      "severity": "critical",
+      "title": "AESO's interim connection capacity is reported fully allocated",
+      "detail": "AESO's interim approach set a 1,200 MW cap on large-load connections through 2028, and it is reported as fully allocated. A project without a secured connection cannot assume grid capacity exists.",
+      "ask": "Ask for the AESO queue position and correspondence. Without it, the timeline in the application is unsupported.",
+      "source": "https://www.aeso.ca/aeso/newsroom/aeso-announces-interim-approach-to-large-load-connections/",
+      "sourceName": "AESO — Interim approach to large load connections",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "bridged-lapse",
+      "area": "power-grid",
+      "kind": "requirement",
+      "when": {
+        "field": "gridStatus",
+        "op": "=",
+        "value": "bridged"
+      },
+      "severity": "warning",
+      "title": "Bridged connections are time-limited",
+      "detail": "Bridging allows limited early connection under strict reliability conditions, including an obligation to curtail when the grid requires it, and it does not run indefinitely.",
+      "ask": "Confirm what happens to the operation when bridging ends. A condition tying occupancy to a firm connection may be appropriate.",
+      "source": "https://www.alberta.ca/datacentres/grid.html",
+      "sourceName": "Government of Alberta — Grid",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "behind-meter-generation",
+      "area": "power-grid",
+      "kind": "question",
+      "when": {
+        "field": "onSiteGenMW",
+        "op": ">",
+        "value": 0
+      },
+      "severity": "warning",
+      "title": "On-site generation proposed",
+      "detail": "Generation on the site is regulated separately from the data centre building itself, and by a different body than the municipality.",
+      "ask": "Has an application been made to the Alberta Utilities Commission? A municipal development permit does not authorise the generating facility, and approving one without the other can leave a half-permitted site.",
+      "source": "https://www.auc.ab.ca/",
+      "sourceName": "Alberta Utilities Commission",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "levy-applies",
+      "area": "servicing",
+      "kind": "question",
+      "when": {
+        "field": "capacityMW",
+        "op": ">",
+        "value": 0
+      },
+      "severity": "info",
+      "title": "AI data centre levy is part of the fiscal picture",
+      "detail": "Alberta legislated a levy on AI data centres. It does not change the planning test, but it is relevant to any claim the applicant makes about net municipal benefit. This entry cites a law firm summary rather than the Act, so treat the detail as orientation and check the legislation itself.",
+      "ask": "If the application argues fiscal benefit, check whether it accounts for the levy and for the province's position that costs are not to be transferred to ratepayers or municipal taxpayers.",
+      "source": "https://www.blg.com/en/insights/2025/09/alberta-confirms-new-ai-data-centre-levy",
+      "sourceName": "Financial Statutes Amendment Act, 2025 (No. 2) — summary",
+      "sourceTier": "reported"
+    },
+    {
+      "id": "evaporative-cooling",
+      "area": "water",
+      "kind": "question",
+      "when": {
+        "field": "coolingType",
+        "op": "in",
+        "value": [
+          "evaporative",
+          "hybrid"
+        ]
+      },
+      "severity": "serious",
+      "title": "Evaporative cooling consumes water rather than circulating it",
+      "detail": "Open-loop and hybrid cooling lose water to evaporation, so consumption is not recovered downstream. This is the single biggest driver of a data centre's water footprint.",
+      "ask": "What is the consumptive volume, at design load and at peak summer temperature? A figure quoted as an annual average understates the summer draw that actually stresses a supply.",
+      "source": "https://www.alberta.ca/datacentres",
+      "sourceName": "Government of Alberta — Data centres",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "surface-groundwater-licence",
+      "area": "water",
+      "kind": "question",
+      "when": {
+        "field": "waterSource",
+        "op": "in",
+        "value": [
+          "groundwater",
+          "surface"
+        ]
+      },
+      "severity": "serious",
+      "title": "Non-municipal water needs its own authorisation",
+      "detail": "Drawing groundwater or surface water is licensed provincially and separately from the development permit.",
+      "ask": "Is there a licence or a transfer in hand, and does its volume match the application's stated use? A permit granted against an unlicensed supply is not deliverable.",
+      "source": "https://www.alberta.ca/water-act",
+      "sourceName": "Alberta Water Act",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "municipal-supply-capacity",
+      "area": "water",
+      "kind": "question",
+      "when": {
+        "field": "waterSource",
+        "op": "=",
+        "value": "municipal"
+      },
+      "severity": "warning",
+      "title": "Municipal supply — check headroom, not just connection",
+      "detail": "A connection being physically possible is not the same as the system having capacity for the load through its design horizon.",
+      "ask": "Has utilities confirmed available capacity at design load, and what does it displace? Ask for the assessment in writing.",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "receptor-distance",
+      "area": "noise-air",
+      "kind": "question",
+      "when": {
+        "field": "nearestReceptorM",
+        "op": "<",
+        "value": 1000,
+        "alsoRequires": "nearestReceptorM"
+      },
+      "severity": "serious",
+      "title": "Sensitive receptor within 1 km",
+      "detail": "Data centre noise is continuous and tonal rather than intermittent, so it is experienced differently from most industrial noise at the same measured level.",
+      "ask": "Is there an acoustic assessment at the receptor, modelled at full load with cooling running, and does it address low-frequency content and night-time levels rather than an averaged daily figure?",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "large-site-area",
+      "area": "land-use",
+      "kind": "question",
+      "when": {
+        "field": "siteAreaHa",
+        "op": ">=",
+        "value": 40
+      },
+      "severity": "info",
+      "title": "Large site — check the plan hierarchy, not just the district",
+      "detail": "A site of this size often engages an area structure plan or a municipal development plan policy that sits above the land use bylaw.",
+      "ask": "Does the proposal conform to the applicable statutory plan, and is an amendment being sought alongside the permit?",
+      "sourceTier": "unverified"
+    }
+  ],
+  "municipalRules": {
+    "_comment": "Evaluated against municipalities.json rather than hardcoded, so the matrix stays the single source of truth. A blank cell renders as 'needs research', never as a pass.",
+    "useClassDiscretionary": {
+      "area": "land-use",
+      "severity": "info",
+      "title": "Use is discretionary here",
+      "detail": "A discretionary use materially widens the grounds on which the application can be refused or conditioned, compared with a permitted use.",
+      "ask": "Confirm the current bylaw text — several Alberta municipalities changed this classification during 2026."
+    },
+    "useClassPermitted": {
+      "area": "land-use",
+      "severity": "warning",
+      "title": "Use is permitted here",
+      "detail": "Where the use is permitted and the application meets the bylaw's standards, the grounds for refusal are narrow, and conditions must attach to matters the bylaw actually regulates.",
+      "ask": "Focus scrutiny on the standards you can enforce — servicing, setbacks, noise, and cost recovery — rather than on the principle of the use."
+    },
+    "unknown": {
+      "area": "land-use",
+      "severity": "question",
+      "title": "Municipal position not yet verified",
+      "detail": "This municipality's row in the matrix has not been confirmed against its current bylaw.",
+      "ask": "Read the bylaw directly before relying on any assumption about use class. Do not infer it from a neighbouring municipality."
+    }
+  }
+}

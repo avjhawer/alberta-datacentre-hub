@@ -94,6 +94,23 @@
   /* --- Density (overridden by [data-density="compact"]) ------------------ */
   --row-h: 40px;
   --cell-pad-y: 10px;
+
+  /* --- motion. Theme-independent; honoured by the reduced-motion block. --- */
+  --dur:       140ms;
+  --dur-slow:  320ms;
+  --ease:      cubic-bezier(.2, 0, .2, 1);
+
+  /* --- interaction & elevation ------------------------------------------ */
+  --focus:         #2a78d6;
+  --border-strong: rgba(11, 11, 11, 0.22);
+  --shadow-sm:     0 1px 2px rgba(11, 11, 11, 0.06);
+  --shadow-lg:     0 8px 24px rgba(11, 11, 11, 0.16);
+
+  /* --- status washes. Backgrounds only; the text colour stays an ink or
+         the AA-safe status text step, so status is never colour alone. ---- */
+  --status-good-bg:     rgba(12, 163, 12, 0.10);
+  --status-warning-bg:  rgba(250, 178, 25, 0.16);
+  --status-critical-bg: rgba(208, 59, 59, 0.10);
 }
 
 [data-density="compact"] {
@@ -104,6 +121,15 @@
 /* --- Dark: OS preference (loses to an explicit light stamp) -------------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    /* Selected dark steps for the tokens added for the review tool. */
+    --focus:         #7fb2f0;
+    --border-strong: rgba(255, 255, 255, 0.26);
+    --shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-lg:     0 8px 24px rgba(0, 0, 0, 0.6);
+    --status-good-bg:     rgba(70, 200, 70, 0.16);
+    --status-warning-bg:  rgba(250, 178, 25, 0.20);
+    --status-critical-bg: rgba(232, 106, 106, 0.18);
+
     color-scheme: dark;
 
     --page:           #0d0d0d;
@@ -141,6 +167,15 @@
 
 /* --- Dark: explicit toggle (must win in both directions) ----------------- */
 :root[data-theme="dark"] {
+  /* Selected dark steps for the tokens added for the review tool. */
+  --focus:         #7fb2f0;
+  --border-strong: rgba(255, 255, 255, 0.26);
+  --shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-lg:     0 8px 24px rgba(0, 0, 0, 0.6);
+  --status-good-bg:     rgba(70, 200, 70, 0.16);
+  --status-warning-bg:  rgba(250, 178, 25, 0.20);
+  --status-critical-bg: rgba(232, 106, 106, 0.18);
+
   color-scheme: dark;
 
   --page:           #0d0d0d;
@@ -173,4 +208,13 @@
 
   --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.6),
                     0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Motion is decorative here — every transition has a static resting state. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0ms; --dur-slow: 0ms; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; scroll-behavior: auto !important;
+  }
 }

@@ -25,7 +25,16 @@ auto-promotes only government and regulator TLDs (see
 `sources.json → discovery.authorityPatterns`). Everything else is proposed in an
 issue for human approval. This is a safety property, not a convenience setting.
 
-**4. Never change an existing criterion `id` in `checklist.json`.** Those ids
+**4. A rule may only assert a requirement with a primary source.**
+`rules.json` drives the DP tool's live evaluation. A rule with
+`kind: "requirement"` states a legal obligation, so `validate-data.mjs` fails CI
+unless its `sourceTier` is `primary` *and* the source is a government or
+regulator host. Everything weaker must be `kind: "question"`, which the UI
+renders as "To establish" rather than "Requirement". The same host check now
+applies to every `primary` record anywhere — a law firm's summary of an Act is
+commentary, not the Act.
+
+**5. Never change an existing criterion `id` in `checklist.json`.** Those ids
 are the localStorage keys for saved reviews; changing one silently detaches a
 planner's recorded notes and statuses. Add new ids instead.
 
@@ -41,6 +50,15 @@ rots and the owner can edit content without a toolchain.
   `<body data-page="…">`, and exports helpers on `window.ADCH`.
 - `charts.js` (`window.ADCHCharts`) builds the meter, bar chart and sparkline by
   hand, each with a table-view twin.
+- `rules.js` (`window.ADCHRules`) evaluates a project's stated parameters
+  against `rules.json`. Pure and synchronous, so the DP tool can re-run it on
+  every keystroke. It keeps requirements and questions strictly apart and never
+  promotes one to the other.
+- `checklist.js` is the DP review tool: multiple reviews (create, rename,
+  duplicate, delete with undo), a parameter form, live findings per area, and
+  eight accordions. Reviews live in `localStorage` under `adch.reviews.v2`;
+  `load()` migrates `v1` rather than orphaning saved work — keep that migration
+  if you bump the key again.
 - Content is data, not markup. To add a record, edit JSON — not HTML.
 
 ### Data flow
@@ -76,6 +94,14 @@ Documented in `assets/tokens.css`. Key points:
   `:root:not([data-theme="light"])`) and `:root[data-theme="dark"]`.
 
 ## Testing
+
+The DP tool has a browser-driven suite that must pass before shipping a change
+to it — it covers rule evaluation, persistence, delete/undo, and the v1
+migration:
+
+```bash
+node scratch/dp-test.mjs      # 23 assertions, needs the local server running
+```
 
 ```bash
 node test/test-lib.mjs                                # 35 assertions, offline

@@ -49,6 +49,22 @@ function checkTier(file, where, tier) {
   if (!TIERS.includes(tier)) err(file, `${where}: sourceTier "${tier}" is not one of ${TIERS.join(', ')}`);
 }
 
+/* A `primary` source means the body that made the rule published it. A law
+   firm's summary of an Act is useful, but it is commentary — tagging it primary
+   is how a secondary reading quietly becomes "the regulation says". */
+const AUTHORITY_HOST = /(^|\.)(gc\.ca|canada\.ca|alberta\.ca|ab\.ca|gov)$|(^|\.)(aeso|auc|aer)\.(ca|ab\.ca)$/;
+
+function checkPrimaryIsAuthoritative(file, where, tier, url) {
+  if (tier !== 'primary' || !url) return;
+  let host;
+  try { host = new URL(url).hostname.replace(/^www\./, ''); } catch { return; }
+  if (!AUTHORITY_HOST.test(host)) {
+    err(file, `${where}: sourceTier "primary" but the source is ${host}, which is not a ` +
+           `government or regulator host. A summary of a rule is not the rule — ` +
+           `tag this "reported" or cite the issuing body directly.`);
+  }
+}
+
 function checkDate(file, where, d, { required = true } = {}) {
   if (!d) { if (required) err(file, `${where}: missing date`); return; }
   if (Number.isNaN(Date.parse(d))) err(file, `${where}: unparseable date "${d}"`);
@@ -67,6 +83,7 @@ if (policy) {
     checkDate(f, w, r.date);
     checkTier(f, w, r.sourceTier);
     checkUrl(f, w, r.source);
+    checkPrimaryIsAuthoritative(f, w, r.sourceTier, r.source);
     if (!r.region) err(f, `${w}: missing region`);
   });
   const ids = (policy.records || []).map(r => r.id);
@@ -85,6 +102,7 @@ if (projects) {
     if (!p.name) err(f, `${w}: missing name`);
     checkTier(f, w, p.sourceTier);
     checkUrl(f, w, p.source);
+    checkPrimaryIsAuthoritative(f, w, p.sourceTier, p.source);
     // The rule that matters: nothing unverified is allowed to sit in the
     // confirmed bucket, where the UI presents it as established fact.
     if (p.sourceTier !== 'primary') {
@@ -191,6 +209,7 @@ if (grid) {
     }
     checkTier(f, block, grid[block].sourceTier);
     checkUrl(f, block, grid[block].source);
+    checkPrimaryIsAuthoritative(f, block, grid[block].sourceTier, grid[block].source);
   }
   if (grid.verified && grid.verified.sourceTier !== 'primary') {
     err(f, 'verified.sourceTier must be "primary" — the dashboard hero reads from this block');
@@ -206,6 +225,57 @@ if (grid) {
     warn(f, `verified.allocatedMW (${grid.verified.allocatedMW}) exceeds verified.interimCapMW ` +
             `(${grid.verified.interimCapMW}) — the meter will render full`);
   }
+}
+
+const rules = await read('rules');
+if (rules) {
+  const f = 'rules.json';
+  const areaIds = new Set((checklist?.sections || []).map(s => s.id));
+  const fieldKeys = new Set((rules.fields || []).map(x => x.key));
+  const OPS = ['>=', '<=', '>', '<', '=', 'in'];
+  const ids = new Set();
+
+  if (!Array.isArray(rules.fields) || !rules.fields.length) err(f, 'fields must be a non-empty array');
+  if (!Array.isArray(rules.rules)) err(f, 'rules must be an array');
+
+  (rules.rules || []).forEach((r, i) => {
+    const w = `rules[${i}] (${r.id || 'no id'})`;
+    if (!r.id) err(f, `${w}: missing id`);
+    else if (ids.has(r.id)) err(f, `${w}: duplicate rule id "${r.id}"`);
+    else ids.add(r.id);
+    if (!r.title) err(f, `${w}: missing title`);
+    if (!r.ask) err(f, `${w}: missing "ask" — every rule must tell the planner what to do next`);
+
+    // A rule's area must be a real checklist section, so the tool can file it.
+    if (!areaIds.has(r.area)) {
+      err(f, `${w}: area "${r.area}" is not a section id in checklist.json ` +
+             `(have: ${[...areaIds].join(', ')})`);
+    }
+    if (!r.when || !fieldKeys.has(r.when.field)) {
+      err(f, `${w}: when.field "${r.when?.field}" is not a declared field`);
+    }
+    if (!OPS.includes(r.when?.op)) err(f, `${w}: when.op must be one of ${OPS.join(', ')}`);
+    if (r.when?.op === 'in' && !Array.isArray(r.when.value)) {
+      err(f, `${w}: op "in" requires an array value`);
+    }
+    checkTier(f, w, r.sourceTier);
+    checkPrimaryIsAuthoritative(f, w, r.sourceTier, r.source);
+
+    // The honesty rule. A rule may only state a requirement as fact when a
+    // primary source backs it; anything weaker has to be phrased as a question,
+    // which is how the UI renders it.
+    if (r.kind === 'requirement' && r.sourceTier !== 'primary') {
+      err(f, `${w}: kind "requirement" asserts a legal obligation, so it needs a ` +
+             `primary source — this one is "${r.sourceTier}". Change kind to "question" ` +
+             `or supply a primary source.`);
+    }
+    if (r.kind === 'requirement' && !r.source) {
+      err(f, `${w}: kind "requirement" must carry a source URL`);
+    }
+    if (!['requirement', 'question'].includes(r.kind)) {
+      err(f, `${w}: kind must be "requirement" or "question"`);
+    }
+  });
 }
 
 for (const n of ['precedents', 'tech', 'news', 'alerts']) await read(n);
