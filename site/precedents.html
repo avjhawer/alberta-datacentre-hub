@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Precedents &amp; impacts — Alberta Data Centre Hub</title>
+<meta name="description" content="Precedent jurisdictions and independent impact research on land, water and community effects of data centre development.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="precedents">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Precedents &amp; impacts</h1>
+        <p id="intro"></p>
+      </div>
+
+      <section class="section">
+        <div class="section-head"><h2>Precedent jurisdictions</h2></div>
+        <div class="grid" id="juris-slot"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Impact research</h2>
+          <span class="section-note">Independent sources — no commercial position in the outcome</span>
+        </div>
+        <div class="grid grid-2" id="research-slot"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+(async function () {
+  const A = window.ADCH;
+  const { $, esc, safeUrl, regionChip } = A;
+
+  const [prec, news] = await Promise.all([
+    A.loadData('precedents', null),
+    A.loadData('news', { items: [] }),
+  ]);
+  A.renderLiveStatus(news);
+
+  if (!prec) { $('#main').innerHTML = '<div class="empty-state">Precedent data unavailable.</div>'; return; }
+
+  $('#intro').textContent = prec.intro;
+
+  $('#juris-slot').innerHTML = (prec.jurisdictions || []).map(j => `
+    <div class="card">
+      <div class="card-head">
+        <h3>${esc(j.name)}</h3>
+        <div class="card-action">${regionChip(j.region)}</div>
+      </div>
+      <p class="secondary">${esc(j.why)}</p>
+      ${j.lessons?.length ? `
+        <div class="eyebrow" style="margin-bottom:var(--s-2)">What it settled</div>
+        <ul class="small" style="margin:0 0 var(--s-3);padding-left:1.1em">
+          ${j.lessons.map(l => `<li>${esc(l)}</li>`).join('')}
+        </ul>` : ''}
+      <div class="grid" style="gap:var(--s-2)">
+        ${(j.links || []).map(l => `
+          <div>
+            <a class="small" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>
+            ${l.fromBookmarks ? '<span class="chip" style="margin-left:6px">From your research</span>' : ''}
+            ${l.note ? `<div class="small muted">${esc(l.note)}</div>` : ''}
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+
+  $('#research-slot').innerHTML = (prec.research || []).map(r => `
+    <div class="card">
+      <div class="card-head">
+        <h3>${esc(r.title)}</h3>
+        <div class="card-action">${regionChip(r.region)}</div>
+      </div>
+      <div class="feed-meta" style="margin-bottom:var(--s-2)">
+        <span class="chip">${esc(r.topic)}</span>
+        <span class="small muted">${esc(r.publisher)}</span>
+        ${r.fromBookmarks ? '<span class="chip">From your research</span>' : ''}
+      </div>
+      <p class="small secondary">${esc(r.why)}</p>
+      <a class="small" href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener">Read ↗</a>
+    </div>`).join('');
+
+  A.registerPaletteItems([
+    ...(prec.jurisdictions || []).map(j => ({ label: j.name, kind: 'Precedent', href: 'precedents.html' })),
+    ...(prec.research || []).map(r => ({ label: r.title, kind: 'Research', href: 'precedents.html' })),
+  ]);
+})();
+</script>
+</body>
+</html>

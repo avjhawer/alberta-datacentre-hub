@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Data editor — Alberta Data Centre Hub</title>
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="admin">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Data editor</h1>
+        <p>Edit the site's content in form fields instead of raw JSON, then copy the result into GitHub.
+           Runs entirely in your browser — nothing is uploaded from this page.</p>
+      </div>
+
+      <div class="notice">
+        <strong>How to use this.</strong> Pick a file, make your changes, then
+        <strong>Copy JSON</strong> or <strong>Download</strong>. Open the same file on GitHub, click the
+        pencil icon, paste over the contents and commit. The deploy runs automatically and validation will
+        catch any mistake before it reaches the live site.
+        This page is not linked in the site navigation.
+      </div>
+
+      <div class="filterbar">
+        <select class="select-input" id="file-select" aria-label="Choose a data file">
+          <option value="policy">policy.json — regulatory records</option>
+          <option value="municipalities">municipalities.json — municipal matrix</option>
+          <option value="projects">projects.json — project tracker</option>
+          <option value="sources">sources.json — feeds and watched pages</option>
+          <option value="library">library.json — reference links</option>
+          <option value="grid">grid.json — dashboard figures</option>
+          <option value="tech">tech.json — technology trends</option>
+          <option value="precedents">precedents.json — precedents and research</option>
+          <option value="checklist">checklist.json — DP review criteria</option>
+        </select>
+        <span class="spacer"></span>
+        <span class="small" id="status"></span>
+        <button class="btn" id="validate">Check</button>
+        <button class="btn" id="copy">Copy JSON</button>
+        <button class="btn btn-primary" id="download">Download</button>
+        <a class="btn" id="gh-link" target="_blank" rel="noopener">Open on GitHub ↗</a>
+      </div>
+
+      <div class="grid grid-main-aside">
+        <div class="card">
+          <div class="card-head"><h2 id="editor-title">Records</h2>
+            <div class="card-action"><button class="btn" id="add-record">+ Add record</button></div></div>
+          <div id="form-slot"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Raw JSON</h2></div>
+          <p class="small secondary">Edits here and in the form stay in sync. This is what you paste
+             into GitHub.</p>
+          <textarea id="raw" spellcheck="false"
+                    style="width:100%;min-height:520px;font-family:ui-monospace,monospace;font-size:12px;
+                           padding:var(--s-3);border:1px solid var(--border);border-radius:var(--r-chip);
+                           background:var(--surface-sunken);color:var(--ink);resize:vertical"></textarea>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>

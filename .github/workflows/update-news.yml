@@ -1,0 +1,65 @@
+name: Refresh news feed
+
+# The thing that keeps the site live. Every 3 hours it re-ingests every feed,
+# reclassifies, rescores, and commits news.json if anything changed — which in
+# turn triggers deploy.yml, so the loop closes with no manual step.
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-news
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch and classify feeds
+        run: node scripts/fetch-news.mjs
+
+      - name: Validate output
+        run: node scripts/validate-data.mjs
+
+      - name: Report
+        run: |
+          node -e '
+            const d = require("./site/data/news.json");
+            const ok = d.sourceHealth.filter(s => s.ok).length;
+            const bad = d.sourceHealth.filter(s => !s.ok);
+            const L = [];
+            L.push("### News refresh", "");
+            L.push(`- **${d.itemCount}** items from **${ok}/${d.sourceHealth.length}** healthy feeds`);
+            L.push(`- Breaking: ${d.items.filter(i => i.breaking).length}`);
+            L.push(`- Streams: \`${JSON.stringify(d.streamCounts)}\``);
+            L.push(`- Regions: \`${JSON.stringify(d.regionCounts)}\``);
+            L.push(`- generatedAt: \`${d.generatedAt}\``);
+            if (bad.length) {
+              L.push("", "**Failing feeds** (swap these for working queries):");
+              for (const b of bad) L.push(`- \`${b.id}\` — ${b.error}`);
+            }
+            require("fs").appendFileSync(process.env.GITHUB_STEP_SUMMARY, L.join("\n") + "\n");
+          '
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- site/data/news.json; then
+            echo "No change to news.json — nothing to commit."
+          else
+            git add site/data/news.json
+            git commit -m "chore(data): refresh news feed"
+            git push
+          fi

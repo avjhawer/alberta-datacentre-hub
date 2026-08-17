@@ -1,0 +1,218 @@
+{
+  "_comment": "Municipal regulatory frameworks ONLY — what each bylaw requires. Never record live applications or named proponents here. Fields left null mean 'not yet verified', which the UI renders as 'Needs research' rather than guessing. Add or correct a row via the 'Add a municipality' issue form.",
+  "columns": [
+    {
+      "key": "useClass",
+      "label": "Data centre use class"
+    },
+    {
+      "key": "district",
+      "label": "District / zone"
+    },
+    {
+      "key": "secondaryPlan",
+      "label": "Additional plan required"
+    },
+    {
+      "key": "reporting",
+      "label": "Ongoing reporting"
+    },
+    {
+      "key": "costRecovery",
+      "label": "Infrastructure cost"
+    }
+  ],
+  "municipalities": [
+    {
+      "id": "parkland-county",
+      "name": "Parkland County",
+      "area": "Edmonton Metropolitan Region",
+      "priority": true,
+      "useClass": {
+        "value": "Permitted",
+        "status": "good",
+        "detail": "'Computer, Electronic, Data Processing Services' is a permitted land use on quarter sections following the Land Use Bylaw 2017-18 text amendments."
+      },
+      "district": {
+        "value": "Direct Control",
+        "status": "neutral",
+        "detail": "Council approved amendments on 4 September 2025 creating new Direct Control Districts alongside Highvale End Area Structure Plan amendments."
+      },
+      "secondaryPlan": {
+        "value": "MSDP + DP",
+        "status": "warning",
+        "detail": "A Master Site Development Plan (MSDP) is required in addition to a Development Permit for data processing facility development on the amended lands."
+      },
+      "reporting": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": "No standing public reporting obligation identified in the bylaw text reviewed."
+      },
+      "costRecovery": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "regulations": "Section 5.80 — Data Processing Facility Regulations, Land Use Bylaw 2017-18",
+      "notes": "Council approved the Highvale End ASP amendments, the Land Use Bylaw amendments, the new Direct Control Districts, and Section 5.80 Data Processing Facility Regulations on 4 September 2025.",
+      "source": "https://www.parklandcounty.com/business-development/planning-and-development/land-use-bylaw/",
+      "sourceName": "Parkland County — Land Use Bylaw",
+      "sourceTier": "primary",
+      "extraLinks": [
+        {
+          "label": "What are Data Centres? (Parkland County)",
+          "url": "https://www.parklandcounty.com/business-development/what-are-data-centres/"
+        },
+        {
+          "label": "Planning and Development",
+          "url": "https://www.parklandcounty.com/en/business-and-development/planning-and-development.aspx"
+        }
+      ]
+    },
+    {
+      "id": "rocky-view-county",
+      "name": "Rocky View County",
+      "area": "Calgary Metropolitan Region",
+      "priority": false,
+      "useClass": {
+        "value": "Discretionary",
+        "status": "warning",
+        "detail": "Bylaw C-8766-2026, approved 21 July 2026, changed Data Centre Campus from a permitted use to a discretionary use."
+      },
+      "district": {
+        "value": "S-DAT",
+        "status": "neutral",
+        "detail": "The Special, Data Centre District, commonly identified as S-DAT."
+      },
+      "secondaryPlan": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "reporting": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "costRecovery": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "regulations": "Bylaw C-8766-2026; Land Use Bylaw",
+      "notes": "The discretionary designation gives the development authority latitude to assess a proposal on its merits and to refuse a development permit on planning considerations and community impacts. Council approved the bylaw following a public hearing.",
+      "source": "https://www.rockyview.ca/build-plan-and-develop/planning/land-use-bylaw",
+      "sourceName": "Rocky View County — Land Use Bylaw",
+      "sourceTier": "primary",
+      "extraLinks": []
+    },
+    {
+      "id": "sturgeon-county",
+      "name": "Sturgeon County",
+      "area": "Alberta's Industrial Heartland",
+      "priority": false,
+      "useClass": {
+        "value": "Permitted",
+        "status": "good",
+        "detail": "Council amended Bylaw 1385-17 (Land Use Bylaw) in April 2022 to add Data Processing Facilities as a permitted use with associated regulations."
+      },
+      "district": {
+        "value": "I5 Heavy Industrial",
+        "status": "neutral",
+        "detail": "Projects are expected to locate in pre-zoned industrial areas — Alberta's Industrial Heartland and Sturgeon Industrial Park."
+      },
+      "secondaryPlan": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "reporting": {
+        "value": "Annual reporting",
+        "status": "good",
+        "detail": "Operators are expected to report publicly each year on water use, noise levels, and nitrogen oxide (NOx) emissions."
+      },
+      "costRecovery": {
+        "value": "Developer funds",
+        "status": "good",
+        "detail": "Developers must fund all project-related infrastructure improvements. Costs cannot be transferred to municipal ratepayers."
+      },
+      "regulations": "Bylaw 1385-17 — Land Use Bylaw (amended April 2022)",
+      "notes": "The clearest cost-recovery and ongoing-reporting language of the Alberta municipalities reviewed. Useful as a drafting benchmark.",
+      "source": "https://www.sturgeoncounty.ca/building-development/data-centre-development/",
+      "sourceName": "Sturgeon County — Data Centre Development",
+      "sourceTier": "primary",
+      "extraLinks": []
+    },
+    {
+      "id": "md-greenview",
+      "name": "MD of Greenview No. 16",
+      "area": "Northwest Alberta",
+      "priority": false,
+      "useClass": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": "No data-centre-specific use class identified in the material reviewed. General development permit requirements apply."
+      },
+      "district": {
+        "value": "Per Land Use Bylaw",
+        "status": "neutral",
+        "detail": "Per Land Use Bylaw"
+      },
+      "secondaryPlan": {
+        "value": "DP required",
+        "status": "neutral",
+        "detail": "A development permit is required prior to any development taking place."
+      },
+      "reporting": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "costRecovery": {
+        "value": "Not specified",
+        "status": "neutral",
+        "detail": ""
+      },
+      "regulations": "Greenview Land Use Bylaw — general setbacks: 40 m from a property line adjacent to a road or undeveloped road allowance; 15 m from any other property line; 7.5 m from a service road.",
+      "notes": "General development permit framework rather than a data-centre-specific regime.",
+      "source": "https://mdgreenview.ab.ca/departments/planning-and-development/development-permits/",
+      "sourceName": "MD of Greenview — Development Permits",
+      "sourceTier": "primary",
+      "extraLinks": []
+    },
+    {
+      "id": "city-of-edmonton",
+      "name": "City of Edmonton",
+      "area": "Edmonton Metropolitan Region",
+      "priority": false,
+      "useClass": null,
+      "district": null,
+      "secondaryPlan": null,
+      "reporting": null,
+      "costRecovery": null,
+      "regulations": "",
+      "notes": "Not yet verified against the current Zoning Bylaw. Row included because it is in scope; fields are deliberately blank rather than guessed. Contribute via the 'Add a municipality' issue form.",
+      "source": "https://www.edmonton.ca/city_government/bylaws/zoning-bylaw",
+      "sourceName": "City of Edmonton — Zoning Bylaw",
+      "sourceTier": "unverified",
+      "extraLinks": []
+    },
+    {
+      "id": "city-of-calgary",
+      "name": "City of Calgary",
+      "area": "Calgary Metropolitan Region",
+      "priority": false,
+      "useClass": null,
+      "district": null,
+      "secondaryPlan": null,
+      "reporting": null,
+      "costRecovery": null,
+      "regulations": "",
+      "notes": "Not yet verified against the current Land Use Bylaw 1P2007. Row included because it is in scope; fields are deliberately blank rather than guessed. Contribute via the 'Add a municipality' issue form.",
+      "source": "https://www.calgary.ca/planning/land-use.html",
+      "sourceName": "City of Calgary — Land Use Bylaw",
+      "sourceTier": "unverified",
+      "extraLinks": []
+    }
+  ]
+}

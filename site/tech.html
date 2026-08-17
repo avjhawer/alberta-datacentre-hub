@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology trends — Alberta Data Centre Hub</title>
+<meta name="description" content="Data centre technology and engineering trends, framed for what each one changes about a development permit application.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="tech">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Technology &amp; engineering trends</h1>
+        <p id="intro"></p>
+      </div>
+
+      <div class="filterbar">
+        <input class="search-input" id="q" type="search" placeholder="Search trends…" aria-label="Search trends">
+        <span id="topic-chips"></span>
+        <span class="spacer"></span>
+        <span class="small muted" id="count"></span>
+      </div>
+
+      <div class="grid grid-2 section" id="trend-slot"></div>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Latest technology coverage</h2>
+          <span class="section-note">Auto-filtered from the live feed</span>
+        </div>
+        <div class="card"><div id="live-slot"><div class="empty-state">Loading…</div></div></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+(async function () {
+  const A = window.ADCH;
+  const { $, esc, safeUrl, relTime, tierChip, regionChip } = A;
+
+  const [tech, news] = await Promise.all([
+    A.loadData('tech', null),
+    A.loadData('news', { items: [] }),
+  ]);
+  A.renderLiveStatus(news);
+
+  if (!tech) { $('#main').innerHTML = '<div class="empty-state">Technology data unavailable.</div>'; return; }
+
+  $('#intro').textContent = tech.intro;
+
+  const trends = tech.trends || [];
+  const topics = [...new Set(trends.map(t => t.topic))];
+  const state = { q: '', topics: new Set() };
+
+  $('#topic-chips').innerHTML = topics.map(t => `
+    <button class="filter-chip" data-val="${esc(t)}" aria-pressed="false">
+      ${esc(t)} <span class="count">${trends.filter(x => x.topic === t).length}</span>
+    </button>`).join(' ');
+
+  function render() {
+    const list = trends.filter(t => {
+      if (state.topics.size && !state.topics.has(t.topic)) return false;
+      if (state.q && !`${t.title} ${t.summary} ${t.planningImplication}`.toLowerCase().includes(state.q)) return false;
+      return true;
+    });
+
+    $('#count').textContent = `${list.length} of ${trends.length} trends`;
+
+    $('#trend-slot').innerHTML = list.length ? list.map(t => `
+      <div class="card">
+        <div class="card-head">
+          <h3>${esc(t.title)}</h3>
+          <div class="card-action"><span class="chip">${esc(t.topic)}</span></div>
+        </div>
+        <div class="small muted" style="margin-bottom:var(--s-2)">${esc(t.maturity)}</div>
+        <p class="small">${esc(t.summary)}</p>
+        <div class="notice" style="margin:0">
+          <strong>What it changes for a DP review:</strong> ${esc(t.planningImplication)}
+        </div>
+        ${(t.links || []).length ? `<p class="small" style="margin:var(--s-3) 0 0">
+          ${t.links.map(l => `<a href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>
+            ${l.fromBookmarks ? '<span class="chip" style="margin-left:6px">From your research</span>' : ''}`).join(' · ')}
+        </p>` : ''}
+      </div>`).join('') : '<div class="empty-state">No trends match these filters.</div>';
+  }
+
+  $('#topic-chips').addEventListener('click', e => {
+    const b = e.target.closest('.filter-chip');
+    if (!b) return;
+    const v = b.dataset.val;
+    state.topics.has(v) ? state.topics.delete(v) : state.topics.add(v);
+    b.setAttribute('aria-pressed', String(state.topics.has(v)));
+    render();
+  });
+  $('#q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+  render();
+  A.registerPaletteItems(trends.map(t => ({ label: t.title, kind: 'Technology', href: 'tech.html' })));
+
+  function renderLive(feed) {
+    const live = (feed.items || []).filter(i => i.stream === 'technology').slice(0, 12);
+    $('#live-slot').innerHTML = live.length ? `
+      <ul class="feed">${live.map(i => `
+        <li class="feed-item">
+          <a class="headline" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener">${esc(i.title)}</a>
+          <div class="feed-meta">${regionChip(i.region)}<span>${esc(i.source)}</span>
+            <span>·</span><span>${esc(relTime(i.published))}</span>${tierChip(i.tier || 'reported')}</div>
+        </li>`).join('')}</ul>` : `
+      <div class="empty-state">No technology coverage yet — the feed refreshes every three hours.</div>`;
+  }
+  renderLive(news);
+  A.startLiveRefresh(renderLive);
+})();
+</script>
+</body>
+</html>

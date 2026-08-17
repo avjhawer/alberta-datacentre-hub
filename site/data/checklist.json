@@ -1,0 +1,127 @@
+{
+  "_comment": "DP review criteria. Section order follows the Government of Alberta 'Build Your AI Data Centre' approvals pathway so the review maps onto the province's own framework. Criteria marked \"origin\": \"precedent\" come from the Loudoun County use-specific standards and the JLARC/WRI impact research — they exist because that evidence says those are the points where applications get contested. Edit freely; the tool reads this file at load.",
+  "disclaimer": "This checklist is a research aid, not a substitute for reading the current bylaw and regulation text. Confirm every requirement against the governing document before making or recommending a decision. Your notes stay in this browser and are never uploaded.",
+  "sections": [
+    {
+      "id": "land-use",
+      "title": "Land use & zoning",
+      "intro": "Establish the application's footing before assessing anything else. In Alberta this now varies materially between municipalities.",
+      "criteria": [
+        { "id": "lu-1", "text": "Use class confirmed against the current Land Use Bylaw — permitted or discretionary?", "help": "This differs by municipality and has changed recently. Rocky View moved Data Centre Campus to discretionary in July 2026; Sturgeon and Parkland treat data processing as permitted. Discretionary status materially widens your grounds for refusal.", "ref": "municipal" },
+        { "id": "lu-2", "text": "Zoning district correct for the proposed use, and the parcel correctly designated", "ref": "municipal" },
+        { "id": "lu-3", "text": "Any additional plan required (Master Site Development Plan, Area Structure Plan conformity) identified and submitted", "help": "Parkland County requires an MSDP in addition to the Development Permit for data processing facilities on the amended lands.", "ref": "municipal" },
+        { "id": "lu-4", "text": "Setbacks meet bylaw minimums, including from road allowances and adjacent parcels" },
+        { "id": "lu-5", "text": "Building height, site coverage and massing assessed against district standards" },
+        { "id": "lu-6", "text": "Screening, buffering and landscaping addressed for adjacent residential or agricultural uses", "origin": "precedent", "help": "Loudoun County's use-specific standards treat screening of large windowless buildings as a distinct requirement rather than folding it into general landscaping." },
+        { "id": "lu-7", "text": "Visual impact of building mass, and of any associated substation, assessed from public vantage points", "origin": "precedent" },
+        { "id": "lu-8", "text": "Site access, road network capacity and construction traffic routing addressed" }
+      ]
+    },
+    {
+      "id": "power-grid",
+      "title": "Power & grid",
+      "intro": "The binding physical constraint in Alberta. An application without a credible grid position is not a near-term project regardless of its land use merits.",
+      "criteria": [
+        { "id": "pg-1", "text": "Proposed electrical load stated in MW, and consistent across all submitted documents", "help": "Building area is a poor proxy for load. Rising rack density means a smaller building can carry a larger grid impact.", "ref": "policy" },
+        { "id": "pg-2", "text": "Facility classified against the 75 MW 'large data centre' threshold in the Data Centre Regulation", "ref": "policy" },
+        { "id": "pg-3", "text": "AESO connection status evidenced — tethered, bridged, or untethered", "help": "Tethered projects receive AESO assessment priority but cannot obtain system access above their associated generation capacity until that generation is in service.", "ref": "policy" },
+        { "id": "pg-4", "text": "If bridged: the three-year limit and the curtailment obligation understood and reflected in conditions", "help": "Bridged access is temporary, capped at three years, and carries an obligation to reduce consumption when the grid needs the room.", "ref": "policy" },
+        { "id": "pg-5", "text": "If tethered: the associated generation or storage identified, and its AUC approval status confirmed", "help": "Tethered generating or storage units require AUC approval under the Hydro and Electric Energy Act. That is a separate application with its own land use, noise and emissions profile." },
+        { "id": "pg-6", "text": "Whether on-site generation forms part of this application or a separate one is clearly established" },
+        { "id": "pg-7", "text": "Transmission connection, substation siting and any new line requirements addressed as part of the application", "origin": "precedent" },
+        { "id": "pg-8", "text": "Levy tier noted (2% grid-connected / 1% self-generating / 0% off-grid) as an indicator of the power model", "help": "Effective 31 December 2026. The tier an applicant expects is a quick read on how they have structured supply.", "ref": "policy" }
+      ]
+    },
+    {
+      "id": "water",
+      "title": "Water",
+      "intro": "The impact category that most reliably generates public submissions, and the one where applicant figures most need testing.",
+      "criteria": [
+        { "id": "wa-1", "text": "Cooling topology stated — closed-loop, evaporative, air-cooled, or immersion", "help": "This is the single largest determinant of water demand. Do not accept a consumption figure without knowing the topology behind it.", "ref": "tech" },
+        { "id": "wa-2", "text": "Annual water consumption quantified, with peak-day demand stated separately" },
+        { "id": "wa-3", "text": "Water source identified — municipal supply, licensed surface water, groundwater, or recycled" },
+        { "id": "wa-4", "text": "Water licence or allocation in place, or the pathway to one identified", "ref": "policy" },
+        { "id": "wa-5", "text": "Municipal system capacity confirmed if the supply is municipal, including effects on other users" },
+        { "id": "wa-6", "text": "Water Usage Effectiveness (WUE) or equivalent metric committed to, with a reporting mechanism" },
+        { "id": "wa-7", "text": "Discharge quality, volume and receiving system addressed" },
+        { "id": "wa-8", "text": "Drought and restriction scenarios addressed — what happens to the facility when allocations are curtailed", "origin": "precedent" }
+      ]
+    },
+    {
+      "id": "noise-air",
+      "title": "Noise & air",
+      "intro": "Steady-state operation and periodic generator testing are different problems. Assess both.",
+      "criteria": [
+        { "id": "na-1", "text": "Noise Impact Assessment submitted and measured at the property line, not at the equipment", "origin": "precedent" },
+        { "id": "na-2", "text": "Compliance demonstrated against AUC Rule 012 where applicable, and against municipal noise standards" },
+        { "id": "na-3", "text": "Low-frequency noise and tonal components specifically addressed, not just overall dBA", "origin": "precedent", "help": "Chiller and fan noise carries low-frequency content that an overall dBA figure can understate. This is a recurring source of complaint in mature data centre jurisdictions." },
+        { "id": "na-4", "text": "Cumulative noise assessed where other facilities exist or are approved nearby", "origin": "precedent" },
+        { "id": "na-5", "text": "Backup generation type, capacity and fuel identified" },
+        { "id": "na-6", "text": "NOx and other air emissions quantified, including during generator testing", "ref": "municipal" },
+        { "id": "na-7", "text": "Generator testing schedule proposed, and suitable as a condition" },
+        { "id": "na-8", "text": "Light spillage from the site and any security lighting addressed" }
+      ]
+    },
+    {
+      "id": "servicing",
+      "title": "Servicing & infrastructure cost recovery",
+      "intro": "Alberta's stated first commitment is that Albertans do not pay. This section is where that is tested on a specific file.",
+      "criteria": [
+        { "id": "sv-1", "text": "All project-related infrastructure improvements funded by the developer, with no transfer to municipal ratepayers", "help": "Sturgeon County states this explicitly. It is the clearest cost-recovery language among the Alberta municipalities reviewed and a useful benchmark.", "ref": "municipal" },
+        { "id": "sv-2", "text": "Development agreement scope identified — roads, water, wastewater, stormwater" },
+        { "id": "sv-3", "text": "Off-site levies calculated and applied" },
+        { "id": "sv-4", "text": "Stormwater management plan submitted and consistent with provincial and municipal guidelines" },
+        { "id": "sv-5", "text": "Fire protection, emergency access and water supply for firefighting confirmed with the fire authority" },
+        { "id": "sv-6", "text": "Assessment and tax revenue implications understood, including any exemptions claimed", "origin": "precedent", "help": "JLARC's Virginia review found incentive returns frequently diverged from projections. Worth establishing the assumption early." },
+        { "id": "sv-7", "text": "Broadband and fibre routing addressed", "ref": "policy" }
+      ]
+    },
+    {
+      "id": "environment",
+      "title": "Environment & land",
+      "criteria": [
+        { "id": "en-1", "text": "Environmental site assessment completed to the stage required" },
+        { "id": "en-2", "text": "Wetlands, riparian areas and watercourses identified, with the Alberta Wetland Policy applied" },
+        { "id": "en-3", "text": "Agricultural land impact assessed, including loss of productive land and fragmentation", "origin": "precedent" },
+        { "id": "en-4", "text": "Wildlife and habitat considerations addressed" },
+        { "id": "en-5", "text": "Historical resources clearance obtained where required" },
+        { "id": "en-6", "text": "Public lands interface addressed if applicable", "ref": "policy" },
+        { "id": "en-7", "text": "Pipeline and utility rights-of-way identified, with setbacks respected", "ref": "policy" },
+        { "id": "en-8", "text": "Reclamation and soil handling during construction addressed" }
+      ]
+    },
+    {
+      "id": "community",
+      "title": "Community & consultation",
+      "intro": "Anticipate the submissions rather than receive them. The impact research in the Precedents section is the best guide to what will be raised.",
+      "criteria": [
+        { "id": "co-1", "text": "Indigenous consultation undertaken, and the record adequate", "help": "Listed in the province's own approvals pathway. Confirm the Crown's consultation obligations have been discharged where they apply.", "ref": "policy" },
+        { "id": "co-2", "text": "Public notification completed per statutory requirements" },
+        { "id": "co-3", "text": "Adjacent landowners identified and notified, including across municipal boundaries where relevant" },
+        { "id": "co-4", "text": "Applicant-led engagement undertaken, with the record submitted" },
+        { "id": "co-5", "text": "Submissions received catalogued by theme — water, noise, traffic, property value, land loss", "origin": "precedent" },
+        { "id": "co-6", "text": "Employment and local economic claims tested rather than accepted as stated", "origin": "precedent", "help": "Operating employment at data centres is typically far lower than construction employment. Confirm which figure is being quoted." },
+        { "id": "co-7", "text": "Cumulative effects considered where multiple facilities are proposed or approved in the area", "origin": "precedent" }
+      ]
+    },
+    {
+      "id": "decommissioning",
+      "title": "Decommissioning & end-of-life",
+      "intro": "Rarely addressed in current Alberta bylaws, and the gap most likely to matter in twenty years.",
+      "criteria": [
+        { "id": "dc-1", "text": "Expected facility life and technology refresh cycle stated" },
+        { "id": "dc-2", "text": "Decommissioning plan required as a condition, or a reason recorded for not requiring one", "origin": "precedent" },
+        { "id": "dc-3", "text": "Security or bonding for site restoration considered" },
+        { "id": "dc-4", "text": "Adaptive reuse or demolition pathway identified for the building and any substation" },
+        { "id": "dc-5", "text": "Responsibility for the associated generation asset at end-of-life established if the project is tethered" }
+      ]
+    }
+  ],
+  "statuses": [
+    { "id": "met",     "label": "Met",        "badge": "good" },
+    { "id": "notmet",  "label": "Not met",    "badge": "critical" },
+    { "id": "info",    "label": "Needs info", "badge": "warning" },
+    { "id": "na",      "label": "N/A",        "badge": "neutral" },
+    { "id": "unset",   "label": "Not assessed", "badge": "neutral" }
+  ]
+}

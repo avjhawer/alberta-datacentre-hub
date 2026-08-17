@@ -1,0 +1,21 @@
+{
+  "_comment": "Aggregate grid figures for the dashboard. Aggregates only — named per-project allocations are deliberately not recorded. Update when AESO publishes new numbers; the daily change-watch will flag when its large-load page moves.",
+  "asOf": "2026-08-01",
+  "source": "https://www.aeso.ca/grid/connecting-to-the-grid/large-load-projects/",
+  "sourceName": "AESO — Large Load Projects",
+  "sourceTier": "primary",
+  "verificationStatus": "pending",
+  "interimCapMW": 1200,
+  "allocatedMW": 1200,
+  "capThrough": "2028",
+  "queueProjects": 29,
+  "queueRequestedMW": 19565,
+  "queueDemandGW": 16,
+  "largeDataCentreThresholdMW": 75,
+  "bridgedMaxYears": 3,
+  "notes": [
+    "The 1,200 MW interim cap runs through 2028 and is reported as fully allocated.",
+    "Named per-project allocations are not recorded here — only aggregates.",
+    "A bridging approach allows limited early connection under strict reliability conditions, including obligations to reduce consumption when the grid requires it."
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "_comment": "Policy and regulation records. EVERY record must carry sourceTier and a source URL. Only 'primary' records (regulator, municipality, or government publication) are seeded here. Media coverage flows through the live news feed instead, where it is badged as reported. See MAINTENANCE.md.",
+  "commitments": {
+    "title": "Alberta's four commitments",
+    "note": "The province's own stated test for data centre development. A useful spine to assess any application against.",
+    "source": "https://www.alberta.ca/datacentres/index.html",
+    "sourceName": "Government of Alberta — AI Data Centres in Alberta",
+    "sourceTier": "primary",
+    "items": [
+      {
+        "label": "Albertans do not pay",
+        "detail": "Project costs are not to be transferred to ratepayers or municipal taxpayers."
+      },
+      {
+        "label": "The grid comes first",
+        "detail": "System reliability takes precedence over new large-load connections."
+      },
+      {
+        "label": "Water use is controlled",
+        "detail": "Water consumption is constrained and subject to reporting."
+      },
+      {
+        "label": "Albertans share the upside",
+        "detail": "Through municipal tax revenue, royalties, and the data centre computing equipment levy."
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "ab-strategy-2024",
+      "date": "2024-12-04",
+      "title": "Alberta AI Data Centres Strategy — Powering the Future of Artificial Intelligence",
+      "jurisdiction": "Alberta",
+      "region": "alberta",
+      "type": "Strategy",
+      "status": "in-force",
+      "summary": "Provincial strategy to position Alberta as a preferred North American location for large-scale AI computing. Built on three pillars: power capacity, sustainable cooling, and economic growth. Sets a target of $100 billion in private investment over five years.",
+      "keyPoints": [
+        "Three pillars: power capacity, sustainable cooling, economic growth",
+        "$100 billion private investment target over five years",
+        "Led by Alberta's Ministry of Technology and Innovation"
+      ],
+      "source": "https://www.alberta.ca/artificial-intelligence-data-centres-strategy",
+      "sourceName": "Government of Alberta",
+      "sourceTier": "primary",
+      "relevance": "Sets the policy intent every downstream regulation and municipal bylaw is responding to."
+    },
+    {
+      "id": "ab-datacentre-regulation-2026",
+      "date": "2026-06-09",
+      "title": "Alberta Data Centre Regulation",
+      "jurisdiction": "Alberta",
+      "region": "alberta",
+      "type": "Regulation",
+      "status": "in-force",
+      "summary": "Creates the framework for how data centres connect to and operate within Alberta's electricity system. Defines a 'large data centre' as one with demand of 75 MW or more, and establishes the tethered / bridged / untethered connection classes.",
+      "keyPoints": [
+        "Large data centre = 75 MW or more of demand",
+        "Tethered projects (paired with dedicated new generation or storage) receive AESO assessment priority",
+        "Tethered projects cannot obtain system access above their associated generation capacity until that generation is in service",
+        "Bridged projects get temporary access for a maximum of three years, subject to conditions",
+        "AESO may impose system access criteria: site control, permitting, financing, and zoning approvals",
+        "Large and bridged data centres may be prioritised for curtailment during supply constraints"
+      ],
+      "source": "https://www.alberta.ca/datacentres/grid.html",
+      "sourceName": "Government of Alberta — Grid",
+      "sourceTier": "primary",
+      "relevance": "The single most important document for a DP review. Tethered vs bridged status determines an applicant's real grid position and timeline."
+    },
+    {
+      "id": "ab-bill-8-2025",
+      "date": "2025-12-01",
+      "title": "Bill 8 — Utilities Statutes Amendment Act, 2025",
+      "jurisdiction": "Alberta",
+      "region": "alberta",
+      "type": "Legislation",
+      "status": "in-force",
+      "summary": "Amends the Electric Utilities Act to clarify the regulatory framework for data centre development and to incentivise projects that supply their own power. Underpins the bring-your-own-generation approach.",
+      "keyPoints": [
+        "Amends the Electric Utilities Act",
+        "Clarifies the framework for self-supplied and hybrid power models",
+        "Supports faster approval timelines for self-powered projects"
+      ],
+      "source": "https://www.blg.com/en/insights/2025/12/canada-alberta-mou-and-bill-8-what-they-mean-for-ai-data-centres",
+      "sourceName": "BLG — Canada–Alberta MoU and Bill 8",
+      "sourceTier": "primary",
+      "relevance": "The enabling legislation behind the self-supply incentive. Explains why applicants increasingly arrive with their own generation proposal attached."
+    },
+    {
+      "id": "ab-levy-2025",
+      "date": "2025-09-01",
+      "title": "AI data centre levy — Financial Statutes Amendment Act, 2025 (No. 2)",
+      "jurisdiction": "Alberta",
+      "region": "alberta",
+      "type": "Legislation",
+      "status": "upcoming",
+      "effective": "2026-12-31",
+      "summary": "A levy on computer hardware for grid-connected data centres drawing 75 MW or more, structured to reward self-supply. Takes effect 31 December 2026 and is fully creditable against Alberta corporate income tax.",
+      "keyPoints": [
+        "2% levy on computer hardware for grid-connected data centres at 75 MW or more",
+        "Reduced to 1% for grid-connected facilities that generate their own power",
+        "0% for off-grid facilities",
+        "Fully creditable against Alberta corporate income tax",
+        "In effect from 31 December 2026"
+      ],
+      "source": "https://www.blg.com/en/insights/2025/09/alberta-confirms-new-ai-data-centre-levy",
+      "sourceName": "BLG — Alberta AI data centre levy framework",
+      "sourceTier": "primary",
+      "relevance": "The levy tier is a fast proxy for how an applicant has structured its power supply. Worth capturing on any DP file."
+    },
+    {
+      "id": "ab-aeso-interim-large-load",
+      "date": "2025-01-01",
+      "title": "AESO interim approach to large load connections",
+      "jurisdiction": "Alberta",
+      "region": "alberta",
+      "type": "Grid process",
+      "status": "in-force",
+      "summary": "An interim framework enabling up to 1,200 MW of large load connections through 2028 while maintaining system reliability. Demand has far exceeded the cap.",
+      "keyPoints": [
+        "1,200 MW interim cap for large load connections through 2028",
+        "Reported as fully allocated",
+        "Connection queue of 29 projects representing more than 16 GW of demand",
+        "Roughly 19,565 MW of data centre load requested against the cap",
+        "A bridging approach allows limited early connection under strict reliability conditions, including obligations to reduce consumption when the grid requires it"
+      ],
+      "source": "https://www.aeso.ca/aeso/newsroom/aeso-announces-interim-approach-to-large-load-connections/",
+      "sourceName": "AESO Newsroom",
+      "sourceTier": "primary",
+      "relevance": "The binding physical constraint. An application without a credible grid position is not a near-term project regardless of its land use merits."
+    },
+    {
+      "id": "ca-alberta-mou",
+      "date": "2025-11-01",
+      "title": "Canada–Alberta Memorandum of Understanding",
+      "jurisdiction": "Canada / Alberta",
+      "region": "canada",
+      "type": "Intergovernmental",
+      "status": "in-force",
+      "summary": "Commits both governments to expanding electricity capacity to support AI and data centre infrastructure, and aligns Alberta's initiatives with Canada's Sovereign AI Compute Strategy.",
+      "keyPoints": [
+        "Joint commitment to expand electricity capacity",
+        "Aligns provincial initiatives with the federal Sovereign AI Compute Strategy"
+      ],
+      "source": "https://www.blg.com/en/insights/2025/12/canada-alberta-mou-and-bill-8-what-they-mean-for-ai-data-centres",
+      "sourceName": "BLG — Canada–Alberta MoU and Bill 8",
+      "sourceTier": "primary",
+      "relevance": "Signals federal-provincial alignment, which matters for projects seeking federal support alongside provincial approvals."
+    },
+    {
+      "id": "ca-sovereign-ai-compute",
+      "date": "2024-04-16",
+      "title": "Canadian Sovereign AI Compute Strategy",
+      "jurisdiction": "Canada",
+      "region": "canada",
+      "type": "Strategy",
+      "status": "in-force",
+      "summary": "Federal strategy led by Innovation, Science and Economic Development Canada to expand domestic AI computing infrastructure. Announced in Budget 2024 with $2 billion over five years.",
+      "keyPoints": [
+        "$2 billion over five years from 2024–25 (Budget 2024)",
+        "Three elements: mobilising private investment, public supercomputing infrastructure, and an AI Compute Access Fund",
+        "Budget 2025 proposed a further $925.6 million over five years from 2025–26 for sovereign public AI computing infrastructure"
+      ],
+      "source": "https://ised-isde.canada.ca/site/ised/en/enabling-large-scale-sovereign-ai-data-centres",
+      "sourceName": "ISED Canada",
+      "sourceTier": "primary",
+      "relevance": "The federal funding and policy context an Alberta project may be positioning against."
+    },
+    {
+      "id": "ca-sovereign-dc-call-2026",
+      "date": "2026-01-15",
+      "title": "Federal call for proposals — sovereign large-scale AI data centres",
+      "jurisdiction": "Canada",
+      "region": "canada",
+      "type": "Program",
+      "status": "closed",
+      "summary": "A one-month federal intake seeking proposals for sovereign, large-scale AI data centres exceeding 100 MW. Selected proponents enter memoranda of understanding with the Government of Canada.",
+      "keyPoints": [
+        "Intake ran 15 January to 15 February 2026",
+        "Threshold of more than 100 MW",
+        "MOU-based process exploring support mechanisms and intergovernmental coordination",
+        "Aimed at domestic firms and consortia"
+      ],
+      "source": "https://ised-isde.canada.ca/site/ised/en/enabling-large-scale-sovereign-ai-data-centres",
+      "sourceName": "ISED Canada",
+      "sourceTier": "primary",
+      "relevance": "Applicants may cite participation in this process. Worth confirming rather than accepting at face value."
+    }
+  ],
+  "pathway": {
+    "title": "Build Your AI Data Centre — the province's approvals map",
+    "note": "Alberta's own gateway listing the provincial approvals a data centre project may require. The DP review checklist is aligned to these headings.",
+    "source": "https://www.alberta.ca/build-your-ai-data-centre-in-alberta",
+    "sourceName": "Government of Alberta",
+    "sourceTier": "primary",
+    "steps": [
+      "Power plant approval",
+      "Indigenous consultation",
+      "Grid access (AESO)",
+      "Municipal permits",
+      "Water licensing and allocation",
+      "Broadband and connectivity",
+      "Public lands",
+      "Natural gas pipelines",
+      "Environmental complexity assessment"
+    ]
+  }
+}

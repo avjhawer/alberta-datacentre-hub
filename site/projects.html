@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project tracker — Alberta Data Centre Hub</title>
+<meta name="description" content="Data centre and associated generation projects confirmed by a primary regulatory or municipal source.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="projects">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Project tracker</h1>
+        <p>Projects confirmed by a primary source — a regulator decision, a municipal record, or a
+           government publication.</p>
+      </div>
+
+      <div class="notice">
+        <strong>This page never asserts that a permit application exists.</strong> Only records confirmed
+        against a primary source appear in the table below. Projects that exist only in media coverage are
+        not restated as fact here — read them in the
+        <a href="news.html">news feed</a>, where the outlet is named and the item is badged as reported.
+      </div>
+
+      <div class="filterbar">
+        <input class="search-input" id="q" type="search" placeholder="Search projects…" aria-label="Search projects">
+        <span class="spacer"></span>
+        <span class="small muted" id="count"></span>
+      </div>
+
+      <div class="table-wrap section">
+        <table class="data responsive-cards" id="proj">
+          <thead>
+            <tr>
+              <th class="sortable">Name</th>
+              <th class="sortable">Record type</th>
+              <th class="sortable">Municipality</th>
+              <th class="sortable num">Capacity (MW)</th>
+              <th class="sortable">Stage</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="proj-body"></tbody>
+        </table>
+      </div>
+
+      <section class="section" id="detail-section">
+        <div class="section-head"><h2>Record detail</h2></div>
+        <div class="grid grid-2" id="detail-slot"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Reported — unconfirmed</h2>
+          <span class="section-note">Kept visually separate, and never mixed into the table above</span>
+        </div>
+        <div class="card"><div id="reported-slot"></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Latest project coverage</h2>
+          <span class="section-note">Auto-filtered from the live feed — treat as leads, not confirmations</span>
+        </div>
+        <div class="card"><div id="live-slot"><div class="empty-state">Loading…</div></div></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+(async function () {
+  const A = window.ADCH;
+  const { $, esc, safeUrl, fmtNum, fmtDate, relTime, tierChip, regionChip } = A;
+
+  const [proj, news] = await Promise.all([
+    A.loadData('projects', { confirmed: [], reported: [] }),
+    A.loadData('news', { items: [] }),
+  ]);
+  A.renderLiveStatus(news);
+
+  const rows = proj.confirmed || [];
+  let q = '';
+
+  function render() {
+    const list = rows.filter(p =>
+      !q || `${p.name} ${p.proponent} ${p.municipality} ${p.recordType}`.toLowerCase().includes(q));
+
+    $('#count').textContent = `${list.length} of ${rows.length} confirmed records`;
+
+    $('#proj-body').innerHTML = list.length ? list.map(p => `
+      <tr>
+        <td data-label="Name"><strong>${esc(p.name)}</strong>
+          <div class="small muted">${esc(p.proponent || '')}</div></td>
+        <td data-label="Record type">${esc(p.recordType)}</td>
+        <td data-label="Municipality">${esc(p.municipality)}</td>
+        <td class="num" data-label="Capacity (MW)" data-sort="${esc(p.capacityMW ?? 0)}">${esc(fmtNum(p.capacityMW))}</td>
+        <td data-label="Stage">${A.statusBadge(p.stageStatus || 'neutral', p.stage)}</td>
+        <td data-label="Source">${tierChip(p.sourceTier)}
+          <a class="small" href="${esc(safeUrl(p.source))}" target="_blank" rel="noopener">Verify ↗</a></td>
+      </tr>`).join('') : `
+      <tr><td colspan="6"><div class="empty-state">No confirmed records match.</div></td></tr>`;
+
+    $('#detail-slot').innerHTML = list.map(p => `
+      <div class="card">
+        <div class="card-head"><h3>${esc(p.name)}</h3>
+          <div class="card-action">${tierChip(p.sourceTier)}</div></div>
+        <p class="small">${esc(p.summary)}</p>
+        ${p.caution ? `<div class="alert-strip" style="margin:var(--s-3) 0">
+          ${A.icon('alert')}<div class="alert-body small"><strong>Read carefully:</strong> ${esc(p.caution)}</div>
+        </div>` : ''}
+        <dl class="deflist">
+          <div><dt>Decision body</dt><dd>${esc(p.decisionBody || '—')}</dd></div>
+          <div><dt>Decision date</dt><dd>${esc(fmtDate(p.decisionDate))}</dd></div>
+          <div><dt>Capacity</dt><dd>${esc(fmtNum(p.capacityMW))} MW${
+            p.capacityNote ? ` <span class="muted">— ${esc(p.capacityNote)}</span>` : ''}</dd></div>
+          <div><dt>Verification</dt><dd>${
+            p.verificationStatus === 'pending'
+              ? A.statusBadge('warning', 'Pending verification')
+              : A.statusBadge('good', 'Verified')}
+            ${p.verificationNote ? `<div class="small muted">${esc(p.verificationNote)}</div>` : ''}</dd></div>
+        </dl>
+        <p class="small" style="margin:var(--s-3) 0 0">
+          <a href="${esc(safeUrl(p.source))}" target="_blank" rel="noopener">Verify at source — ${esc(p.sourceName)} ↗</a></p>
+      </div>`).join('');
+  }
+
+  $('#q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); render(); });
+  render();
+  A.makeSortable($('#proj'));
+  A.registerPaletteItems(rows.map(p => ({ label: p.name, kind: 'Project', href: 'projects.html' })));
+
+  /* Reported bucket — empty by design at launch */
+  const rep = proj.reported || [];
+  $('#reported-slot').innerHTML = rep.length ? `
+    <ul class="feed">${rep.map(r => `
+      <li class="feed-item">
+        <span class="headline">${esc(r.name)}</span>
+        <div class="feed-meta">${tierChip('reported')}<span>${esc(r.sourceName || '')}</span></div>
+        <p class="summary">${esc(r.summary || '')}</p>
+      </li>`).join('')}</ul>` : `
+    <div class="empty-state">${esc(proj.reportedNote || 'Nothing here.')}</div>`;
+
+  function renderLive(feed) {
+    const live = (feed.items || []).filter(i => i.stream === 'projects').slice(0, 12);
+    $('#live-slot').innerHTML = live.length ? `
+      <ul class="feed">${live.map(i => `
+        <li class="feed-item">
+          <a class="headline" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener">${esc(i.title)}</a>
+          <div class="feed-meta">${regionChip(i.region)}<span>${esc(i.source)}</span>
+            <span>·</span><span>${esc(relTime(i.published))}</span>${tierChip(i.tier || 'reported')}</div>
+        </li>`).join('')}</ul>` : `
+      <div class="empty-state">No project coverage yet — the feed refreshes every three hours.</div>`;
+  }
+  renderLive(news);
+  A.startLiveRefresh(renderLive);
+})();
+</script>
+</body>
+</html>

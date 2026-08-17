@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Alberta Data Centre Hub</title>
+<meta name="description" content="Live intelligence on data centre development in Alberta and Canada: policy, regulation, grid access, projects and development permit review.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="dashboard">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Data centre development — Alberta &amp; Canada</h1>
+        <p>Policy, regulation, grid access and projects, refreshed automatically. Built for development
+           permit review.</p>
+      </div>
+
+      <div id="alerts-slot"></div>
+      <div id="breaking-slot"></div>
+
+      <!-- Hero: the one number the dashboard leads with -->
+      <section class="section">
+        <div class="grid grid-main-aside">
+          <div class="hero-figure" id="hero-slot"></div>
+          <div class="card" id="meter-slot"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid grid-4" id="kpi-slot"></div>
+      </section>
+
+      <section class="section">
+        <div class="grid grid-main-aside">
+          <div class="card">
+            <div class="card-head">
+              <h2>Latest developments</h2>
+              <div class="card-action"><a class="small" href="news.html">All news →</a></div>
+            </div>
+            <div id="latest-slot"><div class="empty-state">Loading…</div></div>
+          </div>
+
+          <div>
+            <div class="card" style="margin-bottom:var(--s-4)">
+              <div class="card-head"><h2>Alberta's four commitments</h2></div>
+              <p class="small secondary" id="commit-note"></p>
+              <dl class="deflist" id="commit-slot"></dl>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2>Jump to</h2></div>
+              <div class="grid" style="gap:var(--s-2)">
+                <a class="btn" href="permits.html">Start a DP review</a>
+                <a class="btn" href="municipal.html">Compare municipal rules</a>
+                <a class="btn" href="policy.html">Policy &amp; regulation tracker</a>
+                <a class="btn" href="precedents.html">Precedents &amp; impacts</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script src="assets/charts.js"></script>
+<script>
+(async function () {
+  const A = window.ADCH, C = window.ADCHCharts;
+  const { $, esc, safeUrl, fmtNum, fmtCompact, relTime, tierChip, regionChip } = A;
+
+  const [grid, policy, news] = await Promise.all([
+    A.loadData('grid', null),
+    A.loadData('policy', null),
+    A.loadData('news', { items: [], sourceHealth: [] }),
+  ]);
+
+  A.renderLiveStatus(news);
+
+  /* ---- Hero figure: demand against available capacity ------------------ */
+  if (grid) {
+    const ratio = grid.queueRequestedMW / Math.max(1, grid.interimCapMW);
+    $('#hero-slot').innerHTML = `
+      <div class="eyebrow">Grid constraint · as of ${esc(A.fmtDate(grid.asOf))}</div>
+      <div class="hero-value">${esc(fmtCompact(grid.queueRequestedMW))}<span class="unit">MW sought</span></div>
+      <p class="hero-caption">
+        Roughly <strong>${esc(fmtNum(grid.queueProjects))} projects</strong> are seeking grid connection in
+        Alberta — against an interim cap of <strong>${esc(fmtNum(grid.interimCapMW))} MW</strong> through
+        ${esc(grid.capThrough)}. That is about <strong>${ratio.toFixed(0)}&times;</strong> the capacity
+        available.
+      </p>
+      <p class="small muted" style="margin:var(--s-3) 0 0">
+        ${A.tierChip(grid.sourceTier)}
+        <a href="${esc(safeUrl(grid.source))}" target="_blank" rel="noopener">${esc(grid.sourceName)} ↗</a>
+        ${grid.verificationStatus === 'pending'
+          ? ' · <span title="Seeded from research summaries; confirm against the source before relying on it.">pending verification</span>' : ''}
+      </p>`;
+
+    /* ---- Meter: a single ratio against a limit ------------------------- */
+    $('#meter-slot').innerHTML = C.meter({
+      id: 'viz-cap',
+      title: 'Interim large-load capacity',
+      limit: grid.interimCapMW,
+      unit: 'MW',
+      segments: [{ label: 'Allocated', value: grid.allocatedMW }],
+      note: 'Aggregate only — named per-project allocations are deliberately not recorded here.',
+    });
+
+    /* ---- KPI row ------------------------------------------------------- */
+    const kpis = [
+      { label: 'Interim connection cap', value: fmtNum(grid.interimCapMW), unit: 'MW',
+        foot: `Through ${esc(grid.capThrough)}` },
+      { label: 'Projects in the queue', value: fmtNum(grid.queueProjects), unit: '',
+        foot: `~${fmtCompact(grid.queueDemandGW)} GW of demand` },
+      { label: 'Large data centre threshold', value: fmtNum(grid.largeDataCentreThresholdMW), unit: 'MW',
+        foot: 'Data Centre Regulation' },
+      { label: 'Bridged access limit', value: grid.bridgedMaxYears, unit: 'yrs',
+        foot: 'Then the connection lapses' },
+    ];
+    $('#kpi-slot').innerHTML = kpis.map(k => `
+      <div class="stat">
+        <div class="stat-label">${esc(k.label)}</div>
+        <div class="stat-value">${esc(k.value)}${k.unit ? `<span class="unit">${esc(k.unit)}</span>` : ''}</div>
+        <div class="stat-foot">${k.foot}</div>
+      </div>`).join('');
+  }
+
+  C.wireVizToggles();
+
+  /* ---- Alerts strip ---------------------------------------------------- */
+  const alerts = await A.loadData('alerts', { alerts: [] });
+  if (alerts?.alerts?.length) {
+    const a = alerts.alerts.slice(0, 3);
+    $('#alerts-slot').innerHTML = a.map(x => `
+      <div class="alert-strip">
+        ${A.icon('alert')}
+        <div class="alert-body">
+          <strong>Regulatory change detected</strong> — ${esc(x.name)} changed ${esc(relTime(x.detectedAt))}.
+          <a href="${esc(safeUrl(x.url))}" target="_blank" rel="noopener">View source ↗</a>
+        </div>
+      </div>`).join('');
+  }
+
+  /* ---- Breaking band --------------------------------------------------- */
+  const items = Array.isArray(news?.items) ? news.items : [];
+  const seen = A.lastSeenAt();
+  const breaking = items.filter(i => i.breaking).slice(0, 5);
+  if (breaking.length) {
+    $('#breaking-slot').innerHTML = `
+      <div class="breaking">
+        <div class="breaking-head"><span class="eyebrow">Breaking</span>
+          <span class="small muted">Highest-signal items from the last 48 hours</span></div>
+        <ul class="breaking-list">
+          ${breaking.map(i => `
+            <li class="breaking-item">
+              <a class="headline ${A.isNew(i, seen) ? 'is-new' : ''}"
+                 href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener">${esc(i.title)}</a>
+              <span class="small muted">${esc(i.source)} · ${esc(relTime(i.published))}</span>
+            </li>`).join('')}
+        </ul>
+      </div>`;
+  }
+
+  /* ---- Latest developments -------------------------------------------- */
+  const latest = items.slice(0, 12);
+  $('#latest-slot').innerHTML = latest.length ? `
+    <ul class="feed">
+      ${latest.map(i => `
+        <li class="feed-item">
+          <a class="headline ${A.isNew(i, seen) ? 'is-new' : ''}"
+             href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener">${esc(i.title)}</a>
+          <div class="feed-meta">
+            ${regionChip(i.region)}
+            <span>${esc(i.source)}</span><span>·</span><span>${esc(relTime(i.published))}</span>
+            ${tierChip(i.tier || 'reported')}
+          </div>
+        </li>`).join('')}
+    </ul>` : `
+    <div class="empty-state">
+      <p>The news feed has not run yet.</p>
+      <p class="small">It refreshes every 3 hours once the site is deployed. Everything else on this
+         page works from curated data and is available now.</p>
+    </div>`;
+
+  /* ---- Four commitments ------------------------------------------------ */
+  if (policy?.commitments) {
+    const c = policy.commitments;
+    $('#commit-note').innerHTML = `${esc(c.note)}
+      <a href="${esc(safeUrl(c.source))}" target="_blank" rel="noopener">${esc(c.sourceName)} ↗</a>`;
+    $('#commit-slot').innerHTML = c.items.map(i => `
+      <div><dt>${esc(i.label)}</dt><dd>${esc(i.detail)}</dd></div>`).join('');
+  }
+
+  A.markSeen();
+  A.startLiveRefresh(() => location.reload());
+})();
+</script>
+</body>
+</html>

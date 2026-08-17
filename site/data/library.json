@@ -1,0 +1,104 @@
+{
+  "_comment": "Reference library. Links marked \"fromBookmarks\": true came from the owner's 'Data Center Research' bookmark folder. Add entries via the 'Add a source' issue form or by editing this file directly.",
+  "groups": [
+    {
+      "id": "goa",
+      "title": "Government of Alberta — anchor source",
+      "note": "The province's own data centre hub. Treated as the site's tier-1 anchor and the default 'verify at source' target for Alberta policy records. Every page in this family is checked daily for changes.",
+      "links": [
+        { "label": "AI Data Centres in Alberta (hub)", "url": "https://www.alberta.ca/datacentres/index.html", "tier": "primary",
+          "note": "What data centres are, where and why they are being built, and the safeguards the province claims." },
+        { "label": "Grid — connection rules and curtailment", "url": "https://www.alberta.ca/datacentres/grid.html", "tier": "primary",
+          "note": "Large-load connection, tethered vs bridged, curtailment." },
+        { "label": "Build Your AI Data Centre in Alberta", "url": "https://www.alberta.ca/build-your-ai-data-centre-in-alberta", "tier": "primary",
+          "note": "The province's approvals pathway. The DP review checklist is aligned to these headings." },
+        { "label": "Artificial Intelligence Data Centres Strategy", "url": "https://www.alberta.ca/artificial-intelligence-data-centres-strategy", "tier": "primary",
+          "note": "Strategy landing page." },
+        { "label": "Alberta's AI Data Centre Strategy (PDF, Open Government)", "url": "https://open.alberta.ca/publications/albertas-ai-data-centre-strategy", "tier": "primary",
+          "note": "Powering the Future of Artificial Intelligence — the citable source document, released 4 December 2024." },
+        { "label": "Invest Alberta — Data Centre Investment Opportunities", "url": "https://investalberta.ca/data-centres-alberta/", "tier": "primary",
+          "note": "Investment-side framing." }
+      ]
+    },
+    {
+      "id": "regulators",
+      "title": "Regulators & system operator",
+      "note": "Where grid position and generation approvals are actually decided.",
+      "links": [
+        { "label": "AESO — Large Load Projects", "url": "https://www.aeso.ca/grid/connecting-to-the-grid/large-load-projects/", "tier": "primary",
+          "note": "The connection queue and process." },
+        { "label": "AESO — Interim approach to large load connections", "url": "https://www.aeso.ca/aeso/newsroom/aeso-announces-interim-approach-to-large-load-connections/", "tier": "primary", "fromBookmarks": true,
+          "note": "The 1,200 MW interim cap." },
+        { "label": "Alberta Utilities Commission", "url": "https://www.auc.ab.ca/", "tier": "primary",
+          "note": "Power plant approvals under the Hydro and Electric Energy Act; Rule 012 noise." },
+        { "label": "Alberta Energy Regulator", "url": "https://www.aer.ca/", "tier": "primary",
+          "note": "Upstream energy, pipelines, public lands interfaces." },
+        { "label": "ISED — Enabling large-scale sovereign AI data centres", "url": "https://ised-isde.canada.ca/site/ised/en/enabling-large-scale-sovereign-ai-data-centres", "tier": "primary",
+          "note": "The federal program and call for proposals." }
+      ]
+    },
+    {
+      "id": "municipal",
+      "title": "Municipal planning",
+      "note": "The bylaws a development permit is actually assessed against.",
+      "links": [
+        { "label": "Parkland County — Land Use Bylaw", "url": "https://www.parklandcounty.com/business-development/planning-and-development/land-use-bylaw/", "tier": "primary" },
+        { "label": "Parkland County — What are Data Centres?", "url": "https://www.parklandcounty.com/business-development/what-are-data-centres/", "tier": "primary" },
+        { "label": "Sturgeon County — Data Centre Development", "url": "https://www.sturgeoncounty.ca/building-development/data-centre-development/", "tier": "primary" },
+        { "label": "Rocky View County — Land Use Bylaw", "url": "https://www.rockyview.ca/build-plan-and-develop/planning/land-use-bylaw", "tier": "primary" },
+        { "label": "MD of Greenview — Development Permits", "url": "https://mdgreenview.ab.ca/departments/planning-and-development/development-permits/", "tier": "primary" }
+      ]
+    },
+    {
+      "id": "legal",
+      "title": "Legal & regulatory analysis",
+      "note": "Law-firm insight pages. Most have no reliable RSS, so their coverage reaches the news feed through targeted queries rather than a direct feed.",
+      "links": [
+        { "label": "BLG — Alberta introduces AI data centre levy framework", "url": "https://www.blg.com/en/insights/2025/09/alberta-confirms-new-ai-data-centre-levy", "tier": "reported", "fromBookmarks": true },
+        { "label": "BLG — Alberta doubles down on data centre mandate", "url": "https://www.blg.com/en/insights/2025/10/alberta-doubles-down-on-data-centre-mandate", "tier": "reported", "fromBookmarks": true },
+        { "label": "BLG — Canada–Alberta MoU, Bill 8 and AI data centre opportunities", "url": "https://www.blg.com/en/insights/2025/12/canada-alberta-mou-and-bill-8-what-they-mean-for-ai-data-centres", "tier": "reported", "fromBookmarks": true },
+        { "label": "BLG — Data centre regulation in Alberta: key considerations", "url": "https://www.blg.com/en/insights/2026/07/data-centre-regulation-in-alberta", "tier": "reported" },
+        { "label": "Stikeman Elliott — Data Centre Opportunities: Alberta and Canadian Initiatives", "url": "https://stikeman.com/en-ca/kh/real-estate-municipal/data-centre-opportunities-alberta-and-canadian-initiatives-advance-a-world-class-industry", "tier": "reported", "fromBookmarks": true },
+        { "label": "EnergyRates.ca — Alberta proposes data centres self-supply electricity", "url": "https://energyrates.ca/alberta-proposes-data-centres-to-self-supply-electricity-heres-how-it-will-work/", "tier": "reported", "fromBookmarks": true },
+        { "label": "Osler — Alberta's data centre regulations: power generation guidance", "url": "https://www.osler.com/en/insights/updates/albertas-data-centre-regulations-guidance-on-power-generation-for-large-load-facilities/", "tier": "reported" },
+        { "label": "Bennett Jones — Alberta's BYOG Framework", "url": "https://www.bennettjones.com/Insights/Blogs/Albertas-BYOG-Framework", "tier": "reported" },
+        { "label": "Lawson Lundell — Alberta Data Centre Regulation & BYOG Framework", "url": "https://www.lawsonlundell.com/publication/alberta-developing-regulatory-regime-data-centres", "tier": "reported" }
+      ]
+    },
+    {
+      "id": "standards",
+      "title": "Industry standards & professional bodies",
+      "note": "From your bookmarks — the technical and certification side that shows up in submissions.",
+      "links": [
+        { "label": "Uptime Institute — Tier certification & training", "url": "https://uptimeinstitute.com/", "tier": "reported", "fromBookmarks": true,
+          "note": "Tier classification is frequently cited in applications. Worth knowing what each tier does and does not guarantee." },
+        { "label": "AFCOM", "url": "https://afcom.com/", "tier": "reported", "fromBookmarks": true },
+        { "label": "AFCOM — A Fact-Based Guide to 5 Top Data Center Concerns", "url": "https://afcom.com/news/726778/", "tier": "reported", "fromBookmarks": true },
+        { "label": "BICSI — ICT standards", "url": "https://www.bicsi.org/", "tier": "reported", "fromBookmarks": true },
+        { "label": "Data Center Coalition — Reports & Publications", "url": "https://www.datacentercoalition.org/reports-and-publications", "tier": "reported", "fromBookmarks": true,
+          "note": "Industry association research. Read with the sponsorship in mind." }
+      ]
+    },
+    {
+      "id": "industry-news",
+      "title": "Industry news",
+      "links": [
+        { "label": "Data Center Knowledge", "url": "https://www.datacenterknowledge.com/", "tier": "reported", "fromBookmarks": true },
+        { "label": "DataCenterDynamics (DCD)", "url": "https://www.datacenterdynamics.com/en/", "tier": "reported", "fromBookmarks": true },
+        { "label": "Data Center Map — USA facilities", "url": "https://www.datacentermap.com/usa/", "tier": "reported", "fromBookmarks": true,
+          "note": "Useful for scale comparisons when assessing a proposal's claimed size." }
+      ]
+    },
+    {
+      "id": "planning-bodies",
+      "title": "Planning regulatory bodies",
+      "note": "From your bookmarks — professional and municipal association context.",
+      "links": [
+        { "label": "Canadian Institute of Planners (CIP)", "url": "https://www.cip-icu.ca/", "tier": "primary", "fromBookmarks": true },
+        { "label": "Alberta Professional Planners Institute (APPI)", "url": "http://www.albertaplanners.com/", "tier": "primary", "fromBookmarks": true },
+        { "label": "Rural Municipalities of Alberta (RMA)", "url": "https://rmalberta.com/", "tier": "primary", "fromBookmarks": true },
+        { "label": "Alberta Municipalities (ABmunis)", "url": "https://www.abmunis.ca/", "tier": "primary", "fromBookmarks": true }
+      ]
+    }
+  ]
+}

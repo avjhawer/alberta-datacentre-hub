@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DP review tool — Alberta Data Centre Hub</title>
+<meta name="description" content="Structured development permit review for data centre applications, aligned to Alberta's approvals pathway.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="permits">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Development permit review</h1>
+        <p>A structured review aligned to the Government of Alberta's own approvals pathway, extended with
+           the criteria that precedent jurisdictions show are where these applications actually get
+           contested.</p>
+      </div>
+
+      <div class="alert-strip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3l9 16H3zM12 9v5M12 17h.01"/></svg>
+        <div class="alert-body"><strong>Research aid, not a decision.</strong>
+          <span id="disclaimer"></span></div>
+      </div>
+
+      <div class="filterbar">
+        <button class="btn btn-primary" id="new-review">+ New review</button>
+        <select class="select-input" id="review-select" aria-label="Select review"></select>
+        <span class="spacer"></span>
+        <button class="btn" id="copy-summary">Copy summary</button>
+        <button class="btn" id="export-review">Export JSON</button>
+        <label class="btn" for="import-file">Import</label>
+        <input type="file" id="import-file" accept="application/json" hidden>
+        <button class="btn" id="print-review">Print / PDF</button>
+        <button class="btn" id="delete-review">Delete</button>
+      </div>
+
+      <div id="no-review">
+        <div class="card">
+          <div class="empty-state">
+            <p><strong>No review open.</strong></p>
+            <p class="small">Create one to begin. Everything you type stays in this browser — nothing is
+               uploaded, which is what makes it safe to keep pre-decision notes here.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="review-body" hidden>
+        <section class="section" id="meta-slot"></section>
+        <section class="section" id="summary-slot"></section>
+        <div class="grid" id="sections-slot" style="gap:var(--s-4)"></div>
+      </div>
+
+      <datalist id="muni-list"></datalist>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script src="assets/checklist.js"></script>
+</body>
+</html>

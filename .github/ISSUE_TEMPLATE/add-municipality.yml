@@ -1,0 +1,80 @@
+name: Add or update a municipality
+description: Add a row to the municipal requirements matrix, or correct one.
+title: "[municipality] "
+labels: ["municipality"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Record **what the bylaw requires** — never a live application or a named
+        proponent. Leave anything you have not verified blank; the matrix shows
+        blanks as "Needs research", which is more useful than a guess.
+
+  - type: input
+    id: name
+    attributes:
+      label: Municipality
+      placeholder: Leduc County
+    validations:
+      required: true
+
+  - type: input
+    id: area
+    attributes:
+      label: Region / area
+      placeholder: Edmonton Metropolitan Region
+
+  - type: dropdown
+    id: useClass
+    attributes:
+      label: Data centre use class
+      options:
+        - "Permitted"
+        - "Discretionary"
+        - "Not specified"
+        - "Not yet verified"
+    validations:
+      required: true
+
+  - type: input
+    id: district
+    attributes:
+      label: District / zone
+      placeholder: I5 Heavy Industrial
+
+  - type: input
+    id: secondaryPlan
+    attributes:
+      label: Additional plan required
+      placeholder: MSDP + DP, or "DP required", or leave blank
+
+  - type: input
+    id: reporting
+    attributes:
+      label: Ongoing reporting obligations
+      placeholder: Annual reporting on water, noise, NOx
+
+  - type: input
+    id: costRecovery
+    attributes:
+      label: Who pays for infrastructure
+      placeholder: Developer funds all project-related improvements
+
+  - type: input
+    id: regulations
+    attributes:
+      label: Governing bylaw / section
+      placeholder: Bylaw 1385-17, Section 5.80
+
+  - type: input
+    id: source
+    attributes:
+      label: Source URL (the municipality's own page)
+      placeholder: https://www.leduc-county.com/land-use-bylaw
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

@@ -1,0 +1,176 @@
+/* ============================================================================
+   Design tokens — Alberta Data Centre Hub
+   ----------------------------------------------------------------------------
+   Colour values come from a validated palette. The categorical region slots
+   (Alberta / Canada / Global) were checked with the palette validator and pass
+   every gate in BOTH modes on ALL pairs:
+     light: worst CVD dE 9.2, worst normal-vision dE 24.0
+     dark : worst CVD dE 9.4, worst normal-vision dE 20.9
+   One known WARN: --region-global (#1baf7a) sits at 2.74:1 on the light
+   surface. The relief rule applies — marks in that colour ALWAYS ship visible
+   direct labels plus a table view. Never rely on that hue alone.
+
+   Do not add a 4th region hue. Three is the all-pairs cap; a generated 4th is
+   indistinguishable under CVD.
+
+   Dark mode is a *selected* set of steps validated against the dark surface,
+   not an automatic inversion. Every token is declared on bare :root first, so
+   nothing has its only definition inside a media query.
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* --- Surfaces & ink ---------------------------------------------------- */
+  --page:            #f9f9f7;
+  --surface:         #fcfcfb;
+  --surface-sunken:  #f2f1ee;
+  --surface-hover:   #f0efec;
+  --ink:             #0b0b0b;
+  --ink-secondary:   #52514e;
+  --ink-muted:       #898781;
+  --hairline:        #e1e0d9;
+  --border:          rgba(11, 11, 11, 0.10);
+  --baseline:        #c3c2b7;
+
+  /* --- Accent (interactive + primary data series) ------------------------ */
+  --accent:          #2a78d6;
+  --accent-hover:    #256abf;
+  --accent-wash:     rgba(42, 120, 214, 0.10);
+  --accent-track:    #cde2fb;   /* lighter step of the same ramp, for meters */
+
+  /* --- Region categorical (fixed order — never cycled, never extended) --- */
+  --region-alberta:  #2a78d6;
+  --region-canada:   #eb6834;
+  --region-global:   #1baf7a;   /* light-surface contrast 2.74:1 — see above */
+
+  /* --- Status (reserved; never reused as a series colour) ---------------- */
+  --status-good:     #0ca30c;
+  --status-warning:  #fab219;
+  --status-serious:  #ec835a;
+  --status-critical: #d03b3b;
+  --status-good-text:#006300;   /* AA-safe green for text */
+
+  /* --- Sequential blue ramp (magnitude only) ----------------------------- */
+  --seq-100: #cde2fb;
+  --seq-250: #86b6ef;
+  --seq-400: #3987e5;
+  --seq-550: #1c5cab;
+  --seq-700: #0d366b;
+
+  /* --- Spacing: strict 8pt rhythm ---------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+
+  /* --- Type -------------------------------------------------------------- */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --t-hero:  48px;
+  --t-h1:    24px;
+  --t-h2:    18px;
+  --t-h3:    15px;
+  --t-body:  14px;
+  --t-small: 13px;
+  --t-micro: 11px;
+
+  /* --- Shape ------------------------------------------------------------- */
+  --r-card: 6px;
+  --r-chip: 4px;
+
+  /* Shadows are for true overlays only. Structure is carried by hairlines. */
+  --shadow-overlay: 0 8px 24px rgba(11, 11, 11, 0.14),
+                    0 2px 6px rgba(11, 11, 11, 0.08);
+
+  /* --- Layout ------------------------------------------------------------ */
+  --sidebar-w: 240px;
+  --rail-w: 56px;
+  --topbar-h: 56px;
+  --content-max: 1440px;
+
+  /* --- Density (overridden by [data-density="compact"]) ------------------ */
+  --row-h: 40px;
+  --cell-pad-y: 10px;
+}
+
+[data-density="compact"] {
+  --row-h: 32px;
+  --cell-pad-y: 6px;
+}
+
+/* --- Dark: OS preference (loses to an explicit light stamp) -------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --page:           #0d0d0d;
+    --surface:        #1a1a19;
+    --surface-sunken: #131312;
+    --surface-hover:  #232322;
+    --ink:            #ffffff;
+    --ink-secondary:  #c3c2b7;
+    --ink-muted:      #898781;
+    --hairline:       #2c2c2a;
+    --border:         rgba(255, 255, 255, 0.10);
+    --baseline:       #383835;
+
+    --accent:         #3987e5;
+    --accent-hover:   #5598e7;
+    --accent-wash:    rgba(57, 135, 229, 0.14);
+    --accent-track:   #184f95;
+
+    --region-alberta: #3987e5;
+    --region-canada:  #d95926;
+    --region-global:  #199e70;
+
+    --status-good-text: #0ca30c;
+
+    --seq-100: #0d366b;
+    --seq-250: #184f95;
+    --seq-400: #2a78d6;
+    --seq-550: #6da7ec;
+    --seq-700: #cde2fb;
+
+    --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.6),
+                      0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* --- Dark: explicit toggle (must win in both directions) ----------------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --page:           #0d0d0d;
+  --surface:        #1a1a19;
+  --surface-sunken: #131312;
+  --surface-hover:  #232322;
+  --ink:            #ffffff;
+  --ink-secondary:  #c3c2b7;
+  --ink-muted:      #898781;
+  --hairline:       #2c2c2a;
+  --border:         rgba(255, 255, 255, 0.10);
+  --baseline:       #383835;
+
+  --accent:         #3987e5;
+  --accent-hover:   #5598e7;
+  --accent-wash:    rgba(57, 135, 229, 0.14);
+  --accent-track:   #184f95;
+
+  --region-alberta: #3987e5;
+  --region-canada:  #d95926;
+  --region-global:  #199e70;
+
+  --status-good-text: #0ca30c;
+
+  --seq-100: #0d366b;
+  --seq-250: #184f95;
+  --seq-400: #2a78d6;
+  --seq-550: #6da7ec;
+  --seq-700: #cde2fb;
+
+  --shadow-overlay: 0 8px 24px rgba(0, 0, 0, 0.6),
+                    0 2px 6px rgba(0, 0, 0, 0.4);
+}

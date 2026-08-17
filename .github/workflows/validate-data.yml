@@ -1,0 +1,45 @@
+name: Validate data
+
+# The guardrail that makes hand-editing safe. Runs on every push and pull
+# request so a malformed record fails here with a readable message rather
+# than quietly breaking a page on the live site.
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/data/**', 'scripts/**', 'test/**']
+  pull_request:
+    paths: ['site/data/**', 'scripts/**', 'test/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate data files
+        run: node scripts/validate-data.mjs
+
+      - name: Run library tests
+        run: node test/test-lib.mjs
+
+      - name: Prove the ingestion pipeline works offline
+        run: |
+          cp site/data/news.json /tmp/news.before.json
+          node scripts/fetch-news.mjs --fixture test/fixtures
+          node -e '
+            const d = require("./site/data/news.json");
+            if (!d.items.length) { console.error("fixture run produced no items"); process.exit(1); }
+            const streams = new Set(d.items.map(i => i.stream));
+            if (streams.size < 3) { console.error("classification collapsed to", [...streams]); process.exit(1); }
+            console.log("fixture run ok:", d.items.length, "items across", [...streams].join(", "));
+          '
+          cp /tmp/news.before.json site/data/news.json

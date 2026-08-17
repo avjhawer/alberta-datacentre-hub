@@ -1,0 +1,73 @@
+{
+  "_comment": "Technology and engineering trends, framed for a planner rather than an engineer: what each one changes about an application you have to assess. Live coverage is appended automatically from the classified news feed.",
+  "intro": "The technical choices below are not neutral detail — each one changes the water licence, the noise profile, the site footprint or the grid position you are assessing. This page exists to make an applicant's technical claims legible.",
+  "trends": [
+    {
+      "id": "liquid-cooling",
+      "title": "Liquid and direct-to-chip cooling",
+      "topic": "Cooling",
+      "maturity": "Mainstream for AI workloads",
+      "summary": "Heat is carried away by liquid at the chip rather than by moving large volumes of air. Required at the rack densities AI training hardware now reaches.",
+      "planningImplication": "Reduces evaporative water loss compared with open cooling towers, but raises total power density and changes the mechanical plant on site. Ask which cooling topology is proposed before accepting any water-use figure.",
+      "links": [
+        { "label": "What Is Immersion Cooling for Data Centers?", "url": "https://www.parkplacetechnologies.com/blog/what-is-immersion-cooling-data-centers/", "fromBookmarks": true }
+      ]
+    },
+    {
+      "id": "closed-loop-water",
+      "title": "Closed-loop vs evaporative cooling",
+      "topic": "Water",
+      "maturity": "Established",
+      "summary": "Closed-loop systems recirculate a fixed water charge; evaporative systems consume water continuously to reject heat.",
+      "planningImplication": "The single largest determinant of a project's water demand. A closed-loop claim should be tested against the design cooling capacity and the local climate, and captured in the water section of the DP review.",
+      "links": []
+    },
+    {
+      "id": "rack-density",
+      "title": "Rising rack density",
+      "topic": "Site design",
+      "maturity": "Accelerating",
+      "summary": "AI training racks draw far more power per rack than traditional enterprise racks, concentrating load into a smaller footprint.",
+      "planningImplication": "Building area is a poor proxy for electrical load. Assess the proposed MW, not the square metres — a smaller building can carry a larger grid impact.",
+      "links": []
+    },
+    {
+      "id": "byog",
+      "title": "Bring-your-own-generation (BYOG)",
+      "topic": "Power",
+      "maturity": "Central to Alberta policy",
+      "summary": "Pairing a data centre with dedicated new generation or storage so it does not rely solely on existing grid capacity. Alberta's regulation gives tethered projects assessment priority.",
+      "planningImplication": "A tethered project brings a generation facility with it, which is a separate AUC approval and its own land use, noise and emissions question. Confirm whether the generation is included in the application before you scope the review.",
+      "links": [
+        { "label": "Alberta proposes data centres self-supply electricity", "url": "https://energyrates.ca/alberta-proposes-data-centres-to-self-supply-electricity-heres-how-it-will-work/", "fromBookmarks": true }
+      ]
+    },
+    {
+      "id": "grid-interactive-load",
+      "title": "Grid-interactive and curtailable load",
+      "topic": "Power",
+      "maturity": "Emerging in policy",
+      "summary": "Facilities that reduce consumption on request, in exchange for earlier or cheaper connection. Alberta's bridging approach carries an explicit obligation to reduce consumption when the grid requires room.",
+      "planningImplication": "Curtailability is a commitment with operational consequences. If an applicant relies on bridged access, the three-year limit and the curtailment obligation belong in the conditions discussion.",
+      "links": []
+    },
+    {
+      "id": "backup-generation",
+      "title": "Backup generation and emissions",
+      "topic": "Air quality",
+      "maturity": "Established",
+      "summary": "Large diesel or gas generator arrays for outage protection, exercised regularly for testing.",
+      "planningImplication": "Drives the NOx question and a recurring noise event that residents notice more than steady-state operation. Testing schedules are a legitimate condition subject.",
+      "links": []
+    },
+    {
+      "id": "waste-heat",
+      "title": "Waste heat recovery",
+      "topic": "Sustainability",
+      "maturity": "Limited in North America",
+      "summary": "Capturing reject heat for district energy or industrial use rather than discarding it.",
+      "planningImplication": "Frequently offered as a community benefit. Ask whether an offtaker exists and is contracted, or whether the capability is merely designed for.",
+      "links": []
+    }
+  ]
+}

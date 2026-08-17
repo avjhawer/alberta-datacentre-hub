@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Municipal matrix — Alberta Data Centre Hub</title>
+<meta name="description" content="Side-by-side comparison of how Alberta municipalities regulate data centre development.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="municipal">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Municipal requirements matrix</h1>
+        <p>How each municipality treats data centre development — use class, district, additional plan
+           requirements, reporting obligations and who pays for infrastructure.</p>
+      </div>
+
+      <div class="notice">
+        <strong>Regulatory frameworks only.</strong> This page records what each bylaw requires. It never
+        records live applications or named proponents. Blank cells mean <em>not yet verified</em> — they are
+        deliberately left empty rather than guessed.
+      </div>
+
+      <div class="filterbar">
+        <input class="search-input" id="q" type="search" placeholder="Search municipalities…" aria-label="Search municipalities">
+        <span class="spacer"></span>
+        <span class="small muted" id="count"></span>
+      </div>
+
+      <div class="table-wrap section">
+        <table class="data responsive-cards" id="matrix">
+          <thead><tr id="matrix-head"></tr></thead>
+          <tbody id="matrix-body"></tbody>
+        </table>
+      </div>
+
+      <section class="section">
+        <div class="section-head"><h2>Detail by municipality</h2></div>
+        <div class="grid grid-2" id="detail-slot"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Latest municipal developments</h2>
+          <span class="section-note">Auto-filtered from the live feed</span>
+        </div>
+        <div class="card"><div id="live-slot"><div class="empty-state">Loading…</div></div></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+(async function () {
+  const A = window.ADCH;
+  const { $, esc, safeUrl, relTime, tierChip, regionChip } = A;
+
+  const [muni, news] = await Promise.all([
+    A.loadData('municipalities', null),
+    A.loadData('news', { items: [] }),
+  ]);
+  A.renderLiveStatus(news);
+
+  if (!muni) { $('#main').innerHTML = '<div class="empty-state">Municipal data unavailable.</div>'; return; }
+
+  const cols = muni.columns;
+  const rows = muni.municipalities;
+  let q = '';
+
+  $('#matrix-head').innerHTML =
+    `<th class="sortable">Municipality</th>` +
+    cols.map(c => `<th>${esc(c.label)}</th>`).join('');
+
+  function cell(v) {
+    if (!v) return `<span class="muted small">Needs research</span>`;
+    const badge = A.statusBadge(v.status || 'neutral', v.value);
+    return v.detail
+      ? `<span title="${esc(v.detail)}">${badge}</span>`
+      : badge;
+  }
+
+  function render() {
+    const list = rows.filter(m =>
+      !q || `${m.name} ${m.area} ${m.regulations} ${m.notes}`.toLowerCase().includes(q));
+
+    $('#count').textContent = `${list.length} of ${rows.length} municipalities`;
+
+    $('#matrix-body').innerHTML = list.map(m => `
+      <tr>
+        <td data-label="Municipality">
+          <strong>${esc(m.name)}</strong>
+          ${m.priority ? '<span class="chip" style="margin-left:6px">Primary</span>' : ''}
+          <div class="small muted">${esc(m.area)}</div>
+        </td>
+        ${cols.map(c => `<td data-label="${esc(c.label)}">${cell(m[c.key])}</td>`).join('')}
+      </tr>`).join('');
+
+    $('#detail-slot').innerHTML = list.map(m => `
+      <div class="card">
+        <div class="card-head">
+          <h3>${esc(m.name)}</h3>
+          <div class="card-action">${tierChip(m.sourceTier)}</div>
+        </div>
+        ${m.regulations ? `<p class="small"><strong>Governing text:</strong> ${esc(m.regulations)}</p>` : ''}
+        ${m.notes ? `<p class="small secondary">${esc(m.notes)}</p>` : ''}
+        <dl class="deflist">
+          ${cols.filter(c => m[c.key]?.detail).map(c => `
+            <div><dt>${esc(c.label)}</dt><dd>${esc(m[c.key].detail)}</dd></div>`).join('')}
+        </dl>
+        <p class="small" style="margin:var(--s-3) 0 0">
+          <a href="${esc(safeUrl(m.source))}" target="_blank" rel="noopener">Verify at source — ${esc(m.sourceName)} ↗</a>
+          ${(m.extraLinks || []).map(l =>
+            ` · <a href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}
+        </p>
+      </div>`).join('');
+  }
+
+  $('#q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); render(); });
+
+  render();
+  A.makeSortable($('#matrix'));
+  A.registerPaletteItems(rows.map(m => ({ label: m.name, kind: 'Municipality', href: 'municipal.html' })));
+
+  function renderLive(feed) {
+    const live = (feed.items || []).filter(i => i.stream === 'municipal').slice(0, 12);
+    $('#live-slot').innerHTML = live.length ? `
+      <ul class="feed">${live.map(i => `
+        <li class="feed-item">
+          <a class="headline" href="${esc(safeUrl(i.url))}" target="_blank" rel="noopener">${esc(i.title)}</a>
+          <div class="feed-meta">${regionChip(i.region)}<span>${esc(i.source)}</span>
+            <span>·</span><span>${esc(relTime(i.published))}</span>${tierChip(i.tier || 'reported')}</div>
+        </li>`).join('')}</ul>` : `
+      <div class="empty-state">No municipal items yet — the feed refreshes every three hours.</div>`;
+  }
+  renderLive(news);
+  A.startLiveRefresh(renderLive);
+})();
+</script>
+</body>
+</html>

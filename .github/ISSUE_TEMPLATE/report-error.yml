@@ -1,0 +1,43 @@
+name: Report something wrong
+description: Flag an inaccurate record, a stale fact, or a broken link.
+title: "[correction] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Accuracy matters more here than completeness — this site backs permit
+        reviews. If something looks wrong, it probably is worth removing until
+        it can be confirmed.
+
+  - type: input
+    id: where
+    attributes:
+      label: Where is it?
+      placeholder: Policy & regulation → AI data centre levy
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source that shows the correct position
+      placeholder: https://www.alberta.ca/...
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: How urgent?
+      options:
+        - "Factually wrong — remove or correct now"
+        - "Out of date"
+        - "Broken link or typo"
+    validations:
+      required: true
