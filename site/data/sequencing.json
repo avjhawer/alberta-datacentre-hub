@@ -1,0 +1,213 @@
+{
+  "_comment": "AUC vs Municipal regulatory sequencing. Orientation for planners and developers on two approval tracks that run in parallel and depend on each other. HARD RULE applies here too: this is a map of the process, not legal advice. Every step carries its source and tier, and the gates state what to confirm rather than asserting an outcome.",
+  "title": "AUC vs. Municipal regulatory sequencing",
+  "intro": "A data centre is approved twice, by two bodies, on two clocks. The provincial track authorises the power; the municipal track authorises the land use. Neither waits for the other, and the failure mode is a site with a permit it cannot energise — or a substation with nowhere compliant to sit.",
+  "caution": "A map of the process, not legal advice. Confirm each step against the current rule and your own bylaw before relying on it.",
+  "tracks": [
+    {
+      "id": "provincial",
+      "icon": "⚡",
+      "label": "Provincial & Grid Track",
+      "bodies": "AESO / TFO / AUC",
+      "note": "Runs on the regulator's timetable. The municipality is a stakeholder here, not the decision-maker."
+    },
+    {
+      "id": "municipal",
+      "icon": "🏛️",
+      "label": "Municipal Track",
+      "bodies": "MGA / Land Use Bylaw / Permits",
+      "note": "Your track. The one place the community's concerns become enforceable conditions."
+    }
+  ],
+  "phases": [
+    {
+      "id": "p1",
+      "label": "Phase 1",
+      "name": "Scoping & pre-application"
+    },
+    {
+      "id": "p2",
+      "label": "Phase 2",
+      "name": "Formal filings"
+    },
+    {
+      "id": "p3",
+      "label": "Phase 3",
+      "name": "Technical approvals"
+    },
+    {
+      "id": "p4",
+      "label": "Phase 4",
+      "name": "Construction"
+    }
+  ],
+  "steps": [
+    {
+      "id": "prov-p1",
+      "track": "provincial",
+      "phase": "p1",
+      "title": "AESO system access request & study",
+      "short": "SAS / connection study",
+      "detail": "The proponent asks AESO for system access. AESO and the transmission facility owner study what the connection needs — the point of interconnection, the substation, any reinforcement. This is where the real timeline is set, and it is usually longer than the development timeline the applicant presents to you.",
+      "planner": "Ask for the system access request date and the study status in writing at pre-application. A project with no request lodged is not a near-term project, whatever the covering letter says. The answer also tells you where the substation will land, which drives your site plan.",
+      "watch": "The interim connection cap is reported fully allocated through 2028. Treat any application that assumes prompt firm access as unsupported until the queue position is produced.",
+      "source": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "sourceName": "AESO — Connecting to the grid",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-p1",
+      "track": "municipal",
+      "phase": "p1",
+      "title": "Municipal pre-application",
+      "short": "Pre-app meeting",
+      "detail": "The pre-application meeting, servicing enquiry, and confirmation of the land use district and whether the use is permitted or discretionary. Your leverage is at its highest here and falls steadily afterwards.",
+      "planner": "Establish four things before the file is formally accepted: whether the use is permitted or discretionary in the district, whether a statutory plan amendment is needed, where the substation and its corridor will sit, and what the ultimate build-out load is rather than the first phase. Put the answers in writing.",
+      "watch": "If the use is permitted and the standards are met, your grounds for refusal are narrow. Discretionary status is the single biggest determinant of how much influence you have — confirm it against the current bylaw, not last year's.",
+      "source": "https://www.alberta.ca/municipal-government-act",
+      "sourceName": "Municipal Government Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "prov-p2",
+      "track": "provincial",
+      "phase": "p2",
+      "title": "AUC filings — participant involvement & noise",
+      "short": "Rule 007 / PIP · Rule 012",
+      "detail": "Facility applications to the Alberta Utilities Commission carry a participant involvement programme, and noise is assessed under the Commission's noise rule. Notification radii, the noise study, and the record of consultation are all set by the AUC's own rules rather than by your bylaw.",
+      "planner": "Ask to be included in the participant involvement programme, and read the noise study when it is filed. It is the most useful technical document produced anywhere in either track, and it is often the only modelling that exists before you must decide.",
+      "watch": "The AUC's consultation radius and yours will differ. Residents notified by one process and not the other is the most common source of the 'nobody told us' complaint at your public hearing.",
+      "source": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
+      "sourceName": "AUC Rule 007",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-p2",
+      "track": "municipal",
+      "phase": "p2",
+      "title": "Development permit / redesignation",
+      "short": "DP & rezoning",
+      "detail": "The formal development permit application, and any land use redesignation or statutory plan amendment that goes with it. Circulation, referrals, and the public process run on the municipality's statutory clock.",
+      "planner": "Decide early whether the substation forms part of this application or a separate one, and say so in writing. Conditions must attach to matters the bylaw actually regulates — a condition about grid capacity is unlikely to survive appeal, while one about noise, screening, servicing or cost recovery will.",
+      "watch": "Do not condition around a provincial matter you cannot enforce. Use your own instruments — setbacks, screening, hours, acoustic limits, development agreements — for the outcomes you need.",
+      "source": "https://www.alberta.ca/municipal-government-act",
+      "sourceName": "Municipal Government Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "prov-p3",
+      "track": "provincial",
+      "phase": "p3",
+      "title": "AUC permit & licence",
+      "short": "Permit & licence",
+      "detail": "The Commission decides the facility application and, if approved, issues the permit and licence with its own conditions attached — siting, noise limits, reclamation.",
+      "planner": "Read the conditions the moment the decision issues and compare them against your own draft conditions. Where the AUC has already imposed a stricter limit, adopt it by reference rather than writing a weaker parallel one; where yours is stricter and within your jurisdiction, keep it and say why.",
+      "watch": "This is the point where the interaction with your decision becomes concrete. See Gate A on how an approved provincial facility sits against your land use authority.",
+      "source": "https://www.auc.ab.ca/",
+      "sourceName": "Alberta Utilities Commission",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-p3",
+      "track": "municipal",
+      "phase": "p3",
+      "title": "DP decision & development agreement",
+      "short": "Decision & agreement",
+      "detail": "The development authority decides, conditions attach, and the development agreement fixes servicing, off-site levies, road use, and security. The agreement is where cost recovery is actually secured.",
+      "planner": "The agreement outlasts the permit and is the most durable instrument you hold. Put haul routes and road maintenance, water and wastewater capacity, security for reclamation, and the cost-recovery mechanism in it. Ambiguity here becomes the municipality's cost later.",
+      "watch": "The province's stated position is that project costs are not to be transferred to ratepayers or municipal taxpayers. Test any net-benefit claim in the application against the agreement you are actually signing.",
+      "source": "https://www.alberta.ca/datacentres",
+      "sourceName": "Government of Alberta — Data centres",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "prov-p4",
+      "track": "provincial",
+      "phase": "p4",
+      "title": "Substation construction & energization",
+      "short": "Build & energize",
+      "detail": "The transmission facility owner builds and energises the substation and connection under the AUC's approval, on the grid's schedule rather than the developer's.",
+      "planner": "Energization is the true gate on occupancy. A finished building with no firm connection is a stranded asset and, if you conditioned occupancy loosely, a compliance problem you inherit.",
+      "watch": "Consider tying occupancy — not construction — to evidence of a firm connection. It is enforceable, it is within your jurisdiction, and it prevents the half-built outcome.",
+      "source": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "sourceName": "AESO — Connecting to the grid",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-p4",
+      "track": "municipal",
+      "phase": "p4",
+      "title": "Early grading & building permits",
+      "short": "Grading & building",
+      "detail": "Site stripping and grading often begin well before the building permit issues, particularly on large sites where earthworks are seasonal. Building and trade permits follow under the Safety Codes framework.",
+      "planner": "Decide deliberately whether to allow early grading, and if so under what security and erosion controls. On a large site the earthworks are irreversible in practice — once it is stripped, refusing what follows is a much harder decision to defend.",
+      "watch": "See Gate C. Early grading is the point where the municipality's practical leverage quietly disappears.",
+      "source": "https://www.alberta.ca/safety-codes-act",
+      "sourceName": "Safety Codes Act",
+      "sourceTier": "primary"
+    }
+  ],
+  "gates": [
+    {
+      "id": "gate-a",
+      "label": "Gate A",
+      "afterPhase": "p2",
+      "title": "Substation siting & the s. 619 interaction",
+      "summary": "An AUC licence and your land use authority meet here.",
+      "detail": "Where a provincial regulator has issued a licence, permit or approval for a facility, the Municipal Government Act addresses how that authorisation interacts with municipal land use decisions. In practice the substation's location can be settled on the provincial track while the rest of the site remains yours to condition — so the two site plans must be reconciled early or they will conflict late.",
+      "planner": "Get the substation footprint, access, and corridor onto your site plan at pre-application, not at decision. Coordinate on the things that remain yours regardless: access and haul routes, screening and landscaping, setbacks from the balance of the site, drainage, and the interface with neighbours. Ask the applicant to show both approvals on one drawing.",
+      "questions": [
+        "Is the substation inside this application, or a separate provincial one?",
+        "Which authority is deciding the footprint, and has it been decided already?",
+        "Do our site plan and the AUC filing show the same location and access?",
+        "What remains within our jurisdiction to condition once the licence issues?"
+      ],
+      "watch": "Confirm the current wording and effect of the provision with your solicitor before relying on it in a report. This is the single most consequential jurisdictional question in the file, and it is the one most often got wrong in both directions — municipalities either concede too much or condition beyond their authority.",
+      "source": "https://www.alberta.ca/municipal-government-act",
+      "sourceName": "Municipal Government Act",
+      "sourceTier": "primary",
+      "severity": "critical"
+    },
+    {
+      "id": "gate-b",
+      "label": "Gate B",
+      "afterPhase": "p3",
+      "title": "Two noise standards on one site",
+      "summary": "The substation and the chillers are measured by different rules.",
+      "detail": "Substation noise is assessed under the AUC's noise rule. The data centre's own cooling plant — chillers, dry coolers, fans — generally is not; that falls to your bylaw. The result is one site, one continuous sound, and two different standards with two different measurement methods and two different enforcement bodies.",
+      "planner": "Ask for a single cumulative acoustic assessment covering both sources at full load, modelled at the nearest receptor, on a summer night when cooling is at maximum and background is at minimum. Assessments that treat the sources separately, or that average across the day, will understate what residents actually experience.",
+      "questions": [
+        "Does the noise study include the cooling plant, or only the substation?",
+        "Is it modelled at full load and peak summer temperature?",
+        "Does it address low-frequency and tonal content, not just dBA?",
+        "What is the night-time level at the nearest receptor, cumulative across both sources?",
+        "Which body do residents call when it is too loud — and do they know?"
+      ],
+      "watch": "Data centre noise is continuous and tonal rather than intermittent. It is experienced as more intrusive than the same measured level from most industry, and a limit that is met on paper can still generate sustained complaints.",
+      "source": "https://www.auc.ab.ca/rule/rule-012-noise-control/",
+      "sourceName": "AUC Rule 012 — Noise control",
+      "sourceTier": "primary",
+      "severity": "serious"
+    },
+    {
+      "id": "gate-c",
+      "label": "Gate C",
+      "afterPhase": "p4",
+      "title": "Early grading before final permits",
+      "summary": "On a 50+ acre site, the earthworks decide the outcome.",
+      "detail": "Large sites are stripped and graded early, often in the construction season before the building permit issues and sometimes before every approval is in hand. Once a 50-acre site has been cleared and regraded, the practical and political cost of refusing what follows rises sharply, and the drainage regime has already changed.",
+      "planner": "Treat early grading as a decision in its own right, not an administrative step. If you allow it, require security sized to actual reclamation cost, an erosion and sediment control plan, a drainage plan that stands alone if nothing further is built, and a defined haul route with road maintenance obligations. Put it in the development agreement, not a permit note.",
+      "questions": [
+        "What is authorised to be disturbed before the building permit issues?",
+        "Is the security sized to reclaim the site if the project stops here?",
+        "Does the drainage design work as a standalone end state?",
+        "Which roads carry the haul traffic, and who pays for them?",
+        "If the connection never materialises, what does this site look like in five years?"
+      ],
+      "watch": "This is where municipal leverage quietly disappears. A stripped site with an unresolved connection is the realistic bad outcome in the current grid environment — plan the conditions for it before you grant the grading.",
+      "sourceName": "Municipal practice — confirm your own bylaw and agreement templates",
+      "sourceTier": "unverified",
+      "severity": "warning"
+    }
+  ]
+}
