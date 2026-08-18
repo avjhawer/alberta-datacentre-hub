@@ -7,7 +7,7 @@ const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const errors=[];
 page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
-await page.goto(`${B}/municipal.html`,{waitUntil:'networkidle'});
+await page.goto(`${B}/rules.html`,{waitUntil:'networkidle'});
 await page.waitForTimeout(400);
 
 console.log('\n— placement —');
@@ -16,7 +16,7 @@ const pos=await page.evaluate(()=>{
   const lub=document.querySelector('#lub-slot');
   return tbl.compareDocumentPosition(lub) & Node.DOCUMENT_POSITION_FOLLOWING ? 'below':'above';
 });
-ok(pos==='below','section sits below the main comparison table');
+ok(pos==='below','use class section sits below the comparison table');
 
 console.log('\n— three approaches —');
 ok((await page.$$('.lub-tab')).length===3,'three zoning approaches as tabs');
@@ -68,7 +68,7 @@ ok((await page.$$('.lub-tab')).length===3,'All restores every approach');
 
 console.log('\n— existing page still works —');
 ok((await page.$$('#matrix-body tr')).length>=6,'municipal matrix table still renders');
-ok(await page.$('#detail-slot') !== null,'detail-by-municipality section intact');
+ok(await page.$('#municipal-detail-slot') !== null,'detail-by-municipality section intact');
 
 ok(errors.length===0,`no console/page errors (${errors.length})`+(errors[0]?' — '+errors[0]:''));
 await browser.close();

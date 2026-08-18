@@ -10,6 +10,9 @@ page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 await page.goto(`${B}/permits.html`,{waitUntil:'networkidle'});
 await page.waitForTimeout(400);
+// The chart now starts collapsed so the review tool is what you land on.
+await page.click('#sq-toggle');
+await page.waitForTimeout(300);
 
 console.log('\n— structure —');
 ok((await page.$$('.sq-track')).length===2,'two tracks render');
@@ -68,10 +71,9 @@ await page.click('#btn-new'); await page.waitForTimeout(250);
 ok((await page.$$('.proj-card')).length>=2,'new review still works');
 
 console.log('\n— collapse toggle —');
+ok(await page.isVisible('.sq-inner'),'chart is open after toggling');
 await page.click('#sq-toggle'); await page.waitForTimeout(200);
-ok(!(await page.isVisible('.sq-inner')),'chart can be hidden');
-await page.click('#sq-toggle'); await page.waitForTimeout(200);
-ok(await page.isVisible('.sq-inner'),'chart can be shown again');
+ok(!(await page.isVisible('.sq-inner')),'chart can be hidden again');
 
 ok(errors.length===0,`no console/page errors (${errors.length})`+(errors[0]?' — '+errors[0]:''));
 await browser.close();

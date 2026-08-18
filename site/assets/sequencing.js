@@ -84,12 +84,12 @@
     el.innerHTML = `
       <div class="section-head">
         <h2>${esc(spec.title)}</h2>
-        <button class="btn btn-small" id="sq-toggle" aria-expanded="true"
-                aria-controls="sq-board">Hide chart</button>
+        <button class="btn btn-small" id="sq-toggle" aria-expanded="false"
+                aria-controls="sq-board">Show chart</button>
       </div>
       <p class="section-note secondary">${esc(spec.intro)}</p>
 
-      <div class="sq-board" id="sq-board">
+      <div class="sq-board is-hidden" id="sq-board">
         <div class="sq-scroll" role="group" aria-label="Approval sequencing, two tracks by four phases">
           <div class="sq-inner">
             <div class="sq-phases" aria-hidden="true">

@@ -2,115 +2,22 @@
 <html lang="en-CA">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reference library — Alberta Data Centre Hub</title>
-<meta name="description" content="Bylaws, regulations, regulator pages, standards bodies and analysis for data centre development in Alberta and Canada.">
+<meta http-equiv="refresh" content="0; url=context.html#library">
+<link rel="canonical" href="context.html#library">
+<title>Moved — Alberta Data Centre Hub</title>
+<meta name="robots" content="noindex">
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
 </head>
-<body data-page="library">
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="app">
-  <aside class="sidebar" id="sidebar"></aside>
-  <div class="main">
-    <header class="topbar" id="topbar"></header>
-    <main class="content" id="main">
-
-      <div class="page-head">
-        <h1>Reference library</h1>
-        <p>The governing documents and the analysis worth reading, grouped by what you would reach for
-           them to do.</p>
-      </div>
-
-      <div class="filterbar">
-        <input class="search-input" id="q" type="search" placeholder="Search the library…" aria-label="Search the library">
-        <button class="filter-chip" id="only-primary" aria-pressed="false">Primary sources only</button>
-        <button class="filter-chip" id="only-bookmarks" aria-pressed="false">From your research</button>
-        <span class="spacer"></span>
-        <span class="small muted" id="count"></span>
-      </div>
-
-      <div id="groups-slot"></div>
-
-    </main>
-  </div>
-</div>
-
-<script src="assets/app.js"></script>
-<script>
-(async function () {
-  const A = window.ADCH;
-  const { $, esc, safeUrl, tierChip } = A;
-
-  const [lib, news] = await Promise.all([
-    A.loadData('library', null),
-    A.loadData('news', { items: [] }),
-  ]);
-  A.renderLiveStatus(news);
-
-  if (!lib) { $('#main').innerHTML = '<div class="empty-state">Library unavailable.</div>'; return; }
-
-  const state = { q: '', primaryOnly: false, bookmarksOnly: false };
-
-  function render() {
-    let shown = 0, total = 0;
-
-    const html = (lib.groups || []).map(g => {
-      const links = (g.links || []).filter(l => {
-        total++;
-        if (state.primaryOnly && l.tier !== 'primary') return false;
-        if (state.bookmarksOnly && !l.fromBookmarks) return false;
-        if (state.q && !`${l.label} ${l.note || ''} ${g.title}`.toLowerCase().includes(state.q)) return false;
-        shown++;
-        return true;
-      });
-      if (!links.length) return '';
-      return `
-        <section class="section">
-          <div class="section-head">
-            <h2>${esc(g.title)}</h2>
-            <span class="section-note">${links.length} link${links.length === 1 ? '' : 's'}</span>
-          </div>
-          ${g.note ? `<p class="secondary small" style="margin-bottom:var(--s-3)">${esc(g.note)}</p>` : ''}
-          <div class="card">
-            <ul class="feed">
-              ${links.map(l => `
-                <li class="feed-item">
-                  <a class="headline" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>
-                  ${l.note ? `<p class="summary">${esc(l.note)}</p>` : ''}
-                  <div class="feed-meta">
-                    ${tierChip(l.tier)}
-                    ${l.fromBookmarks ? '<span class="chip">From your research</span>' : ''}
-                    <span class="small muted">${esc(new URL(safeUrl(l.url)).hostname)}</span>
-                  </div>
-                </li>`).join('')}
-            </ul>
-          </div>
-        </section>`;
-    }).join('');
-
-    $('#groups-slot').innerHTML = html || '<div class="empty-state">Nothing matches these filters.</div>';
-    $('#count').textContent = `${shown} of ${total} links`;
-  }
-
-  $('#q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
-  $('#only-primary').addEventListener('click', e => {
-    state.primaryOnly = !state.primaryOnly;
-    e.currentTarget.setAttribute('aria-pressed', String(state.primaryOnly));
-    render();
-  });
-  $('#only-bookmarks').addEventListener('click', e => {
-    state.bookmarksOnly = !state.bookmarksOnly;
-    e.currentTarget.setAttribute('aria-pressed', String(state.bookmarksOnly));
-    render();
-  });
-
-  render();
-
-  A.registerPaletteItems((lib.groups || []).flatMap(g =>
-    (g.links || []).map(l => ({ label: l.label, kind: 'Reference', href: 'library.html' }))));
-})();
-</script>
+<body>
+<main style="max-width:44ch;margin:18vh auto;padding:0 var(--s-4);font-family:var(--font);color:var(--ink)">
+  <h1 style="font-size:var(--t-h2)">This page moved</h1>
+  <p style="color:var(--ink-secondary);line-height:1.6">
+    The site was reorganised into four sections. This content now lives under
+    <strong>Context & research</strong>.
+  </p>
+  <p><a href="context.html#library">Continue to Context & research →</a></p>
+</main>
+<script>location.replace('context.html#library');</script>
 </body>
 </html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context &amp; research — Alberta Data Centre Hub</title>
+<meta name="description" content="Precedent jurisdictions, site design guidance, technology trends, reference sources and ingestion method for Alberta data centre development.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="context">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Context &amp; research</h1>
+        <p class="page-purpose">Background that informs a judgement rather than governs it &mdash; precedents, design practice, technology, and the sources everything here is built from.</p>
+      </div>
+
+      <nav class="page-toc" aria-label="On this page">
+        <a href="#precedents">Precedents &amp; design</a>
+        <a href="#tech">Technology trends</a>
+        <a href="#library">Reference library</a>
+        <a href="#sources">Sources &amp; method</a>
+      </nav>
+
+      <section class="section subsection" id="precedents">
+        <div class="subsection-head"><h2>Precedents &amp; design</h2></div>
+        <p class="subsection-purpose">What other jurisdictions did, what the independent research says, and how to lay out a site so it survives a design review.</p>
+<section class="section">
+        <div class="section-head"><h2>Precedent jurisdictions</h2></div>
+        <div class="grid" id="juris-slot"></div>
+      </section>
+
+      <!-- Site layout & urban design guidance. Rendered by sitedesign.js from
+           site/data/site-design.json. Design practice, not regulation. -->
+      <section class="section" id="sitedesign-slot"></section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Impact research</h2>
+          <span class="section-note">Independent sources — no commercial position in the outcome</span>
+        </div>
+        <div class="grid grid-2" id="research-slot"></div>
+      </section>
+      </section>
+
+      <section class="section subsection" id="tech">
+        <div class="subsection-head"><h2>Technology trends</h2></div>
+        <p class="subsection-purpose">The technical shifts that change what an application is actually proposing &mdash; rack density, liquid cooling, and what they do to load and water.</p>
+<div class="filterbar">
+        <input class="search-input" id="q" type="search" placeholder="Search trends…" aria-label="Search trends">
+        <span id="topic-chips"></span>
+        <span class="spacer"></span>
+        <span class="small muted" id="count"></span>
+      </div>
+
+      <div class="grid grid-2 section" id="trend-slot"></div>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Latest technology coverage</h2>
+          <span class="section-note">Auto-filtered from the live feed</span>
+        </div>
+        <div class="card"><div id="tech-live-slot"><div class="empty-state">Loading…</div></div></div>
+      </section>
+      </section>
+
+      <section class="section subsection" id="library">
+        <div class="subsection-head"><h2>Reference library</h2></div>
+        <p class="subsection-purpose">The source documents themselves. Every link is tiered so you can see at a glance whether it is the rule or somebody&rsquo;s reading of it.</p>
+<div class="filterbar">
+        <input class="search-input" id="q" type="search" placeholder="Search the library…" aria-label="Search the library">
+        <button class="filter-chip" id="only-primary" aria-pressed="false">Primary sources only</button>
+        <button class="filter-chip" id="only-bookmarks" aria-pressed="false">From your research</button>
+        <span class="spacer"></span>
+        <span class="small muted" id="count"></span>
+      </div>
+
+      <div id="groups-slot"></div>
+      </section>
+
+      <section class="section subsection" id="sources">
+        <div class="subsection-head"><h2>Sources &amp; method</h2></div>
+        <p class="subsection-purpose">Which feeds are live and when each last responded. Check here
+           first if something on the site looks stale. Automation writes only the news, alerts and
+           discovery files; every curated record is edited by a person.</p>
+        <div class="card">
+          <div class="card-head"><h3 style="margin:0;font-size:var(--t-h3)">Source health</h3></div>
+          <div id="health-slot"><div class="empty-state">Loading…</div></div>
+        </div>
+      </section>
+      </section>
+
+
+    </main>
+  </div>
+</div>
+
+
+<script src="assets/app.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/page-precedents.js"></script>
+<script src="assets/sitedesign.js"></script>
+<script src="assets/page-tech.js"></script>
+<script src="assets/page-library.js"></script>
+<script src="assets/page-news.js"></script>
+<script src="assets/toc.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rules &amp; requirements — Alberta Data Centre Hub</title>
+<meta name="description" content="The regulatory framework governing data centre development in Alberta: legislation, regulation, the AESO grid process, and municipal bylaws.">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="rules">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Rules &amp; requirements</h1>
+        <p class="page-purpose">Everything that constrains a data centre application, from the Act down to your own land use bylaw. Start here when you need to know what a rule actually says.</p>
+      </div>
+
+      <nav class="page-toc" aria-label="On this page">
+        <a href="#framework">The framework in force</a>
+        <a href="#municipal">Municipal comparison</a>
+        <a href="#useclass">Use class ambiguities</a>
+      </nav>
+
+      <section class="section subsection" id="framework">
+        <div class="subsection-head"><h2>The framework in force</h2></div>
+        <p class="subsection-purpose">Four layers govern a data centre in Alberta, each
+           administered by a different body. An application can satisfy one and fail another.</p>
+        <div id="stack-slot"></div>
+<!-- The province's own stated test — a useful frame to assess against -->
+      <section class="section">
+        <div class="card">
+          <div class="card-head">
+            <h2 id="commit-title">Alberta's four commitments</h2>
+            <div class="card-action small" id="commit-src"></div>
+          </div>
+          <p class="secondary small" id="commit-note"></p>
+          <div class="grid grid-4" id="commit-slot"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Approvals pathway</h2>
+          <span class="section-note" id="pathway-src"></span>
+        </div>
+        <div class="card">
+          <p class="secondary small" id="pathway-note"></p>
+          <div id="pathway-slot"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Regulatory timeline</h2></div>
+        <div class="filterbar">
+          <input class="search-input" id="q" type="search" placeholder="Search records…" aria-label="Search records">
+          <span id="region-chips"></span>
+          <span class="spacer"></span>
+          <span class="small muted" id="count"></span>
+        </div>
+        <div class="card">
+          <ol class="timeline" id="timeline-slot"></ol>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Latest developments</h2>
+          <span class="section-note">Auto-filtered from the live feed — policy and regulation items</span>
+        </div>
+        <div class="card"><div id="policy-live-slot"><div class="empty-state">Loading…</div></div></div>
+      </section>
+      </section>
+
+      <section class="section subsection" id="municipal">
+        <div class="subsection-head"><h2>Municipal comparison</h2></div>
+        <p class="subsection-purpose">What each municipality&rsquo;s bylaw requires. A blank cell means not yet verified against the current bylaw &mdash; never that the requirement is absent.</p>
+<div class="notice">
+        <strong>Regulatory frameworks only.</strong> This page records what each bylaw requires. It never
+        records live applications or named proponents. Blank cells mean <em>not yet verified</em> — they are
+        deliberately left empty rather than guessed.
+      </div>
+
+      <div class="filterbar">
+        <input class="search-input" id="q" type="search" placeholder="Search municipalities…" aria-label="Search municipalities">
+        <span class="spacer"></span>
+        <span class="small muted" id="count"></span>
+      </div>
+
+      <div class="table-wrap section">
+        <table class="data responsive-cards" id="matrix">
+          <thead><tr id="matrix-head"></tr></thead>
+          <tbody id="matrix-body"></tbody>
+        </table>
+      </div>
+
+      <section class="section">
+        <div class="section-head"><h2>Detail by municipality</h2></div>
+        <div class="grid grid-2" id="municipal-detail-slot"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Latest municipal developments</h2>
+          <span class="section-note">Auto-filtered from the live feed</span>
+        </div>
+        <div class="card"><div id="municipal-live-slot"><div class="empty-state">Loading…</div></div></div>
+      </section>
+      </section>
+
+
+      <section class="section subsection" id="useclass">
+        <div class="subsection-head"><h2>Use class ambiguities</h2></div>
+        <p class="subsection-purpose">Almost no Alberta bylaw has a bespoke Data Centre use class,
+           so projects land in whichever industrial district fits least badly. This is what that
+           costs you, and what to do about it.</p>
+        <div id="lub-slot"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+
+<script src="assets/app.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/framework.js"></script>
+<script src="assets/page-policy.js"></script>
+<script src="assets/page-municipal.js"></script>
+<script src="assets/lub.js"></script>
+<script src="assets/toc.js"></script>
+</body>
+</html>

@@ -43,24 +43,25 @@ function icon(name, cls) {
 
 /* ------------------------------------------------------------ site config */
 
+/* Four destinations, each with a stated job. Nine flat pages meant nothing
+   told you where to start; these are ordered by how often they are needed. */
 const NAV = [
   {
-    label: 'Intelligence',
+    label: 'Working',
     items: [
-      { id: 'dashboard',  href: 'index.html',      icon: 'dashboard', label: 'Dashboard' },
-      { id: 'news',       href: 'news.html',       icon: 'news',      label: 'News feed' },
-      { id: 'policy',     href: 'policy.html',     icon: 'policy',    label: 'Policy & regulation' },
-      { id: 'precedents', href: 'precedents.html', icon: 'precedent', label: 'Precedents & impacts' },
-      { id: 'tech',       href: 'tech.html',       icon: 'tech',      label: 'Technology trends' },
+      { id: 'dashboard', href: 'index.html',   icon: 'dashboard', label: 'What changed',
+        blurb: 'Since your last visit' },
+      { id: 'permits',   href: 'permits.html', icon: 'permits',   label: 'Review an application',
+        blurb: 'The DP tool' },
     ],
   },
   {
-    label: 'Review',
+    label: 'Reference',
     items: [
-      { id: 'projects',  href: 'projects.html',  icon: 'projects',  label: 'Project tracker' },
-      { id: 'municipal', href: 'municipal.html', icon: 'municipal', label: 'Municipal matrix' },
-      { id: 'permits',   href: 'permits.html',   icon: 'permits',   label: 'DP review tool' },
-      { id: 'library',   href: 'library.html',   icon: 'library',   label: 'Reference library' },
+      { id: 'rules',   href: 'rules.html',   icon: 'policy',  label: 'Rules & requirements',
+        blurb: 'Policy, grid, municipal' },
+      { id: 'context', href: 'context.html', icon: 'library', label: 'Context & research',
+        blurb: 'Precedents, design, sources' },
     ],
   },
 ];
@@ -227,7 +228,11 @@ function renderShell() {
             ${group.items.map(it => `
               <a class="nav-link" href="${esc(it.href)}"
                  ${it.id === page ? 'aria-current="page"' : ''}>
-                ${icon(it.icon)}<span>${esc(it.label)}</span>
+                ${icon(it.icon)}
+                <span class="nav-text">
+                  <span class="nav-label">${esc(it.label)}</span>
+                  ${it.blurb ? `<span class="nav-blurb">${esc(it.blurb)}</span>` : ''}
+                </span>
               </a>`).join('')}
           </div>`).join('')}
       </nav>
