@@ -1540,3 +1540,128 @@ textarea.input { resize: vertical; line-height: 1.5; }
   .lub-filters, .lub-frict-chev { display: none !important; }
   .lub-frict-body { display: block !important; }
 }
+
+/* ==========================================================================
+   Site layout & urban design guidelines
+   Card grid with inline SVG schematics. Diagram strokes and fills come from
+   tokens so they invert correctly in dark mode without a second asset.
+   ========================================================================== */
+
+.sd-audience { display: flex; align-items: center; gap: 6px; margin: 0 0 var(--s-4); }
+.sd-audience svg { width: 13px; height: 13px; }
+
+.sd-grid {
+  display: grid; gap: var(--s-3);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+/* Four cards read as a 2x2 block; three-up leaves an orphan on the second row. */
+@media (min-width: 900px) { .sd-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.sd-card {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--border); border-radius: var(--r-card);
+  background: var(--surface); overflow: hidden;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
+}
+.sd-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.sd-card.is-open { border-color: var(--accent); }
+.sd-card.is-open:hover { transform: none; }
+
+/* --- diagram -------------------------------------------------------------- */
+.sd-figure {
+  padding: var(--s-3) var(--s-3) 0;
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--border);
+}
+.sd-figure svg { display: block; width: 100%; height: auto; }
+
+.sd-figure .dg-solid,
+.sd-figure .dg-dashed,
+.sd-figure .dg-faint,
+.sd-figure .dg-accent,
+.sd-figure .dg-plant { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.sd-figure .dg-solid  { stroke: var(--ink); stroke-width: 1.6; }
+.sd-figure .dg-dashed { stroke: var(--ink-muted); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.sd-figure .dg-faint  { stroke: var(--baseline); stroke-width: 1.2; }
+.sd-figure .dg-accent { stroke: var(--accent); stroke-width: 1.6; }
+.sd-figure .dg-accent circle { fill: var(--accent); stroke: none; }
+.sd-figure .dg-plant  { stroke: var(--status-serious); stroke-width: 1.6; fill: var(--status-warning-bg); }
+.sd-figure .dg-fill        { fill: var(--accent-wash); stroke: none; }
+.sd-figure .dg-fill-muted  { fill: var(--surface-hover); stroke: none; }
+.sd-figure .dg-berm        { fill: var(--region-global); opacity: .35; stroke: none; }
+.sd-figure .dg-berm-plan   { fill: var(--region-global); opacity: .3; stroke: none; }
+.sd-figure .dg-water       { fill: var(--seq-250); opacity: .55; stroke: none; }
+.sd-figure .dg-label text {
+  font: 500 7px/1 var(--font); fill: var(--ink-muted); letter-spacing: .02em;
+}
+
+/* --- body ----------------------------------------------------------------- */
+.sd-body { display: flex; flex-direction: column; padding: var(--s-4); flex: 1; }
+.sd-head { display: flex; align-items: baseline; gap: var(--s-2); }
+.sd-num {
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: .1em;
+  color: var(--accent); font-variant-numeric: tabular-nums;
+}
+.sd-title { margin: 0; font-size: var(--t-h2); line-height: 1.25; }
+.sd-tagline {
+  margin: var(--s-2) 0 0; font-size: var(--t-body); font-weight: 600;
+  color: var(--ink); line-height: 1.45;
+}
+.sd-lede {
+  margin: var(--s-2) 0 var(--s-3); font-size: var(--t-small);
+  color: var(--ink-secondary); line-height: 1.6;
+}
+
+.sd-toggle {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
+  width: 100%; margin-top: auto; padding: 7px 11px;
+  font: inherit; font-size: var(--t-small); font-weight: 500;
+  color: var(--accent); background: none; cursor: pointer;
+  border: 1px solid var(--border); border-radius: var(--r-chip);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.sd-toggle:hover { border-color: var(--accent); background: var(--accent-wash); }
+.sd-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.sd-chev { display: grid; place-items: center; transition: transform var(--dur) var(--ease); }
+.sd-chev svg { width: 14px; height: 14px; }
+.sd-card.is-open .sd-chev { transform: rotate(180deg); }
+
+.sd-detail { margin-top: var(--s-3); }
+.sd-moves { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+.sd-moves li { display: grid; gap: 3px; }
+.sd-move-label {
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--ink);
+}
+.sd-move-text { font-size: var(--t-small); color: var(--ink-secondary); line-height: 1.55; }
+
+.sd-asks {
+  margin-top: var(--s-4); padding: var(--s-3);
+  border-radius: var(--r-chip); background: var(--surface-sunken);
+  border-left: 3px solid var(--accent);
+}
+.sd-asks h4 {
+  display: flex; align-items: center; gap: 6px; margin: 0 0 var(--s-2);
+  font-size: var(--t-micro); text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink-secondary);
+}
+.sd-asks h4 svg { width: 12px; height: 12px; }
+.sd-asks ul { margin: 0; padding-left: var(--s-4); display: grid; gap: 5px; }
+.sd-asks li { font-size: var(--t-small); color: var(--ink-secondary); line-height: 1.5; }
+
+.sd-caution {
+  display: flex; align-items: flex-start; gap: 6px;
+  margin: var(--s-4) 0 0; color: var(--ink-muted);
+}
+.sd-caution svg { width: 13px; height: 13px; flex: none; margin-top: 2px; }
+
+@media (max-width: 720px) {
+  .sd-grid { grid-template-columns: 1fr; }
+}
+@media print {
+  .sd-toggle, #sd-all { display: none !important; }
+  .sd-detail { display: block !important; }
+  .sd-card { break-inside: avoid; page-break-inside: avoid; }
+}

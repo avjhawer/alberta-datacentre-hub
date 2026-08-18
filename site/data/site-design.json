@@ -1,0 +1,89 @@
+{
+  "_comment": "Site layout and urban design guidance for large data centres. This is DESIGN PRACTICE, not regulation — nothing here is a legal requirement and nothing is tiered above 'unverified'. Dimensions are illustrative of the order of magnitude, never quoted as any bylaw's standard. Where a municipality actually regulates one of these, the number belongs in municipalities.json with the bylaw as its source.",
+  "title": "Site layout & urban design guidelines",
+  "intro": "A data centre reads to a Municipal Planning Commission as a very large blank box with mechanical plant on top. These are the four moves that most reliably change that reading — written for the person preparing the submission, with the question each panel will ask.",
+  "caution": "Design practice, not regulation. Dimensions are illustrative. Confirm every standard against the land use bylaw and any applicable design guidelines before you rely on it.",
+  "audience": "Prepared for developers and consultants taking a submission to a Municipal Planning Commission or Design Review Committee.",
+
+  "cards": [
+    {
+      "id": "screening",
+      "number": "01",
+      "title": "Mechanical & chiller screening",
+      "tagline": "The plant is the tallest thing on the roof. Design for it, do not append it.",
+      "diagram": "screening",
+      "lede": "Cooling plant on a large data centre is not a rooftop unit — it is a second building's worth of equipment, and it is what the public actually sees from a distance. Screening added at the end of design always looks added.",
+      "moves": [
+        { "label": "Rooftop parapets", "text": "Set the parapet from the true height of the tallest unit including service clearance, not the nominal equipment height. A parapet that hides the plant in the elevation drawing but not from the road two hundred metres away is the most common failure." },
+        { "label": "Louvred acoustic enclosures", "text": "Louvred screens do two jobs at once — visual concealment and acoustic attenuation — but only if the louvre geometry is specified for the sound spectrum, not chosen for appearance. Coordinate the screen with the acoustic consultant before the elevations are fixed." },
+        { "label": "Perimeter screening walls", "text": "Ground-level chillers, transformers and generator yards need their own treatment. A solid wall reflects sound outward; a bermed and planted edge absorbs it and reads better. Prefer the berm where the site area allows." },
+        { "label": "Materiality", "text": "Screening in the same material family as the building reads as architecture. Screening in a different material reads as a fix, and panels tend to draw more attention to the plant than they hide." }
+      ],
+      "panelAsks": [
+        "Show the tallest mechanical unit against the parapet in section, at the true clearance height.",
+        "Provide a view from the nearest public road and the nearest residence, at eye level rather than in aerial view.",
+        "Confirm the screen has been reviewed by the acoustic consultant, not only the architect."
+      ]
+    },
+    {
+      "id": "facade",
+      "number": "02",
+      "title": "Breaking up monolithic facades",
+      "tagline": "A 500 m windowless wall is a massing problem, not a cladding problem.",
+      "diagram": "facade",
+      "lede": "The security and thermal logic of the building rules out windows across most of the envelope. Articulation therefore has to come from massing, depth and landscape — applying a pattern to a flat wall does not solve it, and panels can see the difference.",
+      "moves": [
+        { "label": "Break the mass first", "text": "Step the plan and vary the roof line so the building reads as several volumes. A recess of a few metres at intervals along the elevation does more than any surface treatment, because it produces real shadow that changes through the day." },
+        { "label": "Material variation with depth", "text": "Change material at a change of plane, not on a flat surface. Two colours of the same panel on one plane read as a graphic; the same two materials on planes set apart read as building form." },
+        { "label": "Architectural fins", "text": "Vertical fins give rhythm and a strong shadow line, and they scale down a long elevation. Space them against the human field of view at the distance the building is actually seen from, which is usually the road, not the property line." },
+        { "label": "Perimeter landscape berms", "text": "A berm with mature planting is the most cost-effective articulation available: it removes the bottom of the wall from view entirely, and it does the acoustic and stormwater work at the same time. Design it as part of the building section, not as a landscape afterthought." },
+        { "label": "Concentrate quality", "text": "Put the material budget where people stand — the entrance, the office component, the corner nearest the public road — and let the service elevations be plain. Spreading the budget evenly across 500 m produces a uniformly mediocre elevation." }
+      ],
+      "panelAsks": [
+        "Provide the long elevation at a readable scale, not cropped to a representative bay.",
+        "Show a section through the berm and the wall together, with planting at fifteen-year maturity rather than at installation.",
+        "Give the view from the public realm at eye level, in winter, without leaves on the trees."
+      ]
+    },
+    {
+      "id": "acoustic",
+      "number": "03",
+      "title": "Acoustic attenuation & buffer zones",
+      "tagline": "Where you put the plant matters more than what you wrap it in.",
+      "diagram": "acoustic",
+      "lede": "Continuous tonal noise from chillers, and periodic testing of backup generators, are the two things most likely to generate sustained complaints after occupancy. Both are largely solved at site-planning stage by placement, and only partially solved afterwards by attenuation.",
+      "moves": [
+        { "label": "Site sources to the interior", "text": "Put chiller yards, generator enclosures and transformers toward the centre of the parcel, using the building itself to shield the nearest receptors. Distance is the cheapest attenuation available and the only one that never needs maintenance." },
+        { "label": "Orient away from sensitive edges", "text": "Identify the sensitive boundary early — a residence, an acreage, a school — and place the plant on the opposite face. Where the sensitive edge is agricultural today, ask what the statutory plan designates it as tomorrow." },
+        { "label": "Layer the buffer", "text": "A buffer that works is a sequence: distance, then a berm, then dense planting, then the fence. Planting alone is close to acoustically useless and should not be presented as attenuation." },
+        { "label": "Design generator testing in", "text": "Backup generators are tested on a schedule and that testing is what neighbours notice. Fix the testing window in daylight hours, and specify the exhaust silencer grade at design stage rather than after the first complaint." },
+        { "label": "Model the worst case", "text": "Full cooling load on a still summer night, when the plant is at maximum and background is at minimum. An annual average understates the condition that actually generates the complaint." }
+      ],
+      "panelAsks": [
+        "Provide a cumulative acoustic assessment covering the cooling plant and any substation together, at the nearest receptor.",
+        "Address low-frequency and tonal content specifically, not only an overall dBA figure.",
+        "State the generator testing schedule and the assumed sound power level in the submission."
+      ]
+    },
+    {
+      "id": "stormwater",
+      "number": "04",
+      "title": "Stormwater & environmental integration",
+      "tagline": "The roof is the catchment. Treat it as one.",
+      "diagram": "stormwater",
+      "lede": "A large data centre replaces a field with hectares of roof and hardstanding. The runoff volume and its rate of arrival both change sharply, and a design that only meets the discharge rate can still fail on quality, temperature and downstream capacity.",
+      "moves": [
+        { "label": "Naturalised bioretention", "text": "Bioretention cells and swales along the perimeter slow and clean the first flush, and they read as landscape rather than infrastructure — which matters to the same panel assessing the elevations. Where they sit inside the berm they do two jobs at once." },
+        { "label": "Regional SWMF integration", "text": "Confirm early whether a regional stormwater management facility exists and has capacity for this catchment. Discovering at detailed design that the regional facility is full turns a landscape question into a land acquisition question." },
+        { "label": "Temperature, not just volume", "text": "Runoff from a large warm roof arrives warmer than the receiving water. Where it discharges to a watercourse with sensitive habitat, thermal effect can matter as much as volume — shade the outfall and route through vegetated cells." },
+        { "label": "Snow storage is real", "text": "In Alberta, plan where ploughed snow from very large hardstanding areas is stored, and where it drains as it melts. Sites are routinely designed as though snow does not exist, and the meltwater carries the accumulated grit and salt of a whole winter." },
+        { "label": "Design the standalone end state", "text": "If the project stops after grading and servicing, the drainage regime must still work. This is the same question the municipality will ask about early site grading, and having the answer already improves both conversations." }
+      ],
+      "panelAsks": [
+        "Show pre- and post-development runoff for the design storm, and state which regional facility receives it.",
+        "Confirm with the municipality in writing that the receiving system has capacity at full build-out.",
+        "Identify snow storage areas on the site plan and describe how meltwater is treated."
+      ]
+    }
+  ]
+}
