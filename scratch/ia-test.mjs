@@ -40,11 +40,12 @@ if(await p.$('#mark-read')){
 
 console.log('\n— merged reference pages —');
 await p.goto(`${B}/rules.html`,{waitUntil:'networkidle'}); await p.waitForTimeout(500);
-ok((await p.$$('.page-toc a')).length===3,'rules has an in-page contents bar');
-for(const id of ['framework','municipal','useclass'])
+ok((await p.$$('.page-toc a')).length===2,'rules has an in-page contents bar');
+for(const id of ['framework','municipal'])
   ok(await p.$(`#${id}`)!==null,`rules has #${id}`);
+ok(await p.$('#useclass')===null,'the use class section is gone');
+ok(await p.$('#lub-slot')===null,'and its slot is gone with it');
 ok((await p.$$('#matrix-body tr')).length>=6,'municipal matrix renders inside the merged page');
-ok((await p.$$('.lub-tab')).length===3,'use class matrix renders inside the merged page');
 ok((await p.$$('.stack-layer')).length===4,'policy framework renders inside the merged page');
 
 await p.goto(`${B}/context.html`,{waitUntil:'networkidle'}); await p.waitForTimeout(500);
