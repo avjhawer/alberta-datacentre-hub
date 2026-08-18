@@ -52,7 +52,7 @@
     $('#municipal-detail-slot').innerHTML = list.map(m => `
       <div class="card">
         <div class="card-head">
-          <h3>${esc(m.name)}</h3>
+          <h4>${esc(m.name)}</h4>
           <div class="card-action">${tierChip(m.sourceTier)}</div>
         </div>
         ${m.regulations ? `<p class="small"><strong>Governing text:</strong> ${esc(m.regulations)}</p>` : ''}
@@ -73,7 +73,7 @@
 
   render();
   A.makeSortable($('#matrix'));
-  A.registerPaletteItems(rows.map(m => ({ label: m.name, kind: 'Municipality', href: 'municipal.html' })));
+  A.registerPaletteItems(rows.map(m => ({ label: m.name, kind: 'Municipality', href: 'rules.html#municipal' })));
 
   function renderLive(feed) {
     const live = (feed.items || []).filter(i => i.stream === 'municipal').slice(0, 12);

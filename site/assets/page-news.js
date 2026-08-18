@@ -76,7 +76,15 @@
 
   function renderHealth() {
     const h = Array.isArray(news?.sourceHealth) ? news.sourceHealth : [];
-    if (!h.length) return;
+    if (!h.length) {
+      // Returning early here used to leave "Loading…" on screen forever.
+      $('#health-slot').innerHTML = `
+        <div class="empty-state">
+          No source health recorded yet. It is written by the ingestion run, which fires every
+          three hours once deployed.
+        </div>`;
+      return;
+    }
     $('#health-slot').innerHTML = `
       <div class="table-wrap">
         <table class="data responsive-cards">

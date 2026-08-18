@@ -165,9 +165,11 @@
   function render() {
     const el = $('#sitedesign-slot');
     if (!el || !spec) return;
+    // On a merged page the section already has a heading; do not repeat it.
+    const inSection = !!el.closest('.subsection');
     el.innerHTML = `
       <div class="section-head">
-        <h2>${esc(spec.title)}</h2>
+        ${inSection ? '<span></span>' : `<h2>${esc(spec.title)}</h2>`}
         <button class="btn btn-small" id="sd-all">
           ${open.size === spec.cards.length ? 'Collapse all' : 'Expand all'}
         </button>

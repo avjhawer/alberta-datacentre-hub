@@ -19,9 +19,9 @@
   const STORE_V1 = 'adch.reviews.v1';
 
   const REF_PAGES = {
-    municipal: { label: 'Municipal matrix', href: 'municipal.html' },
-    policy:    { label: 'Policy & regulation', href: 'policy.html' },
-    tech:      { label: 'Technology trends', href: 'tech.html' },
+    municipal: { label: 'Municipal matrix', href: 'rules.html#municipal' },
+    policy:    { label: 'Policy & regulation', href: 'rules.html#framework' },
+    tech:      { label: 'Technology trends', href: 'context.html#tech' },
   };
 
   const AREA_ICON = {

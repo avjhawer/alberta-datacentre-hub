@@ -166,10 +166,10 @@
   function render() {
     const el = $('#lub-slot');
     if (!el || !spec) return;
+    // On a merged page the section already has a heading; do not repeat it.
+    const inSection = !!el.closest('.subsection');
     el.innerHTML = `
-      <div class="section-head">
-        <h2>${esc(spec.title)}</h2>
-      </div>
+      ${inSection ? '' : `<div class="section-head"><h2>${esc(spec.title)}</h2></div>`}
       <p class="section-note secondary">${esc(spec.intro)}</p>
 
       ${renderFilters()}

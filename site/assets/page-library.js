@@ -35,7 +35,7 @@
       return `
         <section class="section">
           <div class="section-head">
-            <h2>${esc(g.title)}</h2>
+            <h3>${esc(g.title)}</h3>
             <span class="section-note">${links.length} link${links.length === 1 ? '' : 's'}</span>
           </div>
           ${g.note ? `<p class="secondary small" style="margin-bottom:var(--s-3)">${esc(g.note)}</p>` : ''}
@@ -75,5 +75,5 @@
   render();
 
   A.registerPaletteItems((lib.groups || []).flatMap(g =>
-    (g.links || []).map(l => ({ label: l.label, kind: 'Reference', href: 'library.html' }))));
+    (g.links || []).map(l => ({ label: l.label, kind: 'Reference', href: 'context.html#library' }))));
 })();

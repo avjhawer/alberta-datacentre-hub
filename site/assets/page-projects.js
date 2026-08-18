@@ -41,7 +41,7 @@
 
     $('#projects-detail-slot').innerHTML = list.map(p => `
       <div class="card">
-        <div class="card-head"><h3>${esc(p.name)}</h3>
+        <div class="card-head"><h4>${esc(p.name)}</h4>
           <div class="card-action">${tierChip(p.sourceTier)}</div></div>
         <p class="small">${esc(p.summary)}</p>
         ${p.caution ? `<div class="alert-strip" style="margin:var(--s-3) 0">
@@ -66,7 +66,7 @@
   $('#q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); render(); });
   render();
   A.makeSortable($('#proj'));
-  A.registerPaletteItems(rows.map(p => ({ label: p.name, kind: 'Project', href: 'projects.html' })));
+  A.registerPaletteItems(rows.map(p => ({ label: p.name, kind: 'Project', href: 'index.html#tracker' })));
 
   /* Reported bucket — leads, never facts. Each says what would confirm it. */
   const rep = proj.reported || [];

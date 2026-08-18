@@ -7,7 +7,7 @@ const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const errors=[];
 page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
-await page.goto(`${B}/precedents.html`,{waitUntil:'networkidle'});
+await page.goto(`${B}/context.html#precedents`,{waitUntil:'networkidle'});
 await page.waitForTimeout(400);
 
 console.log('\n— four cards —');
@@ -54,12 +54,12 @@ console.log('\n— existing page intact —');
 ok((await page.$$('#juris-slot > *')).length>0,'precedent jurisdictions still render');
 ok((await page.$$('#research-slot > *')).length>0,'impact research still renders');
 const order=await page.evaluate(()=>{
-  const t=[...document.querySelectorAll('h2')].map(h=>h.textContent.trim());
+  const t=[...document.querySelectorAll('#precedents h2,#precedents h3')].map(h=>h.textContent.trim());
   return {j:t.findIndex(x=>/Precedent jurisdictions/i.test(x)),
-          s:t.findIndex(x=>/Site layout/i.test(x)),
+          s:t.findIndex(x=>/Mechanical & chiller/i.test(x)),
           r:t.findIndex(x=>/Impact research/i.test(x))};
 });
-ok(order.j<order.s && order.s<order.r,'section sits between jurisdictions and research');
+ok(order.j<order.s && order.s<order.r,'design cards sit between jurisdictions and research');
 
 ok(errors.length===0,`no console/page errors (${errors.length})`+(errors[0]?' — '+errors[0]:''));
 await browser.close();

@@ -80,7 +80,7 @@
       return `
       <li class="timeline-item ${r.status === 'upcoming' ? 'is-upcoming' : ''}">
         <div class="timeline-date">${esc(fmtDate(r.date))} · ${esc(r.jurisdiction)} · ${esc(r.type)}</div>
-        <h3>${esc(r.title)}</h3>
+        <h4>${esc(r.title)}</h4>
         <div class="feed-meta" style="margin-bottom:var(--s-2)">
           ${A.statusBadge(badge, label)}
           ${r.effective ? `<span class="chip">Effective ${esc(fmtDate(r.effective))}</span>` : ''}
@@ -126,6 +126,6 @@
   }
   renderLive(news);
 
-  A.registerPaletteItems(records.map(r => ({ label: r.title, kind: 'Policy', href: 'policy.html' })));
+  A.registerPaletteItems(records.map(r => ({ label: r.title, kind: 'Policy', href: 'rules.html#framework' })));
   A.startLiveRefresh(renderLive);
 })();

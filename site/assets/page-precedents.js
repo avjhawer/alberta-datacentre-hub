@@ -22,7 +22,7 @@
   $('#juris-slot').innerHTML = (prec.jurisdictions || []).map(j => `
     <div class="card">
       <div class="card-head">
-        <h3>${esc(j.name)}</h3>
+        <h4>${esc(j.name)}</h4>
         <div class="card-action">${regionChip(j.region)}</div>
       </div>
       <p class="secondary">${esc(j.why)}</p>
@@ -44,7 +44,7 @@
   $('#research-slot').innerHTML = (prec.research || []).map(r => `
     <div class="card">
       <div class="card-head">
-        <h3>${esc(r.title)}</h3>
+        <h4>${esc(r.title)}</h4>
         <div class="card-action">${regionChip(r.region)}</div>
       </div>
       <div class="feed-meta" style="margin-bottom:var(--s-2)">
@@ -57,7 +57,7 @@
     </div>`).join('');
 
   A.registerPaletteItems([
-    ...(prec.jurisdictions || []).map(j => ({ label: j.name, kind: 'Precedent', href: 'precedents.html' })),
-    ...(prec.research || []).map(r => ({ label: r.title, kind: 'Research', href: 'precedents.html' })),
+    ...(prec.jurisdictions || []).map(j => ({ label: j.name, kind: 'Precedent', href: 'context.html#precedents' })),
+    ...(prec.research || []).map(r => ({ label: r.title, kind: 'Research', href: 'context.html#precedents' })),
   ]);
 })();

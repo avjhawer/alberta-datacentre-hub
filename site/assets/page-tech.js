@@ -40,7 +40,7 @@
     $('#trend-slot').innerHTML = list.length ? list.map(t => `
       <div class="card">
         <div class="card-head">
-          <h3>${esc(t.title)}</h3>
+          <h4>${esc(t.title)}</h4>
           <div class="card-action"><span class="chip">${esc(t.topic)}</span></div>
         </div>
         <div class="small muted" style="margin-bottom:var(--s-2)">${esc(t.maturity)}</div>
@@ -66,7 +66,7 @@
   $('#q').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
 
   render();
-  A.registerPaletteItems(trends.map(t => ({ label: t.title, kind: 'Technology', href: 'tech.html' })));
+  A.registerPaletteItems(trends.map(t => ({ label: t.title, kind: 'Technology', href: 'context.html#tech' })));
 
   function renderLive(feed) {
     const live = (feed.items || []).filter(i => i.stream === 'technology').slice(0, 12);
