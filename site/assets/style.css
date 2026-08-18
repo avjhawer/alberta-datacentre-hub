@@ -1401,3 +1401,142 @@ textarea.input { resize: vertical; line-height: 1.5; }
 @media print {
   .sq-board, .sq-scrim, .sq-drawer { display: none !important; }
 }
+
+/* ==========================================================================
+   Land use bylaw ambiguities & use class matrix
+   Tabs for the three zoning routes, expandable friction points, tag filtering
+   across both. Tags always render as icon + label + colour via statusBadge.
+   ========================================================================== */
+
+.lub-filters { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-4); }
+.lub-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px; font: inherit; font-size: var(--t-small); font-weight: 500;
+  color: var(--ink-secondary); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease),
+              background var(--dur) var(--ease);
+}
+.lub-chip:hover { border-color: var(--border-strong); color: var(--ink); }
+.lub-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.lub-chip.is-on { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.lub-count {
+  font-size: var(--t-micro); font-variant-numeric: tabular-nums;
+  padding: 1px 5px; border-radius: 999px; background: var(--surface-sunken); color: var(--ink-secondary);
+}
+.lub-chip.is-on .lub-count { background: rgba(255,255,255,.18); color: inherit; }
+
+/* --- approach tabs -------------------------------------------------------- */
+.lub-tabs {
+  display: grid; gap: var(--s-2); margin-bottom: 0;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.lub-tab {
+  display: flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-3); text-align: left; cursor: pointer; font: inherit;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.lub-tab:hover { border-color: var(--border-strong); }
+.lub-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.lub-tab.is-on { border-color: var(--accent); border-bottom-color: transparent; background: var(--accent-wash); }
+.lub-tab-letter {
+  flex: none; display: grid; place-items: center; width: 26px; height: 26px;
+  border-radius: 50%; background: var(--surface-sunken); color: var(--ink-secondary);
+  font-size: var(--t-small); font-weight: 700;
+}
+.lub-tab.is-on .lub-tab-letter { background: var(--accent); color: #fff; }
+.lub-tab-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.lub-tab-name { font-weight: 600; font-size: var(--t-small); color: var(--ink); }
+.lub-tab-class { font-size: var(--t-micro); color: var(--ink-muted); }
+
+.lub-panel {
+  padding: var(--s-4);
+  border: 1px solid var(--accent); border-top: 0;
+  border-radius: 0 0 var(--r-card) var(--r-card);
+  background: var(--surface);
+}
+.lub-panel-head {
+  display: flex; flex-wrap: wrap; gap: var(--s-3);
+  align-items: flex-start; justify-content: space-between;
+}
+.lub-panel-title { margin: 0; font-size: var(--t-h2); }
+.lub-panel-sum { margin: 4px 0 0; font-size: var(--t-body); color: var(--ink-secondary); }
+.lub-panel-tags { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.lub-detail { margin: var(--s-3) 0 var(--s-4); font-size: var(--t-body); line-height: 1.6; }
+
+.lub-cols { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.lub-col { padding: var(--s-3); border-radius: var(--r-chip); background: var(--surface-sunken); }
+.lub-col h4 {
+  display: flex; align-items: center; gap: 6px; margin: 0 0 var(--s-2);
+  font-size: var(--t-small); text-transform: uppercase; letter-spacing: .05em;
+}
+.lub-col h4 svg { width: 13px; height: 13px; }
+.lub-col-good h4 { color: var(--status-good-text); }
+.lub-col-bad  h4 { color: var(--status-serious); }
+.lub-col ul { margin: 0; padding-left: var(--s-4); display: grid; gap: 5px; }
+.lub-col li { font-size: var(--t-small); color: var(--ink-secondary); line-height: 1.5; }
+.lub-ask { margin-top: var(--s-4); }
+
+/* --- friction points ------------------------------------------------------ */
+.lub-sub { margin: var(--s-6) 0 var(--s-1); font-size: var(--t-h2); }
+.lub-sub-note { margin: 0 0 var(--s-3); max-width: 68ch; }
+.lub-fricts { display: grid; gap: var(--s-2); }
+.lub-frict {
+  border: 1px solid var(--border); border-radius: var(--r-card);
+  background: var(--surface); overflow: hidden;
+}
+.lub-frict.is-open { border-color: var(--border-strong); }
+.lub-frict-head {
+  display: flex; align-items: center; gap: var(--s-3); width: 100%;
+  padding: var(--s-3); border: 0; background: none; cursor: pointer;
+  text-align: left; font: inherit; transition: background var(--dur) var(--ease);
+}
+.lub-frict-head:hover { background: var(--surface-sunken); }
+.lub-frict-head:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.lub-frict-name { flex: 1; font-weight: 600; font-size: var(--t-h3); color: var(--ink); }
+.lub-frict-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.lub-frict-chev { display: grid; place-items: center; color: var(--ink-muted); transition: transform var(--dur) var(--ease); }
+.lub-frict-chev svg { width: 15px; height: 15px; }
+.lub-frict.is-open .lub-frict-chev { transform: rotate(180deg); }
+.lub-frict-body { padding: 0 var(--s-3) var(--s-3); }
+.lub-frict-issue { margin: 0 0 var(--s-2); font-size: var(--t-body); color: var(--ink); line-height: 1.6; }
+.lub-frict-why { margin: 0 0 var(--s-3); font-size: var(--t-body); color: var(--ink-secondary); line-height: 1.6; }
+
+.lub-mini-wrap { overflow-x: auto; }
+.lub-mini { width: 100%; border-collapse: collapse; min-width: 520px; }
+.lub-mini th, .lub-mini td {
+  padding: var(--s-2) var(--s-3); text-align: left; vertical-align: top;
+  border: 1px solid var(--border); font-size: var(--t-small);
+}
+.lub-mini th {
+  background: var(--surface-sunken); color: var(--ink); font-weight: 600;
+  white-space: nowrap;
+}
+.lub-mini td { color: var(--ink-secondary); line-height: 1.5; }
+.lub-mini-letter {
+  display: inline-grid; place-items: center; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--accent-wash); color: var(--accent);
+  font-size: var(--t-micro); font-weight: 700; margin-right: 4px;
+}
+.lub-check { margin-top: var(--s-3); }
+
+.lub-caution {
+  display: flex; align-items: flex-start; gap: 6px;
+  margin: var(--s-4) 0 0; color: var(--ink-muted);
+}
+.lub-caution svg { width: 13px; height: 13px; flex: none; margin-top: 2px; }
+
+@media (max-width: 720px) {
+  .lub-tabs { grid-template-columns: 1fr; }
+  .lub-tab { border-radius: var(--r-card); }
+  .lub-tab.is-on { border-bottom-color: var(--accent); }
+  .lub-panel { border-top: 1px solid var(--accent); border-radius: var(--r-card); margin-top: var(--s-2); }
+  .lub-frict-head { flex-wrap: wrap; }
+}
+
+@media print {
+  .lub-filters, .lub-frict-chev { display: none !important; }
+  .lub-frict-body { display: block !important; }
+}

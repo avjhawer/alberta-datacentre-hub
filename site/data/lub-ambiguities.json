@@ -1,0 +1,155 @@
+{
+  "_comment": "Land Use Bylaw ambiguities for data centres. This describes PATTERNS in how Alberta bylaws handle a use they were not written for — it does not state any named municipality's standards. Numbers here are illustrative of the shape of the problem, never quoted as a specific bylaw's requirement; that is why everything is tier 'unverified' and phrased as what to check. To assert a municipality's actual standard, put it in municipalities.json with its bylaw as the source.",
+  "title": "Land use bylaw ambiguities & use class matrix",
+  "intro": "Almost no Alberta bylaw has a bespoke Data Centre use class. Projects are shoehorned into whichever industrial definition fits least badly — and the definition chosen decides your setbacks, your parking, your noise standard, and whether the substation is even part of the application. This compares the three routes and where each one leaks.",
+  "caution": "Patterns, not any specific bylaw. Every figure below is illustrative of the shape of the problem. Read your own bylaw before applying any of it.",
+
+  "tags": [
+    { "id": "high-risk", "label": "High risk", "tone": "critical",
+      "note": "Most likely to produce an unenforceable condition or an appeal loss." },
+    { "id": "discretionary", "label": "Discretionary", "tone": "warning",
+      "note": "Turns on the development authority's judgement rather than a fixed standard." },
+    { "id": "custom-bylaw", "label": "Custom bylaw required", "tone": "neutral",
+      "note": "Cannot be resolved without a text amendment or a site-specific district." }
+  ],
+
+  "approaches": [
+    {
+      "id": "approach-a",
+      "letter": "A",
+      "name": "General / Heavy Industrial",
+      "shortName": "Heavy Industrial",
+      "typicalClass": "Often permitted",
+      "classTone": "warning",
+      "tags": ["high-risk"],
+      "summary": "The path of least resistance, and the one that most often removes your discretion at exactly the moment you need it.",
+      "detail": "Heavy industrial districts were written for manufacturing, processing and outdoor storage. A data centre satisfies them almost by accident: it is a large enclosed building with a modest workforce and no emissions in the sense the district contemplates. Because it fits the letter of a permitted use, the development authority frequently has no discretion to refuse it.",
+      "strengths": [
+        "Generous setbacks already built into the district, which helps with noise attenuation.",
+        "Broad nuisance tolerances mean the use is unlikely to be out of character.",
+        "Servicing standards usually anticipate heavy loads."
+      ],
+      "frictions": [
+        "Permitted status narrows refusal grounds to whether the standards are met — not whether the use is appropriate.",
+        "Nuisance tolerances written for intermittent industrial noise sit badly against a continuous tonal hum.",
+        "Outdoor storage provisions are irrelevant here, so the district's main control lever does nothing.",
+        "Employment-density assumptions are wrong by an order of magnitude, which distorts parking and servicing formulas."
+      ],
+      "ask": "If the use is permitted here, your leverage is in the standards and the development agreement, not the decision. Identify early which conditions you can actually enforce — acoustic limits at the property line, screening, haul routes, servicing cost recovery — and build the file around those rather than around the principle of the use."
+    },
+    {
+      "id": "approach-b",
+      "letter": "B",
+      "name": "Business / Light Industrial",
+      "shortName": "Light Industrial",
+      "typicalClass": "Often discretionary",
+      "classTone": "good",
+      "tags": ["discretionary"],
+      "summary": "More control and better standards, but the district's assumptions about scale and appearance are the ones a data centre breaks.",
+      "detail": "Business and light industrial districts carry the aesthetic and amenity expectations of a business park: landscaping, screening, pedestrian frontage, and stricter noise limits measured at the property line. Data centres are usually discretionary here, which preserves your judgement — but the building's scale and blankness sit awkwardly against a district designed for visible, active frontages.",
+      "strengths": [
+        "Discretionary status preserves genuine grounds for refusal or conditioning.",
+        "Property-line noise limits are usually stricter and easier to enforce than a general nuisance test.",
+        "Landscaping and screening standards are already written and defensible."
+      ],
+      "frictions": [
+        "Pedestrian and frontage requirements assume an active use; a windowless hall with 30 staff cannot deliver them.",
+        "Building height and massing standards may not contemplate the roof-mounted cooling plant.",
+        "Stricter property-line noise limits can be genuinely difficult to meet at full cooling load, which surfaces late.",
+        "Landscaping requirements sized to the site area become disproportionate on a very large parcel."
+      ],
+      "ask": "Discretion is worth more than any single standard. Use it to require the cumulative acoustic assessment and the screening treatment up front. Where a frontage or pedestrian standard cannot be met in substance, vary it deliberately and record why, rather than accepting a token compliance that satisfies nobody."
+    },
+    {
+      "id": "approach-c",
+      "letter": "C",
+      "name": "Direct Control (DC) District",
+      "shortName": "Direct Control",
+      "typicalClass": "Site-specific",
+      "classTone": "neutral",
+      "tags": ["custom-bylaw", "discretionary"],
+      "summary": "The only route that lets you write standards that actually fit the use — at the cost of time, a public hearing, and drafting you must get right first time.",
+      "detail": "A Direct Control district lets council set bespoke standards for the site: real acoustic limits, water reporting, decommissioning security, substation treatment, and parking sized to actual staffing. It is the only approach that solves the mismatch rather than working around it. The cost is a council process with a public hearing, and standards that are difficult to change once adopted.",
+      "strengths": [
+        "Standards can be written for the use that is actually proposed.",
+        "Ongoing obligations — reporting, monitoring, decommissioning security — can be embedded in the district itself.",
+        "The public hearing gives the community a genuine statutory voice, which reduces the legitimacy problem later."
+      ],
+      "frictions": [
+        "Adds months, and the timeline is council's rather than the development authority's.",
+        "Drafting errors are expensive: a standard that is vague or unmeasurable is worse than the generic district it replaced.",
+        "Council-level discretion can be constrained by how the district is drafted, sometimes more than expected.",
+        "Applicants may prefer a permitted heavy-industrial site elsewhere, so this route can export the project rather than improve it."
+      ],
+      "ask": "If you go this way, write the acoustic limit as a measurable number at a defined receptor and condition, not as a narrative. Do the same for water reporting and decommissioning security. A DC district is only as good as the precision of its standards, and vagueness here is what gets tested on appeal."
+    }
+  ],
+
+  "frictionPoints": [
+    {
+      "id": "far-coverage",
+      "name": "FAR & site coverage",
+      "tags": ["high-risk"],
+      "issue": "Floor area ratio and site coverage standards assume floor area correlates with activity, trips and impact. For a data centre it correlates with almost nothing — a very large footprint houses a handful of staff, while the real impact is electrical and acoustic, neither of which FAR measures.",
+      "why": "A project can comfortably satisfy a coverage standard while imposing impacts the standard was never designed to capture. Conversely a generous FAR allowance implies an intensity of use that will never materialise, which distorts every downstream calculation keyed to floor area.",
+      "byApproach": {
+        "approach-a": "Usually permissive; coverage rarely binds. The standard does no useful work here.",
+        "approach-b": "Tighter coverage and landscaping ratios can bind on large parcels, sometimes for the wrong reasons.",
+        "approach-c": "Can be replaced with standards keyed to what actually matters — load, acoustic output, water."
+      },
+      "check": "Do not rely on FAR or coverage as a proxy for intensity. Ask for connected load, cooling plant capacity and staffing separately, and condition against those."
+    },
+    {
+      "id": "parking",
+      "name": "Minimum parking ratios",
+      "tags": ["high-risk"],
+      "issue": "Parking minimums in industrial districts are typically derived from floor area, on the assumption of manufacturing employment density. Applied to a data centre — enormous floor area, very small permanent workforce — the formula generates far more stalls than the use will ever need.",
+      "why": "The result is acres of unused asphalt: added stormwater runoff and heat island effect, lost landscaping and setback area, and an applicant reasonably asking for a variance you have no written basis to grant or refuse consistently.",
+      "byApproach": {
+        "approach-a": "Formula usually keyed to floor area and worst-suited to this use; large over-provision likely.",
+        "approach-b": "Similar formula, but landscaping requirements may partly offset the asphalt.",
+        "approach-c": "Parking can be set to actual peak staffing plus service and shift-change allowance."
+      },
+      "check": "Ask for peak on-site headcount including maintenance windows and shift overlap, then treat that as the basis. If you grant a reduction, record the reasoning so the next application is decided the same way — inconsistency here is an appeal risk."
+    },
+    {
+      "id": "substation",
+      "name": "On-site substation classification",
+      "tags": ["high-risk", "custom-bylaw"],
+      "issue": "Whether an on-site substation is an accessory use to the data centre or a separate utility use is often genuinely unclear in the bylaw text — and the answer changes which application it belongs to, which body approves it, and which standards apply to it.",
+      "why": "This is the single most consequential ambiguity in the file. Treat it as accessory and you may condition something outside your authority; treat it as separate and you may approve a data centre whose power infrastructure has no municipal approval path at all. Either way the site plans can diverge, and the divergence surfaces after both decisions are made.",
+      "byApproach": {
+        "approach-a": "Utility uses are often listed separately, but the interaction with a provincial approval is rarely addressed.",
+        "approach-b": "Substations may be discretionary or absent from the district's use list entirely.",
+        "approach-c": "The district can state explicitly how the substation is treated and how it relates to the provincial approval."
+      },
+      "check": "Resolve this in writing at pre-application. Ask whether a provincial facility application has been or will be made, and get both the substation and the building shown on one drawing before you decide either."
+    },
+    {
+      "id": "noise-standard",
+      "name": "Which noise standard applies",
+      "tags": ["discretionary"],
+      "issue": "Industrial districts commonly rely on a general nuisance test or a daytime-averaged limit. Data centre cooling is continuous, tonal, and worst on hot summer nights when background levels are lowest.",
+      "why": "A limit that is satisfied on paper can still generate sustained complaints, because the measurement method does not capture what makes the sound intrusive. And where a substation is involved, a second standard from a different body applies to part of the same site.",
+      "byApproach": {
+        "approach-a": "Broad nuisance tolerance; hardest to enforce a specific outcome.",
+        "approach-b": "Property-line limits are more enforceable and usually stricter.",
+        "approach-c": "A measurable night-time limit at a defined receptor can be written in directly."
+      },
+      "check": "Require a cumulative assessment at full cooling load, at the nearest receptor, on a summer night — addressing low-frequency and tonal content, not just an averaged dBA figure."
+    },
+    {
+      "id": "employment-density",
+      "name": "Employment density assumptions",
+      "tags": ["discretionary"],
+      "issue": "Industrial districts, and the economic-benefit cases built on them, assume jobs scale with floor area. Data centres break that assumption more thoroughly than any other industrial use.",
+      "why": "Servicing formulas, parking, transportation impact assessment triggers and municipal benefit arguments are all keyed to a workforce that will not be there. Accepting the applicant's employment figure without testing it propagates the error through the whole file.",
+      "byApproach": {
+        "approach-a": "Assumptions embedded and rarely questioned.",
+        "approach-b": "Same assumptions, with added frontage expectations that low staffing cannot support.",
+        "approach-c": "Standards can be decoupled from employment entirely."
+      },
+      "check": "Ask for permanent operational headcount separately from construction employment, and test any economic-benefit claim against the permanent figure alone."
+    }
+  ]
+}

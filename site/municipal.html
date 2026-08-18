@@ -42,6 +42,11 @@
         </table>
       </div>
 
+      <!-- Land use bylaw ambiguities: the zoning routes a data centre gets pushed
+           down and where each district's assumptions break. Rendered by lub.js
+           from site/data/lub-ambiguities.json. -->
+      <section class="section" id="lub-slot"></section>
+
       <section class="section">
         <div class="section-head"><h2>Detail by municipality</h2></div>
         <div class="grid grid-2" id="detail-slot"></div>
@@ -60,6 +65,7 @@
 </div>
 
 <script src="assets/app.js"></script>
+<script src="assets/lub.js"></script>
 <script>
 (async function () {
   const A = window.ADCH;
