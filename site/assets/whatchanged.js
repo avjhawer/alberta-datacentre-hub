@@ -213,7 +213,7 @@
       const cap = showAll ? 999 : (g.id === 'global' ? 3 : 8);
       const hidden = Math.max(0, list.length - cap);
       return `
-        <div class="feed-block">
+        <div class="feed-block" data-region="${esc(g.region)}">
           <h3 class="feed-block-title">
             ${esc(g.label)}
             <span class="feed-block-count">${list.length}</span>
@@ -292,8 +292,8 @@
         <a class="next-card" href="rules.html">
           <span class="next-icon">${icon('policy')}</span>
           <span class="next-title">Rules &amp; requirements</span>
-          <span class="next-blurb">The framework in force, the municipal matrix, and the use class
-            ambiguities behind it.</span>
+          <span class="next-blurb">The framework in force and the municipal comparison — what a
+            rule actually says, with its source.</span>
         </a>
         <a class="next-card" href="context.html">
           <span class="next-icon">${icon('library')}</span>

@@ -1683,3 +1683,137 @@ textarea.input { resize: vertical; line-height: 1.5; }
   margin: 6px 0 0; padding-left: var(--s-4);
   display: grid; gap: 3px; font-size: var(--t-micro);
 }
+
+/* ==========================================================================
+   Surface & colour pass
+   The two complaints were "too grey" and "looks like a spreadsheet". Both come
+   from the same cause: content sat in hairline-separated ROWS. Painting a
+   banner does not fix that. So content becomes CARDS with a colour identity,
+   dividers are replaced by gaps, and colour is used systematically to say
+   which jurisdiction something belongs to.
+
+   The region hues are the validated palette already in tokens.css; this pass
+   changes how much surface they cover, not which hues they are. Status colours
+   stay reserved for state and always ship with icon + label.
+   ========================================================================== */
+
+:root{
+  --tint-alberta: color-mix(in srgb, var(--region-alberta) 8%, var(--surface));
+  --tint-canada:  color-mix(in srgb, var(--region-canada)  8%, var(--surface));
+  --tint-global:  color-mix(in srgb, var(--region-global)  8%, var(--surface));
+  --edge-w: 4px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --tint-alberta: color-mix(in srgb, var(--region-alberta) 16%, var(--surface));
+    --tint-canada:  color-mix(in srgb, var(--region-canada)  16%, var(--surface));
+    --tint-global:  color-mix(in srgb, var(--region-global)  16%, var(--surface));
+  }
+}
+:root[data-theme="dark"]{
+  --tint-alberta: color-mix(in srgb, var(--region-alberta) 16%, var(--surface));
+  --tint-canada:  color-mix(in srgb, var(--region-canada)  16%, var(--surface));
+  --tint-global:  color-mix(in srgb, var(--region-global)  16%, var(--surface));
+}
+
+/* --- feed: rows become cards --------------------------------------------- */
+.feed{ display:grid; gap:var(--s-2); }
+.feed .feed-item{
+  position:relative; padding:var(--s-3) var(--s-4);
+  border:1px solid var(--border); border-left:var(--edge-w) solid var(--border-strong);
+  border-radius:var(--r-card); background:var(--surface);
+  transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+             border-color var(--dur) var(--ease);
+}
+.feed .feed-item:hover{
+  transform:translateY(-1px); box-shadow:var(--shadow-sm); border-color:var(--border-strong);
+}
+.feed .feed-item + .feed-item{ border-top:1px solid var(--border); }  /* override row rules */
+
+/* One block per jurisdiction, so colour carries meaning rather than decoration. */
+.feed-block[data-region="alberta"] .feed-item{ border-left-color:var(--region-alberta); background:var(--tint-alberta); }
+.feed-block[data-region="canada"]  .feed-item{ border-left-color:var(--region-canada);  background:var(--tint-canada); }
+.feed-block[data-region="global"]  .feed-item{ border-left-color:var(--region-global);  background:var(--tint-global); }
+
+.feed-block{ margin-bottom:var(--s-5); }
+.feed-block-title{
+  display:flex; align-items:center; gap:var(--s-2);
+  margin:0 0 2px; padding-bottom:var(--s-2);
+  font-size:var(--t-h2); font-weight:700; color:var(--ink);
+  border-bottom:2px solid var(--border);
+}
+.feed-block[data-region="alberta"] .feed-block-title{ border-bottom-color:var(--region-alberta); }
+.feed-block[data-region="canada"]  .feed-block-title{ border-bottom-color:var(--region-canada); }
+.feed-block[data-region="global"]  .feed-block-title{ border-bottom-color:var(--region-global); }
+.feed-block-count{
+  margin-left:auto; font-size:var(--t-small); font-weight:700; padding:2px 10px;
+  border-radius:999px; background:var(--surface-sunken); color:var(--ink-secondary);
+}
+.feed-block[data-region="alberta"] .feed-block-count{ background:var(--region-alberta); color:#fff; }
+.feed-block[data-region="canada"]  .feed-block-count{ background:var(--region-canada);  color:#fff; }
+.feed-block[data-region="global"]  .feed-block-count{ background:var(--region-global);  color:#fff; }
+.feed-block-note{ margin:var(--s-2) 0 var(--s-3); }
+
+.feed .headline{ font-size:var(--t-h3); font-weight:600; line-height:1.4; }
+
+/* --- digest: a real header, not a stripe --------------------------------- */
+.digest{
+  padding:var(--s-5); border:0; border-radius:calc(var(--r-card) * 2);
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%),
+    var(--surface);
+  box-shadow:0 1px 0 var(--border), var(--shadow-sm);
+  border-top:var(--edge-w) solid var(--accent);
+}
+.digest.is-quiet{ border-top-color:var(--border-strong); background:var(--surface); }
+.digest-line{ font-size:var(--t-h2); line-height:1.45; }
+.digest-line strong{ color:var(--accent); font-weight:700; }
+.digest-alert{ color:var(--status-critical) !important; }
+
+/* --- standing constraints: tinted, not white ----------------------------- */
+.standing-tile{
+  border-radius:calc(var(--r-card) * 2); border:1px solid var(--border);
+  border-top:var(--edge-w) solid var(--border-strong); padding:var(--s-4);
+}
+.standing-tile.is-primary{
+  border-top-color:var(--accent); background:var(--accent-wash); border-color:transparent;
+}
+.standing-tile:nth-child(2){ border-top-color:var(--seq-400); background:color-mix(in srgb, var(--seq-400) 7%, var(--surface)); }
+.standing-tile:nth-child(3){ border-top-color:var(--region-global); background:color-mix(in srgb, var(--region-global) 7%, var(--surface)); }
+.standing-tile.is-muted{ border-top-color:var(--status-warning); background:var(--status-warning-bg); }
+.standing-value{ font-size:34px; }
+
+/* --- destination cards: colour per destination --------------------------- */
+.next-card{ border-radius:calc(var(--r-card) * 2); border-top:var(--edge-w) solid var(--accent); }
+.next-card:nth-child(2){ border-top-color:var(--region-canada); }
+.next-card:nth-child(3){ border-top-color:var(--region-global); }
+.next-card:nth-child(2) .next-icon{ color:var(--region-canada); }
+.next-card:nth-child(3) .next-icon{ color:var(--region-global); }
+.next-icon svg{ width:22px; height:22px; }
+
+/* --- attention: solid, not a tint ---------------------------------------- */
+.attention-item{
+  border-radius:calc(var(--r-card) * 2); border-left:var(--edge-w) solid var(--status-serious);
+  padding:var(--s-4);
+}
+
+/* --- navigation: colour the active destination --------------------------- */
+.nav-link{ border-radius:var(--r-card); margin-inline:6px; padding:9px 10px; }
+.nav-link[aria-current="page"]{ background:var(--accent-wash); color:var(--accent); box-shadow:none; }
+.nav-link[aria-current="page"] svg{ color:var(--accent); }
+
+/* --- tables keep their grid, but lose the spreadsheet feel --------------- */
+.table-wrap{ border:1px solid var(--border); border-radius:calc(var(--r-card) * 2); overflow:hidden; }
+table.data thead th{
+  background:var(--surface-sunken); border-bottom:2px solid var(--border-strong);
+  font-weight:700; letter-spacing:.02em;
+}
+table.data tbody tr:hover{ background:var(--accent-wash); }
+
+/* --- badges read as pills ------------------------------------------------ */
+.badge, .chip{ border-radius:999px; padding:3px 10px; font-weight:600; }
+
+@media (max-width:720px){
+  .feed .feed-item{ padding:var(--s-3); }
+  .digest{ padding:var(--s-4); }
+}
