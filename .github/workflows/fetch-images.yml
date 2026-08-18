@@ -1,0 +1,32 @@
+name: Fetch images
+
+# Downloads openly-licensed candidate photographs from Wikimedia Commons.
+# Manual only: images are reviewed by eye before any of them reach a page.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download candidates
+        run: node scripts/fetch-images.mjs
+      - name: Commit candidates
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add site/assets/img site/data/images.json
+          if git diff --staged --quiet; then
+            echo "no new images"
+          else
+            git commit -m "chore(images): download openly-licensed candidates for review"
+            git push
+          fi
