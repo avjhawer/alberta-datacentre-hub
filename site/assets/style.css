@@ -1817,3 +1817,70 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   .feed .feed-item{ padding:var(--s-3); }
   .digest{ padding:var(--s-4); }
 }
+
+/* ==========================================================================
+   Explanatory figures & photographs
+   Figures are drawn from theme tokens so they invert in dark mode. Photographs
+   always carry a caption saying what they show and where they are from — an
+   uncaptioned photo on a planning site invites the reader to assume it depicts
+   a local project.
+   ========================================================================== */
+
+.fig { display:block; width:100%; height:auto; }
+.fig text { font-family:var(--font); }
+.fig-label { font-size:11px; font-weight:600; fill:var(--ink); }
+.fig-note  { font-size:9.5px; fill:var(--ink-muted); }
+.fig-big   { font-size:15px; font-weight:700; fill:var(--accent); }
+
+/* locator map */
+.fig-land    { fill:var(--surface-sunken); }
+.fig-outline { fill:none; stroke:var(--border-strong); stroke-width:1.5; }
+.fig-rockies { fill:var(--region-global); opacity:.18; }
+.fig-place circle { fill:var(--ink-muted); }
+.fig-place text   { font-size:9px; fill:var(--ink-secondary); }
+.fig-place.is-major circle { fill:var(--region-alberta); }
+.fig-place.is-major text   { font-weight:700; fill:var(--ink); font-size:10px; }
+.fig-place.is-on circle {
+  fill:var(--status-critical); stroke:var(--surface); stroke-width:2;
+}
+.fig-place.is-on text { font-weight:700; fill:var(--status-critical); }
+
+/* load against cap */
+.fig-track { fill:var(--surface-sunken); }
+.fig-value { fill:var(--region-alberta); }
+.fig-limit { stroke:var(--status-critical); stroke-width:2; stroke-dasharray:4 3; }
+.fig-limit-label { fill:var(--status-critical); font-size:10px; }
+
+/* cooling and water */
+.fig-water { fill:var(--seq-400); }
+.fig-row.is-on .fig-water { fill:var(--status-serious); }
+.fig-row.is-on .fig-label { fill:var(--status-serious); }
+
+.figure-card {
+  border:1px solid var(--border); border-radius:calc(var(--r-card) * 2);
+  background:var(--surface); padding:var(--s-4); overflow:hidden;
+}
+.figure-card h3 { margin:0 0 var(--s-1); font-size:var(--t-h3); }
+.figure-card .figure-lede { margin:0 0 var(--s-3); font-size:var(--t-small); color:var(--ink-secondary); }
+
+/* photographs */
+.photo {
+  margin:0; border-radius:calc(var(--r-card) * 2); overflow:hidden;
+  border:1px solid var(--border); background:var(--surface-sunken);
+}
+.photo img {
+  display:block; width:100%; height:100%; object-fit:cover;
+  aspect-ratio:16 / 9; background:var(--surface-sunken);
+}
+.photo figcaption {
+  padding:var(--s-2) var(--s-3);
+  font-size:var(--t-micro); color:var(--ink-muted); line-height:1.5;
+}
+.photo figcaption strong { color:var(--ink-secondary); font-weight:600; }
+.photo figcaption a { color:var(--ink-muted); text-decoration:underline; }
+.photo-band {
+  display:grid; gap:var(--s-3);
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+}
+.photo-hero { position:relative; }
+.photo-hero img { aspect-ratio:21 / 6; }

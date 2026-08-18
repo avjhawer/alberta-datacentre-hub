@@ -304,6 +304,39 @@
       <datalist id="muni-list">${muniOptions}</datalist>`;
   }
 
+  /* Figures make two abstract numbers legible: how the stated load compares
+     with the interim cap, and what the cooling choice does to water. Both are
+     drawn only once the planner has entered the parameter they depend on. */
+  function renderFigures(r) {
+    const el = $('#figures-slot');
+    if (!el || !window.ADCHFigures) return;
+    const F = window.ADCHFigures;
+    const mw = Number(r.params?.capacityMW);
+    const cooling = r.params?.coolingType;
+    const cap = 1200;   // AESO interim cap, verified — see grid.json
+
+    const cards = [];
+    if (Number.isFinite(mw) && mw > 0) {
+      cards.push(`
+        <div class="figure-card">
+          <h3>This load against the interim cap</h3>
+          <p class="figure-lede">The cap is reported fully allocated, so this is the share of a
+             pool that is not currently available.</p>
+          ${F.loadVsCap(mw, cap)}
+        </div>`);
+    }
+    if (cooling) {
+      cards.push(`
+        <div class="figure-card">
+          <h3>What this cooling choice means for water</h3>
+          <p class="figure-lede">One design decision drives the whole water footprint.</p>
+          ${F.coolingWater(cooling)}
+        </div>`);
+    }
+    el.innerHTML = cards.length
+      ? `<div class="grid grid-2">${cards.join('')}</div>` : '';
+  }
+
   function renderFindingsSummary(res) {
     const el = $('#findings-slot');
     const c = res.counts;
@@ -461,6 +494,7 @@
     const res = evaluateActive();
     autoCollapse(res);
     renderParams(r);
+    renderFigures(r);
     renderFindingsSummary(res);
     renderSummary(r, res);
     renderSections(r, res);
@@ -631,6 +665,7 @@
       save();
       const res = evaluateActive();
       autoCollapse(res);            // newly triggered areas open as you type
+      renderFigures(r);
       renderFindingsSummary(res);
       renderSummary(r, res);
       renderSections(r, res);

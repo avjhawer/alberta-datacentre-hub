@@ -34,7 +34,17 @@ renders as "To establish" rather than "Requirement". The same host check now
 applies to every `primary` record anywhere — a law firm's summary of an Act is
 commentary, not the Act.
 
-**5. Never change an existing criterion `id` in `checklist.json`.** Those ids
+**5. A photograph is not published until someone has looked at it.**
+`scripts/fetch-images.mjs` downloads free-licensed candidates from Wikimedia in
+Actions; it ships none of them. A filename and a search term are not evidence of
+content — the first run returned NASA buildings and an airport car park for
+"data centre", and a Manitoba field for "Alberta". Open each candidate, keep
+only what it actually shows, and record the rejects and why in
+`images.json → rejected`. `photos.js` refuses to render an image missing author,
+licence or source, because attribution is a licence condition rather than a
+nicety.
+
+**6. Never change an existing criterion `id` in `checklist.json`.** Those ids
 are the localStorage keys for saved reviews; changing one silently detaches a
 planner's recorded notes and statuses. Add new ids instead.
 
