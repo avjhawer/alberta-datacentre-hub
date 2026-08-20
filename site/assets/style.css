@@ -1751,8 +1751,8 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
 .ap-scroll { overflow-x:auto; padding-bottom:var(--s-3); }
 .ap-grid {
   position:relative; display:grid;
-  grid-template-columns:190px repeat(var(--phases), minmax(190px, 1fr));
-  gap:var(--s-2); min-width:1080px;
+  grid-template-columns:30px 190px repeat(var(--phases), minmax(190px, 1fr));
+  gap:var(--s-2); min-width:1130px;
 }
 
 .ap-corner { }
@@ -1893,3 +1893,74 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   .ap-controls, .ap-wires { display:none !important; }
   .ap-grid { min-width:0; }
 }
+
+/* --- order of government -------------------------------------------------- */
+/* The first question on any file is "is this mine or theirs?". A rail down the
+   left answers it for a block of lanes at once; the tag on each lane head
+   answers it for anyone reading a single row. */
+.ap-corner-2 { }
+.ap-level {
+  grid-column:1; position:relative;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:var(--r-chip);
+  background:var(--surface-sunken);
+  border:1px solid var(--border);
+}
+.ap-level-text {
+  writing-mode:vertical-rl; transform:rotate(180deg);
+  font-size:var(--t-micro); font-weight:800; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-secondary);
+  white-space:nowrap; padding:var(--s-2) 0;
+}
+.ap-level-provincial {
+  background:color-mix(in srgb, var(--region-canada) 12%, var(--surface));
+  border-color:color-mix(in srgb, var(--region-canada) 40%, transparent);
+}
+.ap-level-provincial .ap-level-text { color:var(--region-canada); }
+.ap-level-municipal {
+  background:color-mix(in srgb, var(--accent) 12%, var(--surface));
+  border-color:color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.ap-level-municipal .ap-level-text { color:var(--accent); }
+.ap-level-both {
+  background:repeating-linear-gradient(135deg,
+    color-mix(in srgb, var(--region-canada) 10%, var(--surface)) 0 6px,
+    color-mix(in srgb, var(--accent) 10%, var(--surface)) 6px 12px);
+  border-color:var(--border-strong);
+}
+.ap-level-both .ap-level-text { color:var(--ink-secondary); letter-spacing:.06em; }
+
+.ap-lane-level {
+  align-self:flex-start; margin:2px 0 1px;
+  font-size:9.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 7px; border-radius:999px;
+}
+.ap-level-tag-provincial { background:color-mix(in srgb, var(--region-canada) 16%, var(--surface)); color:var(--region-canada); }
+.ap-level-tag-municipal  { background:var(--accent-wash); color:var(--accent); }
+.ap-level-tag-both       { background:var(--surface-sunken); color:var(--ink-secondary); }
+.ap-drawer-level {
+  display:inline-block; margin-top:4px;
+  font-size:var(--t-micro); font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+  padding:2px 8px; border-radius:999px;
+}
+
+/* --- paired approvals ----------------------------------------------------- */
+/* Both required, neither authorising the other. Deliberately not an arrow:
+   an arrow would imply a sequence that does not exist. */
+.ap-pair {
+  fill:none; stroke:var(--status-serious); stroke-width:2;
+  stroke-dasharray:2 5; stroke-linecap:round; opacity:.85;
+}
+.ap-pair.is-dim { opacity:.12; }
+.ap-key-pair {
+  background:none; height:0;
+  border-top:2px dashed var(--status-serious);
+}
+.ap-pair-note {
+  margin:0 0 var(--s-2) !important; font-size:var(--t-small);
+  color:var(--ink-muted) !important;
+}
+.ap-watch { margin-top:var(--s-3); }
+
+@media (max-width:900px) { .ap-grid { min-width:820px; } }
+@media (max-width:640px) { .ap-grid { min-width:700px; } }

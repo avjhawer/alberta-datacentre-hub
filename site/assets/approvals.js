@@ -44,6 +44,29 @@
       </button>`;
   }
 
+  /* A rail down the left saying, for each block of lanes, which order of
+     government is deciding. The question "is this mine or theirs?" is the one
+     a planner asks first, and the lane labels alone did not answer it. */
+  function levelBands() {
+    const bands = [];
+    let row = 2;                                  // row 1 is the phase header
+    let i = 0;
+    while (i < spec.lanes.length) {
+      const level = spec.lanes[i].level;
+      let span = 1;
+      while (i + span < spec.lanes.length && spec.lanes[i + span].level === level) span++;
+      const meta = (spec.levels || []).find(l => l.id === level) || { label: level, note: '' };
+      bands.push(`
+        <div class="ap-level ap-level-${esc(level)}"
+             style="grid-row:${row} / span ${span};grid-column:1"
+             title="${esc(meta.note)}">
+          <span class="ap-level-text">${esc(meta.label)}</span>
+        </div>`);
+      row += span; i += span;
+    }
+    return bands.join('');
+  }
+
   function render() {
     root.innerHTML = `
       <div class="ap-head">
@@ -64,28 +87,34 @@
         <span role="listitem"><i class="ap-key ap-key-start"></i>Start in week one</span>
         <span role="listitem"><i class="ap-key ap-key-arrow"></i>Must finish before</span>
         <span role="listitem"><i class="ap-key ap-key-parallel"></i>Same column runs concurrently</span>
+        <span role="listitem"><i class="ap-key ap-key-pair"></i>Both required — neither authorises the other</span>
       </div>
 
       <div class="ap-scroll">
         <div class="ap-grid" id="ap-grid"
              style="--phases:${spec.phases.length}">
-          <div class="ap-corner"></div>
-          ${spec.phases.map(p => `
-            <div class="ap-phase">
+          <div class="ap-corner" style="grid-row:1;grid-column:1 / span 2"></div>
+          ${spec.phases.map((p, pi) => `
+            <div class="ap-phase" style="grid-row:1;grid-column:${pi + 3}">
               <span class="ap-phase-label">${esc(p.label)}</span>
               <span class="ap-phase-name">${esc(p.name)}</span>
               <span class="ap-phase-sub">${esc(p.sub)}</span>
             </div>`).join('')}
 
-          ${spec.lanes.map(l => `
-            <div class="ap-lane-head ap-hue-${esc(l.hue)}">
+          ${levelBands()}
+
+          ${spec.lanes.map((l, li) => `
+            <div class="ap-lane-head ap-hue-${esc(l.hue)}" style="grid-row:${li + 2};grid-column:2">
               <span class="ap-lane-label">${esc(l.label)}</span>
+              <span class="ap-lane-level ap-level-tag-${esc(l.level)}">${
+                esc((spec.levels || []).find(x => x.id === l.level)?.label || l.level)}</span>
               <span class="ap-lane-body">${esc(l.body)}</span>
               <span class="ap-lane-note">${esc(l.note)}</span>
             </div>
-            ${spec.phases.map(p => {
+            ${spec.phases.map((p, pi) => {
               const ns = spec.nodes.filter(n => n.lane === l.id && n.phase === p.id);
-              return `<div class="ap-cell ap-hue-${esc(l.hue)}">${ns.map(nodeCard).join('')}</div>`;
+              return `<div class="ap-cell ap-hue-${esc(l.hue)}"
+                           style="grid-row:${li + 2};grid-column:${pi + 3}">${ns.map(nodeCard).join('')}</div>`;
             }).join('')}`).join('')}
 
           <svg class="ap-wires" id="ap-wires" aria-hidden="true"></svg>
@@ -154,6 +183,24 @@
         </marker>
       </defs>`];
 
+    // Paired approvals first, so sequence arrows draw over them. Pairing may be
+    // recorded on either side or both, so de-duplicate on the pair itself
+    // rather than on id order — otherwise a one-sided pair is never drawn.
+    const drawnPairs = new Set();
+    for (const n of spec.nodes) {
+      for (const pid of n.pairedWith || []) {
+        const key = [n.id, pid].sort().join('~');
+        if (drawnPairs.has(key)) continue;
+        drawnPairs.add(key);
+        const a = document.getElementById(`apn-${n.id}`);
+        const b = document.getElementById(`apn-${pid}`);
+        if (!a || !b) continue;
+        const dim = showCriticalOnly;
+        parts.push(`<path class="ap-pair ${dim ? 'is-dim' : ''}"
+                      d="${path(a.getBoundingClientRect(), b.getBoundingClientRect(), box)}"/>`);
+      }
+    }
+
     for (const n of spec.nodes) {
       for (const depId of n.dependsOn || []) {
         const from = document.getElementById(`apn-${depId}`);
@@ -177,12 +224,19 @@
     const blocks = spec.nodes.filter(x => (x.dependsOn || []).includes(n.id));
     const concurrent = spec.nodes.filter(x =>
       x.phase === n.phase && x.id !== n.id && x.lane !== n.lane);
+    // Pairing is symmetric even though the data records it on one side.
+    const paired = spec.nodes.filter(x =>
+      (n.pairedWith || []).includes(x.id) || (x.pairedWith || []).includes(n.id));
+    const lane = spec.lanes.find(l => l.id === n.lane);
+    const levelMeta = (spec.levels || []).find(l => l.id === lane?.level);
 
     const d = $('#ap-drawer');
     d.innerHTML = `
       <div class="sq-drawer-head">
         <div>
           <div class="eyebrow">${esc(n.authority)}</div>
+          <div class="ap-drawer-level ap-level-tag-${esc(lane?.level || '')}">${
+            esc(levelMeta?.label || '')}</div>
           <h3 id="ap-drawer-title">${esc(n.title)}</h3>
         </div>
         <button class="icon-btn" id="ap-close" aria-label="Close">${icon('cross')}</button>
@@ -200,6 +254,15 @@
           <ul class="ap-rel">${blocks.map(x =>
             `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button>
              <span class="muted">${esc(x.authority)}</span></li>`).join('')}</ul>` : ''}
+
+        ${paired.length ? `<h4>Both of these are required</h4>
+          <p class="ap-pair-note">Separate applications on separate records. Neither one authorises
+             the other, and approval of one does not oblige the other.</p>
+          <ul class="ap-rel">${paired.map(x =>
+            `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button>
+             <span class="muted">${esc(x.authority)}</span></li>`).join('')}</ul>` : ''}
+
+        ${n.watch ? `<div class="notice ap-watch"><strong>Watch for:</strong> ${esc(n.watch)}</div>` : ''}
 
         ${concurrent.length ? `<h4>Can run at the same time as</h4>
           <ul class="ap-rel ap-rel-flat">${concurrent.map(x =>

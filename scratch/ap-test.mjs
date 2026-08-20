@@ -27,10 +27,33 @@ ok((await page.$('.ap-node.is-end'))!==null,'the end state is visually marked');
 
 console.log('\n— concurrency is shown, not implied —');
 const p1=await page.$$eval('.ap-node',els=>els.filter(e=>e.closest('.ap-cell')).length);
-ok(p1===17,`all ${p1} approval steps render`);
+ok(p1===20,`all ${p1} approval steps render`);
 const startNow=await page.$$eval('.ap-tag-start',e=>e.length);
 ok(startNow===4,`four steps flagged to start in week one (${startNow})`);
-ok((await page.$$('.ap-legend span')).length===4,'a legend explains the notation');
+ok((await page.$$('.ap-legend span')).length===5,'a legend explains the notation');
+
+console.log('\n— which order of government decides —');
+ok((await page.$$('.ap-level')).length===3,'a level rail groups the lanes by order of government');
+const levelText=await page.$$eval('.ap-level-text',e=>e.map(x=>x.textContent.trim()));
+ok(levelText.some(t=>/^Provincial$/i.test(t)),'provincial block labelled');
+ok(levelText.some(t=>/^Municipal$/i.test(t)),'municipal block labelled');
+ok(levelText.some(t=>/municipal administration/i.test(t)),
+   'the Safety Codes nuance is stated: provincial statute, municipal administration');
+ok((await page.$$('.ap-lane-level')).length===5,'every lane head carries its level too');
+
+console.log('\n— the power plant chain and its municipal side —');
+ok(await page.$('#apn-auc-gen-file')!==null,'AUC power plant application is on the diagram');
+ok(await page.$('#apn-auc-gen-approval')!==null,'and its approval');
+ok(await page.$('#apn-muni-dp-generation')!==null,'the municipal permit for the generation facility is shown');
+ok((await page.$$('.ap-pair')).length===2,'paired approvals are linked (substation and power plant)');
+await page.click('#apn-muni-dp-generation'); await page.waitForTimeout(400);
+const gen=await page.textContent('#ap-drawer');
+ok(/Both of these are required/i.test(gen),'the drawer states both approvals are required');
+ok(/Power plant approval/i.test(gen),'and names the AUC approval it pairs with');
+ok(/neither one authorises the other|Neither one authorises/i.test(gen),
+   'and says neither authorises the other');
+ok(/solicitor/i.test(gen),'and flags the jurisdictional question for legal advice');
+await page.click('#ap-close'); await page.waitForTimeout(300);
 
 console.log('\n— dependencies are drawn from real positions —');
 const wires=await page.$$eval('.ap-wire',e=>e.map(x=>x.getAttribute('d')));
@@ -69,7 +92,7 @@ await page.keyboard.press('Escape'); await page.waitForTimeout(300);
 ok(!(await page.isVisible('#ap-drawer')),'Escape closes');
 
 console.log('\n— supporting information —');
-ok((await page.$$('.ap-insight')).length===4,'four insight cards accompany the diagram');
+ok((await page.$$('.ap-insight')).length===5,'five insight cards accompany the diagram');
 const ins=await page.textContent('.ap-insights');
 ok(/critical path/i.test(ins),'explains the critical path');
 ok(/week one/i.test(ins),'tells you what to start immediately');
@@ -79,7 +102,7 @@ const home=await browser.newPage({viewport:{width:1500,height:1100}});
 home.on('pageerror',e=>errors.push(String(e)));
 await home.goto(`${B}/index.html`,{waitUntil:'networkidle'});
 await home.waitForTimeout(1200);
-ok((await home.$$('.ap-node')).length===17,'the full diagram renders on the front page');
+ok((await home.$$('.ap-node')).length===20,'the full diagram renders on the front page');
 ok((await home.$$('.ap-wire')).length>=14,'with its connectors');
 await home.click('#apn-muni-preapp'); await home.waitForTimeout(400);
 ok(await home.isVisible('#ap-drawer'),'and its drawer works there');
