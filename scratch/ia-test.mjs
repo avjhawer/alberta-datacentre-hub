@@ -66,12 +66,11 @@ for(const [from,to] of [['news.html','index.html'],['policy.html','rules.html'],
   await q.close();
 }
 
-console.log('\n— review page leads with the tool —');
-await p.goto(`${B}/permits.html`,{waitUntil:'networkidle'}); await p.waitForTimeout(500);
-ok(!(await p.isVisible('.sq-inner')),'the swimlane is collapsed by default');
-ok(await p.isVisible('#projects-slot'),'the review tool is visible without scrolling past a chart');
-await p.click('#sq-toggle'); await p.waitForTimeout(250);
-ok(await p.isVisible('.sq-inner'),'the swimlane still opens on demand');
+console.log('\n— review page carries the approvals map and the tool —');
+await p.goto(`${B}/permits.html`,{waitUntil:'networkidle'}); await p.waitForTimeout(1000);
+ok((await p.$$('.ap-node')).length===17,'the approvals map renders');
+ok(await p.$('#sequencing-slot')===null,'the superseded swimlane is gone');
+ok(await p.isVisible('#projects-slot'),'the review tool is still there');
 
 ok(errors.length===0,`no console/page errors (${errors.length})`+(errors[0]?' — '+errors[0]:''));
 await browser.close();

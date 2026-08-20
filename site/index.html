@@ -26,6 +26,10 @@
       <!-- The land at stake. Verified by eye; attribution rendered by photos.js. -->
       <div class="section" data-photo="hero" data-photo-hero></div>
 
+      <!-- The approvals path. On the front page because it is the question
+           every new file starts with, and it does not change week to week. -->
+      <section class="section" id="approvals-slot"></section>
+
       <!-- The digest: the one thing this page exists to answer -->
       <section class="section" id="digest-slot"></section>
 
@@ -105,10 +109,15 @@
   </div>
 </div>
 
+<div class="sq-scrim" id="ap-scrim" hidden></div>
+<aside class="sq-drawer" id="ap-drawer" role="dialog" aria-modal="true"
+       aria-labelledby="ap-drawer-title" hidden></aside>
+
 <script src="assets/app.js"></script>
 <script src="assets/charts.js"></script>
 <script src="assets/figures.js"></script>
 <script src="assets/photos.js"></script>
+<script src="assets/approvals.js"></script>
 <script src="assets/whatchanged.js"></script>
 <script src="assets/page-projects.js"></script>
 </body>

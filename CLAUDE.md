@@ -64,6 +64,13 @@ rots and the owner can edit content without a toolchain.
   against `rules.json`. Pure and synchronous, so the DP tool can re-run it on
   every keystroke. It keeps requirements and questions strictly apart and never
   promotes one to the other.
+- `approvals.js` (`window.ADCHApprovals`) draws the approvals flow from
+  `approvals.json`: five lanes by five phases, with dependency connectors
+  computed from real layout positions and redrawn on resize. Same column means
+  concurrent; an arrow means it does not. It appears on both the front page and
+  the review page from one data file — edit the JSON, not the markup. It
+  replaced the earlier two-track swimlane, which covered the same ground with
+  less of it.
 - `checklist.js` is the DP review tool: multiple reviews (create, rename,
   duplicate, delete with undo), a parameter form, live findings per area, and
   eight accordions. Reviews live in `localStorage` under `adch.reviews.v2`;

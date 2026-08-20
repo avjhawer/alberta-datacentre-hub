@@ -1,474 +1,65 @@
 {
   "_comment": "Feed and watchlist configuration. 'feeds' are polled every 3 hours by scripts/fetch-news.mjs. 'watch' pages are hashed daily by scripts/watch-sources.mjs to catch silent edits, and crawled one level down to auto-discover new child pages. Add a feed via the 'Add a source' issue form or by editing this file.",
   "feeds": [
-    {
-      "id": "gn-dc-alberta",
-      "name": "Alberta data centre coverage",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=%22data+centre%22+OR+%22data+center%22+Alberta&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-aeso",
-      "name": "AESO large load coverage",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=AESO+%22large+load%22+OR+%22data+centre%22&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-auc",
-      "name": "AUC decisions coverage",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=%22Alberta+Utilities+Commission%22+data+centre+OR+%22power+plant%22&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-ab-regulation",
-      "name": "Alberta data centre regulation",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=Alberta+%22data+centre%22+regulation+OR+bylaw+OR+levy&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-parkland",
-      "name": "Parkland County planning",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=%22Parkland+County%22+data+centre+OR+%22data+processing%22&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-rockyview",
-      "name": "Rocky View County planning",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=%22Rocky+View%22+data+centre&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-sturgeon",
-      "name": "Sturgeon County planning",
-      "tier": "reported",
-      "region": "alberta",
-      "url": "https://news.google.com/rss/search?q=%22Sturgeon+County%22+data+centre+OR+%22data+processing%22&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-canada-dc",
-      "name": "Canada data centre policy",
-      "tier": "reported",
-      "region": "canada",
-      "url": "https://news.google.com/rss/search?q=Canada+%22data+centre%22+policy+OR+regulation+OR+approval&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-sovereign-ai",
-      "name": "Sovereign AI compute Canada",
-      "tier": "reported",
-      "region": "canada",
-      "url": "https://news.google.com/rss/search?q=%22sovereign+AI%22+compute+Canada+OR+ISED&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-gov-launch",
-      "name": "New government data centre programs (discovery)",
-      "tier": "reported",
-      "region": "canada",
+    { "id": "gn-dc-alberta", "name": "Alberta data centre coverage", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=%22data+centre%22+OR+%22data+center%22+Alberta&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-aeso", "name": "AESO large load coverage", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=AESO+%22large+load%22+OR+%22data+centre%22&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-auc", "name": "AUC decisions coverage", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=%22Alberta+Utilities+Commission%22+data+centre+OR+%22power+plant%22&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-ab-regulation", "name": "Alberta data centre regulation", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=Alberta+%22data+centre%22+regulation+OR+bylaw+OR+levy&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-parkland", "name": "Parkland County planning", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=%22Parkland+County%22+data+centre+OR+%22data+processing%22&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-rockyview", "name": "Rocky View County planning", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=%22Rocky+View%22+data+centre&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-sturgeon", "name": "Sturgeon County planning", "tier": "reported", "region": "alberta",
+      "url": "https://news.google.com/rss/search?q=%22Sturgeon+County%22+data+centre+OR+%22data+processing%22&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-canada-dc", "name": "Canada data centre policy", "tier": "reported", "region": "canada",
+      "url": "https://news.google.com/rss/search?q=Canada+%22data+centre%22+policy+OR+regulation+OR+approval&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-sovereign-ai", "name": "Sovereign AI compute Canada", "tier": "reported", "region": "canada",
+      "url": "https://news.google.com/rss/search?q=%22sovereign+AI%22+compute+Canada+OR+ISED&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-gov-launch", "name": "New government data centre programs (discovery)", "tier": "reported", "region": "canada",
       "url": "https://news.google.com/rss/search?q=government+launches+%22data+centre%22+strategy+OR+website+OR+framework+Canada&hl=en-CA&gl=CA&ceid=CA:en",
-      "note": "Standing discovery query — catches a new government body's launch as news before its site is tracked."
-    },
-    {
-      "id": "gn-cooling",
-      "name": "Cooling & water technology",
-      "tier": "reported",
-      "region": "global",
-      "url": "https://news.google.com/rss/search?q=data+center+liquid+cooling+OR+water+usage+effectiveness&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "gn-grid-global",
-      "name": "Global grid & siting",
-      "tier": "reported",
-      "region": "global",
-      "url": "https://news.google.com/rss/search?q=data+center+grid+interconnection+OR+moratorium+OR+zoning&hl=en-CA&gl=CA&ceid=CA:en"
-    },
-    {
-      "id": "dcd",
-      "name": "DataCenterDynamics",
-      "tier": "reported",
-      "region": "global",
-      "url": "https://www.datacenterdynamics.com/en/rss/"
-    },
-    {
-      "id": "dck",
-      "name": "Data Center Knowledge",
-      "tier": "reported",
-      "region": "global",
-      "url": "https://www.datacenterknowledge.com/rss.xml"
-    },
-    {
-      "id": "gn-aer",
-      "name": "Alberta Energy Regulator coverage",
-      "tier": "reported",
-      "region": "alberta",
+      "note": "Standing discovery query — catches a new government body's launch as news before its site is tracked." },
+    { "id": "gn-cooling", "name": "Cooling & water technology", "tier": "reported", "region": "global",
+      "url": "https://news.google.com/rss/search?q=data+center+liquid+cooling+OR+water+usage+effectiveness&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "gn-grid-global", "name": "Global grid & siting", "tier": "reported", "region": "global",
+      "url": "https://news.google.com/rss/search?q=data+center+grid+interconnection+OR+moratorium+OR+zoning&hl=en-CA&gl=CA&ceid=CA:en" },
+    { "id": "dcd", "name": "DataCenterDynamics", "tier": "reported", "region": "global",
+      "url": "https://www.datacenterdynamics.com/en/rss/" },
+    { "id": "dck", "name": "Data Center Knowledge", "tier": "reported", "region": "global",
+      "url": "https://www.datacenterknowledge.com/rss.xml" },
+    { "id": "gn-aer", "name": "Alberta Energy Regulator coverage", "tier": "reported", "region": "alberta",
       "url": "https://news.google.com/rss/search?q=%22Alberta+Energy+Regulator%22&hl=en-CA&gl=CA&ceid=CA:en",
-      "note": "Replaced the direct aer.ca/rss feed, which returned HTTP 403 to the Actions runner on the first live run (bot-blocked). The AER site itself remains a primary reference in the library; this query covers its announcements via reporting until a reachable feed is found."
-    },
-    {
-      "id": "auto-auc-ab-ca-root",
-      "name": "Alberta Utilities Commission (feed)",
-      "tier": "primary",
-      "region": "alberta",
-      "url": "https://www.auc.ab.ca/feed/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    }
+      "note": "Replaced the direct aer.ca/rss feed, which returned HTTP 403 to the Actions runner on the first live run (bot-blocked). The AER site itself remains a primary reference in the library; this query covers its announcements via reporting until a reachable feed is found." }
   ],
   "watch": [
-    {
-      "id": "goa-hub",
-      "name": "GoA — AI Data Centres in Alberta",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/index.html",
-      "crawl": true,
-      "note": "Tier-1 anchor. Crawled one level down so new child pages are monitored automatically."
-    },
-    {
-      "id": "goa-grid",
-      "name": "GoA — Grid",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/grid.html"
-    },
-    {
-      "id": "goa-pathway",
-      "name": "GoA — Build Your AI Data Centre",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/build-your-ai-data-centre-in-alberta",
-      "crawl": true
-    },
-    {
-      "id": "goa-strategy",
-      "name": "GoA — AI Data Centres Strategy",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/artificial-intelligence-data-centres-strategy"
-    },
-    {
-      "id": "aeso-largeload",
-      "name": "AESO — Large Load Projects",
-      "tier": "primary",
-      "url": "https://www.aeso.ca/grid/connecting-to-the-grid/large-load-projects/",
-      "crawl": true
-    },
-    {
-      "id": "auc",
-      "name": "Alberta Utilities Commission",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/",
-      "crawl": true
-    },
-    {
-      "id": "ised-dc",
-      "name": "ISED — Sovereign AI data centres",
-      "tier": "primary",
-      "url": "https://ised-isde.canada.ca/site/ised/en/enabling-large-scale-sovereign-ai-data-centres"
-    },
-    {
-      "id": "parkland-lub",
-      "name": "Parkland County — Land Use Bylaw",
-      "tier": "primary",
-      "url": "https://www.parklandcounty.com/business-development/planning-and-development/land-use-bylaw/",
-      "crawl": true
-    },
-    {
-      "id": "parkland-dc",
-      "name": "Parkland County — What are Data Centres?",
-      "tier": "primary",
-      "url": "https://www.parklandcounty.com/business-development/what-are-data-centres/"
-    },
-    {
-      "id": "sturgeon-dc",
-      "name": "Sturgeon County — Data Centre Development",
-      "tier": "primary",
-      "url": "https://www.sturgeoncounty.ca/building-development/data-centre-development/"
-    },
-    {
-      "id": "rockyview-lub",
-      "name": "Rocky View County — Land Use Bylaw",
-      "tier": "primary",
-      "url": "https://www.rockyview.ca/build-plan-and-develop/planning/land-use-bylaw"
-    },
-    {
-      "id": "greenview-dp",
-      "name": "MD of Greenview — Development Permits",
-      "tier": "primary",
-      "url": "https://mdgreenview.ab.ca/departments/planning-and-development/development-permits/"
-    },
-    {
-      "id": "alberta-ca-datacentres-have-your-say",
-      "name": "GoA — AI Data Centres in Alberta — have-your-say",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/have-your-say",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-power-bills",
-      "name": "GoA — AI Data Centres in Alberta — power-bills",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/power-bills",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-grid",
-      "name": "GoA — AI Data Centres in Alberta — grid",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/grid",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-water",
-      "name": "GoA — AI Data Centres in Alberta — water",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/water",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-environment",
-      "name": "GoA — AI Data Centres in Alberta — environment",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/environment",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-who-benefits",
-      "name": "GoA — AI Data Centres in Alberta — who-benefits",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/who-benefits",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-big-tech",
-      "name": "GoA — AI Data Centres in Alberta — big-tech",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/big-tech",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-managing-risk",
-      "name": "GoA — AI Data Centres in Alberta — managing-risk",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/managing-risk",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-indigenous",
-      "name": "GoA — AI Data Centres in Alberta — indigenous",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/indigenous",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.144Z"
-    },
-    {
-      "id": "alberta-ca-datacentres-numbers",
-      "name": "GoA — AI Data Centres in Alberta — numbers",
-      "tier": "primary",
-      "url": "https://www.alberta.ca/datacentres/numbers",
-      "discoveredFrom": "goa-hub",
-      "discoveredAt": "2026-08-18T15:03:00.145Z"
-    },
-    {
-      "id": "auc-ab-ca-acts-and-regulations",
-      "name": "Alberta Utilities Commission — acts-and-regulations",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/acts-and-regulations/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-education-library",
-      "name": "Alberta Utilities Commission — education-library",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/education-library/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-reports",
-      "name": "Alberta Utilities Commission — reports",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/reports/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-indigenous-engagement-directory",
-      "name": "Alberta Utilities Commission — indigenous-engagement-directory",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/indigenous-engagement-directory/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-compliance-enforcement",
-      "name": "Alberta Utilities Commission — compliance-enforcement",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/compliance-enforcement/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-industry-reference",
-      "name": "Alberta Utilities Commission — industry-reference",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/industry-reference/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-customer-reference",
-      "name": "Alberta Utilities Commission — customer-reference",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/customer-reference/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-current-rates-and-terms-and-conditions",
-      "name": "Alberta Utilities Commission — current-rates-and-terms-and-conditions",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/current-rates-and-terms-and-conditions/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-how-rates-are-set",
-      "name": "Alberta Utilities Commission — how-rates-are-set",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/how-rates-are-set/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-billing-issues-and-concerns",
-      "name": "Alberta Utilities Commission — billing-issues-and-concerns",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/billing-issues-and-concerns/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-frequently-asked-questions",
-      "name": "Alberta Utilities Commission — frequently-asked-questions",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/frequently-asked-questions/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-connection-and-choice",
-      "name": "Alberta Utilities Commission — connection-and-choice",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/connection-and-choice",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-18T15:03:02.889Z"
-    },
-    {
-      "id": "auc-ab-ca-from-resource-to-your-home",
-      "name": "Alberta Utilities Commission — from-resource-to-your-home",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/from-resource-to-your-home/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.776Z"
-    },
-    {
-      "id": "auc-ab-ca-featured-applications",
-      "name": "Alberta Utilities Commission — featured-applications",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/featured-applications/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-apply-or-access-applications",
-      "name": "Alberta Utilities Commission — apply-or-access-applications",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/apply-or-access-applications/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-power-generation-applications-overview",
-      "name": "Alberta Utilities Commission — power-generation-applications-overview",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/power-generation-applications-overview/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-micro-generation",
-      "name": "Alberta Utilities Commission — micro-generation",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/micro-generation/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-auc-review-process-steps",
-      "name": "Alberta Utilities Commission — auc-review-process-steps",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/auc-review-process-steps/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-watch-an-auc-hearing",
-      "name": "Alberta Utilities Commission — watch-an-auc-hearing",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/watch-an-auc-hearing/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-participate-in-an-auc-hearing",
-      "name": "Alberta Utilities Commission — participate-in-an-auc-hearing",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/participate-in-an-auc-hearing/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-have-your-say-about-a-utility-project",
-      "name": "Alberta Utilities Commission — have-your-say-about-a-utility-project",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/have-your-say-about-a-utility-project/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-hearing-and-events-calendar",
-      "name": "Alberta Utilities Commission — hearing-and-events-calendar",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/hearing-and-events-calendar/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-how-to-use-efiling",
-      "name": "Alberta Utilities Commission — how-to-use-efiling",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/how-to-use-efiling/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    },
-    {
-      "id": "auc-ab-ca-municipalities-and-the-auc-review-proces",
-      "name": "Alberta Utilities Commission — municipalities-and-the-auc-review-process",
-      "tier": "primary",
-      "url": "https://www.auc.ab.ca/municipalities-and-the-auc-review-process/",
-      "discoveredFrom": "auc",
-      "discoveredAt": "2026-08-19T15:03:25.777Z"
-    }
+    { "id": "goa-hub", "name": "GoA — AI Data Centres in Alberta", "tier": "primary",
+      "url": "https://www.alberta.ca/datacentres/index.html", "crawl": true,
+      "note": "Tier-1 anchor. Crawled one level down so new child pages are monitored automatically." },
+    { "id": "goa-grid", "name": "GoA — Grid", "tier": "primary",
+      "url": "https://www.alberta.ca/datacentres/grid.html" },
+    { "id": "goa-pathway", "name": "GoA — Build Your AI Data Centre", "tier": "primary",
+      "url": "https://www.alberta.ca/build-your-ai-data-centre-in-alberta", "crawl": true },
+    { "id": "goa-strategy", "name": "GoA — AI Data Centres Strategy", "tier": "primary",
+      "url": "https://www.alberta.ca/artificial-intelligence-data-centres-strategy" },
+    { "id": "aeso-largeload", "name": "AESO — Large Load Projects", "tier": "primary",
+      "url": "https://www.aeso.ca/grid/connecting-to-the-grid/large-load-projects/", "crawl": true },
+    { "id": "auc", "name": "Alberta Utilities Commission", "tier": "primary",
+      "url": "https://www.auc.ab.ca/", "crawl": true },
+    { "id": "ised-dc", "name": "ISED — Sovereign AI data centres", "tier": "primary",
+      "url": "https://ised-isde.canada.ca/site/ised/en/enabling-large-scale-sovereign-ai-data-centres" },
+    { "id": "parkland-lub", "name": "Parkland County — Land Use Bylaw", "tier": "primary",
+      "url": "https://www.parklandcounty.com/business-development/planning-and-development/land-use-bylaw/", "crawl": true },
+    { "id": "parkland-dc", "name": "Parkland County — What are Data Centres?", "tier": "primary",
+      "url": "https://www.parklandcounty.com/business-development/what-are-data-centres/" },
+    { "id": "sturgeon-dc", "name": "Sturgeon County — Data Centre Development", "tier": "primary",
+      "url": "https://www.sturgeoncounty.ca/building-development/data-centre-development/" },
+    { "id": "rockyview-lub", "name": "Rocky View County — Land Use Bylaw", "tier": "primary",
+      "url": "https://www.rockyview.ca/build-plan-and-develop/planning/land-use-bylaw" },
+    { "id": "greenview-dp", "name": "MD of Greenview — Development Permits", "tier": "primary",
+      "url": "https://mdgreenview.ab.ca/departments/planning-and-development/development-permits/" }
   ],
   "discovery": {
     "_comment": "Controls automatic source discovery. Government and regulator domains auto-promote after `autoPromoteAfter` sightings; everything else is proposed in a weekly issue for one-click approval. Arbitrary domains are never ingested sight-unseen — this site backs permit reviews.",

@@ -1,0 +1,230 @@
+{
+  "_comment": "The full approvals path for an Alberta data centre, provincial through municipal, ending at occupancy. A MAP OF PROCESS, not legal advice: it shows who decides what, what must precede what, and what can run in parallel. Every node links to the body that runs it so a reader can start there. Durations are deliberately absent — they vary by project and queue position, and quoting one would be inventing a number.",
+  "title": "From first enquiry to occupancy",
+  "intro": "A data centre needs approvals from four different authorities on four different clocks. Most can run in parallel — and must, because the grid connection is almost always the long pole. This shows the whole path, what blocks what, and where each process is actually started.",
+  "caution": "A map of the process, not legal advice. Confirm each requirement against the authority named before relying on it.",
+
+  "lanes": [
+    { "id": "grid",     "label": "Grid connection",      "body": "AESO + transmission facility owner", "hue": "alberta",
+      "note": "Almost always the longest path. Start it first." },
+    { "id": "auc",      "label": "Utilities regulator",  "body": "Alberta Utilities Commission",       "hue": "canada",
+      "note": "Approves the substation and any on-site generation — not the building." },
+    { "id": "env",      "label": "Environment & water",  "body": "Alberta Environment and Protected Areas", "hue": "global",
+      "note": "Independent of the land use decision, and can be the quiet blocker." },
+    { "id": "muni",     "label": "Municipal",            "body": "Your municipality",                  "hue": "accent",
+      "note": "Land use, servicing, and the conditions you can actually enforce." },
+    { "id": "safety",   "label": "Building & safety",    "body": "Safety Codes authority",             "hue": "neutral",
+      "note": "Follows the development permit and ends at occupancy." }
+  ],
+
+  "phases": [
+    { "id": "p1", "label": "Phase 1", "name": "Scoping",        "sub": "Before anything is filed" },
+    { "id": "p2", "label": "Phase 2", "name": "Filings",        "sub": "Applications go in" },
+    { "id": "p3", "label": "Phase 3", "name": "Decisions",      "sub": "Authorities decide" },
+    { "id": "p4", "label": "Phase 4", "name": "Construction",   "sub": "Build and energize" },
+    { "id": "p5", "label": "Phase 5", "name": "Occupancy",      "sub": "Legal use begins" }
+  ],
+
+  "nodes": [
+    {
+      "id": "aeso-sas", "lane": "grid", "phase": "p1",
+      "title": "System access service request",
+      "authority": "AESO",
+      "what": "Ask AESO for transmission system access. This opens the queue position that everything downstream depends on.",
+      "startNow": true, "critical": true,
+      "why": "The single longest lead item on the project, and the one most often started too late. A queue position obtained in month one is worth more than any amount of expediting later.",
+      "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "startLabel": "AESO — connecting to the grid",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "aeso-study", "lane": "grid", "phase": "p2",
+      "title": "System study & connection proposal",
+      "authority": "AESO + TFO",
+      "what": "AESO and the transmission facility owner determine the point of interconnection, the substation required, and any system reinforcement.",
+      "dependsOn": ["aeso-sas"], "critical": true,
+      "why": "This output defines the substation footprint, which the municipal site plan has to accommodate. Getting it before the development permit is drawn saves a redesign.",
+      "sourceTier": "primary",
+      "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "startLabel": "AESO — connecting to the grid"
+    },
+    {
+      "id": "tfo-build", "lane": "grid", "phase": "p4",
+      "title": "Substation construction",
+      "authority": "Transmission facility owner",
+      "what": "The TFO builds the substation and connection under the AUC's approval, on the grid's schedule.",
+      "dependsOn": ["auc-decision"], "critical": true,
+      "sourceTier": "primary",
+      "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "startLabel": "AESO — connecting to the grid"
+    },
+    {
+      "id": "energize", "lane": "grid", "phase": "p5",
+      "title": "Energization",
+      "authority": "TFO + AESO",
+      "what": "Power is available at the site.",
+      "dependsOn": ["tfo-build"], "critical": true, "blocksOccupancy": true,
+      "why": "A finished building with no firm connection is a stranded asset. Tying occupancy — not construction — to evidence of energization is enforceable and within municipal jurisdiction.",
+      "sourceTier": "primary",
+      "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "startLabel": "AESO — connecting to the grid"
+    },
+
+    {
+      "id": "auc-pip", "lane": "auc", "phase": "p1",
+      "title": "Participant involvement programme",
+      "authority": "AUC",
+      "what": "Notification and consultation with landowners and occupants within the rule's radius, before the facility application is filed.",
+      "startNow": true,
+      "why": "Ask to be included. The AUC's notification radius and the municipality's differ, and residents notified by one process and not the other is the most common source of 'nobody told us' at a public hearing.",
+      "startLink": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
+      "startLabel": "AUC Rule 007",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "auc-file", "lane": "auc", "phase": "p2",
+      "title": "Facility application",
+      "authority": "AUC",
+      "what": "Application for the substation, and separately for any on-site generation, with the noise assessment required by the Commission's noise rule.",
+      "dependsOn": ["auc-pip"], "critical": true,
+      "why": "The noise study filed here is usually the only acoustic modelling in existence before the municipality has to decide. Read it.",
+      "startLink": "https://www.auc.ab.ca/rule/rule-012-noise-control/",
+      "startLabel": "AUC Rule 012 — noise control",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "auc-decision", "lane": "auc", "phase": "p3",
+      "title": "Permit & licence",
+      "authority": "AUC",
+      "what": "The Commission decides, and attaches its own conditions on siting, noise and reclamation.",
+      "dependsOn": ["auc-file"], "critical": true,
+      "why": "Compare these conditions with your draft conditions. Where the AUC has imposed a stricter limit, adopt it by reference rather than writing a weaker parallel one.",
+      "startLink": "https://www.auc.ab.ca/",
+      "startLabel": "Alberta Utilities Commission",
+      "sourceTier": "primary"
+    },
+
+    {
+      "id": "water-licence", "lane": "env", "phase": "p2",
+      "title": "Water Act licence or approval",
+      "authority": "Alberta Environment and Protected Areas",
+      "what": "Required where the project draws groundwater or surface water rather than a municipal supply.",
+      "startNow": true,
+      "why": "A permit granted against an unlicensed supply is not deliverable. Ask whether a licence or transfer is in hand and whether its volume matches the stated use.",
+      "startLink": "https://www.alberta.ca/water-act",
+      "startLabel": "Alberta Water Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "env-other", "lane": "env", "phase": "p2",
+      "title": "Environmental & historical clearances",
+      "authority": "Provincial",
+      "what": "Wetland assessment, environmental approvals where thresholds are engaged, and Historical Resources Act clearance.",
+      "why": "These are independent of the land use decision and run on their own timetable. They rarely stop a project, but they routinely delay one.",
+      "startLink": "https://www.alberta.ca/environment-and-protected-areas",
+      "startLabel": "Environment and Protected Areas",
+      "sourceTier": "primary"
+    },
+
+    {
+      "id": "muni-preapp", "lane": "muni", "phase": "p1",
+      "title": "Pre-application meeting",
+      "authority": "Municipality",
+      "what": "Confirm the land use district, whether the use is permitted or discretionary, servicing capacity, and whether a statutory plan amendment is needed.",
+      "startNow": true,
+      "why": "Municipal leverage is at its highest here and falls steadily afterwards. Establish the ultimate build-out load, not the first phase, and get it in writing.",
+      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-redesignate", "lane": "muni", "phase": "p2",
+      "title": "Redesignation or plan amendment",
+      "authority": "Council",
+      "what": "Land use bylaw amendment, and any area structure plan amendment, where the current designation does not accommodate the use.",
+      "dependsOn": ["muni-preapp"], "optional": true,
+      "why": "Only some projects need this. Where it is needed it adds a council process and a public hearing, and it is the point at which the community has a statutory voice.",
+      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-dp", "lane": "muni", "phase": "p2",
+      "title": "Development permit application",
+      "authority": "Municipality",
+      "what": "The formal application, circulation and referrals.",
+      "dependsOn": ["muni-preapp"], "critical": true,
+      "why": "Decide here whether the substation forms part of this application or a separate provincial one, and say so in writing.",
+      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-decision", "lane": "muni", "phase": "p3",
+      "title": "Decision & development agreement",
+      "authority": "Development authority",
+      "what": "The permit decision with conditions, and the agreement fixing servicing, off-site levies, road use and security.",
+      "dependsOn": ["muni-dp"], "critical": true,
+      "why": "The agreement outlasts the permit and is the most durable instrument the municipality holds. Cost recovery is secured here or not at all.",
+      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "muni-grading", "lane": "muni", "phase": "p4",
+      "title": "Site grading",
+      "authority": "Municipality",
+      "what": "Stripping and earthworks, often begun before the building permit issues.",
+      "dependsOn": ["muni-decision"],
+      "why": "Once a large site is stripped, refusing what follows becomes far harder to defend. Require security sized to actual reclamation cost and a drainage design that works as a standalone end state.",
+      "sourceTier": "unverified"
+    },
+
+    {
+      "id": "building-permit", "lane": "safety", "phase": "p4",
+      "title": "Building & trade permits",
+      "authority": "Safety Codes authority",
+      "what": "Building permit, then electrical, plumbing and gas permits under the Safety Codes Act.",
+      "dependsOn": ["muni-decision"], "critical": true,
+      "startLink": "https://www.alberta.ca/safety-codes-act",
+      "startLabel": "Safety Codes Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "inspections", "lane": "safety", "phase": "p4",
+      "title": "Inspections",
+      "authority": "Safety Codes officer",
+      "what": "Staged inspections through construction.",
+      "dependsOn": ["building-permit"], "critical": true,
+      "startLink": "https://www.alberta.ca/safety-codes-act",
+      "startLabel": "Safety Codes Act",
+      "sourceTier": "primary"
+    },
+    {
+      "id": "occupancy", "lane": "safety", "phase": "p5",
+      "title": "Occupancy permit",
+      "authority": "Safety Codes authority",
+      "what": "Legal occupation of the building.",
+      "dependsOn": ["inspections", "energize", "muni-decision"], "critical": true, "isEnd": true,
+      "why": "Three separate authorities have to be satisfied before this issues. The grid connection is the one most likely to be outstanding.",
+      "startLink": "https://www.alberta.ca/safety-codes-act",
+      "startLabel": "Safety Codes Act",
+      "sourceTier": "primary"
+    }
+  ],
+
+  "insights": [
+    { "icon": "alert", "tone": "critical",
+      "title": "The grid is the critical path",
+      "text": "Every other approval can usually be obtained faster than a transmission connection. If the AESO request has not been made, the project timeline in the application is unsupported — regardless of how advanced the design is." },
+    { "icon": "check", "tone": "good",
+      "title": "Four things should start in week one",
+      "text": "The AESO request, the municipal pre-application, any water licence, and the AUC participant involvement programme are all independent of each other. Running them in sequence rather than in parallel adds months for no reason." },
+    { "icon": "shield", "tone": "warning",
+      "title": "Two approvals, one site",
+      "text": "The municipality approves the building; the AUC approves the substation that powers it. Neither authorises the other, and both site plans must show the same footprint — reconcile them at pre-application, not at decision." },
+    { "icon": "doc", "tone": "neutral",
+      "title": "Occupancy is the real gate",
+      "text": "Construction can finish while the connection is still outstanding. Conditioning occupancy — rather than construction — on evidence of a firm connection is enforceable, within municipal jurisdiction, and prevents a stranded building." }
+  ]
+}

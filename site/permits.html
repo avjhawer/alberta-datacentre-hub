@@ -24,10 +24,10 @@
            in this browser; nothing is uploaded.</p>
       </div>
 
-      <!-- Regulatory sequencing: the two approval tracks and where they collide.
-           Rendered by sequencing.js from site/data/sequencing.json. Self-contained;
-           it must not touch the review tool below. -->
-      <section class="section" id="sequencing-slot"></section>
+      <!-- The approvals path, provincial through municipal, ending at occupancy.
+           Supersedes the earlier two-track swimlane: same subject, more of it,
+           and it shows concurrency and dependency rather than implying them. -->
+      <section class="section" id="approvals-slot"></section>
 
       <!-- What a provincial connection actually looks like on a site. -->
       <div class="section" data-photo="substation"></div>
@@ -98,10 +98,10 @@
   </div>
 </div>
 
-<!-- Sequencing drawer -->
-<div class="sq-scrim" id="sq-scrim" hidden></div>
-<aside class="sq-drawer" id="sq-drawer" role="dialog" aria-modal="true"
-       aria-labelledby="sq-drawer-title" hidden></aside>
+<!-- Approvals drawer -->
+<div class="sq-scrim" id="ap-scrim" hidden></div>
+<aside class="sq-drawer" id="ap-drawer" role="dialog" aria-modal="true"
+       aria-labelledby="ap-drawer-title" hidden></aside>
 
 <!-- Undo bar for deletes -->
 <div class="undo-bar" id="undo-bar" role="status" hidden>
@@ -114,7 +114,7 @@
 <script src="assets/rules.js"></script>
 <script src="assets/photos.js"></script>
 <script src="assets/figures.js"></script>
-<script src="assets/sequencing.js"></script>
+<script src="assets/approvals.js"></script>
 <script src="assets/checklist.js"></script>
 </body>
 </html>

@@ -1,0 +1,99 @@
+/* The approvals flow: structure, concurrency, dependencies, drawer, links. */
+import { chromium } from 'playwright';
+const B='http://127.0.0.1:8765';
+let pass=0,fail=0;
+const ok=(c,m)=>{c?(pass++,console.log('  ok   '+m)):(fail++,console.log('  FAIL '+m));};
+const browser=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const errors=[];
+const page=await browser.newPage({viewport:{width:1500,height:1100}});
+page.on('pageerror',e=>errors.push(String(e)));
+page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+
+await page.goto(`${B}/permits.html`,{waitUntil:'networkidle'});
+await page.waitForTimeout(1200);
+
+console.log('\n— provincial through municipal, all five authorities —');
+ok((await page.$$('.ap-lane-head')).length===5,'five decision-making lanes');
+const lanes=await page.$$eval('.ap-lane-label',e=>e.map(x=>x.textContent.trim()));
+for (const want of ['Grid connection','Utilities regulator','Environment & water','Municipal','Building & safety'])
+  ok(lanes.includes(want),`lane present: ${want}`);
+
+console.log('\n— runs to occupancy —');
+const phases=await page.$$eval('.ap-phase-name',e=>e.map(x=>x.textContent.trim()));
+ok(phases.join(' > ')==='Scoping > Filings > Decisions > Construction > Occupancy',
+   'phases run scoping to occupancy: '+phases.join(' > '));
+ok(await page.$('#apn-occupancy')!==null,'occupancy permit is on the diagram');
+ok((await page.$('.ap-node.is-end'))!==null,'the end state is visually marked');
+
+console.log('\n— concurrency is shown, not implied —');
+const p1=await page.$$eval('.ap-node',els=>els.filter(e=>e.closest('.ap-cell')).length);
+ok(p1===17,`all ${p1} approval steps render`);
+const startNow=await page.$$eval('.ap-tag-start',e=>e.length);
+ok(startNow===4,`four steps flagged to start in week one (${startNow})`);
+ok((await page.$$('.ap-legend span')).length===4,'a legend explains the notation');
+
+console.log('\n— dependencies are drawn from real positions —');
+const wires=await page.$$eval('.ap-wire',e=>e.map(x=>x.getAttribute('d')));
+ok(wires.length>=14,`${wires.length} dependency connectors drawn`);
+ok(wires.every(d=>d&&d.startsWith('M')&&d.includes('C')),'every connector has real path geometry');
+ok((await page.$$('.ap-wire.is-critical')).length>0,'critical path connectors are distinguished');
+
+console.log('\n— critical path highlight —');
+await page.click('#ap-critical'); await page.waitForTimeout(500);
+ok((await page.$$('.ap-node.is-dim')).length>0,'non-critical steps dim when highlighting');
+await page.click('#ap-critical'); await page.waitForTimeout(400);
+ok((await page.$$('.ap-node.is-dim')).length===0,'and restore');
+
+console.log('\n— the drawer answers "where do I start this" —');
+await page.click('#apn-aeso-sas'); await page.waitForTimeout(400);
+ok(await page.isVisible('#ap-drawer'),'clicking a step opens its detail');
+const body=await page.textContent('#ap-drawer');
+ok(/Where this starts/i.test(body),'drawer says where the process is started');
+ok(/aeso/i.test(body),'and names the authority');
+const href=await page.getAttribute('#ap-drawer .ap-start a','href');
+ok(/^https:\/\/www\.aeso\.ca/.test(href),`start link points at the authority (${href})`);
+ok(/Blocks/i.test(body)||/Cannot start until/i.test(body)||/same time as/i.test(body),
+   'drawer states relationships to other steps');
+
+console.log('\n— relationships are navigable —');
+await page.click('#ap-close'); await page.waitForTimeout(300);
+await page.click('#apn-occupancy'); await page.waitForTimeout(400);
+const occ=await page.textContent('#ap-drawer');
+ok(/Cannot start until/i.test(occ),'occupancy lists what must finish first');
+ok(/Energization/i.test(occ),'including energization');
+const jumps=await page.$$('.ap-jump');
+ok(jumps.length>0,'related steps are clickable');
+await jumps[0].click(); await page.waitForTimeout(400);
+ok(await page.isVisible('#ap-drawer'),'jumping to a related step works');
+await page.keyboard.press('Escape'); await page.waitForTimeout(300);
+ok(!(await page.isVisible('#ap-drawer')),'Escape closes');
+
+console.log('\n— supporting information —');
+ok((await page.$$('.ap-insight')).length===4,'four insight cards accompany the diagram');
+const ins=await page.textContent('.ap-insights');
+ok(/critical path/i.test(ins),'explains the critical path');
+ok(/week one/i.test(ins),'tells you what to start immediately');
+
+console.log('\n— on the front page too —');
+const home=await browser.newPage({viewport:{width:1500,height:1100}});
+home.on('pageerror',e=>errors.push(String(e)));
+await home.goto(`${B}/index.html`,{waitUntil:'networkidle'});
+await home.waitForTimeout(1200);
+ok((await home.$$('.ap-node')).length===17,'the full diagram renders on the front page');
+ok((await home.$$('.ap-wire')).length>=14,'with its connectors');
+await home.click('#apn-muni-preapp'); await home.waitForTimeout(400);
+ok(await home.isVisible('#ap-drawer'),'and its drawer works there');
+await home.close();
+
+console.log('\n— the review tool underneath still works —');
+await page.evaluate(()=>localStorage.clear());
+await page.reload({waitUntil:'networkidle'}); await page.waitForTimeout(800);
+await page.fill('[data-param="capacityMW"]','150');
+await page.waitForTimeout(400);
+const f=await page.$$eval('.finding-title',e=>e.map(x=>x.textContent));
+ok(f.some(x=>/large data centre threshold/i.test(x)),'rule evaluation still fires');
+
+ok(errors.length===0,`no console/page errors (${errors.length})`+(errors[0]?' — '+errors[0]:''));
+await browser.close();
+console.log(`\n${pass} passed, ${fail} failed`);
+process.exit(fail?1:0);
