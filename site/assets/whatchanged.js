@@ -73,36 +73,44 @@
     const items = data.news?.items || [];
     const alerts = data.alerts?.alerts || [];
     const fresh = seen ? items.filter(isNewItem) : items.slice(0, 25);
-    const albertan = cluster(fresh.filter(i => i.region === 'alberta')).length;
     // Count stories, not headlines, so the three figures are comparable.
     const stories = cluster(fresh);
+    const albertan = cluster(fresh.filter(i => i.region === 'alberta')).length;
     const policy = stories.filter(c => bearsOnDecision(c.lead) ||
                                        c.others.some(bearsOnDecision)).length;
 
     const when = seen
       ? `since ${esc(A.fmtDate(new Date(seen).toISOString()))}`
       : 'in the current feed';
-
     const nothing = !alerts.length && !fresh.length;
+
+    const figures = [
+      { n: stories.length, label: stories.length === 1 ? 'new story' : 'new stories', tone: 'accent' },
+      { n: albertan,       label: 'from Alberta',        tone: 'alberta' },
+      { n: policy,         label: 'bear on a decision',  tone: 'warn' },
+    ];
+    if (alerts.length) {
+      figures.unshift({ n: alerts.length, label: alerts.length === 1
+        ? 'regulatory change' : 'regulatory changes', tone: 'critical' });
+    }
 
     $('#digest-slot').innerHTML = `
       <div class="digest ${nothing ? 'is-quiet' : ''}">
-        <div class="digest-main">
-          <div class="eyebrow">${seen ? 'Since your last visit' : 'First visit'}</div>
-          ${nothing
-            ? `<p class="digest-line">Nothing new ${when}. The feed last refreshed
-                 ${esc(relTime(data.news?.generatedAt))}.</p>`
-            : `<p class="digest-line">
-                 ${alerts.length ? `<strong class="digest-alert">${alerts.length} regulatory
-                   ${alerts.length === 1 ? 'change' : 'changes'} detected</strong> · ` : ''}
-                 <strong>${stories.length}</strong> new
-                 ${stories.length === 1 ? 'story' : 'stories'} ${when}
-                 ${albertan ? ` · <strong>${albertan}</strong> from Alberta` : ''}
-                 ${policy ? ` · <strong>${policy}</strong> bearing on a decision` : ''}
-               </p>`}
+        <div class="digest-top">
+          <span class="eyebrow">${seen ? `Since your last visit · ${esc(when.replace('since ', ''))}` : 'First visit'}</span>
+          ${seen && (alerts.length || fresh.length)
+            ? `<button class="btn btn-small" id="mark-read">Mark all as read</button>` : ''}
         </div>
-        ${seen && (alerts.length || fresh.length)
-          ? `<button class="btn btn-small" id="mark-read">Mark all as read</button>` : ''}
+        ${nothing
+          ? `<p class="digest-quiet">Nothing new ${esc(when)}. The feed last refreshed
+               ${esc(relTime(data.news?.generatedAt))}.</p>`
+          : `<div class="digest-figures">
+               ${figures.map(f => `
+                 <div class="digest-fig digest-fig-${f.tone}">
+                   <span class="digest-n">${esc(String(f.n))}</span>
+                   <span class="digest-l">${esc(f.label)}</span>
+                 </div>`).join('')}
+             </div>`}
       </div>`;
   }
 

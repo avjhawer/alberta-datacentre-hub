@@ -94,6 +94,18 @@ it is what makes concurrent editing safe.
 
 Documented in `assets/tokens.css`. Key points:
 
+- **Typefaces are self-hosted**, not linked. `scripts/fetch-fonts.mjs` runs in
+  Actions and writes `assets/fonts.css` plus the woff2 files. Space Grotesk is
+  the display face, Inter the interface face. Self-hosting means no third-party
+  dependency, no visitor leakage, and — the reason it matters here — the
+  authoring session can actually see the typography it ships.
+- **The accent is violet and is not a fourth categorical hue.** Validated
+  against the three region hues it fails CVD separation, because blue and
+  violet converge under deuteranopia. It is allowed only because it marks
+  interaction rather than a data category, and because every region mark
+  carries its label as text. If it is ever used to encode a category that
+  reasoning collapses. The full argument is in `tokens.css`.
+
 - The categorical region palette (Alberta/Canada/Global) is **validated** — it
   passes CVD and normal-vision separation in both light and dark on all pairs.
   If you change a hue, re-run a palette validator; do not eyeball it. Do not add
