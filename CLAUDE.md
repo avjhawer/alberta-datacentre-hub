@@ -156,6 +156,14 @@ with `--fixture`; verify live behaviour from an Actions run.
 - Seeded records marked `"verificationStatus": "pending"` (in `grid.json` and
   `projects.json`) were compiled from research summaries and still need
   confirming against their live source pages.
+- `approvals.json → aeso-agreement` (grid lane, Phase 3) is `unverified`. The
+  step is real — a system study is not a connection, and the transmission
+  facility owner does not build against an unsigned commitment — but the exact
+  instrument name could not be checked from the authoring sandbox, which cannot
+  reach `aeso.ca`. `scripts/verify-seeds.mjs` now reads `approvals.json` and
+  checks each node's `verifyPhrases` against its `startLink` page; run it in
+  Actions, and promote the node to `primary` only once the wording is confirmed
+  on AESO's own page.
 - `municipalities.json` has deliberately blank rows for Edmonton and Calgary.
   Blank means "not yet verified" and renders as *Needs research* — do not fill
   them with plausible guesses.

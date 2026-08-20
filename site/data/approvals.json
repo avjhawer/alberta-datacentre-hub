@@ -114,19 +114,42 @@
       "startLabel": "AESO — connecting to the grid"
     },
     {
+      "id": "aeso-agreement",
+      "lane": "grid",
+      "phase": "p3",
+      "title": "Connection agreement & cost commitment",
+      "authority": "AESO + proponent",
+      "what": "The proponent accepts the connection proposal, enters the system access service agreement with AESO, and posts the security and construction contribution that lets the transmission facility owner begin work.",
+      "dependsOn": [
+        "aeso-study"
+      ],
+      "critical": true,
+      "why": "This is where a grid connection stops being an enquiry and becomes a commitment. Until it is signed and secured, a queue position is not a connection — an application that presents an AESO study as though it were an approval is overstating what it holds. Ask what has actually been executed. In the same phase, and separately, the AUC decides the substation itself.",
+      "watch": "Confirm the current instrument name and the security terms against the AESO tariff before relying on them — the sequence is stable, the naming has changed before.",
+      "verifyPhrases": [
+        "system access service",
+        "connection"
+      ],
+      "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
+      "startLabel": "AESO — connecting to the grid",
+      "sourceTier": "unverified"
+    },
+    {
       "id": "tfo-build",
       "lane": "grid",
       "phase": "p4",
       "title": "Substation construction",
       "authority": "Transmission facility owner",
-      "what": "The TFO builds the substation and connection under the AUC's approval, on the grid's schedule.",
+      "what": "The transmission facility owner builds the substation and connection, under the AUC permit and against the executed connection agreement, on the grid’s schedule.",
       "dependsOn": [
+        "aeso-agreement",
         "auc-decision"
       ],
       "critical": true,
       "sourceTier": "primary",
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
-      "startLabel": "AESO — connecting to the grid"
+      "startLabel": "AESO — connecting to the grid",
+      "why": "Two things gate this, not one: the AUC permit for the facility and the proponent’s executed commitment to AESO. Either one outstanding stops the build, which is why both arrows converge here."
     },
     {
       "id": "energize",
@@ -403,6 +426,12 @@
       "tone": "critical",
       "title": "The grid is the critical path",
       "text": "Every other approval can usually be obtained faster than a transmission connection. If the AESO request has not been made, the project timeline in the application is unsupported — regardless of how advanced the design is."
+    },
+    {
+      "icon": "check",
+      "tone": "neutral",
+      "title": "The grid track does not stop at the study",
+      "text": "The system study is the middle of the grid path, not the end of it. What follows is the connection agreement and cost commitment, the AUC’s decision on the substation, construction by the transmission facility owner, and finally energization — which is what occupancy should be conditioned on."
     },
     {
       "icon": "check",

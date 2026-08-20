@@ -68,7 +68,7 @@ for(const [from,to] of [['news.html','index.html'],['policy.html','rules.html'],
 
 console.log('\n— review page carries the approvals map and the tool —');
 await p.goto(`${B}/permits.html`,{waitUntil:'networkidle'}); await p.waitForTimeout(1000);
-ok((await p.$$('.ap-node')).length===20,'the approvals map renders');
+ok((await p.$$('.ap-node')).length>=21,'the approvals map renders');
 ok(await p.$('#sequencing-slot')===null,'the superseded swimlane is gone');
 ok(await p.isVisible('#projects-slot'),'the review tool is still there');
 

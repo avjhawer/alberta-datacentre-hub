@@ -27,10 +27,21 @@ ok((await page.$('.ap-node.is-end'))!==null,'the end state is visually marked');
 
 console.log('\n— concurrency is shown, not implied —');
 const p1=await page.$$eval('.ap-node',els=>els.filter(e=>e.closest('.ap-cell')).length);
-ok(p1===20,`all ${p1} approval steps render`);
+ok(p1===21,`all ${p1} approval steps render`);
 const startNow=await page.$$eval('.ap-tag-start',e=>e.length);
 ok(startNow===4,`four steps flagged to start in week one (${startNow})`);
 ok((await page.$$('.ap-legend span')).length===5,'a legend explains the notation');
+
+console.log('\n— the grid lane runs unbroken to energization —');
+ok(await page.$('#apn-aeso-agreement')!==null,'the connection agreement follows the system study');
+const gridIds=await page.$$eval('.ap-cell .ap-node',els=>els.map(e=>e.id));
+for (const want of ['apn-aeso-sas','apn-aeso-study','apn-aeso-agreement','apn-tfo-build','apn-energize'])
+  ok(gridIds.includes(want),`grid step present: ${want.replace('apn-','')}`);
+await page.click('#apn-tfo-build'); await page.waitForTimeout(400);
+const tfo=await page.textContent('#ap-drawer');
+ok(/Connection agreement/i.test(tfo)&&/Permit & licence|Permit &amp; licence/i.test(tfo),
+   'substation construction waits on both the agreement and the AUC permit');
+await page.click('#ap-close'); await page.waitForTimeout(300);
 
 console.log('\n— which order of government decides —');
 ok((await page.$$('.ap-level')).length===3,'a level rail groups the lanes by order of government');
@@ -92,7 +103,7 @@ await page.keyboard.press('Escape'); await page.waitForTimeout(300);
 ok(!(await page.isVisible('#ap-drawer')),'Escape closes');
 
 console.log('\n— supporting information —');
-ok((await page.$$('.ap-insight')).length===5,'five insight cards accompany the diagram');
+ok((await page.$$('.ap-insight')).length===6,'six insight cards accompany the diagram');
 const ins=await page.textContent('.ap-insights');
 ok(/critical path/i.test(ins),'explains the critical path');
 ok(/week one/i.test(ins),'tells you what to start immediately');
@@ -102,7 +113,7 @@ const home=await browser.newPage({viewport:{width:1500,height:1100}});
 home.on('pageerror',e=>errors.push(String(e)));
 await home.goto(`${B}/index.html`,{waitUntil:'networkidle'});
 await home.waitForTimeout(1200);
-ok((await home.$$('.ap-node')).length===20,'the full diagram renders on the front page');
+ok((await home.$$('.ap-node')).length===21,'the full diagram renders on the front page');
 ok((await home.$$('.ap-wire')).length>=14,'with its connectors');
 await home.click('#apn-muni-preapp'); await home.waitForTimeout(400);
 ok(await home.isVisible('#ap-drawer'),'and its drawer works there');
