@@ -1889,9 +1889,21 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   .ap-legend { gap:var(--s-3); font-size:var(--t-micro); }
 }
 
+/* --- how the site is powered ---------------------------------------------- */
+/* Two supply routes, one diagram. The switch is a segmented control rather than
+   a checkbox because neither route is the "off" state of the other. */
+.ap-controls { display:flex; align-items:center; gap:var(--s-2); flex-wrap:wrap; }
+.ap-routes { flex:none; }
+.ap-route-note {
+  margin:calc(var(--s-2) * -1) 0 var(--s-3); color:var(--ink-muted); max-width:80ch;
+}
+.ap-tag-req { background:var(--accent-wash); color:var(--accent); }
+
 @media print {
-  .ap-controls, .ap-wires { display:none !important; }
+  /* The arrows are the diagram. Only the controls come out. */
+  .ap-controls { display:none !important; }
   .ap-grid { min-width:0; }
+  .ap-node { box-shadow:none; }
 }
 
 /* --- order of government -------------------------------------------------- */

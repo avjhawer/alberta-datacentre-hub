@@ -9,6 +9,15 @@ const page=await browser.newPage({viewport:{width:1500,height:1100}});
 page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 
+async function newPagePrint(){
+  const q=await browser.newPage({viewport:{width:1556,height:980}});
+  q.on('pageerror',e=>errors.push(String(e)));
+  q.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  await q.goto(`${B}/approvals-print.html?route=offgrid`,{waitUntil:'networkidle'});
+  await q.waitForTimeout(1200);
+  return q;
+}
+
 await page.goto(`${B}/permits.html`,{waitUntil:'networkidle'});
 await page.waitForTimeout(1200);
 
@@ -48,7 +57,10 @@ ok((await page.$$('.ap-level')).length===3,'a level rail groups the lanes by ord
 const levelText=await page.$$eval('.ap-level-text',e=>e.map(x=>x.textContent.trim()));
 ok(levelText.some(t=>/^Provincial$/i.test(t)),'provincial block labelled');
 ok(levelText.some(t=>/^Municipal$/i.test(t)),'municipal block labelled');
-ok(levelText.some(t=>/municipal administration/i.test(t)),
+// The rotated rail carries a short label (its text length is a row height);
+// the full wording lives on the lane tag, which is where it is checked.
+const laneLevels=await page.$$eval('.ap-lane-level',e=>e.map(x=>x.textContent.trim()));
+ok(laneLevels.some(t=>/municipal administration/i.test(t)),
    'the Safety Codes nuance is stated: provincial statute, municipal administration');
 ok((await page.$$('.ap-lane-level')).length===5,'every lane head carries its level too');
 
@@ -101,6 +113,50 @@ await jumps[0].click(); await page.waitForTimeout(400);
 ok(await page.isVisible('#ap-drawer'),'jumping to a related step works');
 await page.keyboard.press('Escape'); await page.waitForTimeout(300);
 ok(!(await page.isVisible('#ap-drawer')),'Escape closes');
+
+console.log('\n— the off-grid route —');
+ok((await page.$$('#ap-routes .seg-btn')).length===2,'two supply routes are offered');
+await page.click('#ap-routes .seg-btn:nth-child(2)'); await page.waitForTimeout(700);
+const off=await page.$$eval('.ap-cell .ap-node',e=>e.map(x=>x.id));
+for (const gone of ['apn-aeso-sas','apn-aeso-study','apn-aeso-agreement','apn-tfo-build','apn-energize'])
+  ok(!off.includes(gone),`AESO step drops out off-grid: ${gone.replace('apn-','')}`);
+for (const want of ['apn-supply-concept','apn-fuel-supply','apn-plant-build','apn-plant-commission',
+                    'apn-auc-isd','apn-auc-isd-order'])
+  ok(off.includes(want),`off-grid step present: ${want.replace('apn-','')}`);
+ok(off.includes('apn-muni-preapp')&&off.includes('apn-muni-dp')&&off.includes('apn-muni-decision')
+   &&off.includes('apn-occupancy'),'every municipal and occupancy step is unchanged off-grid');
+const laneNow=await page.$$eval('.ap-lane-label',e=>e.map(x=>x.textContent.trim()));
+ok(laneNow.includes('On-site power')&&!laneNow.includes('Grid connection'),
+   'the grid lane is relabelled for the route');
+const reqTags=await page.$$eval('.ap-tag-req',e=>e.map(x=>x.textContent.trim()));
+ok(reqTags.length>=2,`on-site generation stops being optional off-grid (${reqTags.length} marked required)`);
+const offIns=await page.textContent('.ap-insights');
+ok(/off the hook/i.test(offIns),'the off-grid notes say what does not change');
+ok(/no queue/i.test(offIns),'and that the pacing constraint is gone');
+await page.click('#apn-plant-commission'); await page.waitForTimeout(400);
+const pc=await page.textContent('#ap-drawer');
+ok(/Occupancy permit/i.test(pc),'commissioning still gates occupancy');
+ok(!/Energization/i.test(pc),'and the drawer does not offer grid-route steps');
+await page.click('#ap-close'); await page.waitForTimeout(300);
+await page.click('#ap-routes .seg-btn:nth-child(1)'); await page.waitForTimeout(700);
+ok((await page.$$eval('.ap-cell .ap-node',e=>e.length))===21,'switching back restores the grid route');
+
+console.log('\n— the print sheet —');
+const pr=await newPagePrint();
+ok((await pr.$$('.ap-cell .ap-node')).length===22,'the print sheet renders a route on its own');
+ok((await pr.$$('.ap-wire')).length>0,'with its connectors');
+await pr.emulateMedia({media:'print'});
+await pr.waitForTimeout(600);
+const fit=await pr.evaluate(()=>{
+  const g=document.querySelector('.ap-grid').getBoundingClientRect();
+  return {bottom:Math.round(g.bottom+scrollY), width:Math.round(g.width)};
+});
+// 17x11in at 10mm margins, 96dpi: 1556 x 980 usable.
+ok(fit.bottom<=980,`the matrix fits one tabloid page (${fit.bottom}px of 980)`);
+ok(fit.width<=1556,`and its width (${fit.width}px of 1556)`);
+const wiresPrint=await pr.$$eval('.ap-wire',e=>e.map(x=>x.getAttribute('d')));
+ok(wiresPrint.every(d=>d&&/^M [\d.]+ [\d.]+ C/.test(d)),'connectors are redrawn against the print layout');
+await pr.close();
 
 console.log('\n— supporting information —');
 ok((await page.$$('.ap-insight')).length===6,'six insight cards accompany the diagram');

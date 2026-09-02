@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approvals path — print sheet</title>
+<meta name="description" content="The Alberta data centre approvals path, laid out to print on 11×17 (tabloid) paper.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+<style>
+/* A sheet, not a page of the site. Tabloid landscape is the smallest paper the
+   five-by-five grid fits on without shrinking the type below reading size. */
+@page { size: 17in 11in; margin: 10mm; }   /* tabloid, landscape */
+
+.sheet {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--s-5) var(--s-5) var(--s-6);
+  background: var(--surface);
+}
+.sheet-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-3); flex-wrap: wrap;
+  margin-bottom: var(--s-4); padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--border);
+}
+.sheet-bar p { margin: 0; color: var(--ink-secondary); font-size: var(--t-small); max-width: 68ch; }
+.sheet-foot {
+  margin-top: var(--s-5); padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  color: var(--ink-muted); font-size: var(--t-micro);
+  display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap;
+}
+
+/* A printed sheet is a fixed artefact, so it commits to the light palette in
+   both themes rather than handing someone a black rectangle. The attribute is
+   set after load, because the shared theme toggle reads localStorage on init. */
+body { background: var(--page); }
+
+/* Already on the print sheet — the link would only reopen it. */
+#ap-print { display: none; }
+
+/* Printing is a different problem from reading on screen: the matrix must not
+   split across sheets, so on paper the whole thing is compressed to fit one
+   tabloid page and the commentary moves to a second. Nothing is dropped —
+   every lane note, tag and caption still prints, just smaller. */
+@media print {
+  .sheet-bar, .no-print { display: none !important; }
+  .sheet { max-width: none; padding: 0; }
+  .ap-scroll { overflow: visible !important; }
+  .ap-grid { min-width: 0 !important; gap: 7px; }
+
+  .ap-title { font-size: 21px; margin-bottom: 2px; }
+  .ap-intro { font-size: 10.5px; line-height: 1.4; max-width: 120ch; }
+  .ap-route-note { font-size: 8.5px; margin: 2px 0 5px; max-width: 120ch; }
+  .ap-legend { font-size: 9px; gap: 12px; margin: 0 0 6px; padding: 4px 0; }
+  .ap-head { margin-bottom: 4px; }
+
+  .ap-phase { padding: 4px 6px; }
+  .ap-phase-label { font-size: 7px; }
+  .ap-phase-name { font-size: 13px; }
+  .ap-phase-sub { font-size: 7px; }
+
+  .ap-lane-head { padding: 5px 6px; gap: 1px; }
+  .ap-lane-label { font-size: 13px; }
+  .ap-lane-level, .ap-lane-body { font-size: 7.5px; }
+  .ap-lane-note { font-size: 7.5px; line-height: 1.3; margin-top: 2px; }
+
+  .ap-cell { padding: 5px; gap: 6px; }
+  .ap-node { padding: 6px 8px; gap: 1px; box-shadow: none; }
+  .ap-node-authority { font-size: 7.5px; }
+  .ap-node-title { font-size: 11px; line-height: 1.2; }
+  .ap-tag { font-size: 7px; padding: 1px 4px; }
+  .ap-node-badges { gap: 2px; margin-top: 1px; }
+
+  .ap-level-text { font-size: 7px; }
+
+  /* Sheet two: the notes that the boxes cannot carry. */
+  .ap-insights {
+    break-before: page; grid-template-columns: repeat(3, 1fr); gap: var(--s-3);
+  }
+  .ap-insight, .ap-caution, .sheet-foot { break-inside: avoid; }
+}
+</style>
+</head>
+<body data-page="print">
+<div class="sheet">
+
+  <div class="sheet-bar">
+    <p><strong>Print sheet.</strong> Set paper to <strong>11&nbsp;×&nbsp;17 (tabloid), landscape</strong>
+       and scale to fit. Switch route below before printing — the sheet prints
+       whichever one is on screen.</p>
+    <button class="btn btn-primary" id="do-print">Print</button>
+  </div>
+
+  <section id="approvals-slot"></section>
+
+  <div class="sheet-foot">
+    <span>Alberta Data Centre Hub — approvals path</span>
+    <span id="printed-on"></span>
+  </div>
+
+</div>
+
+<div class="sq-scrim" id="ap-scrim" hidden></div>
+<aside class="sq-drawer" id="ap-drawer" role="dialog" aria-modal="true"
+       aria-labelledby="ap-drawer-title" hidden></aside>
+
+<script src="assets/app.js"></script>
+<script src="assets/approvals.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.setAttribute('data-theme', 'light');
+});
+document.getElementById('do-print').addEventListener('click', () => window.print());
+document.getElementById('printed-on').textContent =
+  'Printed ' + new Date().toISOString().slice(0, 10);
+</script>
+</body>
+</html>

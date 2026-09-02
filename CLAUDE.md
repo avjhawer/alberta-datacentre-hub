@@ -66,11 +66,23 @@ rots and the owner can edit content without a toolchain.
   promotes one to the other.
 - `approvals.js` (`window.ADCHApprovals`) draws the approvals flow from
   `approvals.json`: five lanes by five phases, with dependency connectors
-  computed from real layout positions and redrawn on resize. Same column means
-  concurrent; an arrow means it does not. It appears on both the front page and
-  the review page from one data file — edit the JSON, not the markup. It
-  replaced the earlier two-track swimlane, which covered the same ground with
-  less of it.
+  computed from real layout positions and redrawn whenever the grid box changes
+  — a ResizeObserver, not a resize listener, because a print stylesheet changes
+  the layout without firing `resize` and the PDF used to come out with the
+  arrows drawn for the on-screen geometry. Same column means concurrent; an
+  arrow means it does not. It appears on both the front page and the review page
+  from one data file — edit the JSON, not the markup. It replaced the earlier
+  two-track swimlane, which covered the same ground with less of it.
+
+  It draws **two supply routes** from the same file: grid-connected, and
+  off-grid where on-site generation feeds the load directly. A record with no
+  `variants` array belongs to both, so every pre-existing node stayed correct
+  when the second route was added; `optionalIn` carries "only some projects need
+  this" per route, because on-site generation is conditional on the grid and
+  unavoidable off it. `approvals-print.html` renders one route on its own,
+  compressed so the matrix fits a single 11x17 landscape sheet with the notes on
+  a second. Check that with `scratch/ap-test.mjs`, which measures it, rather than
+  by eye.
 - `checklist.js` is the DP review tool: multiple reviews (create, rename,
   duplicate, delete with undo), a parameter form, live findings per area, and
   eight accordions. Reviews live in `localStorage` under `adch.reviews.v2`;
@@ -164,6 +176,13 @@ with `--fixture`; verify live behaviour from an Actions run.
   checks each node's `verifyPhrases` against its `startLink` page; run it in
   Actions, and promote the node to `primary` only once the wording is confirmed
   on AESO's own page.
+- The off-grid route's nodes (`supply-concept`, `fuel-supply`, `auc-isd`,
+  `auc-isd-order`, `plant-build`, `plant-commission`) are all `unverified`. The
+  shape of the route is not in doubt — no connection means no system access
+  service — but the instruments were not read from source, because the sandbox
+  reaches neither `aeso.ca`, `auc.ab.ca` nor `aer.ca`. `auc-isd` carries
+  `verifyPhrases`; run `scripts/verify-seeds.mjs` in Actions and promote only
+  what the authority's own page confirms.
 - `municipalities.json` has deliberately blank rows for Edmonton and Calgary.
   Blank means "not yet verified" and renders as *Needs research* — do not fill
   them with plausible guesses.

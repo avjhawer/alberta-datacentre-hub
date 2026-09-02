@@ -132,6 +132,19 @@ published site stayed at whichever commit a person last pushed. If you add
 another job that commits into `site/`, give it the same `publish` job or the
 change will not reach readers.
 
+### Printing the approvals diagram
+
+The diagram has a **Print / PDF** button in its header. It opens a print sheet
+carrying just the diagram for whichever supply route you were looking at —
+grid-connected or off-grid.
+
+In the browser's print dialog choose **paper size 11 × 17 (Tabloid)**,
+**landscape**, and turn **background graphics on** (Chrome hides them by
+default, and the lane colours and phase bands are backgrounds). Then "Save as
+PDF" or print. It comes out as two sheets: the matrix on the first, the notes on
+the second. The page is sized in the stylesheet, so "scale to fit" is not
+needed — leave scaling at 100%.
+
 ### Where new sources come from
 
 1. **Child pages of trusted domains — fully automatic.** Pages marked

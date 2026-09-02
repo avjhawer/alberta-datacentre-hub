@@ -22,8 +22,28 @@
   let root = null;
   let showCriticalOnly = false;
   let lastFocus = null;
+  let variant = 'grid';
 
   const node = id => spec.nodes.find(n => n.id === id);
+
+  /* A node, lane note or insight with no `variants` belongs to every route.
+     The grid route was the silent assumption before the off-grid one existed,
+     so "unmarked means both" keeps every existing record correct. */
+  const inRoute = x => !x.variants || x.variants.includes(variant);
+  const routeNodes = () => spec.nodes.filter(inRoute);
+  const routeMeta = () => (spec.variants || []).find(v => v.id === variant) || {};
+
+  /* `optional` means "only some projects need this". Off the grid, on-site
+     generation is not one of those — it is the entire power supply. So the
+     flag is carried per route rather than as a fixed property of the step. */
+  const isOptional = n => n.optional || (n.optionalIn ? n.optionalIn.includes(variant) : false);
+  const isRequiredHere = n => !!n.optionalIn && !n.optionalIn.includes(variant);
+
+  /* Lane heads read differently on the off-grid route: same lane, same job,
+     different actors. Overrides live in the data, not here. */
+  function laneFor(l) {
+    return Object.assign({}, l, (l.byVariant || {})[variant] || {});
+  }
 
   /* ---------------------------------------------------------------- render */
 
@@ -38,7 +58,8 @@
         <span class="ap-node-title">${esc(n.title)}</span>
         <span class="ap-node-badges">
           ${n.startNow ? '<span class="ap-tag ap-tag-start">Start now</span>' : ''}
-          ${n.optional ? '<span class="ap-tag ap-tag-opt">If required</span>' : ''}
+          ${isOptional(n) ? '<span class="ap-tag ap-tag-opt">If required</span>' : ''}
+          ${isRequiredHere(n) ? '<span class="ap-tag ap-tag-req">Required on this route</span>' : ''}
           ${n.blocksOccupancy ? '<span class="ap-tag ap-tag-block">Blocks occupancy</span>' : ''}
         </span>
       </button>`;
@@ -56,11 +77,14 @@
       let span = 1;
       while (i + span < spec.lanes.length && spec.lanes[i + span].level === level) span++;
       const meta = (spec.levels || []).find(l => l.id === level) || { label: level, note: '' };
+      // The rail text is rotated, so its length is a *height*. A band of one
+      // lane cannot afford forty characters — it would set the row height for
+      // the whole lane. The full wording stays on the lane tag and the drawer.
       bands.push(`
         <div class="ap-level ap-level-${esc(level)}"
              style="grid-row:${row} / span ${span};grid-column:1"
              title="${esc(meta.note)}">
-          <span class="ap-level-text">${esc(meta.label)}</span>
+          <span class="ap-level-text">${esc(meta.short || meta.label)}</span>
         </div>`);
       row += span; i += span;
     }
@@ -72,15 +96,25 @@
       <div class="ap-head">
         <div>
           <h2 class="ap-title">${esc(spec.title)}</h2>
-          <p class="ap-intro">${esc(spec.intro)}</p>
+          <p class="ap-intro">${esc(routeMeta().intro || spec.intro)}</p>
         </div>
         <div class="ap-controls">
+          ${(spec.variants || []).length > 1 ? `
+            <div class="seg ap-routes" id="ap-routes" role="group" aria-label="How the site is powered">
+              ${spec.variants.map(v => `
+                <button class="seg-btn ${v.id === variant ? 'is-on' : ''}" data-route="${esc(v.id)}"
+                        aria-pressed="${v.id === variant}" title="${esc(v.note)}">${esc(v.short)}</button>`).join('')}
+            </div>` : ''}
           <button class="btn btn-small ${showCriticalOnly ? 'is-on' : ''}" id="ap-critical"
                   aria-pressed="${showCriticalOnly}">
             ${showCriticalOnly ? 'Show everything' : 'Highlight critical path'}
           </button>
+          <a class="btn btn-small" id="ap-print" href="approvals-print.html?route=${esc(variant)}"
+             target="_blank" rel="noopener">Print / PDF</a>
         </div>
       </div>
+
+      <p class="ap-route-note small">${esc(routeMeta().note || '')}</p>
 
       <div class="ap-legend" role="list">
         <span role="listitem"><i class="ap-key ap-key-critical"></i>Critical path — sets the end date</span>
@@ -103,7 +137,9 @@
 
           ${levelBands()}
 
-          ${spec.lanes.map((l, li) => `
+          ${spec.lanes.map((raw, li) => {
+            const l = laneFor(raw);
+            return `
             <div class="ap-lane-head ap-hue-${esc(l.hue)}" style="grid-row:${li + 2};grid-column:2">
               <span class="ap-lane-label">${esc(l.label)}</span>
               <span class="ap-lane-level ap-level-tag-${esc(l.level)}">${
@@ -112,17 +148,18 @@
               <span class="ap-lane-note">${esc(l.note)}</span>
             </div>
             ${spec.phases.map((p, pi) => {
-              const ns = spec.nodes.filter(n => n.lane === l.id && n.phase === p.id);
+              const ns = routeNodes().filter(n => n.lane === raw.id && n.phase === p.id);
               return `<div class="ap-cell ap-hue-${esc(l.hue)}"
                            style="grid-row:${li + 2};grid-column:${pi + 3}">${ns.map(nodeCard).join('')}</div>`;
-            }).join('')}`).join('')}
+            }).join('')}`;
+          }).join('')}
 
           <svg class="ap-wires" id="ap-wires" aria-hidden="true"></svg>
         </div>
       </div>
 
       <div class="ap-insights">
-        ${spec.insights.map(i => `
+        ${spec.insights.filter(inRoute).map(i => `
           <div class="ap-insight ap-insight-${esc(i.tone)}">
             <span class="ap-insight-icon">${icon(i.icon)}</span>
             <div>
@@ -134,7 +171,22 @@
 
       <p class="ap-caution small">${icon('shield')} ${esc(spec.caution)}</p>`;
 
+    observeGrid();
     requestAnimationFrame(drawWires);
+  }
+
+  /* Connectors are computed from where the browser actually put the cards, so
+     any layout change invalidates them — including a print stylesheet, which
+     changes the layout without firing `resize`. Watching the grid box catches
+     every cause. render() rebuilds the grid, so the observer follows it. */
+  let gridObserver = null;
+  function observeGrid() {
+    if (!window.ResizeObserver) return;
+    gridObserver?.disconnect();
+    const grid = $('#ap-grid');
+    if (!grid) return;
+    gridObserver = new ResizeObserver(() => drawWires());
+    gridObserver.observe(grid);
   }
 
   /* ----------------------------------------------------------------- wires */
@@ -220,14 +272,16 @@
 
   function openDrawer(n, trigger) {
     lastFocus = trigger || document.activeElement;
-    const deps = (n.dependsOn || []).map(id => node(id)).filter(Boolean);
-    const blocks = spec.nodes.filter(x => (x.dependsOn || []).includes(n.id));
-    const concurrent = spec.nodes.filter(x =>
+    // Every relationship is filtered to the route on show: listing a step that
+    // is not on the diagram in front of the reader would be worse than useless.
+    const deps = (n.dependsOn || []).map(id => node(id)).filter(x => x && inRoute(x));
+    const blocks = routeNodes().filter(x => (x.dependsOn || []).includes(n.id));
+    const concurrent = routeNodes().filter(x =>
       x.phase === n.phase && x.id !== n.id && x.lane !== n.lane);
     // Pairing is symmetric even though the data records it on one side.
-    const paired = spec.nodes.filter(x =>
+    const paired = routeNodes().filter(x =>
       (n.pairedWith || []).includes(x.id) || (x.pairedWith || []).includes(n.id));
-    const lane = spec.lanes.find(l => l.id === n.lane);
+    const lane = laneFor(spec.lanes.find(l => l.id === n.lane) || {});
     const levelMeta = (spec.levels || []).find(l => l.id === lane?.level);
 
     const d = $('#ap-drawer');
@@ -314,10 +368,17 @@
       const card = e.target.closest('[data-node]');
       if (card && root.contains(card)) { const n = node(card.dataset.node); if (n) openDrawer(n, card); return; }
       if (e.target.closest('#ap-close') || e.target.closest('#ap-scrim')) closeDrawer();
-      if (e.target.closest('#ap-critical')) { showCriticalOnly = !showCriticalOnly; render(); }
+      if (e.target.closest('#ap-critical')) { showCriticalOnly = !showCriticalOnly; render(); return; }
+      const route = e.target.closest('[data-route]');
+      if (route && root.contains(route)) { variant = route.dataset.route; render(); }
     });
     let t;
     window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(drawWires, 120); });
+
+    // Print styles resize the grid without firing `resize`, so the PDF used to
+    // come out with the arrows drawn for the on-screen layout. Watching the
+    // grid box itself catches every cause, print included.
+    window.addEventListener('beforeprint', drawWires);
   }
 
   async function init() {
@@ -325,6 +386,8 @@
     if (!root) return;
     spec = await A.loadData('approvals', null);
     if (!spec) { root.innerHTML = '<div class="empty-state">The approvals map could not be loaded.</div>'; return; }
+    const asked = new URLSearchParams(location.search).get('route');
+    if (asked && (spec.variants || []).some(v => v.id === asked)) variant = asked;
     render();
     wire();
     // Fonts and late layout shift the cards; redraw once things settle.
@@ -332,6 +395,10 @@
     if (document.fonts?.ready) document.fonts.ready.then(drawWires);
   }
 
-  window.ADCHApprovals = { init, drawWires };
+  window.ADCHApprovals = {
+    init, drawWires,
+    setRoute(id) { if ((spec?.variants || []).some(v => v.id === id)) { variant = id; render(); } },
+    route: () => variant,
+  };
   document.addEventListener('DOMContentLoaded', init);
 })();

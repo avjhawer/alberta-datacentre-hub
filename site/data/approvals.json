@@ -11,7 +11,15 @@
       "hue": "alberta",
       "note": "Almost always the longest path. Start it first.",
       "level": "provincial",
-      "levelNote": "Provincial system operator and a regulated utility. The municipality is a stakeholder here, not the decision-maker."
+      "levelNote": "Provincial system operator and a regulated utility. The municipality is a stakeholder here, not the decision-maker.",
+      "byVariant": {
+        "offgrid": {
+          "label": "On-site power",
+          "body": "Proponent, fuel supplier and the AER",
+          "note": "No queue to wait in — and no queue to pace the project either.",
+          "levelNote": "Provincial regulators, but not the system operator: the AESO has no role where there is no connection."
+        }
+      }
     },
     {
       "id": "auc",
@@ -95,7 +103,10 @@
       "why": "The single longest lead item on the project, and the one most often started too late. A queue position obtained in month one is worth more than any amount of expediting later.",
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
       "startLabel": "AESO — connecting to the grid",
-      "sourceTier": "primary"
+      "sourceTier": "primary",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "id": "aeso-study",
@@ -111,7 +122,10 @@
       "why": "This output defines the substation footprint, which the municipal site plan has to accommodate. Getting it before the development permit is drawn saves a redesign.",
       "sourceTier": "primary",
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
-      "startLabel": "AESO — connecting to the grid"
+      "startLabel": "AESO — connecting to the grid",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "id": "aeso-agreement",
@@ -132,7 +146,10 @@
       ],
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
       "startLabel": "AESO — connecting to the grid",
-      "sourceTier": "unverified"
+      "sourceTier": "unverified",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "id": "tfo-build",
@@ -149,7 +166,10 @@
       "sourceTier": "primary",
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
       "startLabel": "AESO — connecting to the grid",
-      "why": "Two things gate this, not one: the AUC permit for the facility and the proponent’s executed commitment to AESO. Either one outstanding stops the build, which is why both arrows converge here."
+      "why": "Two things gate this, not one: the AUC permit for the facility and the proponent’s executed commitment to AESO. Either one outstanding stops the build, which is why both arrows converge here.",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "id": "energize",
@@ -166,7 +186,85 @@
       "why": "A finished building with no firm connection is a stranded asset. Tying occupancy — not construction — to evidence of energization is enforceable and within municipal jurisdiction.",
       "sourceTier": "primary",
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
-      "startLabel": "AESO — connecting to the grid"
+      "startLabel": "AESO — connecting to the grid",
+      "variants": [
+        "grid"
+      ]
+    },
+    {
+      "id": "supply-concept",
+      "lane": "grid",
+      "phase": "p1",
+      "title": "Islanded supply concept",
+      "authority": "Proponent",
+      "what": "Settle how the site will be powered with no transmission connection: plant size and redundancy, the fuel supply and how firm it is, and whether a connection to the AESO system is intended in any later phase.",
+      "startNow": true,
+      "critical": true,
+      "why": "The entire difference between the two routes is decided here, and it is decided by the applicant rather than by you. Get it in writing at pre-application: \"off-grid\" in a submission sometimes means \"off-grid for phase one\", and a project that intends to connect later is a grid project on a delay and should be assessed as one.",
+      "watch": "Any standby, backup or import arrangement is a connection. A site that can draw from the system at all, however rarely, is not islanded and the AESO steps come back.",
+      "startLink": "https://www.alberta.ca/build-your-ai-data-centre-in-alberta",
+      "startLabel": "Alberta — build your AI data centre",
+      "sourceTier": "unverified",
+      "variants": [
+        "offgrid"
+      ]
+    },
+    {
+      "id": "fuel-supply",
+      "lane": "grid",
+      "phase": "p2",
+      "title": "Fuel supply & pipeline",
+      "authority": "Alberta Energy Regulator",
+      "what": "Where the plant burns natural gas, the line that feeds it is a pipeline licensed by the AER, and both the licence and firm supply have to be in place before the plant can run.",
+      "dependsOn": [
+        "supply-concept"
+      ],
+      "critical": true,
+      "why": "This is the off-grid project’s long pole — the item that replaces the transmission connection and cannot be shortened by wanting it sooner. Ask whether the pipeline licence and a firm supply contract exist, not whether gas is \"available in the area\".",
+      "watch": "Which approvals a particular line needs depends on its size, pressure and route. Confirm the requirement with the AER rather than from this diagram.",
+      "startLink": "https://www.aer.ca/",
+      "startLabel": "Alberta Energy Regulator",
+      "sourceTier": "unverified",
+      "variants": [
+        "offgrid"
+      ]
+    },
+    {
+      "id": "plant-build",
+      "lane": "grid",
+      "phase": "p4",
+      "title": "Plant & substation construction",
+      "authority": "Proponent",
+      "what": "The generating units, the on-site substation and the wires between them are built under the Commission’s approvals.",
+      "dependsOn": [
+        "auc-gen-approval",
+        "auc-decision",
+        "fuel-supply"
+      ],
+      "critical": true,
+      "why": "Three separate things gate this and none of them is the grid: the power plant approval, the substation permit, and a fuel supply that is actually contracted.",
+      "sourceTier": "unverified",
+      "variants": [
+        "offgrid"
+      ]
+    },
+    {
+      "id": "plant-commission",
+      "lane": "grid",
+      "phase": "p5",
+      "title": "Plant commissioning",
+      "authority": "Proponent + AUC",
+      "what": "The plant is commissioned and the site has power.",
+      "dependsOn": [
+        "plant-build"
+      ],
+      "critical": true,
+      "blocksOccupancy": true,
+      "why": "The occupancy test is the same as on the grid route — evidence that firm power exists — but the evidence is different. Here it is a commissioned plant and a contracted fuel supply, not an energized connection.",
+      "sourceTier": "unverified",
+      "variants": [
+        "offgrid"
+      ]
     },
     {
       "id": "auc-pip",
@@ -355,6 +453,7 @@
       "dependsOn": [
         "inspections",
         "energize",
+        "plant-commission",
         "muni-decision"
       ],
       "critical": true,
@@ -374,11 +473,13 @@
       "dependsOn": [
         "auc-pip"
       ],
-      "optional": true,
       "why": "This is a different application from the substation, with its own record, its own noise and emissions case, and often its own hearing. A project can win one and lose the other — as the Olds decision showed.",
       "startLink": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
       "startLabel": "AUC Rule 007",
-      "sourceTier": "primary"
+      "sourceTier": "primary",
+      "optionalIn": [
+        "grid"
+      ]
     },
     {
       "id": "auc-gen-approval",
@@ -390,14 +491,56 @@
       "dependsOn": [
         "auc-gen-file"
       ],
-      "optional": true,
       "pairedWith": [
         "muni-dp-generation"
       ],
       "why": "Approval here authorises the generating facility. It does not authorise the buildings, access, or site development around it — those remain municipal, which is why the paired municipal permit exists.",
       "startLink": "https://www.auc.ab.ca/",
       "startLabel": "Alberta Utilities Commission",
-      "sourceTier": "primary"
+      "sourceTier": "primary",
+      "optionalIn": [
+        "grid"
+      ]
+    },
+    {
+      "id": "auc-isd",
+      "lane": "auc",
+      "phase": "p2",
+      "title": "Industrial system designation",
+      "authority": "AUC",
+      "what": "An application for the Commission to designate the site as an industrial system, so that the plant, the substation and the wires between them are treated as one industrial operation rather than as a utility serving customers.",
+      "dependsOn": [
+        "auc-pip"
+      ],
+      "why": "This decides whether the electrical infrastructure on the site is yours to condition as land use or the Commission’s to regulate as a utility. Ask at pre-application which route the applicant is taking, because the answer changes who sets the conditions on the substation.",
+      "watch": "Whether a designation is required is fact-specific. AUC Rule 007 covers industrial system designations alongside power plants and substations, but confirm the current requirement with the Commission and your solicitor rather than from this diagram.",
+      "startLink": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
+      "startLabel": "AUC Rule 007",
+      "verifyPhrases": [
+        "industrial system designation"
+      ],
+      "sourceTier": "unverified",
+      "variants": [
+        "offgrid"
+      ]
+    },
+    {
+      "id": "auc-isd-order",
+      "lane": "auc",
+      "phase": "p3",
+      "title": "Designation order",
+      "authority": "AUC",
+      "what": "The Commission’s decision on the designation, and any conditions attached to it.",
+      "dependsOn": [
+        "auc-isd"
+      ],
+      "why": "Read it alongside the power plant approval. Between them they fix what the Commission has taken responsibility for, and everything they do not cover is still yours.",
+      "startLink": "https://www.auc.ab.ca/",
+      "startLabel": "Alberta Utilities Commission",
+      "sourceTier": "unverified",
+      "variants": [
+        "offgrid"
+      ]
     },
     {
       "id": "muni-dp-generation",
@@ -409,7 +552,6 @@
       "dependsOn": [
         "muni-preapp"
       ],
-      "optional": true,
       "pairedWith": [
         "auc-gen-approval"
       ],
@@ -417,7 +559,10 @@
       "watch": "How a provincial approval interacts with municipal land use authority is addressed in the Municipal Government Act, and the effect is fact-specific. Confirm the current position with your solicitor before concluding what you can and cannot condition.",
       "startLink": "https://www.alberta.ca/municipal-government-act",
       "startLabel": "Municipal Government Act",
-      "sourceTier": "primary"
+      "sourceTier": "primary",
+      "optionalIn": [
+        "grid"
+      ]
     }
   ],
   "insights": [
@@ -425,19 +570,28 @@
       "icon": "alert",
       "tone": "critical",
       "title": "The grid is the critical path",
-      "text": "Every other approval can usually be obtained faster than a transmission connection. If the AESO request has not been made, the project timeline in the application is unsupported — regardless of how advanced the design is."
+      "text": "Every other approval can usually be obtained faster than a transmission connection. If the AESO request has not been made, the project timeline in the application is unsupported — regardless of how advanced the design is.",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "icon": "check",
       "tone": "neutral",
       "title": "The grid track does not stop at the study",
-      "text": "The system study is the middle of the grid path, not the end of it. What follows is the connection agreement and cost commitment, the AUC’s decision on the substation, construction by the transmission facility owner, and finally energization — which is what occupancy should be conditioned on."
+      "text": "The system study is the middle of the grid path, not the end of it. What follows is the connection agreement and cost commitment, the AUC’s decision on the substation, construction by the transmission facility owner, and finally energization — which is what occupancy should be conditioned on.",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "icon": "check",
       "tone": "good",
       "title": "Four things should start in week one",
-      "text": "The AESO request, the municipal pre-application, any water licence, and the AUC participant involvement programme are all independent of each other. Running them in sequence rather than in parallel adds months for no reason."
+      "text": "The AESO request, the municipal pre-application, any water licence, and the AUC participant involvement programme are all independent of each other. Running them in sequence rather than in parallel adds months for no reason.",
+      "variants": [
+        "grid"
+      ]
     },
     {
       "icon": "alert",
@@ -455,24 +609,79 @@
       "icon": "doc",
       "tone": "neutral",
       "title": "Occupancy is the real gate",
-      "text": "Construction can finish while the connection is still outstanding. Conditioning occupancy — rather than construction — on evidence of a firm connection is enforceable, within municipal jurisdiction, and prevents a stranded building."
+      "text": "Construction can finish while the power is still outstanding — an unfinished connection on the grid route, an uncommissioned plant or an unsecured fuel supply off it. Conditioning occupancy, rather than construction, on evidence of firm power is enforceable, within municipal jurisdiction, and prevents a stranded building."
+    },
+    {
+      "icon": "shield",
+      "tone": "warning",
+      "variants": [
+        "offgrid"
+      ],
+      "title": "Off the grid is not off the hook",
+      "text": "Taking the AESO out of the picture removes one lane and nothing else. The power plant approval stops being conditional and becomes the project’s licence to operate at all, the industrial system question appears, and every municipal and building approval is exactly as it was. What changes is the timing, not the scope."
+    },
+    {
+      "icon": "alert",
+      "tone": "critical",
+      "variants": [
+        "offgrid"
+      ],
+      "title": "The queue was doing you a favour",
+      "text": "On the grid route the connection queue paces the project, and a permit decision has years of construction runway behind it. Off-grid there is no queue. The municipal decision can become the earliest binding date on the file, so conditions and the development agreement carry weight they would not otherwise have to."
+    },
+    {
+      "icon": "question",
+      "tone": "warning",
+      "variants": [
+        "offgrid"
+      ],
+      "title": "Test the claim that a site is islanded",
+      "text": "Ask three things in writing: is there any standby, backup or import arrangement; is a connection intended in a later phase; and what serves the load when the plant is down. Any of the three can turn an off-grid project back into a grid one. Note also that the province’s computing equipment levy is tiered by whether a facility is grid-connected, which gives an applicant a reason to describe a project as off-grid — the levy detail on the rules page is media-reported rather than primary, so read it at source before relying on it."
+    },
+    {
+      "icon": "check",
+      "tone": "good",
+      "variants": [
+        "offgrid"
+      ],
+      "title": "A different week-one list",
+      "text": "Off-grid the four independent starts change: the municipal pre-application, the AUC participant involvement programme for the power plant, the fuel supply, and any water licence. The AESO request is not among them — and its absence is exactly why this route can arrive faster than a municipality expects."
     }
   ],
   "levels": [
     {
       "id": "provincial",
       "label": "Provincial",
+      "short": "Provincial",
       "note": "Decided under provincial statute. You are consulted, not deciding."
     },
     {
       "id": "municipal",
       "label": "Municipal",
+      "short": "Municipal",
       "note": "Decided by council or the development authority under the MGA."
     },
     {
       "id": "both",
       "label": "Provincial statute, municipal administration",
+      "short": "Provincial + municipal",
       "note": "Provincial rules, usually applied by an accredited municipality."
+    }
+  ],
+  "variants": [
+    {
+      "id": "grid",
+      "label": "Grid-connected",
+      "short": "Grid",
+      "intro": "A data centre needs approvals from four different authorities on four different clocks. Most can run in parallel — and must, because the grid connection is almost always the long pole. This shows the whole path, what blocks what, and where each process is actually started.",
+      "note": "Load served from the AESO transmission system through a substation built by the transmission facility owner."
+    },
+    {
+      "id": "offgrid",
+      "label": "Off-grid — on-site generation only",
+      "short": "Off-grid",
+      "intro": "The same site with no connection to the AESO system: generation on site feeds the substation, and the substation feeds the load. The whole grid lane falls away and the AESO steps with it. Nothing municipal falls away — and because the connection queue is no longer setting the pace, the municipal decision can become the earliest binding date on the file.",
+      "note": "Load served entirely by generation on the site. No system access service, no transmission connection, no queue."
     }
   ]
 }
