@@ -62,16 +62,34 @@ function chart(v) {
   }
 
   out.push('');
+
+  /* Same transitive reduction the site applies: an edge a longer chain already
+     implies is not drawn. Kept identical so the two media agree. */
+  const deps = new Map(nodes.map(n => [n.id, (n.dependsOn || []).filter(id => ids.has(id))]));
+  const ancestorOf = (target, id, seen = new Set()) => {
+    if (seen.has(target)) return false;
+    seen.add(target);
+    return (deps.get(target) || []).some(par => par === id || ancestorOf(par, id, seen));
+  };
+  const implied = (dep, n) =>
+    (deps.get(n.id) || []).some(other => other !== dep && ancestorOf(other, dep));
+
+  const drawnPairs = new Set();
   for (const n of nodes) {
     for (const dep of n.dependsOn || []) {
-      if (!ids.has(dep)) continue;
+      if (!ids.has(dep) || implied(dep, n)) continue;
       const crit = n.critical && spec.nodes.find(x => x.id === dep)?.critical;
       out.push(`  ${mid(dep)} ${crit ? '==>' : '-->'} ${mid(n.id)}`);
     }
     // Paired approvals: both required, neither authorising the other, so the
-    // link carries no arrowhead and no direction.
+    // link carries no arrowhead and no direction. Pairing is recorded on both
+    // sides, so de-duplicate on the pair rather than drawing it twice.
     for (const pid of n.pairedWith || []) {
-      if (ids.has(pid)) out.push(`  ${mid(n.id)} <-.-> |both required| ${mid(pid)}`);
+      if (!ids.has(pid)) continue;
+      const key = [n.id, pid].sort().join('~');
+      if (drawnPairs.has(key)) continue;
+      drawnPairs.add(key);
+      out.push(`  ${mid(n.id)} <-.-> |both required| ${mid(pid)}`);
     }
     // A parallel requirement of the same decision: no sequence between them.
     for (const pid of n.parallelTo || []) {

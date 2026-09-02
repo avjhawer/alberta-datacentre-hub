@@ -94,21 +94,17 @@ flowchart LR
   muni_dp ==> muni_decision
   muni_decision ==> sdab_appeal
   muni_decision -.- |required alongside| muni_security
-  muni_decision --> muni_grading
   sdab_appeal --> muni_grading
   muni_security --> muni_grading
-  muni_decision ==> building_permit
   sdab_appeal ==> building_permit
   muni_security ==> building_permit
   building_permit ==> inspections
   inspections ==> occupancy
   energize ==> occupancy
-  muni_decision ==> occupancy
   auc_pip --> auc_gen_file
   auc_gen_file --> auc_gen_approval
   auc_gen_approval <-.-> |both required| muni_dp_generation
   muni_preapp --> muni_dp_generation
-  muni_dp_generation <-.-> |both required| auc_gen_approval
   occupancy --> eol_management
   eol_management --> reclamation
   muni_decision -.-> |standard set here| reclamation
@@ -183,23 +179,19 @@ flowchart LR
   muni_dp ==> muni_decision
   muni_decision ==> sdab_appeal
   muni_decision -.- |required alongside| muni_security
-  muni_decision --> muni_grading
   sdab_appeal --> muni_grading
   muni_security --> muni_grading
-  muni_decision ==> building_permit
   sdab_appeal ==> building_permit
   muni_security ==> building_permit
   building_permit ==> inspections
   inspections ==> occupancy
   plant_commission ==> occupancy
-  muni_decision ==> occupancy
   auc_pip --> auc_gen_file
   auc_gen_file --> auc_gen_approval
   auc_gen_approval <-.-> |both required| muni_dp_generation
   auc_pip --> auc_isd
   auc_isd --> auc_isd_order
   muni_preapp --> muni_dp_generation
-  muni_dp_generation <-.-> |both required| auc_gen_approval
   occupancy --> eol_management
   eol_management --> reclamation
   muni_decision -.-> |standard set here| reclamation
