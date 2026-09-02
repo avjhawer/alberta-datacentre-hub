@@ -47,6 +47,31 @@
 
   /* ---------------------------------------------------------------- render */
 
+  /* Paired approvals used to be joined by a dashed line. Across a five-lane
+     grid that line has to cross whatever lies between, and on paper it was the
+     single hardest thing on the sheet to follow — it looked like it joined the
+     cards it passed over. A pair carries no sequence, so it does not need a
+     line at all: a shared letter on both cards says the same thing and can be
+     read without tracing anything. */
+  let pairLetters = new Map();
+  function assignPairs() {
+    pairLetters = new Map();
+    const seen = new Set();
+    let next = 0;
+    for (const n of routeNodes()) {
+      for (const pid of n.pairedWith || []) {
+        const other = node(pid);
+        if (!other || !inRoute(other)) continue;
+        const key = [n.id, pid].sort().join('~');
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const letter = String.fromCharCode(65 + next++);
+        pairLetters.set(n.id, letter);
+        pairLetters.set(pid, letter);
+      }
+    }
+  }
+
   function nodeCard(n) {
     const dim = showCriticalOnly && !n.critical;
     return `
@@ -61,6 +86,8 @@
           ${isOptional(n) ? '<span class="ap-tag ap-tag-opt">If required</span>' : ''}
           ${isRequiredHere(n) ? '<span class="ap-tag ap-tag-req">Required on this route</span>' : ''}
           ${n.blocksOccupancy ? '<span class="ap-tag ap-tag-block">Blocks occupancy</span>' : ''}
+          ${pairLetters.has(n.id)
+            ? `<span class="ap-tag ap-tag-pair">Pair ${esc(pairLetters.get(n.id))}</span>` : ''}
         </span>
       </button>`;
   }
@@ -92,6 +119,7 @@
   }
 
   function render() {
+    assignPairs();
     root.innerHTML = `
       <div class="ap-head">
         <div>
@@ -121,7 +149,7 @@
         <span role="listitem"><i class="ap-key ap-key-start"></i>Start in week one</span>
         <span role="listitem"><i class="ap-key ap-key-arrow"></i>Must finish before</span>
         <span role="listitem"><i class="ap-key ap-key-parallel"></i>Same column runs concurrently</span>
-        <span role="listitem"><i class="ap-key ap-key-pair"></i>Both required — neither authorises the other</span>
+        <span role="listitem"><i class="ap-key ap-key-pair">A</i>Same letter: both required, neither authorises the other</span>
       </div>
 
       <div class="ap-scroll">
@@ -235,32 +263,40 @@
         </marker>
       </defs>`];
 
-    // Paired approvals first, so sequence arrows draw over them. Pairing may be
-    // recorded on either side or both, so de-duplicate on the pair itself
-    // rather than on id order — otherwise a one-sided pair is never drawn.
-    const drawnPairs = new Set();
-    for (const n of spec.nodes) {
-      for (const pid of n.pairedWith || []) {
-        const key = [n.id, pid].sort().join('~');
-        if (drawnPairs.has(key)) continue;
-        drawnPairs.add(key);
-        const a = document.getElementById(`apn-${n.id}`);
-        const b = document.getElementById(`apn-${pid}`);
-        if (!a || !b) continue;
-        const dim = showCriticalOnly;
-        parts.push(`<path class="ap-pair ${dim ? 'is-dim' : ''}"
-                      d="${path(a.getBoundingClientRect(), b.getBoundingClientRect(), box)}"/>`);
+    /* Transitive reduction. An edge that a longer chain already implies adds
+       ink and no information — and the one such edge here (the development
+       permit decision straight to occupancy, which the building permit and
+       inspections already carry) was also the only connector on the sheet that
+       ran across cards it did not join. The drawer still lists every
+       dependency; only the redundant *line* is dropped. */
+    const deps = new Map(routeNodes().map(n =>
+      [n.id, (n.dependsOn || []).filter(id => inRoute(node(id) || {}))]));
+    /* deps maps a node to what must finish before it, so walk backwards: is
+       `dep` an ancestor of `n` through some *other* parent of `n`? */
+    const ancestorOf = (target, id, seen = new Set()) => {
+      if (seen.has(target)) return false;
+      seen.add(target);
+      for (const parent of deps.get(target) || []) {
+        if (parent === id || ancestorOf(parent, id, seen)) return true;
       }
-    }
+      return false;
+    };
+    const implied = (depId, n) =>
+      (deps.get(n.id) || []).some(other => other !== depId && ancestorOf(other, depId));
 
-    for (const n of spec.nodes) {
+    // Only sequence is drawn as a line. Pairing is a letter on both cards —
+    // see assignPairs.
+    for (const n of routeNodes()) {
       for (const depId of n.dependsOn || []) {
+        if (!inRoute(node(depId) || {})) continue;
+        if (implied(depId, n)) continue;
         const from = document.getElementById(`apn-${depId}`);
         const to = document.getElementById(`apn-${n.id}`);
         if (!from || !to) continue;
         const crit = n.critical && node(depId)?.critical;
         const dim = showCriticalOnly && !crit;
         parts.push(`<path class="ap-wire ${crit ? 'is-critical' : ''} ${dim ? 'is-dim' : ''}"
+                      data-from="${esc(depId)}" data-to="${esc(n.id)}"
                       d="${path(from.getBoundingClientRect(), to.getBoundingClientRect(), box)}"
                       marker-end="url(#${crit ? 'ap-arrow-crit' : 'ap-arrow'})"/>`);
       }

@@ -68,7 +68,10 @@ console.log('\n— the power plant chain and its municipal side —');
 ok(await page.$('#apn-auc-gen-file')!==null,'AUC power plant application is on the diagram');
 ok(await page.$('#apn-auc-gen-approval')!==null,'and its approval');
 ok(await page.$('#apn-muni-dp-generation')!==null,'the municipal permit for the generation facility is shown');
-ok((await page.$$('.ap-pair')).length===2,'paired approvals are linked (substation and power plant)');
+const pairTags=await page.$$eval('.ap-tag-pair',e=>e.map(x=>x.textContent.trim()));
+ok(pairTags.length===4,`paired approvals are marked on both cards (${pairTags.length} chips)`);
+ok(new Set(pairTags).size===2,`two pairs, each sharing a letter: ${[...new Set(pairTags)].join(' / ')}`);
+ok((await page.$$('.ap-pair')).length===0,'and no line is drawn for them — a pair has no sequence');
 await page.click('#apn-muni-dp-generation'); await page.waitForTimeout(400);
 const gen=await page.textContent('#ap-drawer');
 ok(/Both of these are required/i.test(gen),'the drawer states both approvals are required');
@@ -155,7 +158,53 @@ const fit=await pr.evaluate(()=>{
 ok(fit.bottom<=980,`the matrix fits one tabloid page (${fit.bottom}px of 980)`);
 ok(fit.width<=1556,`and its width (${fit.width}px of 1556)`);
 const wiresPrint=await pr.$$eval('.ap-wire',e=>e.map(x=>x.getAttribute('d')));
-ok(wiresPrint.every(d=>d&&/^M [\d.]+ [\d.]+ C/.test(d)),'connectors are redrawn against the print layout');
+ok(wiresPrint.every(d=>d&&/^M [\d.]+ [\d.]+ C/.test(d)),'every connector has real path geometry');
+
+// The bug this catches: the sheet used to shrink its type inside `@media
+// print`. The grid re-laid out, the SVG did not, and the PDF came out with
+// arrowheads in empty cells. The sheet is now a fixed artboard, so screen and
+// paper must measure identically.
+const geom=p=>p.evaluate(()=>{
+  const g=document.querySelector('.ap-grid').getBoundingClientRect();
+  const rel=el=>{const r=el.getBoundingClientRect();
+    return [Math.round(r.left-g.left),Math.round(r.top-g.top),
+            Math.round(r.right-g.left),Math.round(r.bottom-g.top)];};
+  return JSON.stringify({w:Math.round(g.width),h:Math.round(g.height),
+    n:[...document.querySelectorAll('.ap-node')].map(e=>[e.id,rel(e)])});
+});
+const onScreen=await geom(pr);
+await pr.emulateMedia({media:'print'});
+await pr.waitForTimeout(600);
+ok(await geom(pr)===onScreen,'the sheet lays out identically on screen and on paper');
+
+// Endpoints must touch the cards they claim to join, and nothing may run
+// across a card it does not join — that is what makes a flow chart traceable.
+const routing=await pr.evaluate(()=>{
+  const g=document.querySelector('.ap-grid').getBoundingClientRect();
+  const nodes=[...document.querySelectorAll('.ap-node')].map(el=>{
+    const r=el.getBoundingClientRect();
+    return {id:el.id.replace('apn-',''),l:r.left-g.left,t:r.top-g.top,
+            r:r.right-g.left,b:r.bottom-g.top};});
+  const bez=(P,t)=>{const u=1-t,a=u*u*u,b=3*u*u*t,c=3*u*t*t,d=t*t*t;
+    return [a*P[0][0]+b*P[1][0]+c*P[2][0]+d*P[3][0],
+            a*P[0][1]+b*P[1][1]+c*P[2][1]+d*P[3][1]];};
+  let orphan=0, crossing=0;
+  for (const el of document.querySelectorAll('.ap-wire')) {
+    const n=el.getAttribute('d').match(/-?[\d.]+/g).map(Number);
+    const P=[[n[0],n[1]],[n[2],n[3]],[n[4],n[5]],[n[6],n[7]]];
+    const ends=[el.dataset.from,el.dataset.to];
+    const on=(p,nd,tol=3)=>p[0]>=nd.l-tol&&p[0]<=nd.r+tol&&p[1]>=nd.t-tol&&p[1]<=nd.b+tol;
+    if (!nodes.some(nd=>on(P[0],nd))||!nodes.some(nd=>on(P[3],nd))) orphan++;
+    for (let i=1;i<40;i++){
+      const [x,y]=bez(P,i/40);
+      if (nodes.some(nd=>!ends.includes(nd.id)&&x>nd.l+2&&x<nd.r-2&&y>nd.t+2&&y<nd.b-2))
+        { crossing++; break; }
+    }
+  }
+  return {orphan,crossing,count:document.querySelectorAll('.ap-wire').length};
+});
+ok(routing.orphan===0,`every connector touches both cards it joins (${routing.count} connectors)`);
+ok(routing.crossing===0,'and none runs across a card it does not join');
 await pr.close();
 
 console.log('\n— supporting information —');

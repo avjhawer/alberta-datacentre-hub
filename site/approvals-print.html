@@ -11,28 +11,46 @@
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
 <style>
-/* A sheet, not a page of the site. Tabloid landscape is the smallest paper the
-   five-by-five grid fits on without shrinking the type below reading size. */
+/* =============================================================================
+   A FIXED ARTBOARD, NOT A RESPONSIVE PAGE.
+
+   The connectors are computed from where the browser actually put the cards.
+   That is what makes them true — and it is also why this page must not reflow
+   between the screen and the paper. The first version of this sheet shrank the
+   type inside `@media print`; the grid re-laid out, the arrows did not, and the
+   PDF came out with arrowheads pointing into empty cells.
+
+   So the sheet is sized once, in pixels, to the printable area of the paper,
+   and `@media print` changes nothing that has a size. What you see is what
+   prints, because it is the same layout.
+
+   1530px maps onto the 16.2in printable width of 17x11in at 10mm margins, so
+   1px on screen is 0.76pt on paper: an 11px card title prints at about 8.4pt.
+   ========================================================================== */
+
 @page { size: 17in 11in; margin: 10mm; }   /* tabloid, landscape */
 
+:root { --sheet-w: 1530px; }
+
+.sheet-wrap { overflow-x: auto; }          /* only the viewport scrolls */
 .sheet {
-  max-width: 1600px;
+  width: var(--sheet-w);
   margin: 0 auto;
-  padding: var(--s-5) var(--s-5) var(--s-6);
+  padding: 0 0 var(--s-4);
   background: var(--surface);
 }
 .sheet-bar {
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--s-3); flex-wrap: wrap;
-  margin-bottom: var(--s-4); padding-bottom: var(--s-3);
+  margin-bottom: var(--s-4); padding: var(--s-3) 0;
   border-bottom: 1px solid var(--border);
 }
-.sheet-bar p { margin: 0; color: var(--ink-secondary); font-size: var(--t-small); max-width: 68ch; }
+.sheet-bar p { margin: 0; color: var(--ink-secondary); font-size: var(--t-small); max-width: 80ch; }
 .sheet-foot {
-  margin-top: var(--s-5); padding-top: var(--s-3);
+  margin-top: var(--s-4); padding-top: var(--s-3);
   border-top: 1px solid var(--border);
-  color: var(--ink-muted); font-size: var(--t-micro);
-  display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap;
+  color: var(--ink-muted); font-size: 9px;
+  display: flex; justify-content: space-between; gap: var(--s-3);
 }
 
 /* A printed sheet is a fixed artefact, so it commits to the light palette in
@@ -43,56 +61,65 @@ body { background: var(--page); }
 /* Already on the print sheet — the link would only reopen it. */
 #ap-print { display: none; }
 
-/* Printing is a different problem from reading on screen: the matrix must not
-   split across sheets, so on paper the whole thing is compressed to fit one
-   tabloid page and the commentary moves to a second. Nothing is dropped —
-   every lane note, tag and caption still prints, just smaller. */
+/* --- the artboard scale, applied on screen and on paper alike -------------- */
+.sheet .ap-scroll { overflow: visible; }
+.sheet .ap-grid { min-width: 0; gap: 11px; }
+
+.sheet .ap-head { margin-bottom: 4px; }
+.sheet .ap-title { font-size: 21px; margin-bottom: 2px; }
+.sheet .ap-intro { font-size: 10.5px; line-height: 1.4; max-width: 1120px; }
+.sheet .ap-route-note { font-size: 8.5px; margin: 2px 0 5px; max-width: 1120px; }
+.sheet .ap-legend { font-size: 9px; gap: 12px; margin: 0 0 6px; padding: 4px 0; }
+
+.sheet .ap-phase { padding: 4px 6px; }
+.sheet .ap-phase-label { font-size: 7px; }
+.sheet .ap-phase-name { font-size: 13px; }
+.sheet .ap-phase-sub { font-size: 7px; }
+
+.sheet .ap-lane-head { padding: 5px 6px; gap: 1px; }
+.sheet .ap-lane-label { font-size: 13px; }
+.sheet .ap-lane-level, .sheet .ap-lane-body { font-size: 7.5px; }
+.sheet .ap-lane-note { font-size: 7.5px; line-height: 1.3; margin-top: 2px; }
+.sheet .ap-level-text { font-size: 7px; }
+
+.sheet .ap-cell { padding: 5px; gap: 6px; }
+.sheet .ap-node { padding: 6px 8px; gap: 1px; box-shadow: none; }
+.sheet .ap-node:hover { transform: none; box-shadow: none; }
+.sheet .ap-node-authority { font-size: 8px; }
+.sheet .ap-node-title { font-size: 11.5px; line-height: 1.22; }
+.sheet .ap-tag { font-size: 7.5px; padding: 1px 4px; }
+.sheet .ap-node-badges { gap: 2px; margin-top: 1px; }
+
+/* Thicker than on screen: a 1.6px hairline survives a screen and disappears
+   into a laser printer's dithering. */
+.sheet .ap-wire { stroke-width: 2.2; opacity: .8; }
+.sheet .ap-wire.is-critical { stroke-width: 3; opacity: 1; }
+.sheet .ap-pair { stroke-width: 2; }
+
+.sheet .ap-insights { grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+.sheet .ap-insight-text { font-size: 10.5px; line-height: 1.5; }
+.sheet .ap-insight-title { font-size: 12px; }
+.sheet .ap-caution { font-size: 9px; margin-top: var(--s-3); }
+
+/* --- print: hide the toolbar and break the page. Nothing that has a size. --- */
 @media print {
   .sheet-bar, .no-print { display: none !important; }
-  .sheet { max-width: none; padding: 0; }
-  .ap-scroll { overflow: visible !important; }
-  .ap-grid { min-width: 0 !important; gap: 7px; }
-
-  .ap-title { font-size: 21px; margin-bottom: 2px; }
-  .ap-intro { font-size: 10.5px; line-height: 1.4; max-width: 120ch; }
-  .ap-route-note { font-size: 8.5px; margin: 2px 0 5px; max-width: 120ch; }
-  .ap-legend { font-size: 9px; gap: 12px; margin: 0 0 6px; padding: 4px 0; }
-  .ap-head { margin-bottom: 4px; }
-
-  .ap-phase { padding: 4px 6px; }
-  .ap-phase-label { font-size: 7px; }
-  .ap-phase-name { font-size: 13px; }
-  .ap-phase-sub { font-size: 7px; }
-
-  .ap-lane-head { padding: 5px 6px; gap: 1px; }
-  .ap-lane-label { font-size: 13px; }
-  .ap-lane-level, .ap-lane-body { font-size: 7.5px; }
-  .ap-lane-note { font-size: 7.5px; line-height: 1.3; margin-top: 2px; }
-
-  .ap-cell { padding: 5px; gap: 6px; }
-  .ap-node { padding: 6px 8px; gap: 1px; box-shadow: none; }
-  .ap-node-authority { font-size: 7.5px; }
-  .ap-node-title { font-size: 11px; line-height: 1.2; }
-  .ap-tag { font-size: 7px; padding: 1px 4px; }
-  .ap-node-badges { gap: 2px; margin-top: 1px; }
-
-  .ap-level-text { font-size: 7px; }
-
-  /* Sheet two: the notes that the boxes cannot carry. */
-  .ap-insights {
-    break-before: page; grid-template-columns: repeat(3, 1fr); gap: var(--s-3);
-  }
+  .sheet-wrap { overflow: visible; }
+  /* Sheet two: the notes the boxes cannot carry. */
+  .ap-insights { break-before: page; }
   .ap-insight, .ap-caution, .sheet-foot { break-inside: avoid; }
 }
 </style>
 </head>
 <body data-page="print">
+<div class="sheet-wrap">
 <div class="sheet">
 
   <div class="sheet-bar">
-    <p><strong>Print sheet.</strong> Set paper to <strong>11&nbsp;×&nbsp;17 (tabloid), landscape</strong>
-       and scale to fit. Switch route below before printing — the sheet prints
-       whichever one is on screen.</p>
+    <p><strong>Print sheet.</strong> Paper <strong>11&nbsp;×&nbsp;17 (tabloid), landscape</strong>,
+       scale <strong>100%</strong> — the page size is set in this file, so do not scale to fit.
+       Turn <strong>background graphics on</strong>. Switch route below before printing:
+       the sheet prints whichever one is on screen.</p>
     <button class="btn btn-primary" id="do-print">Print</button>
   </div>
 
@@ -103,6 +130,7 @@ body { background: var(--page); }
     <span id="printed-on"></span>
   </div>
 
+</div>
 </div>
 
 <div class="sq-scrim" id="ap-scrim" hidden></div>

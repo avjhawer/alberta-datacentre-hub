@@ -1742,6 +1742,11 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   border-left:6px solid var(--ink-muted); border-top:4px solid transparent;
   border-bottom:4px solid transparent;
 }
+.ap-key-pair {
+  width:auto; height:auto; padding:0 5px; border-radius:4px;
+  background:var(--status-warning-bg); color:var(--status-warning);
+  font-size:var(--t-micro); font-weight:800; font-style:normal; line-height:1.5;
+}
 .ap-key-parallel {
   height:14px; width:14px; border-radius:3px; background:none;
   border:2px dashed var(--border-strong);
@@ -1898,6 +1903,10 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   margin:calc(var(--s-2) * -1) 0 var(--s-3); color:var(--ink-muted); max-width:80ch;
 }
 .ap-tag-req { background:var(--accent-wash); color:var(--accent); }
+/* A pair is marked, not drawn. Two cards carrying the same letter are both
+   required and neither authorises the other; there is no sequence between them,
+   so there is nothing for an arrow to say. */
+.ap-tag-pair { background:var(--status-warning-bg); color:var(--status-warning); font-weight:800; }
 
 @media print {
   /* The arrows are the diagram. Only the controls come out. */
@@ -1964,10 +1973,6 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   stroke-dasharray:2 5; stroke-linecap:round; opacity:.85;
 }
 .ap-pair.is-dim { opacity:.12; }
-.ap-key-pair {
-  background:none; height:0;
-  border-top:2px dashed var(--status-serious);
-}
 .ap-pair-note {
   margin:0 0 var(--s-2) !important; font-size:var(--t-small);
   color:var(--ink-muted) !important;

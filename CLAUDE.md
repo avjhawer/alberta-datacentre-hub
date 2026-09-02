@@ -81,8 +81,24 @@ rots and the owner can edit content without a toolchain.
   this" per route, because on-site generation is conditional on the grid and
   unavoidable off it. `approvals-print.html` renders one route on its own,
   compressed so the matrix fits a single 11x17 landscape sheet with the notes on
-  a second. Check that with `scratch/ap-test.mjs`, which measures it, rather than
-  by eye.
+  a second.
+
+  **The print sheet is a fixed artboard and must stay one.** It is sized once,
+  in pixels, to the printable area of the paper, and its `@media print` block
+  changes nothing that has a size. This is not stylistic: the connectors are
+  computed from where the browser actually put the cards, so if a print
+  stylesheet re-lays out the grid the SVG is left drawing the old geometry and
+  the PDF comes out with arrowheads in empty cells. That shipped once. Do not
+  put a font size, padding or gap inside `@media print` on that page, and check
+  a rendered PDF rather than a screenshot with print media emulated — the two
+  are not the same thing, which is how it got through.
+
+  Two further rules keep the diagram traceable, both enforced by
+  `scratch/ap-test.mjs` rather than by eye: dependency lines are **transitively
+  reduced**, so an arrow a longer chain already implies is not drawn (the drawer
+  still lists every dependency); and **paired approvals are marked with a shared
+  letter, not a line**, because a pair carries no sequence and a line across five
+  lanes reads as a link to whatever it passes over.
 - `checklist.js` is the DP review tool: multiple reviews (create, rename,
   duplicate, delete with undo), a parameter form, live findings per area, and
   eight accordions. Reviews live in `localStorage` under `adch.reviews.v2`;

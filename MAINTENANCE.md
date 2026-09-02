@@ -145,6 +145,11 @@ PDF" or print. It comes out as two sheets: the matrix on the first, the notes on
 the second. The page is sized in the stylesheet, so "scale to fit" is not
 needed — leave scaling at 100%.
 
+Reading it: an **arrow** means the first thing must finish before the second can
+start. Two cards in the **same column** run at the same time. Two cards carrying
+the **same pair letter** are both required, and neither one authorises the
+other. Red marks the critical path.
+
 ### Where new sources come from
 
 1. **Child pages of trusted domains — fully automatic.** Pages marked
