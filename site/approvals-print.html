@@ -63,7 +63,7 @@ body { background: var(--page); }
 
 /* --- the artboard scale, applied on screen and on paper alike -------------- */
 .sheet .ap-scroll { overflow: visible; }
-.sheet .ap-grid { min-width: 0; gap: 11px; }
+.sheet .ap-grid { min-width: 0; gap: 10px; }
 
 .sheet .ap-head { margin-bottom: 4px; }
 .sheet .ap-title { font-size: 21px; margin-bottom: 2px; }
@@ -83,6 +83,9 @@ body { background: var(--page); }
 .sheet .ap-level-text { font-size: 7px; }
 
 .sheet .ap-cell { padding: 5px; gap: 6px; }
+/* A cell whose two cards have a dependency between them needs room for the
+   arrow; at 6px it printed as a stub with a head wider than the line. */
+.sheet .ap-cell.is-linked { gap: 24px; }
 .sheet .ap-node { padding: 6px 8px; gap: 1px; box-shadow: none; }
 .sheet .ap-node:hover { transform: none; box-shadow: none; }
 .sheet .ap-node-authority { font-size: 8px; }

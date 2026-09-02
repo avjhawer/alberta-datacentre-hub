@@ -179,7 +179,13 @@
             </div>
             ${spec.phases.map((p, pi) => {
               const ns = routeNodes().filter(n => n.lane === raw.id && n.phase === p.id);
-              return `<div class="ap-cell ap-hue-${esc(l.hue)}"
+              /* Two cards stacked in one cell with a dependency between them get
+                 a wider gap. The default 8px is not enough room to draw an arrow
+                 in: the building permit to inspections link came out as a red
+                 stub with a head bigger than the line. */
+              const linked = ns.some((x, i) => ns.slice(i + 1).some(y =>
+                (y.dependsOn || []).includes(x.id) || (x.dependsOn || []).includes(y.id)));
+              return `<div class="ap-cell ${linked ? 'is-linked' : ''} ap-hue-${esc(l.hue)}"
                            style="grid-row:${li + 2};grid-column:${pi + 3}">${ns.map(nodeCard).join('')}</div>`;
             }).join('')}`;
           }).join('')}
@@ -224,13 +230,17 @@
   /* Two routings, because one shape cannot serve both cases honestly.
      Left-to-right when the dependency crosses phases; top-to-bottom when both
      sit in the same phase column, which otherwise drags a long diagonal across
-     every lane between them. */
-  function path(a, b, box) {
-    const sameColumn = Math.abs((a.left + a.width / 2) - (b.left + b.width / 2)) < a.width * 0.6;
+     every lane between them.
 
-    if (sameColumn) {
-      const x1 = a.left + a.width / 2 - box.left;
-      const x2 = b.left + b.width / 2 - box.left;
+     `anchors` carries where on each card's edge this particular line should
+     attach — see spreadAnchors. Everything lands on a midpoint when a card has
+     only one line on that side. */
+  function path(a, b, box, vertical, anchors) {
+    const { from, to } = anchors;
+
+    if (vertical) {
+      const x1 = a.left + a.width * from - box.left;
+      const x2 = b.left + b.width * to - box.left;
       const goingDown = b.top > a.top;
       const y1 = (goingDown ? a.bottom : a.top) - box.top;
       const y2 = (goingDown ? b.top : b.bottom) - box.top;
@@ -239,13 +249,51 @@
              `${x2} ${y2 - (goingDown ? dy : -dy)}, ${x2} ${y2}`;
     }
 
-    const x1 = a.right - box.left, y1 = a.top + a.height / 2 - box.top;
-    const x2 = b.left - box.left,  y2 = b.top + b.height / 2 - box.top;
+    const x1 = a.right - box.left, y1 = a.top + a.height * from - box.top;
+    const x2 = b.left - box.left,  y2 = b.top + b.height * to - box.top;
     /* Bounded both ways. A flat 18px minimum bulged the short hops between
        adjacent columns into an S in a 21px gutter; an unbounded 45% swung the
        long ones wide. */
     const dx = Math.min(60, Math.max(7, (x2 - x1) * 0.4));
     return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+  }
+
+  /* Where several lines meet the same card edge, share it out along that edge
+     instead of stacking them all on the midpoint. Two arrows ending on the same
+     point drew two heads at different angles on top of each other, which read as
+     one lumpy broken arrow — the substation construction card had exactly that,
+     with the connection agreement and the AUC permit both landing on it.
+
+     Ordered by the far end's position so the lines do not cross each other on
+     the way in, and capped so nothing creeps into a rounded corner. */
+  function spreadAnchors(edges) {
+    const share = (keyOf, along, field) => {
+      const groups = new Map();
+      for (const e of edges) {
+        const k = keyOf(e);
+        if (k == null) continue;
+        (groups.get(k) || groups.set(k, []).get(k)).push(e);
+      }
+      for (const list of groups.values()) {
+        list.sort((p, q) => along(p) - along(q));
+        const n = list.length;
+        list.forEach((e, i) => {
+          const span = field === 'from' ? (e.vertical ? e.a.width : e.a.height)
+                                        : (e.vertical ? e.b.width : e.b.height);
+          const frac = n > 1 ? (i + 1) / (n + 1) : 0.5;
+          const offset = Math.max(-14, Math.min(14, (frac - 0.5) * span));
+          e.anchors[field] = 0.5 + offset / span;
+        });
+      }
+    };
+    for (const e of edges) e.anchors = { from: 0.5, to: 0.5 };
+    // Horizontal lines attach to vertical edges, so they share out along y and
+    // are ordered by the other card's y; vertical lines are the transpose.
+    share(e => (e.vertical ? null : `h-in:${e.toId}`),    e => e.a.top,   'to');
+    share(e => (e.vertical ? null : `h-out:${e.fromId}`), e => e.b.top,   'from');
+    share(e => (e.vertical ? `v-in:${e.toId}` : null),    e => e.a.left,  'to');
+    share(e => (e.vertical ? `v-out:${e.fromId}` : null), e => e.b.left,  'from');
+    return edges;
   }
 
   function drawWires() {
@@ -296,6 +344,7 @@
 
     // Only sequence is drawn as a line. Pairing is a letter on both cards —
     // see assignPairs.
+    const edges = [];
     for (const n of routeNodes()) {
       for (const depId of n.dependsOn || []) {
         if (!inRoute(node(depId) || {})) continue;
@@ -303,13 +352,21 @@
         const from = document.getElementById(`apn-${depId}`);
         const to = document.getElementById(`apn-${n.id}`);
         if (!from || !to) continue;
-        const crit = n.critical && node(depId)?.critical;
-        const dim = showCriticalOnly && !crit;
-        parts.push(`<path class="ap-wire ${crit ? 'is-critical' : ''} ${dim ? 'is-dim' : ''}"
-                      data-from="${esc(depId)}" data-to="${esc(n.id)}"
-                      d="${path(from.getBoundingClientRect(), to.getBoundingClientRect(), box)}"
-                      marker-end="url(#${crit ? 'ap-arrow-crit' : 'ap-arrow'})"/>`);
+        const a = from.getBoundingClientRect(), b = to.getBoundingClientRect();
+        edges.push({
+          fromId: depId, toId: n.id, a, b,
+          vertical: Math.abs((a.left + a.width / 2) - (b.left + b.width / 2)) < a.width * 0.6,
+          crit: !!(n.critical && node(depId)?.critical),
+        });
       }
+    }
+
+    for (const e of spreadAnchors(edges)) {
+      const dim = showCriticalOnly && !e.crit;
+      parts.push(`<path class="ap-wire ${e.crit ? 'is-critical' : ''} ${dim ? 'is-dim' : ''}"
+                    data-from="${esc(e.fromId)}" data-to="${esc(e.toId)}"
+                    d="${path(e.a, e.b, box, e.vertical, e.anchors)}"
+                    marker-end="url(#${e.crit ? 'ap-arrow-crit' : 'ap-arrow'})"/>`);
     }
     svg.innerHTML = parts.join('');
   }

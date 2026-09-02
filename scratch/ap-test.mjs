@@ -206,6 +206,21 @@ const routing=await pr.evaluate(()=>{
 });
 ok(routing.orphan===0,`every connector touches both cards it joins (${routing.count} connectors)`);
 ok(routing.crossing===0,'and none runs across a card it does not join');
+
+// Two arrows that ended on the same point drew two heads at different angles
+// on top of each other, and a connector shorter than its own head printed as a
+// stub. Both were only visible in the rendered PDF.
+const shape=await pr.evaluate(()=>{
+  const w=[...document.querySelectorAll('.ap-wire')].map(el=>{
+    const n=el.getAttribute('d').match(/-?[\d.]+/g).map(Number);
+    return {end:`${Math.round(n[6])},${Math.round(n[7])}`,
+            len:Math.hypot(n[6]-n[0], n[7]-n[1])};});
+  return {n:w.length, distinctEnds:new Set(w.map(x=>x.end)).size,
+          shortest:Math.round(Math.min(...w.map(x=>x.len)))};
+});
+ok(shape.distinctEnds===shape.n,
+   `no two arrows land on the same point (${shape.distinctEnds} ends for ${shape.n} arrows)`);
+ok(shape.shortest>=14,`the shortest connector is longer than its arrowhead (${shape.shortest}px)`);
 await pr.close();
 
 console.log('\n— supporting information —');

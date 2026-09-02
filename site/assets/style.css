@@ -1786,6 +1786,7 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
 .ap-lane-body { font-size:var(--t-micro); font-weight:600; color:var(--ink-secondary); }
 .ap-lane-note { margin-top:4px; font-size:var(--t-micro); color:var(--ink-muted); line-height:1.4; }
 
+.ap-cell.is-linked { gap:26px; }
 .ap-cell {
   display:flex; flex-direction:column; gap:var(--s-2);
   padding:var(--s-2); border-radius:var(--r-card);
