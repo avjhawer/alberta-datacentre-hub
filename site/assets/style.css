@@ -1742,6 +1742,7 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   border-left:6px solid var(--ink-muted); border-top:4px solid transparent;
   border-bottom:4px solid transparent;
 }
+.ap-legend-pair .ap-key-pair + .ap-key-pair { margin-left:-3px; }
 .ap-key-pair {
   width:auto; height:auto; padding:0 5px; border-radius:4px;
   background:var(--status-warning-bg); color:var(--status-warning);

@@ -149,7 +149,9 @@
         <span role="listitem"><i class="ap-key ap-key-start"></i>Start in week one</span>
         <span role="listitem"><i class="ap-key ap-key-arrow"></i>Must finish before</span>
         <span role="listitem"><i class="ap-key ap-key-parallel"></i>Same column runs concurrently</span>
-        <span role="listitem"><i class="ap-key ap-key-pair">A</i>Same letter: both required, neither authorises the other</span>
+        <span role="listitem" class="ap-legend-pair"><i class="ap-key ap-key-pair">A</i><i
+          class="ap-key ap-key-pair">A</i>Same letter, two cards: one thing, two applications —
+          both required, neither authorises the other, no order between them</span>
       </div>
 
       <div class="ap-scroll">
@@ -232,14 +234,17 @@
       const goingDown = b.top > a.top;
       const y1 = (goingDown ? a.bottom : a.top) - box.top;
       const y2 = (goingDown ? b.top : b.bottom) - box.top;
-      const dy = Math.max(16, Math.abs(y2 - y1) * 0.4);
+      const dy = Math.min(60, Math.max(8, Math.abs(y2 - y1) * 0.4));
       return `M ${x1} ${y1} C ${x1} ${y1 + (goingDown ? dy : -dy)}, ` +
              `${x2} ${y2 - (goingDown ? dy : -dy)}, ${x2} ${y2}`;
     }
 
     const x1 = a.right - box.left, y1 = a.top + a.height / 2 - box.top;
     const x2 = b.left - box.left,  y2 = b.top + b.height / 2 - box.top;
-    const dx = Math.max(18, (x2 - x1) * 0.45);
+    /* Bounded both ways. A flat 18px minimum bulged the short hops between
+       adjacent columns into an S in a 21px gutter; an unbounded 45% swung the
+       long ones wide. */
+    const dx = Math.min(60, Math.max(7, (x2 - x1) * 0.4));
     return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
   }
 
@@ -251,15 +256,20 @@
     svg.setAttribute('width', box.width);
     svg.setAttribute('height', box.height);
 
+    /* markerUnits="userSpaceOnUse" is the point of this: the default scales the
+       arrowhead by the stroke width, so thickening the line for print tripled
+       the head and it swallowed the short connectors between adjacent columns.
+       Fixed size instead. refX sits on the tip, so the tip lands exactly on the
+       card border rather than overshooting into it. */
     const parts = [`
       <defs>
-        <marker id="ap-arrow" viewBox="0 0 8 8" refX="7" refY="4"
-                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0 0 L8 4 L0 8 z" class="ap-arrowhead"/>
+        <marker id="ap-arrow" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+          <path d="M0.5 1.4 L10 5 L0.5 8.6 z" class="ap-arrowhead"/>
         </marker>
-        <marker id="ap-arrow-crit" viewBox="0 0 8 8" refX="7" refY="4"
-                markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-          <path d="M0 0 L8 4 L0 8 z" class="ap-arrowhead-crit"/>
+        <marker id="ap-arrow-crit" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+          <path d="M0.5 1.4 L10 5 L0.5 8.6 z" class="ap-arrowhead-crit"/>
         </marker>
       </defs>`];
 
@@ -346,8 +356,12 @@
              <span class="muted">${esc(x.authority)}</span></li>`).join('')}</ul>` : ''}
 
         ${paired.length ? `<h4>Both of these are required</h4>
-          <p class="ap-pair-note">Separate applications on separate records. Neither one authorises
-             the other, and approval of one does not oblige the other.</p>
+          <p class="ap-pair-note">${pairLetters.has(n.id)
+            ? `Marked <strong>Pair ${esc(pairLetters.get(n.id))}</strong> on the diagram. ` : ''}Two
+             separate applications on separate records, to two different authorities, for the same
+             thing on one site. Neither authorises the other, and a decision on one does not oblige
+             the other. There is no order between them — either can be filed or decided first, which
+             is why they carry a letter rather than an arrow.</p>
           <ul class="ap-rel">${paired.map(x =>
             `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button>
              <span class="muted">${esc(x.authority)}</span></li>`).join('')}</ul>` : ''}

@@ -97,6 +97,12 @@ body { background: var(--page); }
 .sheet .ap-pair { stroke-width: 2; }
 
 .sheet .ap-insights { grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+/* On screen a 13% tint reads; on paper it disappears. The notes are the second
+   sheet, so nothing here can disturb the connector geometry on the first. */
+.sheet .ap-insight { border-left-width: 5px; }
+.sheet .ap-insight-critical { background: color-mix(in srgb, var(--status-critical) 9%, #fff); }
+.sheet .ap-insight-good     { background: color-mix(in srgb, var(--status-good) 9%, #fff); }
+.sheet .ap-insight-warning  { background: color-mix(in srgb, var(--status-warning) 12%, #fff); }
 .sheet .ap-insight-text { font-size: 10.5px; line-height: 1.5; }
 .sheet .ap-insight-title { font-size: 12px; }
 .sheet .ap-caution { font-size: 9px; margin-top: var(--s-3); }

@@ -76,8 +76,9 @@ await page.click('#apn-muni-dp-generation'); await page.waitForTimeout(400);
 const gen=await page.textContent('#ap-drawer');
 ok(/Both of these are required/i.test(gen),'the drawer states both approvals are required');
 ok(/Power plant approval/i.test(gen),'and names the AUC approval it pairs with');
-ok(/neither one authorises the other|Neither one authorises/i.test(gen),
-   'and says neither authorises the other');
+ok(/neither authorises the other/i.test(gen),'and says neither authorises the other');
+ok(/Marked Pair [AB]/.test(gen),'and names the pair letter it carries on the diagram');
+ok(/no order between them/i.test(gen),'and that there is no order between the two');
 ok(/solicitor/i.test(gen),'and flags the jurisdictional question for legal advice');
 await page.click('#ap-close'); await page.waitForTimeout(300);
 
@@ -208,8 +209,10 @@ ok(routing.crossing===0,'and none runs across a card it does not join');
 await pr.close();
 
 console.log('\n— supporting information —');
-ok((await page.$$('.ap-insight')).length===6,'six insight cards accompany the diagram');
+ok((await page.$$('.ap-insight')).length===7,'seven insight cards accompany the diagram');
 const ins=await page.textContent('.ap-insights');
+ok(/how to read a pair letter/i.test(ins),'the notes explain how a pair letter works');
+ok(/win one and lose the other/i.test(ins),'and why it matters');
 ok(/critical path/i.test(ins),'explains the critical path');
 ok(/week one/i.test(ins),'tells you what to start immediately');
 
