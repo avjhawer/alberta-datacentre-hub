@@ -1,8 +1,13 @@
 name: Refresh news feed
 
 # The thing that keeps the site live. Every 3 hours it re-ingests every feed,
-# reclassifies, rescores, and commits news.json if anything changed — which in
-# turn triggers deploy.yml, so the loop closes with no manual step.
+# reclassifies, rescores, and commits news.json if anything changed — then
+# calls deploy.yml so the change actually reaches readers.
+#
+# The publish job is not optional decoration. A commit pushed with the default
+# GITHUB_TOKEN does not trigger `on: push` workflows, so committing here is
+# only half the loop; without the explicit call the repository stays current
+# and the published site does not.
 
 on:
   schedule:
@@ -19,6 +24,8 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
 
@@ -53,13 +60,27 @@ jobs:
           '
 
       - name: Commit if changed
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git diff --quiet -- site/data/news.json; then
             echo "No change to news.json — nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git add site/data/news.json
             git commit -m "chore(data): refresh news feed"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+  # Publish the commit above. See the note at the top of the file for why this
+  # cannot be left to deploy.yml's own push trigger.
+  publish:
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml

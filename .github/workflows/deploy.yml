@@ -2,6 +2,13 @@ name: Deploy site
 
 # Publishes site/ to GitHub Pages. `enablement: true` on configure-pages turns
 # Pages on automatically the first time this runs, so no manual setup step.
+#
+# `workflow_call` exists because a push made by a workflow using the default
+# GITHUB_TOKEN does NOT trigger another workflow — GitHub blocks that to stop
+# runaway loops. So the 3-hourly news commit could never fire this by `push`,
+# and the published site sat at whichever commit a human last pushed while the
+# repository's own data went on updating. The ingestion workflows now call this
+# one as a job instead, which is a direct invocation and is not blocked.
 
 on:
   push:
@@ -10,6 +17,7 @@ on:
       - 'site/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read

@@ -122,10 +122,15 @@ section id in `checklist.json`.
 | `watch-sources.yml` | Daily, 07:15 MDT | Hashes every watched authority page, raises an alert and opens an issue when one changes; discovers new sources |
 | `validate-data.yml` | Every push and PR | Schema-checks all data files and runs the tests |
 | `apply-issue-form.yml` | On issue submission | Turns an "Add a source" form into a validated commit |
-| `deploy.yml` | On push to `main` | Publishes to GitHub Pages |
+| `deploy.yml` | On push to `main`, and called by the two jobs above | Publishes to GitHub Pages |
 
-Because each data commit lands on `main`, the deploy re-runs automatically. The
-loop closes with no manual step.
+The two data jobs call the deploy themselves rather than relying on their own
+commit to trigger it. They have to: GitHub does not start an `on: push`
+workflow for a push made by a workflow using the built-in token, so for a
+while the repository's data went on updating every three hours while the
+published site stayed at whichever commit a person last pushed. If you add
+another job that commits into `site/`, give it the same `publish` job or the
+change will not reach readers.
 
 ### Where new sources come from
 

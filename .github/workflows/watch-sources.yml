@@ -22,6 +22,8 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
 
@@ -93,6 +95,7 @@ jobs:
             });
 
       - name: Commit state
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -100,7 +103,20 @@ jobs:
                   site/data/candidate-sources.json site/data/sources.json
           if git diff --cached --quiet; then
             echo "No source-watch changes to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore(data): source watch and discovery"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+  # A regulator-page change is exactly the kind of thing that must reach the
+  # published site the same day; the default token's push will not do it.
+  publish:
+    needs: watch
+    if: needs.watch.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
