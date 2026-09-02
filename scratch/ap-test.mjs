@@ -29,14 +29,14 @@ for (const want of ['Grid connection','Utilities regulator','Land, water & consu
 
 console.log('\n— runs to occupancy —');
 const phases=await page.$$eval('.ap-phase-name',e=>e.map(x=>x.textContent.trim()));
-ok(phases.join(' > ')==='Scoping > Filings > Decisions > Construction > Occupancy',
-   'phases run scoping to occupancy: '+phases.join(' > '));
+ok(phases.join(' > ')==='Scoping > Filings > Decisions > Construction > Occupancy > Lifecycle & decommissioning',
+   'phases run scoping to decommissioning: '+phases.join(' > '));
 ok(await page.$('#apn-occupancy')!==null,'occupancy permit is on the diagram');
 ok((await page.$('.ap-node.is-end'))!==null,'the end state is visually marked');
 
 console.log('\n— concurrency is shown, not implied —');
 const p1=await page.$$eval('.ap-node',els=>els.filter(e=>e.closest('.ap-cell')).length);
-ok(p1===24,`all ${p1} approval steps render`);
+ok(p1===28,`all ${p1} approval steps render`);
 const startNow=await page.$$eval('.ap-cell .ap-tag-start',e=>e.length);
 ok(startNow===5,`five steps flagged to start in week one (${startNow})`);
 ok((await page.$$('.ap-legend [role="listitem"]')).length===9,'the legend explains lines and badges alike');
@@ -121,6 +121,25 @@ ok(await page.isVisible('#ap-drawer'),'jumping to a related step works');
 await page.keyboard.press('Escape'); await page.waitForTimeout(300);
 ok(!(await page.isVisible('#ap-drawer')),'Escape closes');
 
+console.log('\n— appeal, security and lifecycle —');
+ok(await page.$('#apn-sdab-appeal')!==null,'the SDAB appeal window is on the diagram');
+ok(await page.$('#apn-muni-security')!==null,'so is the financial security');
+for (const id of ['eol-management','reclamation'])
+  ok(await page.$(`#apn-${id}`)!==null,`lifecycle step present: ${id}`);
+ok((await page.$$('.ap-node.is-risk')).length===4,'all four are marked as execution risks');
+const gated=await page.$$eval('.ap-wire',e=>e.map(x=>`${x.dataset.from}->${x.dataset.to}`));
+for (const want of ['sdab-appeal->muni-grading','sdab-appeal->building-permit'])
+  ok(gated.includes(want),`the appeal window blocks: ${want.split('->')[1]}`);
+await page.click('#apn-reclamation'); await page.waitForTimeout(400);
+const rc=await page.textContent('#ap-drawer');
+ok(/Standard set by/i.test(rc)&&/Decision & development agreement|Decision &amp; development agreement/.test(rc),
+   'reclamation names the agreement that set its standard');
+await page.click('#ap-close'); await page.waitForTimeout(300);
+await page.click('#apn-muni-security'); await page.waitForTimeout(400);
+ok(/Required alongside/i.test(await page.textContent('#ap-drawer')),
+   'the security reads as a parallel requirement, not a later step');
+await page.click('#ap-close'); await page.waitForTimeout(300);
+
 console.log('\n— the provincial approvals a package usually omits —');
 for (const id of ['crown-consultation','roadside-permit','public-lands'])
   ok(await page.$(`#apn-${id}`)!==null,`on the diagram: ${id}`);
@@ -132,7 +151,7 @@ await page.click('#ap-close'); await page.waitForTimeout(300);
 
 console.log('\n— every card says where the process starts —');
 const links=await page.$$eval('.ap-node',e=>e.map(x=>x.id));
-ok(links.length===24,'all cards present for the link check');
+ok(links.length===28,'all cards present for the link check');
 
 console.log('\n— the off-grid route —');
 ok((await page.$$('#ap-routes .seg-btn')).length===2,'two supply routes are offered');
@@ -159,11 +178,11 @@ ok(/Occupancy permit/i.test(pc),'commissioning still gates occupancy');
 ok(!/Energization/i.test(pc),'and the drawer does not offer grid-route steps');
 await page.click('#ap-close'); await page.waitForTimeout(300);
 await page.click('#ap-routes .seg-btn:nth-child(1)'); await page.waitForTimeout(700);
-ok((await page.$$eval('.ap-cell .ap-node',e=>e.length))===24,'switching back restores the grid route');
+ok((await page.$$eval('.ap-cell .ap-node',e=>e.length))===28,'switching back restores the grid route');
 
 console.log('\n— the print sheet —');
 const pr=await newPagePrint();
-ok((await pr.$$('.ap-cell .ap-node')).length===25,'the print sheet renders a route on its own');
+ok((await pr.$$('.ap-cell .ap-node')).length===29,'the print sheet renders a route on its own');
 ok((await pr.$$('.ap-wire')).length>0,'with its connectors');
 await pr.emulateMedia({media:'print'});
 await pr.waitForTimeout(600);
@@ -252,7 +271,7 @@ const home=await browser.newPage({viewport:{width:1500,height:1100}});
 home.on('pageerror',e=>errors.push(String(e)));
 await home.goto(`${B}/index.html`,{waitUntil:'networkidle'});
 await home.waitForTimeout(1200);
-ok((await home.$$('.ap-node')).length===24,'the full diagram renders on the front page');
+ok((await home.$$('.ap-node')).length===28,'the full diagram renders on the front page');
 ok((await home.$$('.ap-wire')).length>=14,'with its connectors');
 await home.click('#apn-muni-preapp'); await home.waitForTimeout(400);
 ok(await home.isVisible('#ap-drawer'),'and its drawer works there');

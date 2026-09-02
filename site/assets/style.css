@@ -1836,6 +1836,10 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   background:var(--accent-wash);
   box-shadow:0 0 0 2px var(--accent), var(--shadow-sm);
 }
+/* Added as an execution or financial risk rather than as a filing: a dashed
+   edge and a heavier title, so they read differently from the approvals. */
+.ap-node.is-risk { border-style:dashed; border-width:1.5px; }
+.ap-node.is-risk .ap-node-title { font-weight:800; }
 .ap-node.is-dim { opacity:.32; }
 
 .ap-node-authority {

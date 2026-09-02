@@ -88,6 +88,12 @@
       "label": "Phase 5",
       "name": "Occupancy",
       "sub": "Legal use begins"
+    },
+    {
+      "id": "p6",
+      "label": "Phase 6",
+      "name": "Lifecycle & decommissioning",
+      "sub": "After the building is in use"
     }
   ],
   "nodes": [
@@ -451,6 +457,43 @@
       "sourceTier": "primary"
     },
     {
+      "id": "sdab-appeal",
+      "lane": "muni",
+      "phase": "p3",
+      "title": "21-day SDAB appeal window",
+      "authority": "Subdivision and Development Appeal Board",
+      "what": "The decision does not take effect while the appeal period runs, and an appeal to the board suspends it further until the board has decided.",
+      "dependsOn": [
+        "muni-decision"
+      ],
+      "critical": true,
+      "emphasis": "risk",
+      "why": "A hard date on the timeline that no party can compress. Applicants routinely programme construction from the decision date rather than from the end of the appeal period, and that is where the schedule in an application first goes wrong. Note also that a permit for a permitted use that complies with the bylaw is appealable only on narrow grounds — the waiting period still runs either way.",
+      "watch": "The period runs under the Municipal Government Act, but when it starts, who may appeal, and what the permit can and cannot support in the meantime are specifics to confirm against the Act and your own bylaw. Do not take the number off this card.",
+      "startLink": "https://open.alberta.ca/publications/m26",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "muni-security",
+      "lane": "muni",
+      "phase": "p3",
+      "title": "Post financial security",
+      "authority": "Municipality",
+      "what": "Where the development agreement requires it, an irrevocable letter of credit or other security covering servicing, offsite improvements, road use and reclamation, posted before site work begins.",
+      "optional": true,
+      "critical": true,
+      "emphasis": "risk",
+      "why": "The agreement is where cost recovery is secured or lost, and the security is the part that actually bites. Size it against real servicing and reclamation cost rather than a nominal figure, and check the instrument is irrevocable and cannot expire before the obligation it covers.",
+      "watch": "Whether security is required, in what form and in what amount is set by your own agreement and policy, not by this diagram.",
+      "startLink": "https://open.alberta.ca/publications/m26",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "unverified",
+      "parallelTo": [
+        "muni-decision"
+      ]
+    },
+    {
       "id": "muni-grading",
       "lane": "muni",
       "phase": "p4",
@@ -458,7 +501,9 @@
       "authority": "Municipality",
       "what": "Stripping and earthworks, often begun before the building permit issues.",
       "dependsOn": [
-        "muni-decision"
+        "muni-decision",
+        "sdab-appeal",
+        "muni-security"
       ],
       "why": "Once a large site is stripped, refusing what follows becomes far harder to defend. Require security sized to actual reclamation cost and a drainage design that works as a standalone end state.",
       "sourceTier": "unverified",
@@ -473,7 +518,9 @@
       "authority": "Safety Codes authority",
       "what": "Building permit, then electrical, plumbing and gas permits under the Safety Codes Act.",
       "dependsOn": [
-        "muni-decision"
+        "muni-decision",
+        "sdab-appeal",
+        "muni-security"
       ],
       "critical": true,
       "startLink": "https://open.alberta.ca/publications/s01",
@@ -615,6 +662,45 @@
       "startLabel": "Municipal Government Act",
       "sourceTier": "unverified",
       "optional": true
+    },
+    {
+      "id": "eol-management",
+      "lane": "muni",
+      "phase": "p6",
+      "title": "End-of-life facility management",
+      "authority": "Operator + municipality",
+      "what": "The obligations that run once the building is in use: monitoring and reporting commitments, equipment replacement cycles, and the trigger points that start decommissioning.",
+      "dependsOn": [
+        "occupancy"
+      ],
+      "emphasis": "risk",
+      "optional": true,
+      "why": "Data centre equipment turns over far faster than the building around it. A permit that ends at occupancy leaves the municipality with no instrument for what happens across the next twenty years, which is why the obligations have to be written into the agreement while there is still leverage.",
+      "watch": "Nothing here is a standing legal requirement. What applies to a given site is whatever the development agreement, and the Commission's conditions, actually say.",
+      "startLink": "https://open.alberta.ca/publications/m26",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "reclamation",
+      "lane": "muni",
+      "phase": "p6",
+      "title": "Reclamation execution",
+      "authority": "Operator, municipality and AUC",
+      "what": "Decommissioning and site reclamation to the standard set in the development agreement and, for the generating and transmission facilities, in the Commission's own reclamation conditions.",
+      "dependsOn": [
+        "eol-management"
+      ],
+      "emphasis": "risk",
+      "optional": true,
+      "standardSetBy": [
+        "muni-decision"
+      ],
+      "why": "The standard reached here was fixed years earlier, in the development agreement and in the security posted against it. That is the whole argument for negotiating decommissioning at the agreement stage rather than leaving it to a future council.",
+      "watch": "Reclamation for the power plant and the substation sits with the Commission, not with you. Read its conditions alongside your agreement so the two do not contradict.",
+      "startLink": "https://open.alberta.ca/publications/m26",
+      "startLabel": "Municipal Government Act",
+      "sourceTier": "unverified"
     }
   ],
   "insights": [

@@ -76,7 +76,8 @@
     const dim = showCriticalOnly && !n.critical;
     return `
       <button class="ap-node ${n.critical ? 'is-critical' : ''} ${n.startNow ? 'is-start' : ''}
-                     ${n.isEnd ? 'is-end' : ''} ${dim ? 'is-dim' : ''}"
+                     ${n.isEnd ? 'is-end' : ''} ${n.emphasis === 'risk' ? 'is-risk' : ''}
+                     ${dim ? 'is-dim' : ''}"
               id="apn-${esc(n.id)}" data-node="${esc(n.id)}"
               aria-label="${esc(n.title)}, ${esc(n.authority)} — open detail">
         <span class="ap-node-authority">${esc(n.authority)}</span>
@@ -428,6 +429,28 @@
           <ul class="ap-rel">${paired.map(x =>
             `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button>
              <span class="muted">${esc(x.authority)}</span></li>`).join('')}</ul>` : ''}
+
+        ${(() => {
+          const par = routeNodes().filter(x =>
+            (n.parallelTo || []).includes(x.id) || (x.parallelTo || []).includes(n.id));
+          const set = (n.standardSetBy || []).map(id => node(id)).filter(x => x && inRoute(x));
+          const back = routeNodes().filter(x => (x.standardSetBy || []).includes(n.id));
+          let h = '';
+          if (par.length) h += `<h4>Required alongside</h4>
+            <p class="ap-pair-note">A parallel requirement of the same decision — not a step after
+               it, and not something the other one waits for.</p>
+            <ul class="ap-rel">${par.map(x =>
+              `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button>
+               <span class="muted">${esc(x.authority)}</span></li>`).join('')}</ul>`;
+          if (set.length) h += `<h4>Standard set by</h4>
+            <p class="ap-pair-note">Fixed years earlier, at the other end of the file.</p>
+            <ul class="ap-rel">${set.map(x =>
+              `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button></li>`).join('')}</ul>`;
+          if (back.length) h += `<h4>Sets the standard for</h4>
+            <ul class="ap-rel">${back.map(x =>
+              `<li><button class="ap-jump" data-node="${esc(x.id)}">${esc(x.title)}</button></li>`).join('')}</ul>`;
+          return h;
+        })()}
 
         ${n.watch ? `<div class="notice ap-watch"><strong>Watch for:</strong> ${esc(n.watch)}</div>` : ''}
 
