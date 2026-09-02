@@ -1743,6 +1743,15 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
   border-bottom:4px solid transparent;
 }
 .ap-legend-pair .ap-key-pair + .ap-key-pair { margin-left:-3px; }
+/* The badges on the cards needed a key of their own: four kinds of pill were
+   being used and none of them was explained. */
+.ap-legend-badges { border-top:1px dashed var(--border); margin-top:-2px; }
+.ap-legend .ap-tag { flex:none; }
+.ap-key-lane {
+  width:auto; height:10px; border-radius:2px; padding:0 9px 0 0;
+  background:linear-gradient(90deg,var(--region-alberta) 0 25%,var(--region-canada) 25% 50%,
+             var(--region-global) 50% 75%,var(--ink-muted) 75% 100%);
+}
 .ap-key-pair {
   width:auto; height:auto; padding:0 5px; border-radius:4px;
   background:var(--status-warning-bg); color:var(--status-warning);

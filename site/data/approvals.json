@@ -26,16 +26,16 @@
       "label": "Utilities regulator",
       "body": "Alberta Utilities Commission",
       "hue": "canada",
-      "note": "Approves the substation and any on-site generation — not the building.",
+      "note": "Approves the substation, any on-site generation, and the industrial system question — never the building.",
       "level": "provincial",
       "levelNote": "Provincial quasi-judicial regulator. Its decisions are made under provincial statute, not the land use bylaw."
     },
     {
       "id": "env",
-      "label": "Environment & water",
-      "body": "Alberta Environment and Protected Areas",
+      "label": "Land, water & consultation",
+      "body": "Alberta Environment and Protected Areas, and other provincial authorities",
       "hue": "global",
-      "note": "Independent of the land use decision, and can be the quiet blocker.",
+      "note": "Independent of the land use decision, and where a project quietly stalls.",
       "level": "provincial",
       "levelNote": "Provincial department. Independent of the municipal land use decision."
     },
@@ -81,7 +81,7 @@
       "id": "p4",
       "label": "Phase 4",
       "name": "Construction",
-      "sub": "Build and energize"
+      "sub": "Build and power the site"
     },
     {
       "id": "p5",
@@ -157,7 +157,7 @@
       "phase": "p4",
       "title": "Substation construction",
       "authority": "Transmission facility owner",
-      "what": "The transmission facility owner builds the substation and connection, under the AUC permit and against the executed connection agreement, on the grid’s schedule.",
+      "what": "The transmission facility owner builds the substation and connection under the Commission's approval, and against whatever commitment AESO requires before work starts, on the grid's schedule.",
       "dependsOn": [
         "aeso-agreement",
         "auc-decision"
@@ -166,7 +166,7 @@
       "sourceTier": "primary",
       "startLink": "https://www.aeso.ca/grid/connecting-to-the-grid/",
       "startLabel": "AESO — connecting to the grid",
-      "why": "Two things gate this, not one: the AUC permit for the facility and the proponent’s executed commitment to AESO. Either one outstanding stops the build, which is why both arrows converge here.",
+      "why": "Two things gate this, not one: the AUC permit for the facility, and the proponent's commitment to AESO. Either one outstanding stops the build, which is why two arrows converge here. Confirm the form the commitment takes — see the previous step.",
       "variants": [
         "grid"
       ]
@@ -222,8 +222,8 @@
       "critical": true,
       "why": "This is the off-grid project’s long pole — the item that replaces the transmission connection and cannot be shortened by wanting it sooner. Ask whether the pipeline licence and a firm supply contract exist, not whether gas is \"available in the area\".",
       "watch": "Which approvals a particular line needs depends on its size, pressure and route. Confirm the requirement with the AER rather than from this diagram.",
-      "startLink": "https://www.aer.ca/",
-      "startLabel": "Alberta Energy Regulator",
+      "startLink": "https://www.aer.ca/regulating-development/project-application/application-processes/pipeline-applications",
+      "startLabel": "AER — pipeline applications",
       "sourceTier": "unverified",
       "variants": [
         "offgrid"
@@ -246,7 +246,9 @@
       "sourceTier": "unverified",
       "variants": [
         "offgrid"
-      ]
+      ],
+      "startLink": "https://www.auc.ab.ca/",
+      "startLabel": "Alberta Utilities Commission"
     },
     {
       "id": "plant-commission",
@@ -264,7 +266,9 @@
       "sourceTier": "unverified",
       "variants": [
         "offgrid"
-      ]
+      ],
+      "startLink": "https://www.auc.ab.ca/",
+      "startLabel": "Alberta Utilities Commission"
     },
     {
       "id": "auc-pip",
@@ -275,9 +279,10 @@
       "what": "Notification and consultation with landowners and occupants within the rule's radius, before the facility application is filed.",
       "startNow": true,
       "why": "Ask to be included. The AUC's notification radius and the municipality's differ, and residents notified by one process and not the other is the most common source of 'nobody told us' at a public hearing.",
-      "startLink": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
-      "startLabel": "AUC Rule 007",
-      "sourceTier": "primary"
+      "startLink": "https://www.auc.ab.ca/rules/",
+      "startLabel": "AUC rules",
+      "sourceTier": "primary",
+      "watch": "Rule 007 governs this. Its own page could not be reached at a stable URL when this was last checked, so the link goes to the AUC's rules index — open Rule 007 from there and read the current edition."
     },
     {
       "id": "auc-file",
@@ -291,7 +296,7 @@
       ],
       "critical": true,
       "why": "The noise study filed here is usually the only acoustic modelling in existence before the municipality has to decide. Read it.",
-      "startLink": "https://www.auc.ab.ca/rule/rule-012-noise-control/",
+      "startLink": "https://www.auc.ab.ca/rule-012/",
       "startLabel": "AUC Rule 012 — noise control",
       "sourceTier": "primary"
     },
@@ -312,6 +317,49 @@
       "sourceTier": "primary"
     },
     {
+      "id": "crown-consultation",
+      "lane": "env",
+      "phase": "p1",
+      "title": "Indigenous consultation",
+      "authority": "Crown — Indigenous Relations",
+      "what": "Consultation on provincial decisions that may affect treaty rights and traditional uses, run by the Crown with parts of the procedural work usually carried by the proponent.",
+      "startNow": true,
+      "optional": true,
+      "why": "It is absent from most application packages and it is the item most likely to move a provincial decision date the municipal file depends on. Ask at pre-application whether consultation has been triggered, who is running it, and what stage it has reached — you are not the decision-maker, but you are entitled to know whether the provincial approvals your permit assumes are exposed.",
+      "watch": "Whether consultation is triggered, and by which decision, is determined by the Crown and is fact-specific. Do not conclude from this card that a given project does or does not require it — ask Indigenous Relations and your solicitor.",
+      "startLink": "https://www.alberta.ca/indigenous-relations",
+      "startLabel": "Alberta Indigenous Relations",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "roadside-permit",
+      "lane": "env",
+      "phase": "p2",
+      "title": "Roadside development permit",
+      "authority": "Alberta Transportation and Economic Corridors",
+      "what": "A provincial permit for development within the controlled area of a provincial highway, including access, signage and setbacks.",
+      "optional": true,
+      "why": "A common referral and a common surprise. Where it applies, the access arrangement the province will accept can differ from the one drawn on the site plan, and a data centre's construction and generator-fuel traffic makes access a live issue rather than a formality.",
+      "watch": "Whether a site is inside the controlled area depends on its distance from the highway and from an intersection. Confirm with Transportation and Economic Corridors rather than from this card.",
+      "startLink": "https://www.alberta.ca/roadside-development-permits",
+      "startLabel": "Roadside development permits",
+      "sourceTier": "unverified"
+    },
+    {
+      "id": "public-lands",
+      "lane": "env",
+      "phase": "p2",
+      "title": "Public land disposition",
+      "authority": "Alberta Environment and Protected Areas",
+      "what": "A disposition where any part of the project — the site, an access road, a pipeline or a transmission line — crosses Crown land.",
+      "optional": true,
+      "why": "Easy to miss because it usually attaches to the linear works rather than the site. A permitted building served by an unauthorised crossing is not deliverable.",
+      "watch": "Applies only where Crown land is actually engaged. Confirm the land status before assuming either way.",
+      "startLink": "https://www.alberta.ca/public-land-dispositions",
+      "startLabel": "Public land dispositions",
+      "sourceTier": "unverified"
+    },
+    {
       "id": "water-licence",
       "lane": "env",
       "phase": "p2",
@@ -320,9 +368,10 @@
       "what": "Required where the project draws groundwater or surface water rather than a municipal supply.",
       "startNow": true,
       "why": "A permit granted against an unlicensed supply is not deliverable. Ask whether a licence or transfer is in hand and whether its volume matches the stated use.",
-      "startLink": "https://www.alberta.ca/water-act",
-      "startLabel": "Alberta Water Act",
-      "sourceTier": "primary"
+      "startLink": "https://open.alberta.ca/publications/w03",
+      "startLabel": "Water Act",
+      "sourceTier": "primary",
+      "optional": true
     },
     {
       "id": "env-other",
@@ -334,7 +383,8 @@
       "why": "These are independent of the land use decision and run on their own timetable. They rarely stop a project, but they routinely delay one.",
       "startLink": "https://www.alberta.ca/environment-and-protected-areas",
       "startLabel": "Environment and Protected Areas",
-      "sourceTier": "primary"
+      "sourceTier": "primary",
+      "watch": "Historical Resources Act clearance is part of this, but no stable page for it resolved when this was last checked. Ask Environment and Protected Areas which clearances a given site engages."
     },
     {
       "id": "muni-preapp",
@@ -345,7 +395,7 @@
       "what": "Confirm the land use district, whether the use is permitted or discretionary, servicing capacity, and whether a statutory plan amendment is needed.",
       "startNow": true,
       "why": "Municipal leverage is at its highest here and falls steadily afterwards. Establish the ultimate build-out load, not the first phase, and get it in writing.",
-      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLink": "https://open.alberta.ca/publications/m26",
       "startLabel": "Municipal Government Act",
       "sourceTier": "primary"
     },
@@ -361,7 +411,7 @@
       ],
       "optional": true,
       "why": "Only some projects need this. Where it is needed it adds a council process and a public hearing, and it is the point at which the community has a statutory voice.",
-      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLink": "https://open.alberta.ca/publications/m26",
       "startLabel": "Municipal Government Act",
       "sourceTier": "primary"
     },
@@ -377,7 +427,7 @@
       ],
       "critical": true,
       "why": "Decide here whether the substation forms part of this application or a separate provincial one, and say so in writing. The substation is approved by the AUC; this permit is not that approval.",
-      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLink": "https://open.alberta.ca/publications/m26",
       "startLabel": "Municipal Government Act",
       "sourceTier": "primary",
       "pairedWith": [
@@ -396,7 +446,7 @@
       ],
       "critical": true,
       "why": "The agreement outlasts the permit and is the most durable instrument the municipality holds. Cost recovery is secured here or not at all.",
-      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLink": "https://open.alberta.ca/publications/m26",
       "startLabel": "Municipal Government Act",
       "sourceTier": "primary"
     },
@@ -411,7 +461,9 @@
         "muni-decision"
       ],
       "why": "Once a large site is stripped, refusing what follows becomes far harder to defend. Require security sized to actual reclamation cost and a drainage design that works as a standalone end state.",
-      "sourceTier": "unverified"
+      "sourceTier": "unverified",
+      "startLink": "https://open.alberta.ca/publications/m26",
+      "startLabel": "Municipal Government Act"
     },
     {
       "id": "building-permit",
@@ -424,7 +476,7 @@
         "muni-decision"
       ],
       "critical": true,
-      "startLink": "https://www.alberta.ca/safety-codes-act",
+      "startLink": "https://open.alberta.ca/publications/s01",
       "startLabel": "Safety Codes Act",
       "sourceTier": "primary"
     },
@@ -439,7 +491,7 @@
         "building-permit"
       ],
       "critical": true,
-      "startLink": "https://www.alberta.ca/safety-codes-act",
+      "startLink": "https://open.alberta.ca/publications/s01",
       "startLabel": "Safety Codes Act",
       "sourceTier": "primary"
     },
@@ -458,8 +510,8 @@
       ],
       "critical": true,
       "isEnd": true,
-      "why": "Three separate authorities have to be satisfied before this issues. The grid connection is the one most likely to be outstanding.",
-      "startLink": "https://www.alberta.ca/safety-codes-act",
+      "why": "More than one authority has to be satisfied before this issues: the Safety Codes inspections, the power supply, and — through the building permit — the municipal decision. The power supply is the one most likely to be outstanding.",
+      "startLink": "https://open.alberta.ca/publications/s01",
       "startLabel": "Safety Codes Act",
       "sourceTier": "primary"
     },
@@ -469,13 +521,13 @@
       "phase": "p2",
       "title": "Power plant application",
       "authority": "AUC",
-      "what": "A separate application under the Hydro and Electric Energy Act where the project proposes on-site generation, including gas-fired plant serving the load.",
+      "what": "A separate application under the Hydro and Electric Energy Act where the project proposes on-site generation, including gas-fired plant serving the load. Small units may be exempt — confirm the current threshold rather than assuming every unit needs an application.",
       "dependsOn": [
         "auc-pip"
       ],
       "why": "This is a different application from the substation, with its own record, its own noise and emissions case, and often its own hearing. A project can win one and lose the other — as the Olds decision showed.",
-      "startLink": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
-      "startLabel": "AUC Rule 007",
+      "startLink": "https://www.auc.ab.ca/rules/",
+      "startLabel": "AUC rules",
       "sourceTier": "primary",
       "optionalIn": [
         "grid"
@@ -514,15 +566,16 @@
       ],
       "why": "This decides whether the electrical infrastructure on the site is yours to condition as land use or the Commission’s to regulate as a utility. Ask at pre-application which route the applicant is taking, because the answer changes who sets the conditions on the substation.",
       "watch": "Whether a designation is required is fact-specific. AUC Rule 007 covers industrial system designations alongside power plants and substations, but confirm the current requirement with the Commission and your solicitor rather than from this diagram.",
-      "startLink": "https://www.auc.ab.ca/rule/rule-007-applications-for-power-plants-substations-transmission-lines-industrial-system-designations-hydro-developments-and-gas-utility-pipelines/",
-      "startLabel": "AUC Rule 007",
+      "startLink": "https://www.auc.ab.ca/rules/",
+      "startLabel": "AUC rules",
       "verifyPhrases": [
         "industrial system designation"
       ],
       "sourceTier": "unverified",
       "variants": [
         "offgrid"
-      ]
+      ],
+      "optional": true
     },
     {
       "id": "auc-isd-order",
@@ -540,7 +593,8 @@
       "sourceTier": "unverified",
       "variants": [
         "offgrid"
-      ]
+      ],
+      "optional": true
     },
     {
       "id": "muni-dp-generation",
@@ -548,7 +602,7 @@
       "phase": "p2",
       "title": "Development permit — generation facility",
       "authority": "Municipality",
-      "what": "The municipal permit for the generating facility and its site works, separate from the data centre's own development permit.",
+      "what": "Where the land use bylaw requires it, the municipal permit for the generating facility and its site works — a separate file from the data centre's own development permit.",
       "dependsOn": [
         "muni-preapp"
       ],
@@ -557,12 +611,10 @@
       ],
       "why": "An AUC approval for a power plant does not remove the municipal approvals that go with building it — the site development, access and associated works still come to you. Treat it as its own file with its own conditions, not as a footnote to the data centre permit.",
       "watch": "How a provincial approval interacts with municipal land use authority is addressed in the Municipal Government Act, and the effect is fact-specific. Confirm the current position with your solicitor before concluding what you can and cannot condition.",
-      "startLink": "https://www.alberta.ca/municipal-government-act",
+      "startLink": "https://open.alberta.ca/publications/m26",
       "startLabel": "Municipal Government Act",
-      "sourceTier": "primary",
-      "optionalIn": [
-        "grid"
-      ]
+      "sourceTier": "unverified",
+      "optional": true
     }
   ],
   "insights": [
@@ -651,7 +703,7 @@
         "offgrid"
       ],
       "title": "A different week-one list",
-      "text": "Off-grid the four independent starts change: the municipal pre-application, the AUC participant involvement programme for the power plant, the fuel supply, and any water licence. The AESO request is not among them — and its absence is exactly why this route can arrive faster than a municipality expects."
+      "text": "Off-grid the four independent starts change: the municipal pre-application, the AUC participant involvement programme for the power plant, the islanded supply concept and the fuel enquiry behind it, and any water licence. The AESO request is not among them — and its absence is exactly why this route can arrive faster than a municipality expects."
     }
   ],
   "levels": [

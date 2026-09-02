@@ -145,13 +145,19 @@
       <p class="ap-route-note small">${esc(routeMeta().note || '')}</p>
 
       <div class="ap-legend" role="list">
-        <span role="listitem"><i class="ap-key ap-key-critical"></i>Critical path — sets the end date</span>
-        <span role="listitem"><i class="ap-key ap-key-start"></i>Start in week one</span>
-        <span role="listitem"><i class="ap-key ap-key-arrow"></i>Must finish before</span>
-        <span role="listitem"><i class="ap-key ap-key-parallel"></i>Same column runs concurrently</span>
+        <span role="listitem"><i class="ap-key ap-key-critical"></i>Critical path — delay here moves the finish date</span>
+        <span role="listitem"><i class="ap-key ap-key-arrow"></i>Arrow: must finish before</span>
+        <span role="listitem"><i class="ap-key ap-key-parallel"></i>Same column: same stage, no order implied between them</span>
         <span role="listitem" class="ap-legend-pair"><i class="ap-key ap-key-pair">A</i><i
-          class="ap-key ap-key-pair">A</i>Same letter, two cards: one thing, two applications —
-          both required, neither authorises the other, no order between them</span>
+          class="ap-key ap-key-pair">A</i>Same letter: one thing, two applications — both required,
+          neither authorises the other</span>
+      </div>
+      <div class="ap-legend ap-legend-badges" role="list">
+        <span role="listitem"><span class="ap-tag ap-tag-start">Start now</span>Independent of everything else — begin in week one</span>
+        <span role="listitem"><span class="ap-tag ap-tag-opt">If required</span>Only some projects engage this</span>
+        <span role="listitem"><span class="ap-tag ap-tag-req">Required on this route</span>Conditional on the other route, not this one</span>
+        <span role="listitem"><span class="ap-tag ap-tag-block">Blocks occupancy</span>Occupancy cannot issue until this is done</span>
+        <span role="listitem"><i class="ap-key ap-key-lane"></i>Lane colour marks which authority decides — it is not a ranking</span>
       </div>
 
       <div class="ap-scroll">

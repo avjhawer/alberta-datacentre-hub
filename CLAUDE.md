@@ -199,6 +199,17 @@ with `--fixture`; verify live behaviour from an Actions run.
   reaches neither `aeso.ca`, `auc.ab.ca` nor `aer.ca`. `auc-isd` carries
   `verifyPhrases`; run `scripts/verify-seeds.mjs` in Actions and promote only
   what the authority's own page confirms.
+- `approvals.json` gained three provincial cards that application packages
+  routinely omit — `crown-consultation`, `roadside-permit`, `public-lands`. All
+  three are `unverified`, all three are marked *If required*, and each carries a
+  `watch` note saying the trigger is fact-specific. They exist to prompt a
+  question, not to state a requirement. Do not promote any of them without
+  reading the authority's own page.
+- `scripts/probe-links.mjs` (+ `probe-links.yml`) exists because citations rot:
+  six of this map's links were 404 and were repaired from what the runner could
+  actually reach. Run it in Actions before replacing any link — never substitute
+  a URL from memory. Rule 007 has no stable page that resolved, so those cards
+  cite the AUC rules index and say so.
 - `municipalities.json` has deliberately blank rows for Edmonton and Calgary.
   Blank means "not yet verified" and renders as *Needs research* — do not fill
   them with plausible guesses.

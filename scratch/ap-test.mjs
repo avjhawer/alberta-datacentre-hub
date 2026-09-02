@@ -24,7 +24,7 @@ await page.waitForTimeout(1200);
 console.log('\n— provincial through municipal, all five authorities —');
 ok((await page.$$('.ap-lane-head')).length===5,'five decision-making lanes');
 const lanes=await page.$$eval('.ap-lane-label',e=>e.map(x=>x.textContent.trim()));
-for (const want of ['Grid connection','Utilities regulator','Environment & water','Municipal','Building & safety'])
+for (const want of ['Grid connection','Utilities regulator','Land, water & consultation','Municipal','Building & safety'])
   ok(lanes.includes(want),`lane present: ${want}`);
 
 console.log('\n— runs to occupancy —');
@@ -36,10 +36,13 @@ ok((await page.$('.ap-node.is-end'))!==null,'the end state is visually marked');
 
 console.log('\n— concurrency is shown, not implied —');
 const p1=await page.$$eval('.ap-node',els=>els.filter(e=>e.closest('.ap-cell')).length);
-ok(p1===21,`all ${p1} approval steps render`);
-const startNow=await page.$$eval('.ap-tag-start',e=>e.length);
-ok(startNow===4,`four steps flagged to start in week one (${startNow})`);
-ok((await page.$$('.ap-legend span')).length===5,'a legend explains the notation');
+ok(p1===24,`all ${p1} approval steps render`);
+const startNow=await page.$$eval('.ap-cell .ap-tag-start',e=>e.length);
+ok(startNow===5,`five steps flagged to start in week one (${startNow})`);
+ok((await page.$$('.ap-legend [role="listitem"]')).length===9,'the legend explains lines and badges alike');
+const legend=await page.textContent('.ap-legend-badges');
+for (const key of ['Start now','If required','Required on this route','Blocks occupancy','Lane colour'])
+  ok(legend.includes(key),`the legend keys the ${key} badge`);
 
 console.log('\n— the grid lane runs unbroken to energization —');
 ok(await page.$('#apn-aeso-agreement')!==null,'the connection agreement follows the system study');
@@ -68,7 +71,7 @@ console.log('\n— the power plant chain and its municipal side —');
 ok(await page.$('#apn-auc-gen-file')!==null,'AUC power plant application is on the diagram');
 ok(await page.$('#apn-auc-gen-approval')!==null,'and its approval');
 ok(await page.$('#apn-muni-dp-generation')!==null,'the municipal permit for the generation facility is shown');
-const pairTags=await page.$$eval('.ap-tag-pair',e=>e.map(x=>x.textContent.trim()));
+const pairTags=await page.$$eval('.ap-cell .ap-tag-pair',e=>e.map(x=>x.textContent.trim()));
 ok(pairTags.length===4,`paired approvals are marked on both cards (${pairTags.length} chips)`);
 ok(new Set(pairTags).size===2,`two pairs, each sharing a letter: ${[...new Set(pairTags)].join(' / ')}`);
 ok((await page.$$('.ap-pair')).length===0,'and no line is drawn for them — a pair has no sequence');
@@ -118,6 +121,19 @@ ok(await page.isVisible('#ap-drawer'),'jumping to a related step works');
 await page.keyboard.press('Escape'); await page.waitForTimeout(300);
 ok(!(await page.isVisible('#ap-drawer')),'Escape closes');
 
+console.log('\n— the provincial approvals a package usually omits —');
+for (const id of ['crown-consultation','roadside-permit','public-lands'])
+  ok(await page.$(`#apn-${id}`)!==null,`on the diagram: ${id}`);
+await page.click('#apn-crown-consultation'); await page.waitForTimeout(400);
+const cc=await page.textContent('#ap-drawer');
+ok(/Watch for/i.test(cc),'consultation is flagged as fact-specific rather than asserted');
+ok(/Unverified/i.test(cc),'and tiered accordingly');
+await page.click('#ap-close'); await page.waitForTimeout(300);
+
+console.log('\n— every card says where the process starts —');
+const links=await page.$$eval('.ap-node',e=>e.map(x=>x.id));
+ok(links.length===24,'all cards present for the link check');
+
 console.log('\n— the off-grid route —');
 ok((await page.$$('#ap-routes .seg-btn')).length===2,'two supply routes are offered');
 await page.click('#ap-routes .seg-btn:nth-child(2)'); await page.waitForTimeout(700);
@@ -132,7 +148,7 @@ ok(off.includes('apn-muni-preapp')&&off.includes('apn-muni-dp')&&off.includes('a
 const laneNow=await page.$$eval('.ap-lane-label',e=>e.map(x=>x.textContent.trim()));
 ok(laneNow.includes('On-site power')&&!laneNow.includes('Grid connection'),
    'the grid lane is relabelled for the route');
-const reqTags=await page.$$eval('.ap-tag-req',e=>e.map(x=>x.textContent.trim()));
+const reqTags=await page.$$eval('.ap-cell .ap-tag-req',e=>e.map(x=>x.textContent.trim()));
 ok(reqTags.length>=2,`on-site generation stops being optional off-grid (${reqTags.length} marked required)`);
 const offIns=await page.textContent('.ap-insights');
 ok(/off the hook/i.test(offIns),'the off-grid notes say what does not change');
@@ -143,11 +159,11 @@ ok(/Occupancy permit/i.test(pc),'commissioning still gates occupancy');
 ok(!/Energization/i.test(pc),'and the drawer does not offer grid-route steps');
 await page.click('#ap-close'); await page.waitForTimeout(300);
 await page.click('#ap-routes .seg-btn:nth-child(1)'); await page.waitForTimeout(700);
-ok((await page.$$eval('.ap-cell .ap-node',e=>e.length))===21,'switching back restores the grid route');
+ok((await page.$$eval('.ap-cell .ap-node',e=>e.length))===24,'switching back restores the grid route');
 
 console.log('\n— the print sheet —');
 const pr=await newPagePrint();
-ok((await pr.$$('.ap-cell .ap-node')).length===22,'the print sheet renders a route on its own');
+ok((await pr.$$('.ap-cell .ap-node')).length===25,'the print sheet renders a route on its own');
 ok((await pr.$$('.ap-wire')).length>0,'with its connectors');
 await pr.emulateMedia({media:'print'});
 await pr.waitForTimeout(600);
@@ -236,7 +252,7 @@ const home=await browser.newPage({viewport:{width:1500,height:1100}});
 home.on('pageerror',e=>errors.push(String(e)));
 await home.goto(`${B}/index.html`,{waitUntil:'networkidle'});
 await home.waitForTimeout(1200);
-ok((await home.$$('.ap-node')).length===21,'the full diagram renders on the front page');
+ok((await home.$$('.ap-node')).length===24,'the full diagram renders on the front page');
 ok((await home.$$('.ap-wire')).length>=14,'with its connectors');
 await home.click('#apn-muni-preapp'); await home.waitForTimeout(400);
 ok(await home.isVisible('#ap-drawer'),'and its drawer works there');
