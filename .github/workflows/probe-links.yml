@@ -1,0 +1,22 @@
+name: Probe links
+
+# Citations rot. This finds the live home of one whose link has 404'd, by
+# trying candidates from a runner that can reach alberta.ca and auc.ab.ca —
+# which the authoring sandbox cannot. It reports evidence and changes nothing.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Probe candidate URLs
+        run: node scripts/probe-links.mjs | tee "$GITHUB_STEP_SUMMARY"
