@@ -1,0 +1,77 @@
+name: Build approval PDFs
+
+# The wall chart is offered as a download, so it must not drift from the data.
+# Whenever the diagram or its stylesheet changes, this re-renders both routes
+# and commits them. Playwright is CI-only: the site itself still has no
+# dependencies and no build step.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/data/approvals.json'
+      - 'site/assets/approvals.js'
+      - 'site/assets/style.css'
+      - 'site/approvals-print.html'
+      - 'scripts/build-pdfs.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pdfs
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright
+        run: npm init -y >/dev/null && npm i --no-save playwright && npx playwright install --with-deps chromium
+
+      - name: Serve the site
+        run: npx --yes http-server site -p 8765 --silent &
+
+      - name: Wait for the server
+        run: npx --yes wait-on http://127.0.0.1:8765/approvals-print.html
+
+      - name: Render both routes
+        run: node scripts/build-pdfs.mjs
+
+      - name: Regenerate the Mermaid charts too
+        run: node scripts/build-mermaid.mjs > docs/approvals-flowcharts.md
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f package.json package-lock.json
+          git add site/downloads docs/approvals-flowcharts.md
+          if git diff --cached --quiet; then
+            echo "No change to the rendered charts."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore(charts): re-render approval PDFs and Mermaid"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  # A pushed commit by the default token does not trigger deploy.yml, so the
+  # publish is called rather than left to fire on its own.
+  publish:
+    needs: render
+    if: needs.render.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml

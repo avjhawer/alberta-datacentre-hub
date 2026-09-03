@@ -87,6 +87,7 @@
           ${isOptional(n) ? '<span class="ap-tag ap-tag-opt">If required</span>' : ''}
           ${isRequiredHere(n) ? '<span class="ap-tag ap-tag-req">Required on this route</span>' : ''}
           ${n.blocksOccupancy ? '<span class="ap-tag ap-tag-block">Blocks occupancy</span>' : ''}
+          ${n.blocksNote ? `<span class="ap-tag ap-tag-block">${esc(n.blocksNote)}</span>` : ''}
           ${pairLetters.has(n.id)
             ? `<span class="ap-tag ap-tag-pair">Pair ${esc(pairLetters.get(n.id))}</span>` : ''}
         </span>
@@ -139,7 +140,10 @@
             ${showCriticalOnly ? 'Show everything' : 'Highlight critical path'}
           </button>
           <a class="btn btn-small" id="ap-print" href="approvals-print.html?route=${esc(variant)}"
-             target="_blank" rel="noopener">Print / PDF</a>
+             target="_blank" rel="noopener">Print sheet</a>
+          <a class="btn btn-small" id="ap-download" download
+             href="downloads/alberta-data-centre-approvals-${
+               variant === 'offgrid' ? 'off-grid' : 'grid-connected'}.pdf">Download PDF</a>
         </div>
       </div>
 
@@ -157,7 +161,7 @@
         <span role="listitem"><span class="ap-tag ap-tag-start">Start now</span>Independent of everything else — begin in week one</span>
         <span role="listitem"><span class="ap-tag ap-tag-opt">If required</span>Only some projects engage this</span>
         <span role="listitem"><span class="ap-tag ap-tag-req">Required on this route</span>Conditional on the other route, not this one</span>
-        <span role="listitem"><span class="ap-tag ap-tag-block">Blocks occupancy</span>Occupancy cannot issue until this is done</span>
+        <span role="listitem"><span class="ap-tag ap-tag-block">Blocks …</span>Blocks what it names — that step cannot start until this is done</span>
         <span role="listitem"><i class="ap-key ap-key-lane"></i>Lane colour marks which authority decides — it is not a ranking</span>
       </div>
 
@@ -260,8 +264,13 @@
     const x2 = b.left - box.left,  y2 = b.top + b.height * to - box.top;
     /* Bounded both ways. A flat 18px minimum bulged the short hops between
        adjacent columns into an S in a 21px gutter; an unbounded 45% swung the
-       long ones wide. */
-    const dx = Math.min(60, Math.max(7, (x2 - x1) * 0.4));
+       long ones wide.
+
+       `bow` separates lines that share a channel. Four connectors leave the
+       Phase 3 municipal cell for Phase 4, and with one dx they ran as a single
+       rope down the column gutter — spread at their ends, indistinguishable in
+       the middle. Each gets its own curvature instead. */
+    const dx = Math.min(60, Math.max(7, (x2 - x1) * 0.4)) + (anchors.bow || 0);
     return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
   }
 
@@ -300,6 +309,20 @@
     share(e => (e.vertical ? null : `h-out:${e.fromId}`), e => e.b.top,   'from');
     share(e => (e.vertical ? `v-in:${e.toId}` : null),    e => e.a.left,  'to');
     share(e => (e.vertical ? `v-out:${e.fromId}` : null), e => e.b.left,  'from');
+
+    /* Connectors crossing the same column gutter share a narrow channel, and
+       with one curvature they ran as a single rope down it. Each gets a bow
+       proportional to how far it travels vertically, so a long run swings clear
+       of a short hop.
+
+       Continuous rather than ranked, deliberately: bowing by index made two
+       lines converging on the same card from adjacent sources swap places and
+       cross, because their rank differed while their geometry did not. Scaling
+       by distance keeps lines with similar geometry roughly parallel. */
+    for (const e of edges) {
+      if (e.vertical) continue;
+      e.anchors.bow = Math.min(26, Math.abs(e.a.top - e.b.top) * 0.03);
+    }
     return edges;
   }
 
@@ -384,8 +407,10 @@
     lastFocus = trigger || document.activeElement;
     // Every relationship is filtered to the route on show: listing a step that
     // is not on the diagram in front of the reader would be worse than useless.
-    const deps = (n.dependsOn || []).map(id => node(id)).filter(x => x && inRoute(x));
-    const blocks = routeNodes().filter(x => (x.dependsOn || []).includes(n.id));
+    const deps = [...(n.dependsOn || []), ...(n.dependsOnBadged || [])]
+      .map(id => node(id)).filter(x => x && inRoute(x));
+    const blocks = routeNodes().filter(x =>
+      (x.dependsOn || []).includes(n.id) || (x.dependsOnBadged || []).includes(n.id));
     const concurrent = routeNodes().filter(x =>
       x.phase === n.phase && x.id !== n.id && x.lane !== n.lane);
     // Pairing is symmetric even though the data records it on one side.

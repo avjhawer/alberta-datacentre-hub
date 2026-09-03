@@ -35,7 +35,7 @@
       "label": "Land, water & consultation",
       "body": "Alberta Environment and Protected Areas, and other provincial authorities",
       "hue": "global",
-      "note": "Independent of the land use decision, and where a project quietly stalls.",
+      "note": "Runs on its own clock. Two of these gate ground disturbance; the rest gate provincial decisions or operation, not your permit.",
       "level": "provincial",
       "levelNote": "Provincial department. Independent of the municipal land use decision."
     },
@@ -359,11 +359,12 @@
       "authority": "Alberta Environment and Protected Areas",
       "what": "A disposition where any part of the project — the site, an access road, a pipeline or a transmission line — crosses Crown land.",
       "optional": true,
-      "why": "Easy to miss because it usually attaches to the linear works rather than the site. A permitted building served by an unauthorised crossing is not deliverable.",
+      "why": "Easy to miss because it usually attaches to the linear works rather than the site. A permitted building served by an unauthorised crossing is not deliverable, and the disposition has to precede any disturbance on Crown land.",
       "watch": "Applies only where Crown land is actually engaged. Confirm the land status before assuming either way.",
       "startLink": "https://www.alberta.ca/public-land-dispositions",
       "startLabel": "Public land dispositions",
-      "sourceTier": "unverified"
+      "sourceTier": "unverified",
+      "blocksNote": "Blocks ground disturbance"
     },
     {
       "id": "water-licence",
@@ -386,11 +387,13 @@
       "title": "Environmental & historical clearances",
       "authority": "Provincial",
       "what": "Wetland assessment, environmental approvals where thresholds are engaged, and Historical Resources Act clearance.",
-      "why": "These are independent of the land use decision and run on their own timetable. They rarely stop a project, but they routinely delay one.",
+      "why": "These run on their own timetable, independent of the land use decision — but clearance has to be in hand before the ground is disturbed, which is why the arrow runs to site grading rather than to the permit. They rarely stop a project and they routinely delay one.",
       "startLink": "https://www.alberta.ca/environment-and-protected-areas",
       "startLabel": "Environment and Protected Areas",
       "sourceTier": "primary",
-      "watch": "Historical Resources Act clearance is part of this, but no stable page for it resolved when this was last checked. Ask Environment and Protected Areas which clearances a given site engages."
+      "watch": "Historical Resources Act clearance is part of this, but no stable page for it resolved when this was last checked. Ask Environment and Protected Areas which clearances a given site engages.",
+      "dependsOn": [],
+      "blocksNote": "Blocks ground disturbance"
     },
     {
       "id": "muni-preapp",
@@ -508,7 +511,11 @@
       "why": "Once a large site is stripped, refusing what follows becomes far harder to defend. Require security sized to actual reclamation cost and a drainage design that works as a standalone end state.",
       "sourceTier": "unverified",
       "startLink": "https://open.alberta.ca/publications/m26",
-      "startLabel": "Municipal Government Act"
+      "startLabel": "Municipal Government Act",
+      "dependsOnBadged": [
+        "env-other",
+        "public-lands"
+      ]
     },
     {
       "id": "building-permit",

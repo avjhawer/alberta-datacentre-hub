@@ -1767,7 +1767,9 @@ table.data tbody tr:hover{ background:var(--accent-wash); }
 .ap-grid {
   position:relative; display:grid;
   grid-template-columns:30px 190px repeat(var(--phases), minmax(190px, 1fr));
-  gap:var(--s-2); min-width:1130px;
+  /* Row gap tight, column gap generous: the connectors run vertically through
+     the column gutter, and they need room there to stay apart. */
+  gap:var(--s-2) 20px; min-width:1130px;
 }
 
 .ap-corner { }

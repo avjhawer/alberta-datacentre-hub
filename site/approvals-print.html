@@ -59,11 +59,12 @@
 body { background: var(--page); }
 
 /* Already on the print sheet — the link would only reopen it. */
-#ap-print { display: none; }
+#ap-print, #ap-download { display: none; }
+.sheet-actions { display: flex; gap: var(--s-2); align-items: center; }
 
 /* --- the artboard scale, applied on screen and on paper alike -------------- */
 .sheet .ap-scroll { overflow: visible; }
-.sheet .ap-grid { min-width: 0; gap: 6px; }
+.sheet .ap-grid { min-width: 0; gap: 6px 16px; }
 
 .sheet .ap-head { margin-bottom: 4px; }
 .sheet .ap-title { font-size: 19px; margin-bottom: 1px; }
@@ -82,11 +83,11 @@ body { background: var(--page); }
 .sheet .ap-lane-note { font-size: 6px; line-height: 1.2; margin-top: 1px; }
 .sheet .ap-level-text { font-size: 7px; }
 
-.sheet .ap-cell { padding: 3px; gap: 4px; }
+.sheet .ap-cell { padding: 3px; gap: 3px; }
 /* A cell whose two cards have a dependency between them needs room for the
    arrow; at 6px it printed as a stub with a head wider than the line. */
 .sheet .ap-cell.is-linked { gap: 18px; }
-.sheet .ap-node { padding: 4px 6px; gap: 1px; box-shadow: none; }
+.sheet .ap-node { padding: 3px 6px; gap: 1px; box-shadow: none; }
 .sheet .ap-node:hover { transform: none; box-shadow: none; }
 .sheet .ap-node-authority { font-size: 7px; }
 .sheet .ap-node-title { font-size: 10px; line-height: 1.18; }
@@ -129,7 +130,10 @@ body { background: var(--page); }
        scale <strong>100%</strong> — the page size is set in this file, so do not scale to fit.
        Turn <strong>background graphics on</strong>. Switch route below before printing:
        the sheet prints whichever one is on screen.</p>
-    <button class="btn btn-primary" id="do-print">Print</button>
+    <span class="sheet-actions">
+      <a class="btn btn-small" id="sheet-pdf" download>Download PDF</a>
+      <button class="btn btn-primary" id="do-print">Print</button>
+    </span>
   </div>
 
   <section id="approvals-slot"></section>
@@ -155,6 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('do-print').addEventListener('click', () => window.print());
 document.getElementById('printed-on').textContent =
   'Printed ' + new Date().toISOString().slice(0, 10);
+// The pre-rendered file for whichever route this sheet is showing.
+{
+  const route = new URLSearchParams(location.search).get('route') === 'offgrid'
+    ? 'off-grid' : 'grid-connected';
+  document.getElementById('sheet-pdf').href =
+    `downloads/alberta-data-centre-approvals-${route}.pdf`;
+}
 </script>
 </body>
 </html>

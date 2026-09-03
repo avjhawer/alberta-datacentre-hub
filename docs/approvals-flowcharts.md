@@ -96,6 +96,8 @@ flowchart LR
   muni_decision -.- |required alongside| muni_security
   sdab_appeal --> muni_grading
   muni_security --> muni_grading
+  env_other --> |blocks| muni_grading
+  public_lands --> |blocks| muni_grading
   sdab_appeal ==> building_permit
   muni_security ==> building_permit
   building_permit ==> inspections
@@ -181,6 +183,8 @@ flowchart LR
   muni_decision -.- |required alongside| muni_security
   sdab_appeal --> muni_grading
   muni_security --> muni_grading
+  env_other --> |blocks| muni_grading
+  public_lands --> |blocks| muni_grading
   sdab_appeal ==> building_permit
   muni_security ==> building_permit
   building_permit ==> inspections

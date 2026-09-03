@@ -41,7 +41,7 @@ const startNow=await page.$$eval('.ap-cell .ap-tag-start',e=>e.length);
 ok(startNow===5,`five steps flagged to start in week one (${startNow})`);
 ok((await page.$$('.ap-legend [role="listitem"]')).length===9,'the legend explains lines and badges alike');
 const legend=await page.textContent('.ap-legend-badges');
-for (const key of ['Start now','If required','Required on this route','Blocks occupancy','Lane colour'])
+for (const key of ['Start now','If required','Required on this route','Blocks','Lane colour'])
   ok(legend.includes(key),`the legend keys the ${key} badge`);
 
 console.log('\n— the grid lane runs unbroken to energization —');
@@ -152,6 +152,25 @@ await page.click('#ap-close'); await page.waitForTimeout(300);
 console.log('\n— every card says where the process starts —');
 const links=await page.$$eval('.ap-node',e=>e.map(x=>x.id));
 ok(links.length===28,'all cards present for the link check');
+
+console.log('\n— what the land, water and consultation lane gates —');
+const blockTags=await page.$$eval('.ap-cell .ap-tag-block',e=>e.map(x=>x.textContent.trim()));
+ok(blockTags.filter(t=>/ground disturbance/i.test(t)).length===2,
+   `two clearances are marked as blocking ground disturbance (${blockTags.join(' / ')})`);
+await page.click('#apn-muni-grading'); await page.waitForTimeout(400);
+const sg=await page.textContent('#ap-drawer');
+for (const want of ['Environmental & historical clearances','Public land disposition'])
+  ok(sg.includes(want)||sg.includes(want.replace('&','&amp;')),
+     `site grading lists it as a precondition: ${want}`);
+await page.click('#ap-close'); await page.waitForTimeout(300);
+
+console.log('\n— the sheet is offered as a file —');
+ok(await page.$('#ap-download')!==null,'a pre-rendered PDF is linked from the diagram');
+const pdfHref=await page.getAttribute('#ap-download','href');
+ok(/^downloads\/alberta-data-centre-approvals-grid-connected\.pdf$/.test(pdfHref),
+   `and points at the right file (${pdfHref})`);
+const head=await page.evaluate(async h=>(await fetch(h,{method:'HEAD'})).status, pdfHref);
+ok(head===200,`the file is actually published (HTTP ${head})`);
 
 console.log('\n— the off-grid route —');
 ok((await page.$$('#ap-routes .seg-btn')).length===2,'two supply routes are offered');

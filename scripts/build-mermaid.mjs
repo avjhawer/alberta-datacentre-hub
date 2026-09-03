@@ -65,7 +65,8 @@ function chart(v) {
 
   /* Same transitive reduction the site applies: an edge a longer chain already
      implies is not drawn. Kept identical so the two media agree. */
-  const deps = new Map(nodes.map(n => [n.id, (n.dependsOn || []).filter(id => ids.has(id))]));
+  const deps = new Map(nodes.map(n => [n.id,
+    [...(n.dependsOn || []), ...(n.dependsOnBadged || [])].filter(id => ids.has(id))]));
   const ancestorOf = (target, id, seen = new Set()) => {
     if (seen.has(target)) return false;
     seen.add(target);
@@ -80,6 +81,13 @@ function chart(v) {
       if (!ids.has(dep) || implied(dep, n)) continue;
       const crit = n.critical && spec.nodes.find(x => x.id === dep)?.critical;
       out.push(`  ${mid(dep)} ${crit ? '==>' : '-->'} ${mid(n.id)}`);
+    }
+    /* Dependencies the site's grid has to show as a badge — a line from the
+       lane above clipped a card on its way past — are ordinary edges here,
+       because Mermaid routes them itself. Same data, drawn as well as each
+       medium allows. */
+    for (const dep of n.dependsOnBadged || []) {
+      if (ids.has(dep)) out.push(`  ${mid(dep)} --> |blocks| ${mid(n.id)}`);
     }
     // Paired approvals: both required, neither authorising the other, so the
     // link carries no arrowhead and no direction. Pairing is recorded on both
