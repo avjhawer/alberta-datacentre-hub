@@ -153,9 +153,8 @@
         <span role="listitem"><i class="ap-key ap-key-critical"></i>Critical path — delay here moves the finish date</span>
         <span role="listitem"><i class="ap-key ap-key-arrow"></i>Arrow: must finish before</span>
         <span role="listitem"><i class="ap-key ap-key-parallel"></i>Same column: same stage, no order implied between them</span>
-        <span role="listitem" class="ap-legend-pair"><i class="ap-key ap-key-pair">A</i><i
-          class="ap-key ap-key-pair">A</i>Same letter: one thing, two applications — both required,
-          neither authorises the other</span>
+        <span role="listitem"><i class="ap-key ap-key-pair">A</i>The same letter on two cards:
+          one thing, two applications — both required, neither authorises the other</span>
       </div>
       <div class="ap-legend ap-legend-badges" role="list">
         <span role="listitem"><span class="ap-tag ap-tag-start">Start now</span>Independent of everything else — begin in week one</span>
