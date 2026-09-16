@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T13:54:00.134Z",
+  "generatedAt": "2026-09-16T18:33:25.930Z",
   "itemCount": 400,
   "sourceHealth": [
     {
@@ -13,7 +13,7 @@
       "id": "gn-aeso",
       "name": "AESO large load coverage",
       "ok": true,
-      "count": 43,
+      "count": 44,
       "error": ""
     },
     {
@@ -34,14 +34,14 @@
       "id": "gn-parkland",
       "name": "Parkland County planning",
       "ok": true,
-      "count": 27,
+      "count": 28,
       "error": ""
     },
     {
       "id": "gn-rockyview",
       "name": "Rocky View County planning",
       "ok": true,
-      "count": 50,
+      "count": 53,
       "error": ""
     },
     {
@@ -55,7 +55,7 @@
       "id": "gn-canada-dc",
       "name": "Canada data centre policy",
       "ok": true,
-      "count": 69,
+      "count": 68,
       "error": ""
     },
     {
@@ -69,7 +69,7 @@
       "id": "gn-gov-launch",
       "name": "New government data centre programs (discovery)",
       "ok": true,
-      "count": 72,
+      "count": 74,
       "error": ""
     },
     {
@@ -116,31 +116,174 @@
     }
   ],
   "streamCounts": {
-    "technology": 45,
-    "news": 211,
-    "municipal": 29,
-    "market": 9,
-    "projects": 51,
-    "regulation": 16,
-    "policy": 39
+    "technology": 41,
+    "regulation": 19,
+    "news": 214,
+    "projects": 47,
+    "market": 10,
+    "municipal": 31,
+    "policy": 38
   },
   "regionCounts": {
-    "global": 167,
-    "alberta": 167,
-    "canada": 66
+    "global": 161,
+    "canada": 66,
+    "alberta": 173
   },
   "items": [
     {
-      "title": "Axelera AI launches Europa chip, makes hardware available in Dell and Supermicro servers",
-      "url": "https://www.datacenterdynamics.com/en/news/axelera-ai-launches-europa-chip-makes-hardware-available-in-dell-and-supermicro-servers/",
+      "title": "Onsemi unveils its Embedded Power Platform architecture to increase power density",
+      "url": "https://www.datacenterdynamics.com/en/news/onsemi-unveils-its-embedded-power-platform-architecture-to-increase-power-density/",
       "source": "datacenterdynamics.com",
-      "published": "2026-09-16T11:53:50.000Z",
-      "summary": "<p data-block-key=\"8ii8p\">Now shipping in Dell XE5 and Supermicro 111AD servers</p>",
+      "published": "2026-09-16T18:30:29.000Z",
+      "summary": "<p data-block-key=\"lzsha\">Works by using the silicon wafer as an embedded package</p>",
       "tier": "reported",
       "feedId": "dcd",
       "region": "global",
       "stream": "technology",
-      "score": 10,
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "Scotland's parliament backs defacto, temporary, moratorium on new hyperscale data centers",
+      "url": "https://www.datacenterdynamics.com/en/news/scotland-data-center-moratorium/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T17:43:00.000Z",
+      "summary": "<p data-block-key=\"0ra4t\">No plans will be approved until new planning guidance is published</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "regulation",
+      "score": 17,
+      "breaking": true
+    },
+    {
+      "title": "An Introduction to Data Center SLAs",
+      "url": "https://www.datacenterdynamics.com/en/whitepapers/an-introduction-to-data-center-slas/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T17:32:13.000Z",
+      "summary": "<p data-block-key=\"sp6lj\">Navigating SLA volatility &amp; protecting data center cash flows</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "news",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "TotalEnergies partners with Mistral to develop AI models for oil and gas exploitation",
+      "url": "https://www.datacenterdynamics.com/en/news/totalenergies-partners-with-mistral-to-develop-ai-models-for-oil-and-gas-exploitation/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T15:24:28.000Z",
+      "summary": "<p data-block-key=\"2u8q3\">Three-year contract worth an estimated €100 million</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "regulation",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "AI growth is highlighting the network as the next data center bottleneck",
+      "url": "https://www.datacenterdynamics.com/en/opinions/ai-growth-is-highlighting-the-network-as-the-next-data-center-bottleneck/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T15:16:23.000Z",
+      "summary": "<p data-block-key=\"5saad\">The importance of fiber in establishing new data center hubs in the UK</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "news",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "AirJoule acquires cooling firm BitSink",
+      "url": "https://www.datacenterdynamics.com/en/news/airjoule-acquires-cooling-firm-bitsink/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T15:05:02.000Z",
+      "summary": "<p data-block-key=\"gfwqz\">Deal could eventually be worth $67m</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "technology",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "Goodman raises $455m for its Hong Kong data center partnership",
+      "url": "https://www.datacenterdynamics.com/en/news/goodman-raises-455m-for-its-hong-kong-data-center-partnership/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T15:01:50.000Z",
+      "summary": "<p data-block-key=\"ve01g\">Will fund construction of Hong Kong data center, due to open in 2028</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "projects",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "Sponsored: Why clean air is critical to airflow intelligence",
+      "url": "https://www.datacenterdynamics.com/en/opinions/why-clean-air-is-critical-to-airflow-intelligence/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T15:00:00.000Z",
+      "summary": "<p data-block-key=\"y1gdb\">Airflow intelligence was built to close the gap between a facility's design PUE and its actual PUE. Clean air is what keeps that gap closed</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "regulation",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "OpenAI Astra’s ‘Critical’ Rating and the AI Governability Gap",
+      "url": "https://www.datacenterknowledge.com/security-and-risk-management/openai-astra-s-critical-rating-and-the-ai-governability-gap",
+      "source": "datacenterknowledge.com",
+      "published": "2026-09-16T14:53:38.000Z",
+      "summary": "Advanced AI models can now evade oversight. Data center operators must verify monitoring under adversarial conditions rather than rely on vendor claims.",
+      "tier": "reported",
+      "feedId": "dck",
+      "region": "global",
+      "stream": "news",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "DCD Intelligence: Data Center Workforce Survey Results 2026",
+      "url": "https://www.datacenterdynamics.com/en/whitepapers/dcd-intelligence-data-center-workforce-survey-results-2026/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T14:19:00.000Z",
+      "summary": "<p data-block-key=\"mmsa1\">Data center growth is outpacing talent</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "news",
+      "score": 8,
+      "breaking": false
+    },
+    {
+      "title": "The AI Data Centre Backlash Has Started: I’d Watch These 2 Canadian Stocks - The Globe and Mail",
+      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPY0lqcFZDX1laVDdXdndoMWtteElXeG4xaWt2bzZ2UDYzZk80TE5FN19rcTNIZklRSDM3Y0ZsdnB6alVEZjRpbEFlOXVGNlJhdWJYdWlBNjhWWDJuY08tQ052a0JuU2F6V2lZcl96dmk5SUhSWE0zeG45V3llY2xzYm1jTzJjcUZ2TmltZmZDUjFfeTZra3Q2c3hjZnczZGExcFNLTTAxWTVfaExibXc1Qm1YMTVnR0I3TUY0NlUtMFVFWkJkRnVNYU12Z3ZMdkhNV1NiVFBWMWJ0c0pfeVZ6WXRaOG8xX0JnekJFR1FMRQ?oc=5",
+      "source": "The Globe and Mail",
+      "published": "2026-09-16T14:05:17.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMi7wFBVV95cUxPY0lqcFZDX1laVDdXdndoMWtteElXeG4xaWt2bzZ2UDYzZk80TE5FN19rcTNIZklRSDM3Y0ZsdnB6alVEZjRpbEFlOXVGNlJhdWJYdWlBNjhWWDJuY08tQ052a0JuU2F6V2lZcl96dmk5SUhSWE0zeG45V3llY2xzYm1jTzJjcUZ2TmltZmZDUjFfeTZra3Q2c3hjZnczZGExcFNLTTAxWTVfaExibXc1Qm1YMTVnR0I3TUY0NlUtMFVFWkJkRnVNYU12Z3ZMdkhNV1NiVFBWMWJ0c0pfeVZ6WXRaOG8xX0JnekJFR1FMRQ?oc=5\" target=\"_blank\">The A",
+      "tier": "reported",
+      "feedId": "gn-canada-dc",
+      "region": "canada",
+      "stream": "market",
+      "score": 11,
+      "breaking": false
+    },
+    {
+      "title": "Nvidia and Google Form AI Energy Alliance, Aiming to Transform Data Centers from Power Hogs into Grid Flexibility Resources - finance.biggo.com",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8tOEY2dnUyYkVvUVMwQ3JKNkYxUnk0czNlY3RqalpQVS00R25iYXo0YzZBcmVYcXJzMXRtbEhadnNPQS1DVkZuR2YyRzJodTM3aUxTVVhneTgtXzFmbklWaWppVnZ6ajd3TWtvbVhzcDBLeUE5X1E?oc=5",
+      "source": "finance.biggo.com",
+      "published": "2026-09-16T13:55:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE8tOEY2dnUyYkVvUVMwQ3JKNkYxUnk0czNlY3RqalpQVS00R25iYXo0YzZBcmVYcXJzMXRtbEhadnNPQS1DVkZuR2YyRzJodTM3aUxTVVhneTgtXzFmbklWaWppVnZ6ajd3TWtvbVhzcDBLeUE5X1E?oc=5\" target=\"_blank\">Nvidia and Google Form AI Energy Alliance, Aiming to Transform Data Centers from Power Hogs into Grid Flexibility Resources</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">finance",
+      "tier": "reported",
+      "feedId": "gn-grid-global",
+      "region": "global",
+      "stream": "news",
+      "score": 8,
       "breaking": false
     },
     {
@@ -155,6 +298,45 @@
       "stream": "news",
       "score": 8,
       "breaking": false
+    },
+    {
+      "title": "Axelera AI launches Europa chip, makes hardware available in Dell and Supermicro servers",
+      "url": "https://www.datacenterdynamics.com/en/news/axelera-ai-launches-europa-chip-makes-hardware-available-in-dell-and-supermicro-servers/",
+      "source": "datacenterdynamics.com",
+      "published": "2026-09-16T11:53:00.000Z",
+      "summary": "<p data-block-key=\"8ii8p\">Now shipping in Dell XE5 and Supermicro 111AD servers</p>",
+      "tier": "reported",
+      "feedId": "dcd",
+      "region": "global",
+      "stream": "technology",
+      "score": 10,
+      "breaking": false
+    },
+    {
+      "title": "VARCOE: Meta’s Arrival is Part of Years-Long Quest — and Future Road Map — to Bring Data Centres to Alberta - EnergyNow",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQX0x0T2JmcExRSHBOSFNydVBGWTJQSHBjSlZabFFRVDNrZTVoYVVvbzBVWkc5RlJsQVVVQy1Rd1hMM3JLWUtPam9DR0hoMDNZeEJLUHJnVXM2TDJsaGVwSGo3OEhYZmhLNE9kdVJKQlo5Q2hKTHptamI2WjRadllvdm9LUzRvQXpuZWdmUmU5Zk10WXh0X1VQajZNMUNMYnRtWFo4UzVIZXp5ZEhrVUVzWHN6QTc1US02bnVROEVScDA2bWNpSC1mQXZjQQ?oc=5",
+      "source": "EnergyNow",
+      "published": "2026-09-16T11:46:32.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiywFBVV95cUxQX0x0T2JmcExRSHBOSFNydVBGWTJQSHBjSlZabFFRVDNrZTVoYVVvbzBVWkc5RlJsQVVVQy1Rd1hMM3JLWUtPam9DR0hoMDNZeEJLUHJnVXM2TDJsaGVwSGo3OEhYZmhLNE9kdVJKQlo5Q2hKTHptamI2WjRadllvdm9LUzRvQXpuZWdmUmU5Zk10WXh0X1VQajZNMUNMYnRtWFo4UzVIZXp5ZEhrVUVzWHN6QTc1US02bnVROEVScDA2bWNpSC1mQXZjQQ?oc=5\" target=\"_blank\">VARCOE: Meta’s Arrival is Part of Years-Long Quest — ",
+      "tier": "reported",
+      "feedId": "gn-dc-alberta",
+      "region": "alberta",
+      "stream": "news",
+      "score": 14,
+      "breaking": true
+    },
+    {
+      "title": "Alberta Court Fines Imperial Oil for Kearl Spill Breach - EnergyNow",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPUFgyN0dONjFhRldDLUduaExHa2R6dnlmTVBxRV9jVmxjWHl6dzMwRjN1V01wdzRaRG1nWVRtZEJWQUJyQmtWZThqX2FrcWxOVVNNbGhaZFVCNHgzUHFwMTVObXlnWHJ5ajI4TldEN2FxYlk2MmZkTmExVE00THpvY3FPYkxOVDE3dFgxM3V3?oc=5",
+      "source": "EnergyNow",
+      "published": "2026-09-16T11:46:03.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxPUFgyN0dONjFhRldDLUduaExHa2R6dnlmTVBxRV9jVmxjWHl6dzMwRjN1V01wdzRaRG1nWVRtZEJWQUJyQmtWZThqX2FrcWxOVVNNbGhaZFVCNHgzUHFwMTVObXlnWHJ5ajI4TldEN2FxYlk2MmZkTmExVE00THpvY3FPYkxOVDE3dFgxM3V3?oc=5\" target=\"_blank\">Alberta Court Fines Imperial Oil for Kearl Spill Breach</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">EnergyNow</font>",
+      "tier": "reported",
+      "feedId": "gn-aer",
+      "region": "alberta",
+      "stream": "news",
+      "score": 14,
+      "breaking": true
     },
     {
       "title": "County seeks input on future data centre development - CochraneNow",
@@ -283,7 +465,7 @@
       "feedId": "gn-canada-dc",
       "region": "canada",
       "stream": "projects",
-      "score": 11,
+      "score": 8,
       "breaking": false
     },
     {
@@ -296,7 +478,7 @@
       "feedId": "gn-grid-global",
       "region": "global",
       "stream": "news",
-      "score": 8,
+      "score": 5,
       "breaking": false
     },
     {
@@ -309,8 +491,8 @@
       "feedId": "gn-auc",
       "region": "alberta",
       "stream": "news",
-      "score": 14,
-      "breaking": true
+      "score": 11,
+      "breaking": false
     },
     {
       "title": "Rocky View County seeks public feedback on future data centre development - DiscoverAirdrie",
@@ -430,84 +612,6 @@
       "breaking": false
     },
     {
-      "title": "AirTrunk partners with Emergence Quantum to explore cryogenic cooling in data centers",
-      "url": "https://www.datacenterdynamics.com/en/news/airtrunk-partners-with-emergence-quantum-to-explore-cryogenic-cooling-in-data-centers/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T16:10:52.000Z",
-      "summary": "<p data-block-key=\"9imzt\">Companies buddy up to integrate cryogenic cooling into data centers</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "technology",
-      "score": 5,
-      "breaking": false
-    },
-    {
-      "title": "Are diamonds a data center's best friend?",
-      "url": "https://www.datacenterdynamics.com/en/analysis/are-diamonds-a-data-centers-best-friend/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T16:08:11.000Z",
-      "summary": "<p data-block-key=\"vep8v\">Akash Systems is bring diamond cooling to the data hall</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "technology",
-      "score": 5,
-      "breaking": false
-    },
-    {
-      "title": "What should Britain expect from its next generation of data centers?",
-      "url": "https://www.datacenterdynamics.com/en/opinions/what-should-britain-expect-from-its-next-generation-of-data-centers/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T15:56:37.000Z",
-      "summary": "<p data-block-key=\"jk67a\">How digital infrastructure projects can contribute to communities</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "projects",
-      "score": 5,
-      "breaking": false
-    },
-    {
-      "title": "Sponsored: Why cooling media quality monitoring is becoming a critical part of data center liquid cooling strategies",
-      "url": "https://www.datacenterdynamics.com/en/opinions/why-cooling-media-quality-monitoring-is-becoming-a-critical-part-of-data-center-liquid-cooling-strategies/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T15:00:00.000Z",
-      "summary": "<p data-block-key=\"2z88l\">While much of the industry discussion focuses on thermal performance and cooling system design, another factor is becoming increasingly important: the quality of the cooling media itself</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "technology",
-      "score": 5,
-      "breaking": false
-    },
-    {
-      "title": "Dutch AI chip startup Euclyd raises $231 million in funding round co-led by Samsung",
-      "url": "https://www.datacenterdynamics.com/en/news/dutch-ai-chip-startup-euclyd-raises-231-million-in-funding-round-co-led-by-samsung/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T14:59:00.000Z",
-      "summary": "<p data-block-key=\"oy9x3\">Former ASML CEO Peter Wennink has also joined as chairman of the board</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "technology",
-      "score": 5,
-      "breaking": false
-    },
-    {
-      "title": "OpenAI hiring for clean energy and new technology lead",
-      "url": "https://www.datacenterdynamics.com/en/news/openai-hiring-for-clean-energy-and-new-technology-lead/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T14:20:35.000Z",
-      "summary": "<p data-block-key=\"mzjsx\">Position is an individual contributor lead role and will initially have no direct reports</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "news",
-      "score": 5,
-      "breaking": false
-    },
-    {
       "title": "At least 14 US states are weighing data centre moratoriums as pushback goes global - capacityglobal.com",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNVHFjUDFSUWNtVmE4SlVTdi1mOEpjMTRxaS1fZ1BEa1lOQlE5Rkh2eGJrTXBzNFdKeUhzS0FEVE9FdXM4NTdCVnhGVzU3bGV0UkFLUDkyMXJpQTJiTmZSdDdvWHdBbnJjeW9WazNJQ19HV1dYd2thQkJvUTA2S2kyN1NkZjJNMGF0RUV2S01SREQ?oc=5",
       "source": "capacityglobal.com",
@@ -518,45 +622,6 @@
       "region": "global",
       "stream": "policy",
       "score": 10,
-      "breaking": false
-    },
-    {
-      "title": "Digital Realty, Colovore, Hut 8, CoreSite, and DataBank file to build data centers in Texas",
-      "url": "https://www.datacenterdynamics.com/en/news/digital-realty-colovore-hut-8-coresite-and-databank-file-to-build-data-centers-in-texas/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T14:10:32.000Z",
-      "summary": "<p data-block-key=\"pzrt5\">Lone Star State continues to appeal to operators</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "projects",
-      "score": 5,
-      "breaking": false
-    },
-    {
-      "title": "AVK launches dedicated funding arm to own and operate onsite power solutions for data center customers",
-      "url": "https://www.datacenterdynamics.com/en/news/avk-launches-dedicated-funding-arm-to-own-and-operate-onsite-power-solutions-for-data-center-customers/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T14:00:46.000Z",
-      "summary": "<p data-block-key=\"tyinz\">Dubbed AVK Capital</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "market",
-      "score": 7,
-      "breaking": false
-    },
-    {
-      "title": "Digital Parks Africa expands into Nigeria, plans data center in Lagos",
-      "url": "https://www.datacenterdynamics.com/en/news/digital-parks-africa-expands-into-nigeria-plans-data-center-in-lagos/",
-      "source": "datacenterdynamics.com",
-      "published": "2026-09-15T13:45:35.000Z",
-      "summary": "<p data-block-key=\"ln9ku\">Company's existing facility wins deals to host Bull and Nvidia hardware</p>",
-      "tier": "reported",
-      "feedId": "dcd",
-      "region": "global",
-      "stream": "projects",
-      "score": 5,
       "breaking": false
     },
     {
@@ -599,9 +664,9 @@
       "breaking": false
     },
     {
-      "title": "Rocky View County asks residents to weigh in on data centre future - strathmorenow.com",
+      "title": "Rocky View County asks residents to weigh in on data centre future - StrathmoreNow",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOOUdhYVhDOTY2d1JIZ3BBX1dOYzBTS0JoUGNTYnlIUnBmNjNwNFduclJqMGpXX1FsN2h3MTJKY09naXRQUGNSVEtiaVVEWmJkblpySWc2TVQ4YUVpZGpWbjVZWVVhNk9jejJheWhjODNCMDkxNWhRaTNMeWpBTHJrNHZfN3dOb3ZwM3VUQXM4Mm8wZFVBTWJaTkJEemhReFV2aGFNZENVRks?oc=5",
-      "source": "strathmorenow.com",
+      "source": "StrathmoreNow",
       "published": "2026-09-15T08:57:47.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxOOUdhYVhDOTY2d1JIZ3BBX1dOYzBTS0JoUGNTYnlIUnBmNjNwNFduclJqMGpXX1FsN2h3MTJKY09naXRQUGNSVEtiaVVEWmJkblpySWc2TVQ4YUVpZGpWbjVZWVVhNk9jejJheWhjODNCMDkxNWhRaTNMeWpBTHJrNHZfN3dOb3ZwM3VUQXM4Mm8wZFVBTWJaTkJEemhReFV2aGFNZENVRks?oc=5\" target=\"_blank\">Rocky View County asks residents to weigh in on data centre future</a>&nbsp;&nbsp;<font color=\"#6f6f",
       "tier": "reported",
@@ -699,7 +764,7 @@
       "feedId": "dck",
       "region": "global",
       "stream": "projects",
-      "score": 5,
+      "score": 2,
       "breaking": false
     },
     {
@@ -712,7 +777,7 @@
       "feedId": "gn-rockyview",
       "region": "alberta",
       "stream": "policy",
-      "score": 11,
+      "score": 8,
       "breaking": false
     },
     {
@@ -725,7 +790,7 @@
       "feedId": "gn-grid-global",
       "region": "global",
       "stream": "regulation",
-      "score": 5,
+      "score": 2,
       "breaking": false
     },
     {
@@ -738,20 +803,20 @@
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "news",
-      "score": 11,
+      "score": 8,
       "breaking": false
     },
     {
-      "title": "Majority of Planned Alberta Data Centre Projects Could be Under Foreign Control - DeSmog",
+      "title": "Majority of Planned Alberta Data Centre Projects Could be Under Foreign Control - desmog.com",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOYUh1cUR1ZzBQQXFOeVRCaXRrSTN4cEluWU04RjRLeUxGc2J6S0RpbXREZHpDSVJEZWloMUJCeWNCWDRzeGVSMml6LU5FVEVwQTR4cHV2djZ3ak5MdU90VUpqNzlJY3RHUkJFSGd6NDc0eE13UXo1bXJPakZWdHU3WmZkQzF6V25CU1A5MWxYcENjTHN2UUNORURxd19mN1MwYzk3bmpjN21JVzEzV2tQYkxRUXo?oc=5",
-      "source": "DeSmog",
+      "source": "desmog.com",
       "published": "2026-09-14T14:05:55.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxOYUh1cUR1ZzBQQXFOeVRCaXRrSTN4cEluWU04RjRLeUxGc2J6S0RpbXREZHpDSVJEZWloMUJCeWNCWDRzeGVSMml6LU5FVEVwQTR4cHV2djZ3ak5MdU90VUpqNzlJY3RHUkJFSGd6NDc0eE13UXo1bXJPakZWdHU3WmZkQzF6V25CU1A5MWxYcENjTHN2UUNORURxd19mN1MwYzk3bmpjN21JVzEzV2tQYkxRUXo?oc=5\" target=\"_blank\">Majority of Planned Alberta Data Centre Projects Could be Under Foreign Control</a>&",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "projects",
-      "score": 11,
+      "score": 8,
       "breaking": false
     },
     {
@@ -842,7 +907,7 @@
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "news",
-      "score": 8,
+      "score": 2,
       "breaking": false
     },
     {
@@ -1067,9 +1132,9 @@
       "breaking": false
     },
     {
-      "title": "Meta promotes upcoming data centre buildout at Alberta investment conference | - BetaKit",
+      "title": "Meta promotes upcoming data centre buildout at Alberta investment conference | - betakit.com",
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPNDNwRFlQc2FLS1doWFozN2lVcVpDVDRhdnRUZ3h6X2xSeDB6ZEZjVTlnZkxPY3BGcUlTXzRNWHZfTE1uZ280VzBuZFVGcTlhS3lzNDRrbmlyUXRySFVVaDlBZm1JNUJpTXpjWGxkNUw2Q2pEVjBIa0s1X1k1VFhiMFh1ejYwR2NNSDBUN1F6SlF3VFNELVN3SWU4OHpHdw?oc=5",
-      "source": "BetaKit",
+      "source": "betakit.com",
       "published": "2026-09-10T22:01:05.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxPNDNwRFlQc2FLS1doWFozN2lVcVpDVDRhdnRUZ3h6X2xSeDB6ZEZjVTlnZkxPY3BGcUlTXzRNWHZfTE1uZ280VzBuZFVGcTlhS3lzNDRrbmlyUXRySFVVaDlBZm1JNUJpTXpjWGxkNUw2Q2pEVjBIa0s1X1k1VFhiMFh1ejYwR2NNSDBUN1F6SlF3VFNELVN3SWU4OHpHdw?oc=5\" target=\"_blank\">Meta promotes upcoming data centre buildout at Alberta investment conference |</a>&nbsp;&nbsp;<font color=\"#6f6f6",
       "tier": "reported",
@@ -1171,11 +1236,11 @@
       "breaking": false
     },
     {
-      "title": "'There are so many concerns': Albertans protest at data centre conference - Calgary Herald",
+      "title": "'There are so many concerns': Albertans protest at data centre conference - calgaryherald.com",
       "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcE5DMEp3enh3SFEyU1JtV3J4NjFHR0thNlRiREx3NXMyTGF0bkJkZ0Q2ZVA0RjJGY3RKTk1WZEVYcF9jZXVRYUIwUFdhWW5RRHpvUnJIUWFkN0dQdkhTUHp3dmtrWW9HTV9IYm40Zkw5M2tRNTVJREZIeUtwTW9zQWpzWWxxN25DRWJoWWxiM0I5UngzZmc?oc=5",
-      "source": "Calgary Herald",
+      "source": "calgaryherald.com",
       "published": "2026-09-09T22:24:28.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPcE5DMEp3enh3SFEyU1JtV3J4NjFHR0thNlRiREx3NXMyTGF0bkJkZ0Q2ZVA0RjJGY3RKTk1WZEVYcF9jZXVRYUIwUFdhWW5RRHpvUnJIUWFkN0dQdkhTUHp3dmtrWW9HTV9IYm40Zkw5M2tRNTVJREZIeUtwTW9zQWpzWWxxN25DRWJoWWxiM0I5UngzZmc?oc=5\" target=\"_blank\">'There are so many concerns': Albertans protest at data centre conference</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Calgary Heral",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMilgFBVV95cUxPcE5DMEp3enh3SFEyU1JtV3J4NjFHR0thNlRiREx3NXMyTGF0bkJkZ0Q2ZVA0RjJGY3RKTk1WZEVYcF9jZXVRYUIwUFdhWW5RRHpvUnJIUWFkN0dQdkhTUHp3dmtrWW9HTV9IYm40Zkw5M2tRNTVJREZIeUtwTW9zQWpzWWxxN25DRWJoWWxiM0I5UngzZmc?oc=5\" target=\"_blank\">'There are so many concerns': Albertans protest at data centre conference</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">calgaryherald",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -1197,11 +1262,11 @@
       "breaking": false
     },
     {
-      "title": "Feds introduce responsible data centre development standards - environmentjournal.ca",
+      "title": "Feds introduce responsible data centre development standards - The Environment Journal",
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQWkFZX1NwcXpfVzR2Z2FWb19TalpMYkgwUHR1Z2kza0hndXFseUJXOUFsZEpXVjZxNDhHU09LbkZCTTZ4NUM2T3R2bzRHRjA4d0NVT05xSEY2WTllOE51Njd5Q2pfd0pzTWxCZ1BMMDlpdURoWmdJNmJ1OE1BWFJqSjlkSk1heVMyMnk5NGNobVIzdFMxTU5j?oc=5",
-      "source": "environmentjournal.ca",
+      "source": "The Environment Journal",
       "published": "2026-09-09T15:15:05.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQWkFZX1NwcXpfVzR2Z2FWb19TalpMYkgwUHR1Z2kza0hndXFseUJXOUFsZEpXVjZxNDhHU09LbkZCTTZ4NUM2T3R2bzRHRjA4d0NVT05xSEY2WTllOE51Njd5Q2pfd0pzTWxCZ1BMMDlpdURoWmdJNmJ1OE1BWFJqSjlkSk1heVMyMnk5NGNobVIzdFMxTU5j?oc=5\" target=\"_blank\">Feds introduce responsible data centre development standards</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">environmentjournal.ca</fo",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMilwFBVV95cUxQWkFZX1NwcXpfVzR2Z2FWb19TalpMYkgwUHR1Z2kza0hndXFseUJXOUFsZEpXVjZxNDhHU09LbkZCTTZ4NUM2T3R2bzRHRjA4d0NVT05xSEY2WTllOE51Njd5Q2pfd0pzTWxCZ1BMMDlpdURoWmdJNmJ1OE1BWFJqSjlkSk1heVMyMnk5NGNobVIzdFMxTU5j?oc=5\" target=\"_blank\">Feds introduce responsible data centre development standards</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Environment Journal</",
       "tier": "reported",
       "feedId": "gn-gov-launch",
       "region": "canada",
@@ -1210,9 +1275,9 @@
       "breaking": false
     },
     {
-      "title": "Data Center PUE: liquid cooling cut 10%, the ratio moved 3% - Data Center Dynamics",
+      "title": "Data Center PUE: liquid cooling cut 10%, the ratio moved 3% - datacenterdynamics.com",
       "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQeDM0S1VjR0NYMC1hRHJ4NUtSNFpQeHFwcnFJWFRscGFZcDhTMlJRcXNfSE91Qm1kcm5pdDZKSlIydEJuZmluaVJhNDlDYnFfdUozT0doU29OZ1dTb3FsZTFJc1Y4bW5HejhWTEJGdEs2OTJUVVJhemVSaDFQU25EZGs4NWhhNEpBQkt2cmZ1eEFtbTRsUHZFZlBPbmEwVUcwYnlsTVg0YUgyZw?oc=5",
-      "source": "Data Center Dynamics",
+      "source": "datacenterdynamics.com",
       "published": "2026-09-09T14:07:57.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMiqgFBVV95cUxQeDM0S1VjR0NYMC1hRHJ4NUtSNFpQeHFwcnFJWFRscGFZcDhTMlJRcXNfSE91Qm1kcm5pdDZKSlIydEJuZmluaVJhNDlDYnFfdUozT0doU29OZ1dTb3FsZTFJc1Y4bW5HejhWTEJGdEs2OTJUVVJhemVSaDFQU25EZGs4NWhhNEpBQkt2cmZ1eEFtbTRsUHZFZlBPbmEwVUcwYnlsTVg0YUgyZw?oc=5\" target=\"_blank\">Data Center PUE: liquid cooling cut 10%, the ratio moved 3%</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">",
       "tier": "reported",
@@ -1301,19 +1366,6 @@
       "breaking": false
     },
     {
-      "title": "Rural landowners suing Alberta energy regulator over oil cleanup - CTV News",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOM19zdU1FbUg1c0dOUG1LMFVYTk81ZDlJSFVHVmdIVlBsQUt6TTl4YkJMa3hZSVBZckhma3R5Yy1SVDZkT0ZveVFVWjFSWmcxSTVmU05OSXYzYUhucWN2VlluMF9qQjdKbzY3cmxZUUZXNU5vZ3RmSGliMFFmNWtBVW5kTlpfUHYzaTBYTFRBNjhOYl8zbVRJOUlZS2VSS3I4TUFqWHV5WWRucDB6cGRHVzI2NA?oc=5",
-      "source": "CTV News",
-      "published": "2026-09-09T00:20:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOM19zdU1FbUg1c0dOUG1LMFVYTk81ZDlJSFVHVmdIVlBsQUt6TTl4YkJMa3hZSVBZckhma3R5Yy1SVDZkT0ZveVFVWjFSWmcxSTVmU05OSXYzYUhucWN2VlluMF9qQjdKbzY3cmxZUUZXNU5vZ3RmSGliMFFmNWtBVW5kTlpfUHYzaTBYTFRBNjhOYl8zbVRJOUlZS2VSS3I4TUFqWHV5WWRucDB6cGRHVzI2NA?oc=5\" target=\"_blank\">Rural landowners suing Alberta energy regulator over oil cleanup</a>&nbsp;&nbsp;<font",
-      "tier": "reported",
-      "feedId": "gn-aer",
-      "region": "alberta",
-      "stream": "news",
-      "score": 2,
-      "breaking": false
-    },
-    {
       "title": "Arizona governor rejects data center moratorium call as debate escalates - KOLD",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQbTctRGprUXhGZFVVUE0ySWlEWllMUWk4WFF5cXV4Uk56TU9EZ0FBczNPMC1YYXQwaTcwVlRVRW1PWnRwekw2clFTdlhpWTlkWmJUYnhBUnRmRWJXZXVhdGN6b3o3T3ZQQ2w1bGdHM2NRYzV6YVl6ZTVWcGRZaGlJeGd0dUNEdDJ0UUZneUhlY2FGbld3MmZ2dXhxRmRScURIU09oX9IBuAFBVV95cUxOcHA1NnQ4UXlONDNhRkhJbGFESHJsXzdNdUVNenBYUExRVUtWOEpjS1REQVBNTUFKN2JLQmFFZWQ2eEJXZ2ZBbTBQajZJYjI1Wm1NUURVd2kxcmxCZlF1VXVtVTljd0g2QVY0S3RjemVycUJ3RndERHpyUG1lWktEblFwWWtpd0dLX09ueGc2UDRzU01Wb0tHOERPRWowUGE3TUFnTjh6WWtZQjJESTBCOXVyd1paUV9q?oc=5",
       "source": "KOLD",
@@ -1371,19 +1423,6 @@
       "source": "Devdiscourse",
       "published": "2026-09-08T20:32:19.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxOQS1WeXlGUzBHaUZRcjFudVdDV2NuaWJBendURExyOExBWk9aRVFnM1plRi02Q2FyRjdFak03eXpCZ1BOZWtManVWd0N4Nzd3NW15M285dHNnWkhPNS1DOGhzUTdGa0lwdi13NUxySERUcXBVQXVqZ1pxOXR1WGtVTEFhR3pVbTZYVS14T3hHSWh1SVFOM1A5aGowRVdDdGEwS0dvaklvRkVhbXM1RzFKaHZnRWFmUVhfNThlOURpa9IBxAFBVV95cUxQSVRqbnhlWmtNeVd3WTR5UEpVVklUSlVYMm96MnpsdnlSTzJxaDd4ZjlIVEl0aTJYUzhqSmE4eDlFbG",
-      "tier": "reported",
-      "feedId": "gn-aer",
-      "region": "alberta",
-      "stream": "news",
-      "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Opinion: Alberta's toothless energy regulator puts Canadians at risk - Edmonton Journal",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxObEFvRXVCUVZ6R25HTjU0NkxjU1FvbktVdW5OdmdIeHdWNngxc1ptSVBYQXNDb2ZiODJFZmdpV0I0VnJsZUJuVURhSVZ5QVdYUDN3RmFPRy1YWHNva181Y3ZlOGlibkdvUG9Ccm5GN0RHZG5fVEpZQXIwOUQ2TlV5UW9pbHFtT2VjR1l6dU1zTnBVUGxVaDlUbUJISFo2anNqWVZOejg1TGc2VTJ2QmtGVFJuU3hOZkkzMkE?oc=5",
-      "source": "Edmonton Journal",
-      "published": "2026-09-08T19:36:35.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxObEFvRXVCUVZ6R25HTjU0NkxjU1FvbktVdW5OdmdIeHdWNngxc1ptSVBYQXNDb2ZiODJFZmdpV0I0VnJsZUJuVURhSVZ5QVdYUDN3RmFPRy1YWHNva181Y3ZlOGlibkdvUG9Ccm5GN0RHZG5fVEpZQXIwOUQ2TlV5UW9pbHFtT2VjR1l6dU1zTnBVUGxVaDlUbUJISFo2anNqWVZOejg1TGc2VTJ2QmtGVFJuU3hOZkkzMkE?oc=5\" target=\"_blank\">Opinion: Alberta's toothless energy regulator puts Canadians at risk</a>&nbs",
       "tier": "reported",
       "feedId": "gn-aer",
       "region": "alberta",
@@ -1457,11 +1496,11 @@
       "breaking": false
     },
     {
-      "title": "Here’s how every Canadian province and territory is governing data centres - BetaKit",
+      "title": "Here’s how every Canadian province and territory is governing data centres - betakit.com",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNR0l5VGNnR2NuOWtFRUxjUXRnUjk0SVIyOE4zekFJQUtxVmFXeVlKUzRFRklpcVA3OFdqRzRRb2JoZ01WOXYySHRObi1MdTNEMDljZ1psT1AzcjJzNGRITFdKbzNJdWxtUWktLWRoai1rRWEzRmRfLWh2NWFyOGZ5NFB1c1ZMYzNKck40aEJCQmNaMVdkSGlnVGJ3?oc=5",
-      "source": "BetaKit",
+      "source": "betakit.com",
       "published": "2026-09-08T10:03:32.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxNR0l5VGNnR2NuOWtFRUxjUXRnUjk0SVIyOE4zekFJQUtxVmFXeVlKUzRFRklpcVA3OFdqRzRRb2JoZ01WOXYySHRObi1MdTNEMDljZ1psT1AzcjJzNGRITFdKbzNJdWxtUWktLWRoai1rRWEzRmRfLWh2NWFyOGZ5NFB1c1ZMYzNKck40aEJCQmNaMVdkSGlnVGJ3?oc=5\" target=\"_blank\">Here’s how every Canadian province and territory is governing data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">BetaKit",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxNR0l5VGNnR2NuOWtFRUxjUXRnUjk0SVIyOE4zekFJQUtxVmFXeVlKUzRFRklpcVA3OFdqRzRRb2JoZ01WOXYySHRObi1MdTNEMDljZ1psT1AzcjJzNGRITFdKbzNJdWxtUWktLWRoai1rRWEzRmRfLWh2NWFyOGZ5NFB1c1ZMYzNKck40aEJCQmNaMVdkSGlnVGJ3?oc=5\" target=\"_blank\">Here’s how every Canadian province and territory is governing data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">betakit",
       "tier": "reported",
       "feedId": "gn-ab-regulation",
       "region": "canada",
@@ -1483,6 +1522,19 @@
       "breaking": false
     },
     {
+      "title": "Opinion: Alberta's toothless energy regulator puts Canadians at risk - Edmonton Journal",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxObEFvRXVCUVZ6R25HTjU0NkxjU1FvbktVdW5OdmdIeHdWNngxc1ptSVBYQXNDb2ZiODJFZmdpV0I0VnJsZUJuVURhSVZ5QVdYUDN3RmFPRy1YWHNva181Y3ZlOGlibkdvUG9Ccm5GN0RHZG5fVEpZQXIwOUQ2TlV5UW9pbHFtT2VjR1l6dU1zTnBVUGxVaDlUbUJISFo2anNqWVZOejg1TGc2VTJ2QmtGVFJuU3hOZkkzMkE?oc=5",
+      "source": "Edmonton Journal",
+      "published": "2026-09-08T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxObEFvRXVCUVZ6R25HTjU0NkxjU1FvbktVdW5OdmdIeHdWNngxc1ptSVBYQXNDb2ZiODJFZmdpV0I0VnJsZUJuVURhSVZ5QVdYUDN3RmFPRy1YWHNva181Y3ZlOGlibkdvUG9Ccm5GN0RHZG5fVEpZQXIwOUQ2TlV5UW9pbHFtT2VjR1l6dU1zTnBVUGxVaDlUbUJISFo2anNqWVZOejg1TGc2VTJ2QmtGVFJuU3hOZkkzMkE?oc=5\" target=\"_blank\">Opinion: Alberta's toothless energy regulator puts Canadians at risk</a>&nbs",
+      "tier": "reported",
+      "feedId": "gn-aer",
+      "region": "alberta",
+      "stream": "news",
+      "score": 2,
+      "breaking": false
+    },
+    {
       "title": "Landowners launch legal challenge of the Alberta Energy Regulator’s “unacceptable and unlawful” orphan well funding - Ecojustice",
       "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPQS1DcDdhZDVjbU9FbVJod3F5U3FNelZDQTB3Smk5U1kzaGJpOHFJRmh4Mng0Ql9WLTVmUWNsSndHbjEybk1lVEFQZVdSYnc4aXlaY1o0aXBsdlcydVBBRlhaWnVDdmxHcmk0SDJRY2cydUpWLVVySklfbzZ3dEljS3hxQUQwNnRmOUpQaHRRMkVWaUFPLXNLTVlRd004cXZkRXZJREw3NTladG9KN00tcVozMXBMVHFfUy1zOEhOS1o2c29PbmRUbHJHQTMwWEwtU0FVSEZzdw?oc=5",
       "source": "Ecojustice",
@@ -1493,6 +1545,19 @@
       "region": "alberta",
       "stream": "policy",
       "score": 4,
+      "breaking": false
+    },
+    {
+      "title": "Rural landowners suing Alberta energy regulator over oil cleanup - CTV News",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOM19zdU1FbUg1c0dOUG1LMFVYTk81ZDlJSFVHVmdIVlBsQUt6TTl4YkJMa3hZSVBZckhma3R5Yy1SVDZkT0ZveVFVWjFSWmcxSTVmU05OSXYzYUhucWN2VlluMF9qQjdKbzY3cmxZUUZXNU5vZ3RmSGliMFFmNWtBVW5kTlpfUHYzaTBYTFRBNjhOYl8zbVRJOUlZS2VSS3I4TUFqWHV5WWRucDB6cGRHVzI2NA?oc=5",
+      "source": "CTV News",
+      "published": "2026-09-08T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxOM19zdU1FbUg1c0dOUG1LMFVYTk81ZDlJSFVHVmdIVlBsQUt6TTl4YkJMa3hZSVBZckhma3R5Yy1SVDZkT0ZveVFVWjFSWmcxSTVmU05OSXYzYUhucWN2VlluMF9qQjdKbzY3cmxZUUZXNU5vZ3RmSGliMFFmNWtBVW5kTlpfUHYzaTBYTFRBNjhOYl8zbVRJOUlZS2VSS3I4TUFqWHV5WWRucDB6cGRHVzI2NA?oc=5\" target=\"_blank\">Rural landowners suing Alberta energy regulator over oil cleanup</a>&nbsp;&nbsp;<font",
+      "tier": "reported",
+      "feedId": "gn-aer",
+      "region": "alberta",
+      "stream": "news",
+      "score": 2,
       "breaking": false
     },
     {
@@ -1522,11 +1587,11 @@
       "breaking": false
     },
     {
-      "title": "Why data center cooling is now business-critical - Data Center Dynamics",
+      "title": "Why data center cooling is now business-critical - datacenterdynamics.com",
       "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPT3ZfaWtwUmRQZjRvd25YZ1lOOEltUGhQZHEyYlZaUmFHdzBTLXJDOXpnLTlxMmJjOHdQeXZpRURtRV9EblpkZ01zX3ppMDBVTzBmamxLczMweGlwVUVYY2tRcTkzRnhSYV9xNm45UldHZkJZdV9jV1lhOFcxdjBEeGtHUUtLN09tWFFqVzYzbE15eERkVVF6ZnFBa1o?oc=5",
-      "source": "Data Center Dynamics",
+      "source": "datacenterdynamics.com",
       "published": "2026-09-06T14:04:53.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxPT3ZfaWtwUmRQZjRvd25YZ1lOOEltUGhQZHEyYlZaUmFHdzBTLXJDOXpnLTlxMmJjOHdQeXZpRURtRV9EblpkZ01zX3ppMDBVTzBmamxLczMweGlwVUVYY2tRcTkzRnhSYV9xNm45UldHZkJZdV9jV1lhOFcxdjBEeGtHUUtLN09tWFFqVzYzbE15eERkVVF6ZnFBa1o?oc=5\" target=\"_blank\">Why data center cooling is now business-critical</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Data Center Dynamics</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMinAFBVV95cUxPT3ZfaWtwUmRQZjRvd25YZ1lOOEltUGhQZHEyYlZaUmFHdzBTLXJDOXpnLTlxMmJjOHdQeXZpRURtRV9EblpkZ01zX3ppMDBVTzBmamxLczMweGlwVUVYY2tRcTkzRnhSYV9xNm45UldHZkJZdV9jV1lhOFcxdjBEeGtHUUtLN09tWFFqVzYzbE15eERkVVF6ZnFBa1o?oc=5\" target=\"_blank\">Why data center cooling is now business-critical</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">datacenterdynamics.com</font>",
       "tier": "reported",
       "feedId": "gn-cooling",
       "region": "global",
@@ -1548,9 +1613,9 @@
       "breaking": false
     },
     {
-      "title": "Data center moratoria will make life less affordable for Americans - The Hill",
+      "title": "Data center moratoria will make life less affordable for Americans - thehill.com",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOSHpUZ2Z6aWRyblhwa3NOUmFFNUtRYlFQVmwyWHo0QVBnYy1Ta0RILUhoaW1KYkxTcU9MYnBfYzFZVEtULTlEMW04TE03cXFaU29vNjZfb1ZyVGRWWnoxVXJRa29uVFRoTXFYYlV6SEpaLU5TZm1hMXlUQ1lkZUZHS3lR0gGHAUFVX3lxTFBYSmJZQzBoemZscXlFMGhuSEplZXpPajhDYWxGajdoNHhXYS1KX0o5MjAwWDBjRmQ0Z0Z0ZzRrekNtNFhHLXlhZ2g0QTAtS1p4OEJKSWNLQUZtdHJYb3kzYnZ6dFdHZmZaU010a1VyQkRpOUJESXJScW84ZlpyNkg4WGRnc3V6WQ?oc=5",
-      "source": "The Hill",
+      "source": "thehill.com",
       "published": "2026-09-05T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMiggFBVV95cUxOSHpUZ2Z6aWRyblhwa3NOUmFFNUtRYlFQVmwyWHo0QVBnYy1Ta0RILUhoaW1KYkxTcU9MYnBfYzFZVEtULTlEMW04TE03cXFaU29vNjZfb1ZyVGRWWnoxVXJRa29uVFRoTXFYYlV6SEpaLU5TZm1hMXlUQ1lkZUZHS3lR0gGHAUFVX3lxTFBYSmJZQzBoemZscXlFMGhuSEplZXpPajhDYWxGajdoNHhXYS1KX0o5MjAwWDBjRmQ0Z0Z0ZzRrekNtNFhHLXlhZ2g0QTAtS1p4OEJKSWNLQUZtdHJYb3kzYnZ6dFdHZmZaU010a1VyQkRpOUJESXJScW84ZlpyNk",
       "tier": "reported",
@@ -1639,9 +1704,9 @@
       "breaking": false
     },
     {
-      "title": "Data centre rush in Alberta and Saskatchewan: Boom or burden? - financialpost.com",
+      "title": "Data centre rush in Alberta and Saskatchewan: Boom or burden? - Financial Post",
       "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPOEl1bGJSYTlWOE9rWmV6RHVoekQ2UFdIdEdIMWMwaC1pa3pkUVdsVDk4Z2dJVFFjQ1doLW9yZDd6QmV3NUZmdVdxejRudE40aExxZ28zZnVWcThqTlQyTUd5R0lJSUpId2RKbDVxRWFHMEsyMDlZZnlGTWt0NVBWTnNhRlNXLWtLeFpoby05RlN5bkMwN1RhMGNiZEFTeDcwTS1ER2Z0SjZub0oyeWFvWUtSNl9aQ2hDZnRtTTdBV1lySFFhT3cw?oc=5",
-      "source": "financialpost.com",
+      "source": "Financial Post",
       "published": "2026-09-04T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMixwFBVV95cUxPOEl1bGJSYTlWOE9rWmV6RHVoekQ2UFdIdEdIMWMwaC1pa3pkUVdsVDk4Z2dJVFFjQ1doLW9yZDd6QmV3NUZmdVdxejRudE40aExxZ28zZnVWcThqTlQyTUd5R0lJSUpId2RKbDVxRWFHMEsyMDlZZnlGTWt0NVBWTnNhRlNXLWtLeFpoby05RlN5bkMwN1RhMGNiZEFTeDcwTS1ER2Z0SjZub0oyeWFvWUtSNl9aQ2hDZnRtTTdBV1lySFFhT3cw?oc=5\" target=\"_blank\">Data centre rush in Alberta and Saskatchewan: Boom or burde",
       "tier": "reported",
@@ -1730,9 +1795,9 @@
       "breaking": false
     },
     {
-      "title": "Beyond Local: Sturgeon County lays out rules for data centres as Meta project moves ahead - The Albertan",
+      "title": "Beyond Local: Sturgeon County lays out rules for data centres as Meta project moves ahead - thealbertan.com",
       "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTnBienhLT292MjF6T2dUXzZmeUlpZ3RqanZLc1hnTVBFVWNmcVdxa0NTYk9KekVTNjlzUU9hTlpvREZrNFJTS2RWdlcxRjdUQ3R3Y1BQUEl4Y1NKdDFBODVsQmJpNi1VRmFGTzh0dVZmQUN5ZWhjR2toam10YnFXN0hobWNyZ0RxRUJjQWN1WlNQZ2M0aWxRRUhfcDV0NTdYTjZ0RXh5TzhzU2ZXdWcxY2FhdEV3OV9CRnY1ZVRIc0ZHdjQ?oc=5",
-      "source": "The Albertan",
+      "source": "thealbertan.com",
       "published": "2026-09-03T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTnBienhLT292MjF6T2dUXzZmeUlpZ3RqanZLc1hnTVBFVWNmcVdxa0NTYk9KekVTNjlzUU9hTlpvREZrNFJTS2RWdlcxRjdUQ3R3Y1BQUEl4Y1NKdDFBODVsQmJpNi1VRmFGTzh0dVZmQUN5ZWhjR2toam10YnFXN0hobWNyZ0RxRUJjQWN1WlNQZ2M0aWxRRUhfcDV0NTdYTjZ0RXh5TzhzU2ZXdWcxY2FhdEV3OV9CRnY1ZVRIc0ZHdjQ?oc=5\" target=\"_blank\">Beyond Local: Sturgeon County lays out rules for data centres as",
       "tier": "reported",
@@ -1899,6 +1964,19 @@
       "breaking": false
     },
     {
+      "title": "New Meta Data Centre Could Cost Albertans $460 a Year - The Tyee",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1qUlBiNUNUam5mQXEyZ1J1UEhoUDM5VjFnZndTSm1TblpYS1dob0hZU3poaXd0MzRQTl9ZZmpLV1BPOFVzS0FRUnh2UFUwcXl5TlFGMVVFVVpNWG5lbnFIWFZyVVd3azBPZ040SS1nbXpwTEJrYUJZMWdXQUx5WDQ?oc=5",
+      "source": "The Tyee",
+      "published": "2026-09-02T04:12:14.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMif0FVX3lxTE1qUlBiNUNUam5mQXEyZ1J1UEhoUDM5VjFnZndTSm1TblpYS1dob0hZU3poaXd0MzRQTl9ZZmpLV1BPOFVzS0FRUnh2UFUwcXl5TlFGMVVFVVpNWG5lbnFIWFZyVVd3azBPZ040SS1nbXpwTEJrYUJZMWdXQUx5WDQ?oc=5\" target=\"_blank\">New Meta Data Centre Could Cost Albertans $460 a Year</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Tyee</font>",
+      "tier": "reported",
+      "feedId": "gn-dc-alberta",
+      "region": "alberta",
+      "stream": "news",
+      "score": 2,
+      "breaking": false
+    },
+    {
       "title": "AI turns to liquid cooling as sector heating up - China Daily Global Edition",
       "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQeFZCTmpmSkpHZG9ra1A5eGpFNjlUYko4SW5fZVNuYU84Z1d0NFFtaEpCa3c3WldJOXF0bzUyWDRyNlV2LVppZ2tTUHp5VVIzOG1LTnFRaHlyRGNpMVZBRGE2Ty1fS0xVQXJJODhhQjVrdlBmUzBxcWlHOG92Mm5wQnVn?oc=5",
       "source": "China Daily Global Edition",
@@ -1964,11 +2042,11 @@
       "breaking": false
     },
     {
-      "title": "Opinion: Data is the new pipeline battle - Calgary Herald",
+      "title": "Opinion: Data is the new pipeline battle - calgaryherald.com",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9Bb3pUS0Q3SXB6VzRQWDM3MEIydjhvUHRSMFZhTEx2SWJUYWluUkhUSFZMVi1FblRDTWxuV2NRdG1fTmNWd3JZQ2ZNdVYwR1BiS3FfalZIUXdDNGpBd1pDRHVKXzMtbG1xVkNaRm1VWno5bEQ5UWJORGw1Sk9Mdw?oc=5",
-      "source": "Calgary Herald",
+      "source": "calgaryherald.com",
       "published": "2026-09-01T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9Bb3pUS0Q3SXB6VzRQWDM3MEIydjhvUHRSMFZhTEx2SWJUYWluUkhUSFZMVi1FblRDTWxuV2NRdG1fTmNWd3JZQ2ZNdVYwR1BiS3FfalZIUXdDNGpBd1pDRHVKXzMtbG1xVkNaRm1VWno5bEQ5UWJORGw1Sk9Mdw?oc=5\" target=\"_blank\">Opinion: Data is the new pipeline battle</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Calgary Herald</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMifkFVX3lxTE9Bb3pUS0Q3SXB6VzRQWDM3MEIydjhvUHRSMFZhTEx2SWJUYWluUkhUSFZMVi1FblRDTWxuV2NRdG1fTmNWd3JZQ2ZNdVYwR1BiS3FfalZIUXdDNGpBd1pDRHVKXzMtbG1xVkNaRm1VWno5bEQ5UWJORGw1Sk9Mdw?oc=5\" target=\"_blank\">Opinion: Data is the new pipeline battle</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">calgaryherald.com</font>",
       "tier": "reported",
       "feedId": "gn-sturgeon",
       "region": "alberta",
@@ -1990,9 +2068,9 @@
       "breaking": false
     },
     {
-      "title": "Alberta regulator upholds shutdown of oilsands site tied to unpaid workers, disabled safety devices - thesafetymag.com",
+      "title": "Alberta regulator upholds shutdown of oilsands site tied to unpaid workers, disabled safety devices - Canadian Occupational Safety",
       "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQQnJKcl9ObWIzc1VhaHdsTWZrUGJlM2xzeC1HZ01adGI4TC02VkpKelU1VF96X2Zfd0hNVnEyUnVXMFY2Rk1VRW9mZlhFU2FvbGlFUEhwYzVsa29ONXBMN09jbThCVFB5amo2NnRWODBsdk9yQjhXOHRrZDlsX3lMR0tOYnZqRnUwVUdYVmxUZ2M4bHNYM0JnNWx6bktXS1diYVQyY0NUSU1DOVZUY2M2SXZPVUhzbDhtSkhSV0xETXRuanFmZFI5Z3NDWDJxQ2MzcXNQSlMwQjM2eVRocEQ1b3ZGckc?oc=5",
-      "source": "thesafetymag.com",
+      "source": "Canadian Occupational Safety",
       "published": "2026-09-01T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMi5AFBVV95cUxQQnJKcl9ObWIzc1VhaHdsTWZrUGJlM2xzeC1HZ01adGI4TC02VkpKelU1VF96X2Zfd0hNVnEyUnVXMFY2Rk1VRW9mZlhFU2FvbGlFUEhwYzVsa29ONXBMN09jbThCVFB5amo2NnRWODBsdk9yQjhXOHRrZDlsX3lMR0tOYnZqRnUwVUdYVmxUZ2M4bHNYM0JnNWx6bktXS1diYVQyY0NUSU1DOVZUY2M2SXZPVUhzbDhtSkhSV0xETXRuanFmZFI5Z3NDWDJxQ2MzcXNQSlMwQjM2eVRocEQ1b3ZGckc?oc=5\" target=\"_blank\">Alberta regulator up",
       "tier": "reported",
@@ -2074,7 +2152,7 @@
       "published": "2026-08-31T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMiyAFBVV95cUxQUmNvMnM4SWx3ZEdrWERIZm1YeGsxNFhYamhHRl9qOHdPOE9hSkxXQ2V1eGlIVkIxZ1hJRUVjY3VvbGx4aXpwdDRVNkZYM21Ha3VwaEZBSmVsSHJVa3U4bEVQOV80Qi1rSlFOVHNtMW1WN0NESjVPajBvMFBiMkNSM0M2aHBmS3d2Qk9kN1hwNXZHTmw2a2JMY0g0emFUSFdGZWJTQkY1cUNpTWlBd1dPMmV2UndpSGEtQ2FPSFVsRWN5YkxhY0JqOQ?oc=5\" target=\"_blank\">Pembina Institute says Alberta data centre could add up t",
       "tier": "reported",
-      "feedId": "gn-dc-alberta",
+      "feedId": "gn-sturgeon",
       "region": "alberta",
       "stream": "news",
       "score": 2,
@@ -2208,6 +2286,19 @@
       "region": "alberta",
       "stream": "projects",
       "score": 4,
+      "breaking": false
+    },
+    {
+      "title": "Premier Danielle Smith takes questions at virtual town hall on data centres in Alberta, NDP calls for pause - CBC",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNeHJzX0xjalpQSThfcEZ0akQ2QTQtUnlOR0JXa2RWcmZqdE1UREQwcHZyeFh6UnpmcEE1aUZMTTFpVGZNUl9Lb09PQkVlYWdVaVQzdjhsZWFBX3UtTmxvbFRLcERDSTFXeWRXM1ZXV3p1bGRWQkZLMmJIT1VnTEZYeWxkbEVBZEgzS2x0aXZkT1dFWjFTSnhUNTBPN0lVbVAxb29v?oc=5",
+      "source": "CBC",
+      "published": "2026-08-28T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNeHJzX0xjalpQSThfcEZ0akQ2QTQtUnlOR0JXa2RWcmZqdE1UREQwcHZyeFh6UnpmcEE1aUZMTTFpVGZNUl9Lb09PQkVlYWdVaVQzdjhsZWFBX3UtTmxvbFRLcERDSTFXeWRXM1ZXV3p1bGRWQkZLMmJIT1VnTEZYeWxkbEVBZEgzS2x0aXZkT1dFWjFTSnhUNTBPN0lVbVAxb29v?oc=5\" target=\"_blank\">Premier Danielle Smith takes questions at virtual town hall on data centres in Alberta, NDP calls for pause",
+      "tier": "reported",
+      "feedId": "gn-sturgeon",
+      "region": "alberta",
+      "stream": "news",
+      "score": 2,
       "breaking": false
     },
     {
@@ -2380,15 +2471,15 @@
       "breaking": false
     },
     {
-      "title": "Premier Danielle Smith takes questions at virtual town hall on data centres in Alberta, NDP calls for pause - CBC",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNeHJzX0xjalpQSThfcEZ0akQ2QTQtUnlOR0JXa2RWcmZqdE1UREQwcHZyeFh6UnpmcEE1aUZMTTFpVGZNUl9Lb09PQkVlYWdVaVQzdjhsZWFBX3UtTmxvbFRLcERDSTFXeWRXM1ZXV3p1bGRWQkZLMmJIT1VnTEZYeWxkbEVBZEgzS2x0aXZkT1dFWjFTSnhUNTBPN0lVbVAxb29v?oc=5",
-      "source": "CBC",
+      "title": "People ejected from inflatable boat say Sea-Doo speeder on Parkland County lake sent them flying - CTV News",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPV2tvdVZYbkNwajYtN3FHUUJSczVwcG5aVkZ1c3dGdGFEN0I1QzRydVIxdk5jdF9GVkdVX2hEZGoycFVwV1ZCS3Zyc3c2TzFVbmJvRGdiSGszVUlEUmpQOGVGdXVpb1ZkSi1hM01Vb01ndnRGNmZZZU42UE5xRl9vcGVfbmU1azBXRjl2UUVIWENwUmstZWF3WjFXb0RWVXBQTlhQaWpXRkdSSmZKQ0FyalJGbjgtRFpad0xEWFhDLVlKemlOdEszTzQwMGlqZlFYc1NR?oc=5",
+      "source": "CTV News",
       "published": "2026-08-27T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxNeHJzX0xjalpQSThfcEZ0akQ2QTQtUnlOR0JXa2RWcmZqdE1UREQwcHZyeFh6UnpmcEE1aUZMTTFpVGZNUl9Lb09PQkVlYWdVaVQzdjhsZWFBX3UtTmxvbFRLcERDSTFXeWRXM1ZXV3p1bGRWQkZLMmJIT1VnTEZYeWxkbEVBZEgzS2x0aXZkT1dFWjFTSnhUNTBPN0lVbVAxb29v?oc=5\" target=\"_blank\">Premier Danielle Smith takes questions at virtual town hall on data centres in Alberta, NDP calls for pause",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMi0wFBVV95cUxPV2tvdVZYbkNwajYtN3FHUUJSczVwcG5aVkZ1c3dGdGFEN0I1QzRydVIxdk5jdF9GVkdVX2hEZGoycFVwV1ZCS3Zyc3c2TzFVbmJvRGdiSGszVUlEUmpQOGVGdXVpb1ZkSi1hM01Vb01ndnRGNmZZZU42UE5xRl9vcGVfbmU1azBXRjl2UUVIWENwUmstZWF3WjFXb0RWVXBQTlhQaWpXRkdSSmZKQ0FyalJGbjgtRFpad0xEWFhDLVlKemlOdEszTzQwMGlqZlFYc1NR?oc=5\" target=\"_blank\">People ejected from inflatable boat say Sea",
       "tier": "reported",
-      "feedId": "gn-sturgeon",
+      "feedId": "gn-parkland",
       "region": "alberta",
-      "stream": "news",
+      "stream": "municipal",
       "score": 2,
       "breaking": false
     },
@@ -2653,9 +2744,9 @@
       "breaking": false
     },
     {
-      "title": "Alberta Utilities Commission says ruling Olds data centre power plant won't affect Sturgeon County project - cochraneeagle.ca",
+      "title": "Alberta Utilities Commission says ruling Olds data centre power plant won't affect Sturgeon County project - Cochrane Eagle",
       "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNNlFLblV6Q1EyVlE5eTBvX0NwM2o2VDVGM0dEMkRPWG1zNm95OGVoQ2gtMUE4eUxwMmJ5dG1nSHYtcXhQdnA2Y2ZYV0twdm81V21YRVMzaUJvYW4xNThvSmxfTi1qaXBmUEhaWXlyUlhNanFWaEREVng5NTZlcHhTNnlvbnduQjZJRzMxT3Q1Z2NvS3dBX0xnRjRmaFBTRFp4U2ZQNXQybF8xU3pzenl4VEdqNXVia0dWY1ZNNlJmdmQ1aC1aQnR1Z3VFVE1Wd1d1TGNMTHFXRGpMNEFMR0lRaFNoNU8ta19ackhIMg?oc=5",
-      "source": "cochraneeagle.ca",
+      "source": "Cochrane Eagle",
       "published": "2026-08-24T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMi7AFBVV95cUxNNlFLblV6Q1EyVlE5eTBvX0NwM2o2VDVGM0dEMkRPWG1zNm95OGVoQ2gtMUE4eUxwMmJ5dG1nSHYtcXhQdnA2Y2ZYV0twdm81V21YRVMzaUJvYW4xNThvSmxfTi1qaXBmUEhaWXlyUlhNanFWaEREVng5NTZlcHhTNnlvbnduQjZJRzMxT3Q1Z2NvS3dBX0xnRjRmaFBTRFp4U2ZQNXQybF8xU3pzenl4VEdqNXVia0dWY1ZNNlJmdmQ1aC1aQnR1Z3VFVE1Wd1d1TGNMTHFXRGpMNEFMR0lRaFNoNU8ta19ackhIMg?oc=5\" target=\"_blank\">Alberta U",
       "tier": "reported",
@@ -2666,16 +2757,16 @@
       "breaking": false
     },
     {
-      "title": "Olds residents hope A.I. data centre decision sets precedent for province - Yahoo News Canada",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFB3VzFzMXYzcHlLRUFVZWpHZFYtSkExODkxSkFoMk5pLVI2SFhCTHRqWXZ4TFJ4dkJqSFdoZzliX20zaGw5X3JDXzNsVW9GR0JCT3lxQ2NGckpkX01DRXR5MEFaY1RBWE5raE0yNk5feE9BVGh6RldlTUVCMHg?oc=5",
-      "source": "Yahoo News Canada",
+      "title": "Olds residents hope A.I. data centre decision sets precedent for province - Global News",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPTVJYeU9WWklCNUJ0ZDI0SThsRnVLVmJ0bHhXVlNiZTZpQlBrY1BuYVJCQnltSzVfVzlYZjdsRFJrSWJyWWJheXVNYnRTSkV2enIzTDRSWlkyNXdzWWNiSFNYcm5hVm1qQVBtXzVNMzRoeTNpTHhxYmZ1QUFOWk0tMmJLcWNDNUF0V19NbTFBVGNPTTZZTkRxYllPZzhBdm44STZxakowb0pTUGlVYWc?oc=5",
+      "source": "Global News",
       "published": "2026-08-24T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFB3VzFzMXYzcHlLRUFVZWpHZFYtSkExODkxSkFoMk5pLVI2SFhCTHRqWXZ4TFJ4dkJqSFdoZzliX20zaGw5X3JDXzNsVW9GR0JCT3lxQ2NGckpkX01DRXR5MEFaY1RBWE5raE0yNk5feE9BVGh6RldlTUVCMHg?oc=5\" target=\"_blank\">Olds residents hope A.I. data centre decision sets precedent for province</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Yahoo News Canada</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPTVJYeU9WWklCNUJ0ZDI0SThsRnVLVmJ0bHhXVlNiZTZpQlBrY1BuYVJCQnltSzVfVzlYZjdsRFJrSWJyWWJheXVNYnRTSkV2enIzTDRSWlkyNXdzWWNiSFNYcm5hVm1qQVBtXzVNMzRoeTNpTHhxYmZ1QUFOWk0tMmJLcWNDNUF0V19NbTFBVGNPTTZZTkRxYllPZzhBdm44STZxakowb0pTUGlVYWc?oc=5\" target=\"_blank\">Olds residents hope A.I. data centre decision sets precedent for province</a>&nbsp;&nbsp;<fo",
       "tier": "reported",
       "feedId": "gn-auc",
-      "region": "canada",
+      "region": "alberta",
       "stream": "news",
-      "score": 2,
+      "score": 5,
       "breaking": false
     },
     {
@@ -2731,6 +2822,19 @@
       "breaking": false
     },
     {
+      "title": "Abbott explains data center pivot - Politico",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPeGI1clFWUkVSLW9wdDQwSEZNajFwT2l1aW1FRzdyYkt0Q0dsSDYxN0tyYjBNOEpMZDFBcXhRa21JZmpDeTl6bVM5WVgtcnJjbTdLLTFwQXpxckVIU19fWHV3OFN3bmxYOW5OaHR4VVdKQjA3V2w0d2lJNWdWTUYxWXZoLWYwZzA?oc=5",
+      "source": "Politico",
+      "published": "2026-08-23T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMihwFBVV95cUxPeGI1clFWUkVSLW9wdDQwSEZNajFwT2l1aW1FRzdyYkt0Q0dsSDYxN0tyYjBNOEpMZDFBcXhRa21JZmpDeTl6bVM5WVgtcnJjbTdLLTFwQXpxckVIU19fWHV3OFN3bmxYOW5OaHR4VVdKQjA3V2w0d2lJNWdWTUYxWXZoLWYwZzA?oc=5\" target=\"_blank\">Abbott explains data center pivot</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Politico</font>",
+      "tier": "reported",
+      "feedId": "gn-grid-global",
+      "region": "global",
+      "stream": "news",
+      "score": -4,
+      "breaking": false
+    },
+    {
       "title": "Rest-Of-Europe Data Center Cooling Market Size, Share,Trends, Growth Analysis Report, 2030 - MarketsandMarkets",
       "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOXzRJeE9leDA0NTM5dXN1d3UwOTF3OEQ3WE1NQVp4VEY5YVRaSzBHQ3hHUFp1dXNNTi1XZVhhTTVIOFQ2ek14dzhsaXl0Ym5fenV5d1BNQmtiX1ZSQ3lGam1kaTN1YkZYVTZTSk4tUU44dWRCUEpXaVlTbHB5NTNFQm9UclpkUURBOTNSLTY5dWJTVVdNVFFyeC1xQ3hSU0lkM2ZUZ082OWJvUmdGVEJZ?oc=5",
       "source": "MarketsandMarkets",
@@ -2744,9 +2848,9 @@
       "breaking": false
     },
     {
-      "title": "Powering data centers is no longer a simple matter of supply and demand - Data Center Dynamics",
+      "title": "Powering data centers is no longer a simple matter of supply and demand - datacenterdynamics.com",
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNTDVXVzRtVHlzanMtaGJIU25famRhQm9JX1ZVV0pJUWluLUlmZGFiTEZha3luZTNDU05CelZubHc0U1dCSmE2eEFtOHZOeFFCSlhoc1otbmZldWhFZTVvMFFnbHJPMWhUSjBnaXowRTl0RllIaXRvQkZtM0pHWTJadGZIV28xR1ZETXlEbG9QWVdnS3ZCV2kwa1RZckUyV1hfcEp4RTIyVFdGbmpDMlFGVVE2SnBuYi1EQ1RpQWtrVQ?oc=5",
-      "source": "Data Center Dynamics",
+      "source": "datacenterdynamics.com",
       "published": "2026-08-22T07:00:40.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxNTDVXVzRtVHlzanMtaGJIU25famRhQm9JX1ZVV0pJUWluLUlmZGFiTEZha3luZTNDU05CelZubHc0U1dCSmE2eEFtOHZOeFFCSlhoc1otbmZldWhFZTVvMFFnbHJPMWhUSjBnaXowRTl0RllIaXRvQkZtM0pHWTJadGZIV28xR1ZETXlEbG9QWVdnS3ZCV2kwa1RZckUyV1hfcEp4RTIyVFdGbmpDMlFGVVE2SnBuYi1EQ1RpQWtrVQ?oc=5\" target=\"_blank\">Powering data centers is no longer a simple matter of supply and dema",
       "tier": "reported",
@@ -2757,11 +2861,11 @@
       "breaking": false
     },
     {
-      "title": "Alberta Premier chimes in on Data Centre backlash - calgary.citynews.ca",
+      "title": "Alberta Premier chimes in on Data Centre backlash - CityNews Calgary",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNbWotSHlzR0dyajk0a09DV2k4SF9zdllQMVVUMXhDaEZMYzN6UkpaNlBSYVRUWU5yMXFNMFdWejltYTBxOExHZlZSZjB2YXdlWERRcDVVZi12SWlHMjNDR28xcXllUTFud3lOOGhhcEVkeXdUS1pycnB2V0hpYmxuS3ZGdmE1bDZVTXM1NGpPYXhURXE2Q3JrR3FONA?oc=5",
-      "source": "calgary.citynews.ca",
+      "source": "CityNews Calgary",
       "published": "2026-08-22T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxNbWotSHlzR0dyajk0a09DV2k4SF9zdllQMVVUMXhDaEZMYzN6UkpaNlBSYVRUWU5yMXFNMFdWejltYTBxOExHZlZSZjB2YXdlWERRcDVVZi12SWlHMjNDR28xcXllUTFud3lOOGhhcEVkeXdUS1pycnB2V0hpYmxuS3ZGdmE1bDZVTXM1NGpPYXhURXE2Q3JrR3FONA?oc=5\" target=\"_blank\">Alberta Premier chimes in on Data Centre backlash</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">calgary.citynews.ca</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxNbWotSHlzR0dyajk0a09DV2k4SF9zdllQMVVUMXhDaEZMYzN6UkpaNlBSYVRUWU5yMXFNMFdWejltYTBxOExHZlZSZjB2YXdlWERRcDVVZi12SWlHMjNDR28xcXllUTFud3lOOGhhcEVkeXdUS1pycnB2V0hpYmxuS3ZGdmE1bDZVTXM1NGpPYXhURXE2Q3JrR3FONA?oc=5\" target=\"_blank\">Alberta Premier chimes in on Data Centre backlash</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CityNews Calgary</font>",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -2822,19 +2926,6 @@
       "breaking": false
     },
     {
-      "title": "Another AI giant is coming to Alberta — and it could build data centres - Calgary Herald",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPVEhHbThXZmE4X2ZvTTk0X1lIbXhMR1V5OEJZNExkeS1ISkpWajNZendOTUkza3NJV0dIUnV5WkxEUjRMWk9tdkVjbUo3ZG5GbF9VODFXNlR5ZmdwUUp2eFNrN2I2QTJTcF8wZ2oxUzFEUmRuRldJOUVjdGZfSlZGazRMNVI2QWF1NElsLUNTYU9leFMtdVRHZXd1dWd2ZlIwZE9oNUdMdw?oc=5",
-      "source": "Calgary Herald",
-      "published": "2026-08-21T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxPVEhHbThXZmE4X2ZvTTk0X1lIbXhMR1V5OEJZNExkeS1ISkpWajNZendOTUkza3NJV0dIUnV5WkxEUjRMWk9tdkVjbUo3ZG5GbF9VODFXNlR5ZmdwUUp2eFNrN2I2QTJTcF8wZ2oxUzFEUmRuRldJOUVjdGZfSlZGazRMNVI2QWF1NElsLUNTYU9leFMtdVRHZXd1dWd2ZlIwZE9oNUdMdw?oc=5\" target=\"_blank\">Another AI giant is coming to Alberta — and it could build data centres</a>&nbsp;&nbsp;<font color=\"#",
-      "tier": "reported",
-      "feedId": "gn-dc-alberta",
-      "region": "alberta",
-      "stream": "projects",
-      "score": 2,
-      "breaking": false
-    },
-    {
       "title": "Alberta minister faces more fury at second town hall on AI data centres - Global News",
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPQW5jVWg3bUFPRzZtYUR1MElzcHhBMlNudncycnBJUjlKdTNiT0dyd28wMW8wTEd0a1FRRFRFQVl5aC1HX1RleDN0T0FOTzBuUERfMHJLX19TUkdGTzhDT1hGeGZxUHp6QWdSZ1FZYTFwR2xvN0Y1TDJteE5lUXhrZm9GcFozZWtIZ3ZyUUtnNXE2SHRUN1NtTHpwTkxVQ01STUF1NVA4YXBJbEli?oc=5",
       "source": "Global News",
@@ -2848,6 +2939,32 @@
       "breaking": false
     },
     {
+      "title": "Another AI giant is coming to Alberta — and it could build data centres - calgaryherald.com",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPVEhHbThXZmE4X2ZvTTk0X1lIbXhMR1V5OEJZNExkeS1ISkpWajNZendOTUkza3NJV0dIUnV5WkxEUjRMWk9tdkVjbUo3ZG5GbF9VODFXNlR5ZmdwUUp2eFNrN2I2QTJTcF8wZ2oxUzFEUmRuRldJOUVjdGZfSlZGazRMNVI2QWF1NElsLUNTYU9leFMtdVRHZXd1dWd2ZlIwZE9oNUdMdw?oc=5",
+      "source": "calgaryherald.com",
+      "published": "2026-08-21T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMipwFBVV95cUxPVEhHbThXZmE4X2ZvTTk0X1lIbXhMR1V5OEJZNExkeS1ISkpWajNZendOTUkza3NJV0dIUnV5WkxEUjRMWk9tdkVjbUo3ZG5GbF9VODFXNlR5ZmdwUUp2eFNrN2I2QTJTcF8wZ2oxUzFEUmRuRldJOUVjdGZfSlZGazRMNVI2QWF1NElsLUNTYU9leFMtdVRHZXd1dWd2ZlIwZE9oNUdMdw?oc=5\" target=\"_blank\">Another AI giant is coming to Alberta — and it could build data centres</a>&nbsp;&nbsp;<font color=\"#",
+      "tier": "reported",
+      "feedId": "gn-dc-alberta",
+      "region": "alberta",
+      "stream": "projects",
+      "score": 2,
+      "breaking": false
+    },
+    {
+      "title": "Nelson: Premier Smith risks UCP's rural support with AI data centre push - calgaryherald.com",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQNWxxXzdrRTNuT1Bad3Fnbm9QSnRTVTdpYmFHdkRmS0ZwUEJSdWFsRzVidUtKYkwydjhCc0cyUk90cGJkeGI2Y0N5bC1EMHJXTHRjckJucmdXQlJLbUdMdk8zTWNDMXpzSHg4eFNJSmhmU2lOQlFzLWR3YnQxeTczQlBuSzd5SjZJZjZPcWRVWEprTWl1R1paLUhyVGJWSnlpY1NRNE5TdmRNWm4y?oc=5",
+      "source": "calgaryherald.com",
+      "published": "2026-08-21T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQNWxxXzdrRTNuT1Bad3Fnbm9QSnRTVTdpYmFHdkRmS0ZwUEJSdWFsRzVidUtKYkwydjhCc0cyUk90cGJkeGI2Y0N5bC1EMHJXTHRjckJucmdXQlJLbUdMdk8zTWNDMXpzSHg4eFNJSmhmU2lOQlFzLWR3YnQxeTczQlBuSzd5SjZJZjZPcWRVWEprTWl1R1paLUhyVGJWSnlpY1NRNE5TdmRNWm4y?oc=5\" target=\"_blank\">Nelson: Premier Smith risks UCP's rural support with AI data centre push</a>&nbsp;&nbsp;<font c",
+      "tier": "reported",
+      "feedId": "gn-dc-alberta",
+      "region": "alberta",
+      "stream": "technology",
+      "score": 2,
+      "breaking": false
+    },
+    {
       "title": "Albertans near Meta AI Data Centre project pressure tech minister in latest town hall - CityNews Edmonton",
       "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNZld2bnlOR1ZuQjg1LTVrcmU2ZkJSZHdXQ3lXLU8tQjRmNDhmVUppcnJPTlp6Nm80RGJUR1BrcWNXSzY5dEdTbmk5MC1BTG8wLWZ6b29id1Ryb3lwTUN0dVBmWW1QZTRDXzhkZW1VeWhhejhJb0F2QXFCZEZUVHl5NTB4VExtWUs1eU1CSkQ1Mk5zYWVmQTNMM09WYTR2SjVELU5SVDhrblBTM3M5WXQxV2tpT0tBRGFhU2M0WnRJX2djZzJFd1JUeEFWcjI?oc=5",
       "source": "CityNews Edmonton",
@@ -2857,19 +2974,6 @@
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "projects",
-      "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Nelson: Premier Smith risks UCP's rural support with AI data centre push - Calgary Herald",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQNWxxXzdrRTNuT1Bad3Fnbm9QSnRTVTdpYmFHdkRmS0ZwUEJSdWFsRzVidUtKYkwydjhCc0cyUk90cGJkeGI2Y0N5bC1EMHJXTHRjckJucmdXQlJLbUdMdk8zTWNDMXpzSHg4eFNJSmhmU2lOQlFzLWR3YnQxeTczQlBuSzd5SjZJZjZPcWRVWEprTWl1R1paLUhyVGJWSnlpY1NRNE5TdmRNWm4y?oc=5",
-      "source": "Calgary Herald",
-      "published": "2026-08-21T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirAFBVV95cUxQNWxxXzdrRTNuT1Bad3Fnbm9QSnRTVTdpYmFHdkRmS0ZwUEJSdWFsRzVidUtKYkwydjhCc0cyUk90cGJkeGI2Y0N5bC1EMHJXTHRjckJucmdXQlJLbUdMdk8zTWNDMXpzSHg4eFNJSmhmU2lOQlFzLWR3YnQxeTczQlBuSzd5SjZJZjZPcWRVWEprTWl1R1paLUhyVGJWSnlpY1NRNE5TdmRNWm4y?oc=5\" target=\"_blank\">Nelson: Premier Smith risks UCP's rural support with AI data centre push</a>&nbsp;&nbsp;<font c",
-      "tier": "reported",
-      "feedId": "gn-dc-alberta",
-      "region": "alberta",
-      "stream": "technology",
       "score": 2,
       "breaking": false
     },
@@ -2896,6 +3000,19 @@
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "news",
+      "score": 2,
+      "breaking": false
+    },
+    {
+      "title": "Alberta minister faces fury at Sturgeon County town hall on AI data centres - Global News",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbFRENnpvdkltNTlBaEFjVmxLNXBUVmpGVTNWOEs1SmJEMUxRa2ttbEdZckZmX290emZoN0d4TTFrcGJwdHJWZGQtUmhZTzhDcU4yUTBoa1B2X1lXT1FxS1VwdHRuNTBUd09ZOGhqS2gtMkRWMTF2R1VXcE5kYXk3X0Uxbm9mTm5GTXQxZE92amU4cU9mSmhDeA?oc=5",
+      "source": "Global News",
+      "published": "2026-08-21T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNbFRENnpvdkltNTlBaEFjVmxLNXBUVmpGVTNWOEs1SmJEMUxRa2ttbEdZckZmX290emZoN0d4TTFrcGJwdHJWZGQtUmhZTzhDcU4yUTBoa1B2X1lXT1FxS1VwdHRuNTBUd09ZOGhqS2gtMkRWMTF2R1VXcE5kYXk3X0Uxbm9mTm5GTXQxZE92amU4cU9mSmhDeA?oc=5\" target=\"_blank\">Alberta minister faces fury at Sturgeon County town hall on AI data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Global N",
+      "tier": "reported",
+      "feedId": "gn-dc-alberta",
+      "region": "alberta",
+      "stream": "municipal",
       "score": 2,
       "breaking": false
     },
@@ -2948,19 +3065,6 @@
       "feedId": "gn-auc",
       "region": "alberta",
       "stream": "news",
-      "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Alberta minister faces fury at Sturgeon County town hall on AI data centres - Global News",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbFRENnpvdkltNTlBaEFjVmxLNXBUVmpGVTNWOEs1SmJEMUxRa2ttbEdZckZmX290emZoN0d4TTFrcGJwdHJWZGQtUmhZTzhDcU4yUTBoa1B2X1lXT1FxS1VwdHRuNTBUd09ZOGhqS2gtMkRWMTF2R1VXcE5kYXk3X0Uxbm9mTm5GTXQxZE92amU4cU9mSmhDeA?oc=5",
-      "source": "Global News",
-      "published": "2026-08-21T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxNbFRENnpvdkltNTlBaEFjVmxLNXBUVmpGVTNWOEs1SmJEMUxRa2ttbEdZckZmX290emZoN0d4TTFrcGJwdHJWZGQtUmhZTzhDcU4yUTBoa1B2X1lXT1FxS1VwdHRuNTBUd09ZOGhqS2gtMkRWMTF2R1VXcE5kYXk3X0Uxbm9mTm5GTXQxZE92amU4cU9mSmhDeA?oc=5\" target=\"_blank\">Alberta minister faces fury at Sturgeon County town hall on AI data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Global N",
-      "tier": "reported",
-      "feedId": "gn-sturgeon",
-      "region": "alberta",
-      "stream": "municipal",
       "score": 2,
       "breaking": false
     },
@@ -3030,11 +3134,11 @@
       "breaking": false
     },
     {
-      "title": "Anthropic job posting suggests it’s eyeing Alberta for data centre buildout - BetaKit",
+      "title": "Anthropic job posting suggests it’s eyeing Alberta for data centre buildout - betakit.com",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNdFpvZnZKQU1zSC1TYXpKajZtYXZRWlo2Qm4yQkZkUENodExtM3BwYWxscnVZN2psb2QzMGVYMG15OTlfOVFoYy1CM2JHNTNjVHdGU2xMVm9GcV9Wam9GaWxtTXVodnAwUHRLR1JzVGFnbzYtTlFsZllWZGcteXJfcENralVsVjhMNVg5cGdTaVlRdmpCb0R5SzJsSQ?oc=5",
-      "source": "BetaKit",
+      "source": "betakit.com",
       "published": "2026-08-20T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxNdFpvZnZKQU1zSC1TYXpKajZtYXZRWlo2Qm4yQkZkUENodExtM3BwYWxscnVZN2psb2QzMGVYMG15OTlfOVFoYy1CM2JHNTNjVHdGU2xMVm9GcV9Wam9GaWxtTXVodnAwUHRLR1JzVGFnbzYtTlFsZllWZGcteXJfcENralVsVjhMNVg5cGdTaVlRdmpCb0R5SzJsSQ?oc=5\" target=\"_blank\">Anthropic job posting suggests it’s eyeing Alberta for data centre buildout</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Beta",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxNdFpvZnZKQU1zSC1TYXpKajZtYXZRWlo2Qm4yQkZkUENodExtM3BwYWxscnVZN2psb2QzMGVYMG15OTlfOVFoYy1CM2JHNTNjVHdGU2xMVm9GcV9Wam9GaWxtTXVodnAwUHRLR1JzVGFnbzYtTlFsZllWZGcteXJfcENralVsVjhMNVg5cGdTaVlRdmpCb0R5SzJsSQ?oc=5\" target=\"_blank\">Anthropic job posting suggests it’s eyeing Alberta for data centre buildout</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">beta",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -3061,19 +3165,6 @@
       "source": "CBC",
       "published": "2026-08-20T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMif0FVX3lxTE1MQzc3LXZZZkMxMWxkRWEzcFRaLWJ2YXNhRWtQeUctM3kwY1dwWjFGdGFDeEpESk9haHpJZmRpdVBvTkdoSkJDOGZoVklCNm4wY0lBMU9oZzh3aUJLU2w1NFV6X3ByZmpVRkFXUU5tcEVaeDJ5clFJd1VwUnhBY0k?oc=5\" target=\"_blank\">Alberta technology minister met with jeers at first town hall on AI data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CBC</font>",
-      "tier": "reported",
-      "feedId": "gn-dc-alberta",
-      "region": "alberta",
-      "stream": "news",
-      "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Lacombe town hall turns heated as residents voice AI data centre concerns - rdnewsnow.com",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOZm43RFhnaXNBMUVTMnkyNjJaUXk5TkNuS0N2QldnZTBUeWEtcGFxd2RhYzB3YnNvVlIwNDdVazJrVksydGxtYVJQODJHYkkySE1wZTJJQ3BTZ2hRZ3g3Vnp0VElkN0NlRVhJZDVGSjJnblNTcXNDQkpreHJKd1d0a3hENU1QdVZOT1Rsak1WeExJV2NsZWVKV2xvZGRIUUo5NVJqNks4YUQ0Mms?oc=5",
-      "source": "rdnewsnow.com",
-      "published": "2026-08-20T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxOZm43RFhnaXNBMUVTMnkyNjJaUXk5TkNuS0N2QldnZTBUeWEtcGFxd2RhYzB3YnNvVlIwNDdVazJrVksydGxtYVJQODJHYkkySE1wZTJJQ3BTZ2hRZ3g3Vnp0VElkN0NlRVhJZDVGSjJnblNTcXNDQkpreHJKd1d0a3hENU1QdVZOT1Rsak1WeExJV2NsZWVKV2xvZGRIUUo5NVJqNks4YUQ0Mms?oc=5\" target=\"_blank\">Lacombe town hall turns heated as residents voice AI data centre concerns</a>&nbsp;&nbsp;<font c",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -3117,6 +3208,19 @@
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "technology",
+      "score": 2,
+      "breaking": false
+    },
+    {
+      "title": "Lacombe town hall turns heated as residents voice AI data centre concerns - Lethbridge News Now",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSVR2cnhZbGo2SlRpR05YVEQ3WHVlZXl6MkJXdWVwMVpZcUtIYUJnaXprY09oaGkwQW84Nmh3czJFYjJaSUdsTXN3NjZKRFhnVWl5OTdmTTRYQ0pPdGp6MHJCd2MyRFk2cGQtemR6dEN2NU5FS1ZjOVI0QTZZNU54alhXM19yOExpNE43ZnpDN1AtVFpSTDZMWXczUEJJVHBiU1pQUjhfM3BwR2pQcVVleFc1T0h1dw?oc=5",
+      "source": "Lethbridge News Now",
+      "published": "2026-08-20T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxOSVR2cnhZbGo2SlRpR05YVEQ3WHVlZXl6MkJXdWVwMVpZcUtIYUJnaXprY09oaGkwQW84Nmh3czJFYjJaSUdsTXN3NjZKRFhnVWl5OTdmTTRYQ0pPdGp6MHJCd2MyRFk2cGQtemR6dEN2NU5FS1ZjOVI0QTZZNU54alhXM19yOExpNE43ZnpDN1AtVFpSTDZMWXczUEJJVHBiU1pQUjhfM3BwR2pQcVVleFc1T0h1dw?oc=5\" target=\"_blank\">Lacombe town hall turns heated as residents voice AI data centre concerns</a>&nbs",
+      "tier": "reported",
+      "feedId": "gn-dc-alberta",
+      "region": "alberta",
+      "stream": "news",
       "score": 2,
       "breaking": false
     },
@@ -3225,19 +3329,6 @@
       "breaking": false
     },
     {
-      "title": "Rejection of $10-billion Alberta data centre 'proof' system works, minister says - Calgary Herald",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQdExXTTVRTGdabnQ2SmkxRGh2LTdIODNSSHpUMHVENmJEcERoU3lpMDVmU0Z0eWQ3WkgyZEw0bDgyOElVaGR1c1UzTEd5NXRkY1Boa01TUzNPTzltWkNhWXFmYmxvR01WeUxvdzNZaEhfOXFBTmFHMWF6bVQ1SEI1dVhzZU5RcGF6UWlJSWszbGg5WXAxMDNVWkNLa3VFVHV3Um1IMlZLejNYcWwtQXhnZ2t2VFQ0cVUyQXc?oc=5",
-      "source": "Calgary Herald",
-      "published": "2026-08-19T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQdExXTTVRTGdabnQ2SmkxRGh2LTdIODNSSHpUMHVENmJEcERoU3lpMDVmU0Z0eWQ3WkgyZEw0bDgyOElVaGR1c1UzTEd5NXRkY1Boa01TUzNPTzltWkNhWXFmYmxvR01WeUxvdzNZaEhfOXFBTmFHMWF6bVQ1SEI1dVhzZU5RcGF6UWlJSWszbGg5WXAxMDNVWkNLa3VFVHV3Um1IMlZLejNYcWwtQXhnZ2t2VFQ0cVUyQXc?oc=5\" target=\"_blank\">Rejection of $10-billion Alberta data centre 'proof' system works, minister ",
-      "tier": "reported",
-      "feedId": "gn-dc-alberta",
-      "region": "alberta",
-      "stream": "market",
-      "score": 2,
-      "breaking": false
-    },
-    {
       "title": "Alberta’s AI Data Centre Gamble: Big Investment or Local Burden? - EnergyNow",
       "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOQ1hFa2lKSjd4VFpKMlV0aGxvTEFjV2t5dGlPWXBEVmotOVpQbWR4dlZLRjk2S3h6QkVWMDJteWNtMnRiU2NtSUUtQWtnV3dWMXdEdWhocXpiXzd4SFQzYVJ5ZFhjNldpZE44a2t1SzBpa0lPdmZDT19ldWl3b1M3RzRvSGhyTEljZi0zN0NSOFRYU1c2a1E?oc=5",
       "source": "EnergyNow",
@@ -3251,11 +3342,11 @@
       "breaking": false
     },
     {
-      "title": "Alberta government kicks off town hall tour on data centre development - CBC",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB5RWJCeE4zQnJFUmlHVnEzX0cydmpkcUQwRmZjc1FTQ0NSMUJ2SG8wY21rQ05yT19lREtoQzM4V0NIWEl1SkV3ZHFENGdUbVZfUFIwU08tMnU0UVBxTHJzN0xWMUR0ZGtQX01RQ0hwblI1MWRIa0N0M0NR?oc=5",
-      "source": "CBC",
+      "title": "Alberta to hold first AI data centre town halls this week - Global News",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFB2SHJxWEpwd1dTZElmeHJySERwNWlFU1RmOTA5a3hJVUxDXzByYnZSR2h5UkJnSUxsRFp4WmRxWFVnVmx0clpqMmtpYkNMQlR6SVlQMGg5UHVKYU85YkZ6cW9XNGV5ZzVnMklmaS11MmtqQ3FadG9PUUpGQWQ?oc=5",
+      "source": "Global News",
       "published": "2026-08-19T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTFB5RWJCeE4zQnJFUmlHVnEzX0cydmpkcUQwRmZjc1FTQ0NSMUJ2SG8wY21rQ05yT19lREtoQzM4V0NIWEl1SkV3ZHFENGdUbVZfUFIwU08tMnU0UVBxTHJzN0xWMUR0ZGtQX01RQ0hwblI1MWRIa0N0M0NR?oc=5\" target=\"_blank\">Alberta government kicks off town hall tour on data centre development</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CBC</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFB2SHJxWEpwd1dTZElmeHJySERwNWlFU1RmOTA5a3hJVUxDXzByYnZSR2h5UkJnSUxsRFp4WmRxWFVnVmx0clpqMmtpYkNMQlR6SVlQMGg5UHVKYU85YkZ6cW9XNGV5ZzVnMklmaS11MmtqQ3FadG9PUUpGQWQ?oc=5\" target=\"_blank\">Alberta to hold first AI data centre town halls this week</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Global News</font>",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -3264,11 +3355,11 @@
       "breaking": false
     },
     {
-      "title": "Alberta to hold first AI data centre town halls this week - Global News",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFB2SHJxWEpwd1dTZElmeHJySERwNWlFU1RmOTA5a3hJVUxDXzByYnZSR2h5UkJnSUxsRFp4WmRxWFVnVmx0clpqMmtpYkNMQlR6SVlQMGg5UHVKYU85YkZ6cW9XNGV5ZzVnMklmaS11MmtqQ3FadG9PUUpGQWQ?oc=5",
-      "source": "Global News",
+      "title": "Alberta government kicks off town hall tour on data centre development - CBC",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB5RWJCeE4zQnJFUmlHVnEzX0cydmpkcUQwRmZjc1FTQ0NSMUJ2SG8wY21rQ05yT19lREtoQzM4V0NIWEl1SkV3ZHFENGdUbVZfUFIwU08tMnU0UVBxTHJzN0xWMUR0ZGtQX01RQ0hwblI1MWRIa0N0M0NR?oc=5",
+      "source": "CBC",
       "published": "2026-08-19T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMifEFVX3lxTFB2SHJxWEpwd1dTZElmeHJySERwNWlFU1RmOTA5a3hJVUxDXzByYnZSR2h5UkJnSUxsRFp4WmRxWFVnVmx0clpqMmtpYkNMQlR6SVlQMGg5UHVKYU85YkZ6cW9XNGV5ZzVnMklmaS11MmtqQ3FadG9PUUpGQWQ?oc=5\" target=\"_blank\">Alberta to hold first AI data centre town halls this week</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Global News</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTFB5RWJCeE4zQnJFUmlHVnEzX0cydmpkcUQwRmZjc1FTQ0NSMUJ2SG8wY21rQ05yT19lREtoQzM4V0NIWEl1SkV3ZHFENGdUbVZfUFIwU08tMnU0UVBxTHJzN0xWMUR0ZGtQX01RQ0hwblI1MWRIa0N0M0NR?oc=5\" target=\"_blank\">Alberta government kicks off town hall tour on data centre development</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CBC</font>",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -3329,29 +3420,29 @@
       "breaking": false
     },
     {
-      "title": "AI project setback: Olds mayor, resident voice views on AUC denial - calgary.citynews.ca",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOTmRaVzF0LTM0ZDNvTXRiZWdBUzM2eHpsSFBWVThoSEhrb1VXX3IyQzhoMTQ0dG9UbEt4T3lRZlR2T082X3ZFb1hYTjNTYnJ4Q3JTQUtHcmQ3c1Q5bDN1V1FmV2xfeEpUUzUtdmhoZlJ6UTl0UGtDRFQyYWE1QWtuVmhyYzh0R1ZZY0M1QlFkQnVUNXBHTThBUm01cFEtNEk4?oc=5",
-      "source": "calgary.citynews.ca",
-      "published": "2026-08-19T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOTmRaVzF0LTM0ZDNvTXRiZWdBUzM2eHpsSFBWVThoSEhrb1VXX3IyQzhoMTQ0dG9UbEt4T3lRZlR2T082X3ZFb1hYTjNTYnJ4Q3JTQUtHcmQ3c1Q5bDN1V1FmV2xfeEpUUzUtdmhoZlJ6UTl0UGtDRFQyYWE1QWtuVmhyYzh0R1ZZY0M1QlFkQnVUNXBHTThBUm01cFEtNEk4?oc=5\" target=\"_blank\">AI project setback: Olds mayor, resident voice views on AUC denial</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">calgary",
-      "tier": "reported",
-      "feedId": "gn-auc",
-      "region": "alberta",
-      "stream": "projects",
-      "score": 2,
-      "breaking": false
-    },
-    {
       "title": "Public hearings begin for proposed data centre, natural gas power plant near Calgary - CTV News",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPYUowdzFmRmdibUJiS3NEZlVoZkJaN1IwcjBYSEtadkJzeVZFaWNpSFRITXhkTUg5NlBfclBZV2szb0ZRcUtzVjdXZjkyV2V3a0lVWGp0ak14QnZuY1d4a2lCV2RWeHdkcklLXzRrazJ6SDROcVJ0TkxBdG13bjFaaXF6bW1yTjRRYzAwUmlmZmc2aXJ3UzZzS1plV0xjQWNuU2w5c0xSQU83dGZocEwyR1JOMWt3Mkc2RG1rR0FPU0RBRXpFWFdub0g5NXpyQTIz?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOYXozZy1TaGhtT1hvQnVvb3lldnE3bllDbVE4MlRQSjRwTTBoRFczal9xLWo2bEpWMUYxSC1OYWVTY09Md1BTNE9wUHo2UTVwZ0pRc3ZDbDlRSTJidVdQQms4M1g1UEJMbjBCZG5fVEtYNGtNOVh3Snc3MFk1dkFpZlZaVTJGaUxoekxfb3lvcUZJVVg3UVc2eWZfeE5JNEJEdld5R0p4WEpVN3lteVZ1VjdmcFc5V1FXYXNiTG5lR0I?oc=5",
       "source": "CTV News",
       "published": "2026-08-19T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMi0AFBVV95cUxPYUowdzFmRmdibUJiS3NEZlVoZkJaN1IwcjBYSEtadkJzeVZFaWNpSFRITXhkTUg5NlBfclBZV2szb0ZRcUtzVjdXZjkyV2V3a0lVWGp0ak14QnZuY1d4a2lCV2RWeHdkcklLXzRrazJ6SDROcVJ0TkxBdG13bjFaaXF6bW1yTjRRYzAwUmlmZmc2aXJ3UzZzS1plV0xjQWNuU2w5c0xSQU83dGZocEwyR1JOMWt3Mkc2RG1rR0FPU0RBRXpFWFdub0g5NXpyQTIz?oc=5\" target=\"_blank\">Public hearings begin for proposed data centre,",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxOYXozZy1TaGhtT1hvQnVvb3lldnE3bllDbVE4MlRQSjRwTTBoRFczal9xLWo2bEpWMUYxSC1OYWVTY09Md1BTNE9wUHo2UTVwZ0pRc3ZDbDlRSTJidVdQQms4M1g1UEJMbjBCZG5fVEtYNGtNOVh3Snc3MFk1dkFpZlZaVTJGaUxoekxfb3lvcUZJVVg3UVc2eWZfeE5JNEJEdld5R0p4WEpVN3lteVZ1VjdmcFc5V1FXYXNiTG5lR0I?oc=5\" target=\"_blank\">Public hearings begin for proposed data centre, natural gas power pl",
       "tier": "reported",
       "feedId": "gn-auc",
       "region": "alberta",
       "stream": "municipal",
       "score": 7,
+      "breaking": false
+    },
+    {
+      "title": "AI project setback: Olds mayor, resident voice views on AUC denial - CityNews Calgary",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOTmRaVzF0LTM0ZDNvTXRiZWdBUzM2eHpsSFBWVThoSEhrb1VXX3IyQzhoMTQ0dG9UbEt4T3lRZlR2T082X3ZFb1hYTjNTYnJ4Q3JTQUtHcmQ3c1Q5bDN1V1FmV2xfeEpUUzUtdmhoZlJ6UTl0UGtDRFQyYWE1QWtuVmhyYzh0R1ZZY0M1QlFkQnVUNXBHTThBUm01cFEtNEk4?oc=5",
+      "source": "CityNews Calgary",
+      "published": "2026-08-19T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxOTmRaVzF0LTM0ZDNvTXRiZWdBUzM2eHpsSFBWVThoSEhrb1VXX3IyQzhoMTQ0dG9UbEt4T3lRZlR2T082X3ZFb1hYTjNTYnJ4Q3JTQUtHcmQ3c1Q5bDN1V1FmV2xfeEpUUzUtdmhoZlJ6UTl0UGtDRFQyYWE1QWtuVmhyYzh0R1ZZY0M1QlFkQnVUNXBHTThBUm01cFEtNEk4?oc=5\" target=\"_blank\">AI project setback: Olds mayor, resident voice views on AUC denial</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CityNew",
+      "tier": "reported",
+      "feedId": "gn-auc",
+      "region": "alberta",
+      "stream": "projects",
+      "score": 2,
       "breaking": false
     },
     {
@@ -3394,19 +3485,6 @@
       "breaking": false
     },
     {
-      "title": "Data Center Hardware Highlights: August 2026",
-      "url": "https://www.datacenterknowledge.com/data-center-hardware/data-center-hardware-highlights-august-2026",
-      "source": "datacenterknowledge.com",
-      "published": "2026-08-18T14:52:54.000Z",
-      "summary": "The latest in data center infrastructure – from power and minerals to networking, CPUs, and rack-scale AI systems – shows the stack shifting toward energy, interconnects, and end-to-end efficiency.",
-      "tier": "reported",
-      "feedId": "dck",
-      "region": "global",
-      "stream": "technology",
-      "score": -4,
-      "breaking": false
-    },
-    {
       "title": "Alberta Utilities Commission rejects power plants for proposed Olds data centre - Global News",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNQWFIWXNuRVNMeWgwQ0hvWlRpLS1oR1M1c0gzQlh5MFNVYUV0SE9DNmUxMllTUDNIV2ljbTgtVkotU1J0S09IN085eUFlNmo3U293dlloT1NoYVZRLXRhU0ZORG5TT2Zma0pUbjM1R2ZHNXdUMlpPWFBjblBfeVR1MmxDS0xPN3hzMDN6ZGI0bUl1TVdhaGs2Q0ZfZ2FIVTB4SzB6dHdYenhGdFh2MnJFb1dVM3ZfZG8?oc=5",
       "source": "Global News",
@@ -3446,9 +3524,9 @@
       "breaking": false
     },
     {
-      "title": "Alberta Utilities Commission rejects power plant for data centre in Olds - calgary.citynews.ca",
+      "title": "Alberta Utilities Commission rejects power plant for data centre in Olds - CityNews Calgary",
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORGlKUlFjMTFqZUktMmlKVFhocmpSOGlzb1NkUEZqRDlFV0VvN2Zaa3JaTnd3azNYMEw4SXI0cExJMzJabklScEc2QzNTT21ON1l0Slh5V1piMWdURjh1cWZNcUpnTll4WEl6X3lvT0J6WC13Q090ZnJ0Z0FsQktkU21oM1ZTaGJLTWYzRTY4TnEwU3hILVpfQlhGWm9FVjFSdDE3djB2Z0pqRHlGWHkwbmo4UDhPVGdYTXc?oc=5",
-      "source": "calgary.citynews.ca",
+      "source": "CityNews Calgary",
       "published": "2026-08-18T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxORGlKUlFjMTFqZUktMmlKVFhocmpSOGlzb1NkUEZqRDlFV0VvN2Zaa3JaTnd3azNYMEw4SXI0cExJMzJabklScEc2QzNTT21ON1l0Slh5V1piMWdURjh1cWZNcUpnTll4WEl6X3lvT0J6WC13Q090ZnJ0Z0FsQktkU21oM1ZTaGJLTWYzRTY4TnEwU3hILVpfQlhGWm9FVjFSdDE3djB2Z0pqRHlGWHkwbmo4UDhPVGdYTXc?oc=5\" target=\"_blank\">Alberta Utilities Commission rejects power plant for data centre in Olds</a>",
       "tier": "reported",
@@ -3485,29 +3563,16 @@
       "breaking": false
     },
     {
-      "title": "Meta proposal in Alberta's industrial heartland fuels data centre fury - Canada's National Observer",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNbjVpdWZTOF90ODNxZkJVdUxWaXllZHJrLWpEVmhMcThDN01WeDhoMFVCRU5rTEcwd0xVSHQtQXpPenR5Z3VmWlF5QlhzWmN0NWN2SlhDeHRCX1FwX0o5ZGlZYksteXo5MF9PaE5xUXRjMlIzWEIxX1EySngyM2lXekxsbkdpUWl6bjBMaWtn?oc=5",
-      "source": "Canada's National Observer",
-      "published": "2026-08-18T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxNbjVpdWZTOF90ODNxZkJVdUxWaXllZHJrLWpEVmhMcThDN01WeDhoMFVCRU5rTEcwd0xVSHQtQXpPenR5Z3VmWlF5QlhzWmN0NWN2SlhDeHRCX1FwX0o5ZGlZYksteXo5MF9PaE5xUXRjMlIzWEIxX1EySngyM2lXekxsbkdpUWl6bjBMaWtn?oc=5\" target=\"_blank\">Meta proposal in Alberta's industrial heartland fuels data centre fury</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Canada's National Observer<",
+      "title": "Rejection of $10-billion Alberta data centre 'proof' system works, minister says - calgaryherald.com",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQdExXTTVRTGdabnQ2SmkxRGh2LTdIODNSSHpUMHVENmJEcERoU3lpMDVmU0Z0eWQ3WkgyZEw0bDgyOElVaGR1c1UzTEd5NXRkY1Boa01TUzNPTzltWkNhWXFmYmxvR01WeUxvdzNZaEhfOXFBTmFHMWF6bVQ1SEI1dVhzZU5RcGF6UWlJSWszbGg5WXAxMDNVWkNLa3VFVHV3Um1IMlZLejNYcWwtQXhnZ2t2VFQ0cVUyQXc?oc=5",
+      "source": "calgaryherald.com",
+      "published": "2026-08-17T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiugFBVV95cUxQdExXTTVRTGdabnQ2SmkxRGh2LTdIODNSSHpUMHVENmJEcERoU3lpMDVmU0Z0eWQ3WkgyZEw0bDgyOElVaGR1c1UzTEd5NXRkY1Boa01TUzNPTzltWkNhWXFmYmxvR01WeUxvdzNZaEhfOXFBTmFHMWF6bVQ1SEI1dVhzZU5RcGF6UWlJSWszbGg5WXAxMDNVWkNLa3VFVHV3Um1IMlZLejNYcWwtQXhnZ2t2VFQ0cVUyQXc?oc=5\" target=\"_blank\">Rejection of $10-billion Alberta data centre 'proof' system works, minister ",
       "tier": "reported",
-      "feedId": "gn-sturgeon",
+      "feedId": "gn-dc-alberta",
       "region": "alberta",
-      "stream": "projects",
+      "stream": "market",
       "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Ontario’s new AI data centre playbook is flawed. We can fix it. - Policy Alternatives",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNUFhDd2FTQTBRenhkQTlscld5TWtxTTlfTmQ3NWxyTmpNYkFaaXRUYXNhVjBzLW1LS2FfcFg4Z3ZJb0ZsTWk3RnRXZVFWcEU2ZjZsRVV2UGZnR3BUMUdWWDZ4UWVtdFZvRHJZUHFBY0NmcU9BN3RHQW1BNVJrUERaUDM4aWNhT0p0bDB4TEZqUXROY0htUm9YMHJUYXFyb256MnctMnB0MU1fQWRhREE?oc=5",
-      "source": "Policy Alternatives",
-      "published": "2026-08-18T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxNUFhDd2FTQTBRenhkQTlscld5TWtxTTlfTmQ3NWxyTmpNYkFaaXRUYXNhVjBzLW1LS2FfcFg4Z3ZJb0ZsTWk3RnRXZVFWcEU2ZjZsRVV2UGZnR3BUMUdWWDZ4UWVtdFZvRHJZUHFBY0NmcU9BN3RHQW1BNVJrUERaUDM4aWNhT0p0bDB4TEZqUXROY0htUm9YMHJUYXFyb256MnctMnB0MU1fQWRhREE?oc=5\" target=\"_blank\">Ontario’s new AI data centre playbook is flawed. We can fix it.</a>&nbsp;&nbsp;<font color=\"",
-      "tier": "reported",
-      "feedId": "gn-canada-dc",
-      "region": "canada",
-      "stream": "policy",
-      "score": -1,
       "breaking": false
     },
     {
@@ -3615,9 +3680,9 @@
       "breaking": false
     },
     {
-      "title": "America's Largest Grid Operator to Data Centers: Bring Your Own Power or Get Turned Off First… - Gadget Review",
+      "title": "America's Largest Grid Operator to Data Centers: Bring Your Own Power or Get Turned Off First… - gadgetreview.com",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPT29OLThXWkthbzBucnhKUm50YXdmem12YlFNb0NvQW1oYy1jcUgwaTI1RUJBRVVrVmZkQVcwSkRDYVRzTFZleHNpY2Y1YlpMd2xxVTlQS09BTjhfS3R6MjQwejRGS05JalhEbi1HODhzMlp4cldPc1NsZEMyRUhleDZWY1VQX29WMlNhX2JSdm1XcmtuR1YyakxQT1BwdDFGenhPY1h6LXRnN3luMzhGMkpvbWwxekRqSTc5Yg?oc=5",
-      "source": "Gadget Review",
+      "source": "gadgetreview.com",
       "published": "2026-08-17T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxPT29OLThXWkthbzBucnhKUm50YXdmem12YlFNb0NvQW1oYy1jcUgwaTI1RUJBRVVrVmZkQVcwSkRDYVRzTFZleHNpY2Y1YlpMd2xxVTlQS09BTjhfS3R6MjQwejRGS05JalhEbi1HODhzMlp4cldPc1NsZEMyRUhleDZWY1VQX29WMlNhX2JSdm1XcmtuR1YyakxQT1BwdDFGenhPY1h6LXRnN3luMzhGMkpvbWwxekRqSTc5Yg?oc=5\" target=\"_blank\">America's Largest Grid Operator to Data Centers: Bring Your Own Power or ",
       "tier": "reported",
@@ -3628,9 +3693,9 @@
       "breaking": false
     },
     {
-      "title": "An Alberta County Claimed It Had No Authority to Consider a Data Centre's Climate Pollution. Our Reporter Has Thoughts. - The Energy Mix Weekender",
+      "title": "An Alberta County Claimed It Had No Authority to Consider a Data Centre's Climate Pollution. Our Reporter Has Thoughts. - energymixweekender.substack.com",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1OZ0ZmXzhWbTB1YkhEY2Y3Y2xxV0VoU3JRUHozN2E2Tkw0M2txNldDbms2RXMzYXZZSjFKdGRfNnkxNm5vQi0xdG0wdFh5VHE5TDl3Y2xERHdtODRpbG5HUkR6YVgyVHJnaV9panpQREQ5eERpVlQ1NWNkbS1lcVE?oc=5",
-      "source": "The Energy Mix Weekender",
+      "source": "energymixweekender.substack.com",
       "published": "2026-08-16T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMif0FVX3lxTE1OZ0ZmXzhWbTB1YkhEY2Y3Y2xxV0VoU3JRUHozN2E2Tkw0M2txNldDbms2RXMzYXZZSjFKdGRfNnkxNm5vQi0xdG0wdFh5VHE5TDl3Y2xERHdtODRpbG5HUkR6YVgyVHJnaV9panpQREQ5eERpVlQ1NWNkbS1lcVE?oc=5\" target=\"_blank\">An Alberta County Claimed It Had No Authority to Consider a Data Centre's Climate Pollution. Our Reporter Has Thoughts.</a>&nbsp;&nbsp;<font color=\"#6f6f6f\"",
       "tier": "reported",
@@ -3758,6 +3823,19 @@
       "breaking": false
     },
     {
+      "title": "Ontario unveils new data centre framework amid calls for moratoriums - CBC",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQWVhyWGc2b3FfeVhQY0dNRzBEeHFrZjM1NkxvcTRKS01ibXlmUTZ0VmhpZkFHMURVR29uNTdzUlc1NUxxZ2FMbmRXWm1Ra3AtNWEyLXRodlprVGpERzQwaDlGTTZleW1ocDFSd01IVzBKWDUweDlsT2pHVjgtRjBRSlcwem5yeWpJa3dLb0hXSDdyQ2tpLXB6Sk9idE5BT1JZbkgtNDdlWF9JUEF1TnYwc3RYMA?oc=5",
+      "source": "CBC",
+      "published": "2026-08-13T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiswFBVV95cUxQWVhyWGc2b3FfeVhQY0dNRzBEeHFrZjM1NkxvcTRKS01ibXlmUTZ0VmhpZkFHMURVR29uNTdzUlc1NUxxZ2FMbmRXWm1Ra3AtNWEyLXRodlprVGpERzQwaDlGTTZleW1ocDFSd01IVzBKWDUweDlsT2pHVjgtRjBRSlcwem5yeWpJa3dLb0hXSDdyQ2tpLXB6Sk9idE5BT1JZbkgtNDdlWF9JUEF1TnYwc3RYMA?oc=5\" target=\"_blank\">Ontario unveils new data centre framework amid calls for moratoriums</a>&nbsp;&nbsp;<",
+      "tier": "reported",
+      "feedId": "gn-gov-launch",
+      "region": "canada",
+      "stream": "policy",
+      "score": 4,
+      "breaking": false
+    },
+    {
       "title": "Ontario launches Data Centre Playbook framework, seeks public input - South Muskoka Doppler",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOZWk3SzZ1eXBnY01lay1uQmZkdlZDV3hLeHZ1RkVwSzljOVcyRW5jRVBxa3NmVFp2VFdEdUNJQzM3REdSN2NPTFdoc1NOenVVYkZZeFdlSjlrUHJxeDFxUUZ4T2RHZkxpQV84ZkR3aThDb0k0UFYxNUZFeWlDaWFMQ25QenU0enhLS1FRaF9uTWY0YUt1N3dQZmNRWHRlU1VJT2lmSVpyRG0?oc=5",
       "source": "South Muskoka Doppler",
@@ -3797,6 +3875,19 @@
       "breaking": false
     },
     {
+      "title": "New data centres will pay all energy costs, get no cash incentives under Ontario plan - Yahoo! Finance Canada",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPMkRaaG1oNkZBZjFEbnJIYWtaa09NRUw0SlEtLWJZUExLWDJEdTkzTlR4TVRfYnRXems1clkxSk16SXpXUmk0d2lyLXRJOXp6dEZvbnZ3V0lETzVuZEE0bElFT3MzenA3MVZLSDZqMTJXY3NTTDY1NTlKM1A2MkZQdExsQjE?oc=5",
+      "source": "Yahoo! Finance Canada",
+      "published": "2026-08-13T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxPMkRaaG1oNkZBZjFEbnJIYWtaa09NRUw0SlEtLWJZUExLWDJEdTkzTlR4TVRfYnRXems1clkxSk16SXpXUmk0d2lyLXRJOXp6dEZvbnZ3V0lETzVuZEE0bElFT3MzenA3MVZLSDZqMTJXY3NTTDY1NTlKM1A2MkZQdExsQjE?oc=5\" target=\"_blank\">New data centres will pay all energy costs, get no cash incentives under Ontario plan</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Yahoo! Finance Canada</fo",
+      "tier": "reported",
+      "feedId": "gn-gov-launch",
+      "region": "canada",
+      "stream": "news",
+      "score": -1,
+      "breaking": false
+    },
+    {
       "title": "Ontario government rolls out proposed framework for AI data centres in communities - CityNews Toronto",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOYlZQSlpEcUkwME1uX3ZKQWs1cWk3bXo1N3VQTTdkNFhfaWFlS0Zoa09aTzRtWmZ0YUZZemxoTEZkZWhsTHdEd0UtSFZfd3JHenkxWkRoMlFSN0U2LXdwVHBhVTB4a0ZIM21rZWFwdm1nZHJFaWtNXzljeUlJaU5fMWpzRjdFMHRNVXMtTkRMeUVidElONE95T0lMVEl4MWlrSVVF?oc=5",
       "source": "CityNews Toronto",
@@ -3810,24 +3901,11 @@
       "breaking": false
     },
     {
-      "title": "New data centres will pay all energy costs, get no cash incentives under Ontario plan - BNN Bloomberg",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPckk2blcyLUdpaEdRQmdQWUd1YXJ6ZHd2QTBVcXJVZGRBSjVlUS15Q3d5N2NpWmZyYjVIZ1FBMVN1cUtyQzNpQ295Yi02MmhCWHF2S3ZfYXZsWWVLaG5nOWZVTWJrQ1BZc3V1MWtJVC02S01HeGNUbTdJMnFuRE9kNUJINzZybDVMQXEza0VvbmpONUxvSGFURGx1Z2FXLWpvVlVTT2MxYjNBcHEtRzVoNnFDUEk1cTNtOXR2RnBaa3hVdVVnQU5qbW1HczdmSmZVdDF4Y2UxVXh2UHlUQ3lSQlNVUENMNm5waEtZdlRR?oc=5",
-      "source": "BNN Bloomberg",
-      "published": "2026-08-13T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMi7gFBVV95cUxPckk2blcyLUdpaEdRQmdQWUd1YXJ6ZHd2QTBVcXJVZGRBSjVlUS15Q3d5N2NpWmZyYjVIZ1FBMVN1cUtyQzNpQ295Yi02MmhCWHF2S3ZfYXZsWWVLaG5nOWZVTWJrQ1BZc3V1MWtJVC02S01HeGNUbTdJMnFuRE9kNUJINzZybDVMQXEza0VvbmpONUxvSGFURGx1Z2FXLWpvVlVTT2MxYjNBcHEtRzVoNnFDUEk1cTNtOXR2RnBaa3hVdVVnQU5qbW1HczdmSmZVdDF4Y2UxVXh2UHlUQ3lSQlNVUENMNm5waEtZdlRR?oc=5\" target=\"_blank\">New dat",
-      "tier": "reported",
-      "feedId": "gn-gov-launch",
-      "region": "canada",
-      "stream": "news",
-      "score": -1,
-      "breaking": false
-    },
-    {
-      "title": "Ontario sets strict rules for power-hungry AI data centres - torontosun.com",
+      "title": "Ontario sets strict rules for power-hungry AI data centres - Toronto Sun",
       "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOSzZDTl9VdzItek5pcE1sOGc0UTN6djMzdi1uV1RjcGtZYm1mVkxBOXp5dEp3UzBDRmlfcmRod1pXZE1IOHpERU9kWXlRengwaUplTkI4NE5sYk1xYnljd2V1dTBkZkgwOFZEcklWaVlwN3lkM3Z5QTFYaHc0MDhqemdkaGlEbTd0bEl1U29KdV81MEhDX0djSS03U0xHdw?oc=5",
-      "source": "torontosun.com",
+      "source": "Toronto Sun",
       "published": "2026-08-13T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOSzZDTl9VdzItek5pcE1sOGc0UTN6djMzdi1uV1RjcGtZYm1mVkxBOXp5dEp3UzBDRmlfcmRod1pXZE1IOHpERU9kWXlRengwaUplTkI4NE5sYk1xYnljd2V1dTBkZkgwOFZEcklWaVlwN3lkM3Z5QTFYaHc0MDhqemdkaGlEbTd0bEl1U29KdV81MEhDX0djSS03U0xHdw?oc=5\" target=\"_blank\">Ontario sets strict rules for power-hungry AI data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">torontosun.com</f",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxOSzZDTl9VdzItek5pcE1sOGc0UTN6djMzdi1uV1RjcGtZYm1mVkxBOXp5dEp3UzBDRmlfcmRod1pXZE1IOHpERU9kWXlRengwaUplTkI4NE5sYk1xYnljd2V1dTBkZkgwOFZEcklWaVlwN3lkM3Z5QTFYaHc0MDhqemdkaGlEbTd0bEl1U29KdV81MEhDX0djSS03U0xHdw?oc=5\" target=\"_blank\">Ontario sets strict rules for power-hungry AI data centres</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Toronto Sun</font",
       "tier": "reported",
       "feedId": "gn-gov-launch",
       "region": "canada",
@@ -3849,19 +3927,6 @@
       "breaking": false
     },
     {
-      "title": "PJM Proposes Framework To Connect Data Centers Without Compromising Reliability, Affordability - PJM Inside Lines",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPeGpIY3VHamg1ZnRwdDg0Q2k0UzNpUlgtejdYUkx5ZHBHTDlubkZBbjZHb2E5dkUyZXZaUmtBSUFuaXU2OGt4RUJhMDFFZENFaVJDLWNBdTZ4SlRsd2lpYUY2dW15d2c4RjItTGtxcTFhbzQybGJQWEJoVXFidU9obUF0dGhwSi1DTW9zTm1naWNVNWJLbF9rQXc3X25zX0tPY29MLWx6SDVRSFZiTGdpWGZ1X1hydjR5eWd2eDVzTQ?oc=5",
-      "source": "PJM Inside Lines",
-      "published": "2026-08-13T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMivwFBVV95cUxPeGpIY3VHamg1ZnRwdDg0Q2k0UzNpUlgtejdYUkx5ZHBHTDlubkZBbjZHb2E5dkUyZXZaUmtBSUFuaXU2OGt4RUJhMDFFZENFaVJDLWNBdTZ4SlRsd2lpYUY2dW15d2c4RjItTGtxcTFhbzQybGJQWEJoVXFidU9obUF0dGhwSi1DTW9zTm1naWNVNWJLbF9rQXc3X25zX0tPY29MLWx6SDVRSFZiTGdpWGZ1X1hydjR5eWd2eDVzTQ?oc=5\" target=\"_blank\">PJM Proposes Framework To Connect Data Centers Without Compromising R",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "policy",
-      "score": -2,
-      "breaking": false
-    },
-    {
       "title": "Alberta crude production up in June despite severe storm disruptions - Quantum Commodity Intelligence",
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNSjJvWElrQWNQT0d3cTNia3JLWW5sM2JFTmg2TTdIc1Fia0NOYmlHYXZ2b091Mk1DdGp4OThMU0hWSTZJUEZDVHpveUNhTjEwdE5NMHRpbzBDMXhnbnRIcGxXX0hralRmVDF5OTctR2U0Z2pnT2JEUkdCQmhza3VxRFR6bTRtcDcxQlQ0dmloeWlEWGs5ajR5RjZ4LVkyTUpVUDhJV1dRai1mQ2g4M2pmWA?oc=5",
       "source": "Quantum Commodity Intelligence",
@@ -3871,6 +3936,19 @@
       "feedId": "gn-aer",
       "region": "alberta",
       "stream": "news",
+      "score": 2,
+      "breaking": false
+    },
+    {
+      "title": "Battle for the Bell: Parkland County firefighters ring up team spirit with skills competition - CTV News",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNNW5lUF9JZENJUFRmNUZIbXA4NXRXU0pxUmw2TFo4T0RVaExfa3YtclFIZk9PMnBXX0p0Q2NITmZXOEQya0VLRTI1ZUpIMkYyak9hZHBJQnlXemgwVHVQSDFsRDZXNnRxUjkwWGFqVnNUUTBoNmQ4cVJaekJBeldhczFTNFR3QXdUXzk5cThwTHp0QkRXZVR5YmEtUllUZHZhZi16RmVzZUdKWnNkRG5WUDY1d3FmRVdrU0NuNE1kYlNUQnVTV0FEamM2WWRCdw?oc=5",
+      "source": "CTV News",
+      "published": "2026-08-12T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMizgFBVV95cUxNNW5lUF9JZENJUFRmNUZIbXA4NXRXU0pxUmw2TFo4T0RVaExfa3YtclFIZk9PMnBXX0p0Q2NITmZXOEQya0VLRTI1ZUpIMkYyak9hZHBJQnlXemgwVHVQSDFsRDZXNnRxUjkwWGFqVnNUUTBoNmQ4cVJaekJBeldhczFTNFR3QXdUXzk5cThwTHp0QkRXZVR5YmEtUllUZHZhZi16RmVzZUdKWnNkRG5WUDY1d3FmRVdrU0NuNE1kYlNUQnVTV0FEamM2WWRCdw?oc=5\" target=\"_blank\">Battle for the Bell: Parkland County firefighters",
+      "tier": "reported",
+      "feedId": "gn-parkland",
+      "region": "alberta",
+      "stream": "municipal",
       "score": 2,
       "breaking": false
     },
@@ -3901,9 +3979,9 @@
       "breaking": false
     },
     {
-      "title": "Braid: Smith bets that Alberta will soar on the wings of massive data centres - Calgary Herald",
+      "title": "Braid: Smith bets that Alberta will soar on the wings of massive data centres - calgaryherald.com",
       "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNQ3hNWGRJRlFvcTAyVTVnOHdFS1FpTVVCOHVVZ2dGTEZ4bE9QRHhCSXdfY2FEeG00Z0FYRml5UE5fSDdRdFg3emJtSHRkaTZoeXVLMjdmWk1oUVBLTXhYR3JKUkRTVVVYU1RTSUREY1J4Q2xMTkc3TEJaX0JRTExhdENOdHdySzhab3NCSkxHVFhGQ3ljeVg2cGdqTU82NmM4?oc=5",
-      "source": "Calgary Herald",
+      "source": "calgaryherald.com",
       "published": "2026-08-11T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxNQ3hNWGRJRlFvcTAyVTVnOHdFS1FpTVVCOHVVZ2dGTEZ4bE9QRHhCSXdfY2FEeG00Z0FYRml5UE5fSDdRdFg3emJtSHRkaTZoeXVLMjdmWk1oUVBLTXhYR3JKUkRTVVVYU1RTSUREY1J4Q2xMTkc3TEJaX0JRTExhdENOdHdySzhab3NCSkxHVFhGQ3ljeVg2cGdqTU82NmM4?oc=5\" target=\"_blank\">Braid: Smith bets that Alberta will soar on the wings of massive data centres</a>&nbsp;&nbsp;<font color=\"#6f6f",
       "tier": "reported",
@@ -4005,9 +4083,9 @@
       "breaking": false
     },
     {
-      "title": "Albertans invited to weigh in on AI data centres at upcoming town halls - strathmorenow.com",
+      "title": "Albertans invited to weigh in on AI data centres at upcoming town halls - StrathmoreNow",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPejJYd2xza1hqVVZQZVJSak92NlluX1RwV2tWM1N3ZTN2TEFhNUlGNEFETGZ6blgtSDNTSjhzQjdBQ2kyaGZLX0VnMUJsVV9sVG82WDl0Sk9UX3dtb3RKWkJZdWp1bnNmdzFXVGY3a21admNzY3hSc0pUM2R4dzNzbERyWDE4SkhydXhFTnk3bW9wcFpVRm1ubjQzUngyMnJRTERTbGx5U25Na3NoMEZjYU05dHI?oc=5",
-      "source": "strathmorenow.com",
+      "source": "StrathmoreNow",
       "published": "2026-08-10T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPejJYd2xza1hqVVZQZVJSak92NlluX1RwV2tWM1N3ZTN2TEFhNUlGNEFETGZ6blgtSDNTSjhzQjdBQ2kyaGZLX0VnMUJsVV9sVG82WDl0Sk9UX3dtb3RKWkJZdWp1bnNmdzFXVGY3a21admNzY3hSc0pUM2R4dzNzbERyWDE4SkhydXhFTnk3bW9wcFpVRm1ubjQzUngyMnJRTERTbGx5U25Na3NoMEZjYU05dHI?oc=5\" target=\"_blank\">Albertans invited to weigh in on AI data centres at upcoming town halls</a>&nbsp;&nb",
       "tier": "reported",
@@ -4057,9 +4135,9 @@
       "breaking": false
     },
     {
-      "title": "Residents challenge Vulcan County's approval of AI data centre land redesignation - strathmorenow.com",
+      "title": "Residents challenge Vulcan County's approval of AI data centre land redesignation - StrathmoreNow",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQdWRmREFha1ZLQ1VIVU1PZ2s2WlJSdXNHby10c1JGVFpoNTBuc3pHNFZOczh6Um1yaGlVTWRPTV82WFhBajZ5Sk14dHpTR01reVVfQW40c0QwRk54UkV3blFvOGtXaE5mQUFKVldrSnRnMnNoeHNIcFd4WFRvdzlVdkV6S2s1WFFZN3c4b0hYX3FiUFpLYjJVV1duMzN6ZktqSVMyQ3ZSRGpMWEhlcHZESHFZc0V4Zw?oc=5",
-      "source": "strathmorenow.com",
+      "source": "StrathmoreNow",
       "published": "2026-08-09T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxQdWRmREFha1ZLQ1VIVU1PZ2s2WlJSdXNHby10c1JGVFpoNTBuc3pHNFZOczh6Um1yaGlVTWRPTV82WFhBajZ5Sk14dHpTR01reVVfQW40c0QwRk54UkV3blFvOGtXaE5mQUFKVldrSnRnMnNoeHNIcFd4WFRvdzlVdkV6S2s1WFFZN3c4b0hYX3FiUFpLYjJVV1duMzN6ZktqSVMyQ3ZSRGpMWEhlcHZESHFZc0V4Zw?oc=5\" target=\"_blank\">Residents challenge Vulcan County's approval of AI data centre land redesignation",
       "tier": "reported",
@@ -4122,19 +4200,6 @@
       "breaking": false
     },
     {
-      "title": "Powering AI on a tight grid: From interconnection rules to real-time dispatch - Latitude Media",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPTFV5SjhvTU0zQl9hWEtsbWhfLUdpaXVxYUtNVWdDa3o2dFVYT1gtMGVFd1B1MGxHckx4QzlTdVNhUzVXTHFJemZPSGpQSVNMU2oxaDhOLU80OWRWZGhkZUYtNjVZR1BXcGFWMkZCS0VJeVdWYUNHRHF5Rk1iYV9Bd1NfV2Z3ZFRxYjIxMk9XdkJDYTBMbzYwNWdFem04RTdTRnAxVXJyZGl3amhLSHZhdVp6bzY?oc=5",
-      "source": "Latitude Media",
-      "published": "2026-08-08T04:35:39.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxPTFV5SjhvTU0zQl9hWEtsbWhfLUdpaXVxYUtNVWdDa3o2dFVYT1gtMGVFd1B1MGxHckx4QzlTdVNhUzVXTHFJemZPSGpQSVNMU2oxaDhOLU80OWRWZGhkZUYtNjVZR1BXcGFWMkZCS0VJeVdWYUNHRHF5Rk1iYV9Bd1NfV2Z3ZFRxYjIxMk9XdkJDYTBMbzYwNWdFem04RTdTRnAxVXJyZGl3amhLSHZhdVp6bzY?oc=5\" target=\"_blank\">Powering AI on a tight grid: From interconnection rules to real-time dispatch</a>&nb",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "news",
-      "score": -4,
-      "breaking": false
-    },
-    {
       "title": "Province to hold AI data centre town halls, including Sturgeon County on Aug. 20 - heartlandnews.ca",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNVRBZU1KaUVpV3VndXFfRVpPSmJKaE9KNTVQMG1WZWJ2MUZwTm9YQmVuQTdwcUFLNEFfandhM2F6SlVPUWctMXN4Z3dGQTZYejRERTZvekVEQWh4U0p4cDVUQ092NUZaX1lrQndvYm5pbGk0bXlqRGwtTHMzcGV2dkJWX21MVk5iZDRIRFVFQldyYldnSkNwWm1WeVhmcjY4WDdVNUlYeXcxSHdJRXlGV2JsemRSQQ?oc=5",
       "source": "heartlandnews.ca",
@@ -4145,19 +4210,6 @@
       "region": "alberta",
       "stream": "municipal",
       "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Plan for mega data centre in Sherbrooke, Que., raises transparency, environmental concerns - CBC",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQVGNuTXN3S0YtWkg3WDFJaUFMOUptWHB3RFBseHl5MGtSYVFKNnd4YVU3YldLT0R0MEwtZGdFbjV3SEJiNHItMlhsbHd2SHQybEozRDlTbDJ5dElvX3lrNnl4YVNFUkxpNDROTXBma0F6eThFdUZleFRHWXNjYVR2LTFQSlNZdmZSWk1PR01vdENOQQ?oc=5",
-      "source": "CBC",
-      "published": "2026-08-07T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMikgFBVV95cUxQVGNuTXN3S0YtWkg3WDFJaUFMOUptWHB3RFBseHl5MGtSYVFKNnd4YVU3YldLT0R0MEwtZGdFbjV3SEJiNHItMlhsbHd2SHQybEozRDlTbDJ5dElvX3lrNnl4YVNFUkxpNDROTXBma0F6eThFdUZleFRHWXNjYVR2LTFQSlNZdmZSWk1PR01vdENOQQ?oc=5\" target=\"_blank\">Plan for mega data centre in Sherbrooke, Que., raises transparency, environmental concerns</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">C",
-      "tier": "reported",
-      "feedId": "gn-canada-dc",
-      "region": "canada",
-      "stream": "policy",
-      "score": -1,
       "breaking": false
     },
     {
@@ -4265,11 +4317,11 @@
       "breaking": false
     },
     {
-      "title": "PJM’s big new data center plan: Make the states figure it out - Canary Media",
+      "title": "PJM’s big new data center plan: Make the states figure it out - canarymedia.com",
       "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB1MFlKWC02UXh6NFlQQ2JlNkFBdTAtbk1EMUZqQXFaOUpaVjFjRWVocWp6d1pmN2R3TkhGb2xFSGJVakQxTDVYLTB5dHZac0ZxVWxKRmtiNUoybFpPS1lLQ0JudVpIczVKWF9UTW9CTWliQXZ4bkMyREh3?oc=5",
-      "source": "Canary Media",
+      "source": "canarymedia.com",
       "published": "2026-08-05T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTFB1MFlKWC02UXh6NFlQQ2JlNkFBdTAtbk1EMUZqQXFaOUpaVjFjRWVocWp6d1pmN2R3TkhGb2xFSGJVakQxTDVYLTB5dHZac0ZxVWxKRmtiNUoybFpPS1lLQ0JudVpIczVKWF9UTW9CTWliQXZ4bkMyREh3?oc=5\" target=\"_blank\">PJM’s big new data center plan: Make the states figure it out</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Canary Media</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiekFVX3lxTFB1MFlKWC02UXh6NFlQQ2JlNkFBdTAtbk1EMUZqQXFaOUpaVjFjRWVocWp6d1pmN2R3TkhGb2xFSGJVakQxTDVYLTB5dHZac0ZxVWxKRmtiNUoybFpPS1lLQ0JudVpIczVKWF9UTW9CTWliQXZ4bkMyREh3?oc=5\" target=\"_blank\">PJM’s big new data center plan: Make the states figure it out</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">canarymedia.com</font>",
       "tier": "reported",
       "feedId": "gn-grid-global",
       "region": "global",
@@ -4288,6 +4340,19 @@
       "region": "global",
       "stream": "news",
       "score": -4,
+      "breaking": false
+    },
+    {
+      "title": "Albertans protest proposed AI data centre in Sturgeon County - CTV News",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNMWthQ2VORW5zMk8wLTJtSndFMnBZUkZ1YVU1TFB0R2FTbUxGdEdpelpBbVRhOTFzNXRjSDNMQ0FidFNqc2l5UktHdXp0MFpNSURMOTMtTDRWSnlaRU5TZ0dHNk1jRjBEampIYTlGZDlPTm96TEhzMW1KenFhV2JZb0dRc0pKRnJFYjhQQ1UweGhfeXRjY3BNWGgzRGtGYmk0dFRnd05leEJMVlRINDlF?oc=5",
+      "source": "CTV News",
+      "published": "2026-08-04T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxNMWthQ2VORW5zMk8wLTJtSndFMnBZUkZ1YVU1TFB0R2FTbUxGdEdpelpBbVRhOTFzNXRjSDNMQ0FidFNqc2l5UktHdXp0MFpNSURMOTMtTDRWSnlaRU5TZ0dHNk1jRjBEampIYTlGZDlPTm96TEhzMW1KenFhV2JZb0dRc0pKRnJFYjhQQ1UweGhfeXRjY3BNWGgzRGtGYmk0dFRnd05leEJMVlRINDlF?oc=5\" target=\"_blank\">Albertans protest proposed AI data centre in Sturgeon County</a>&nbsp;&nbsp;<font color=\"#6",
+      "tier": "reported",
+      "feedId": "gn-sturgeon",
+      "region": "alberta",
+      "stream": "municipal",
+      "score": 4,
       "breaking": false
     },
     {
@@ -4339,6 +4404,19 @@
       "feedId": "gn-grid-global",
       "region": "global",
       "stream": "news",
+      "score": 3,
+      "breaking": false
+    },
+    {
+      "title": "Texas slams on the brakes for 1,800 data centers, power grid requirements are five times higher than peak record demand — 474 gigawatts of power requests are now subject to new moratorium - Tom's Hardware",
+      "url": "https://news.google.com/rss/articles/CBMi3AJBVV95cUxObWo4NGZRT2U2QThDbzZVN2FVeVQ1eWx0XzJFaUVZcU9leFlncGNXc1NzYy1WU3daa2NRZE1LUmZfTHZHZ2czMVZla1hrSHVrSWgxTExaNm5vSXJlbS16N0JLRHRtVTF0VWNJR1VQSjZHSU1JZUdYLXBjT2ZzQmdjMl9tTTlJZDZ4UHkyUTBXdnpyR0ZxOFVsYWtzQ1FWOXl4SmdHdkxVLUpPV1RmeVRQZjZVVzBVMVBWYTNyam5sams4WkEzY1FNcFBDdzBlM1kwQkVZN0F2V1RDWDIxeklfcU1zMTduYTJXTFVGWURoMWZ3c1JGek5TNjF0UHAtaC0xVzh1d1lybjNSZHlrNXJhck4zMFFZa3ZCNWlxWEMtQjZqczRFazB5MmsyU3dONHJqbElZUjRrU1pWZkc1c09lc0dTNmxkT2o5M0J3Q29Lbml2elJZN1MxUTVla1A?oc=5",
+      "source": "Tom's Hardware",
+      "published": "2026-08-04T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMi3AJBVV95cUxObWo4NGZRT2U2QThDbzZVN2FVeVQ1eWx0XzJFaUVZcU9leFlncGNXc1NzYy1WU3daa2NRZE1LUmZfTHZHZ2czMVZla1hrSHVrSWgxTExaNm5vSXJlbS16N0JLRHRtVTF0VWNJR1VQSjZHSU1JZUdYLXBjT2ZzQmdjMl9tTTlJZDZ4UHkyUTBXdnpyR0ZxOFVsYWtzQ1FWOXl4SmdHdkxVLUpPV1RmeVRQZjZVVzBVMVBWYTNyam5sams4WkEzY1FNcFBDdzBlM1kwQkVZN0F2V1RDWDIxeklfcU1zMTduYTJXTFVGWURoMWZ3c1JGek5TNjF0UHAtaC0xVzh1d1",
+      "tier": "reported",
+      "feedId": "gn-grid-global",
+      "region": "global",
+      "stream": "policy",
       "score": 3,
       "breaking": false
     },
@@ -4395,11 +4473,11 @@
       "breaking": false
     },
     {
-      "title": "Rocky View Tightens Data Centre Rules - cftrtherogue.com",
+      "title": "Rocky View Tightens Data Centre Rules - CFTR The Rogue",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5RZFpOX045amNpNDV6bHcxVGtWNDg1ZzJxUjZCOEdKbmdXVzE5TENXdTZ3V19IZGhCZmtIWUdNcXM3SnJvNDNRVlEzWkZWVmFobVBZN0JndFFxMDBnalVyN19uR1lxUlNmdkw2dmYxemdERkFmVHc?oc=5",
-      "source": "cftrtherogue.com",
+      "source": "CFTR The Rogue",
       "published": "2026-08-03T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5RZFpOX045amNpNDV6bHcxVGtWNDg1ZzJxUjZCOEdKbmdXVzE5TENXdTZ3V19IZGhCZmtIWUdNcXM3SnJvNDNRVlEzWkZWVmFobVBZN0JndFFxMDBnalVyN19uR1lxUlNmdkw2dmYxemdERkFmVHc?oc=5\" target=\"_blank\">Rocky View Tightens Data Centre Rules</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">cftrtherogue.com</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMidkFVX3lxTE5RZFpOX045amNpNDV6bHcxVGtWNDg1ZzJxUjZCOEdKbmdXVzE5TENXdTZ3V19IZGhCZmtIWUdNcXM3SnJvNDNRVlEzWkZWVmFobVBZN0JndFFxMDBnalVyN19uR1lxUlNmdkw2dmYxemdERkFmVHc?oc=5\" target=\"_blank\">Rocky View Tightens Data Centre Rules</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">CFTR The Rogue</font>",
       "tier": "reported",
       "feedId": "gn-rockyview",
       "region": "alberta",
@@ -4418,6 +4496,19 @@
       "region": "alberta",
       "stream": "regulation",
       "score": 7,
+      "breaking": false
+    },
+    {
+      "title": "Albertans Rally Against Meta’s Massive $13 Billion AI Data Centre - iPhone in Canada",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPQXI0NEhlYWF0M1hBYzE3N0JQNmdZMEpFemlPdGNQeTZZYlU3NzB5ekVsWEZWYTItRGpvZmxjcS1fSFZRYjVON1BNX1hqQW5qeUdxclJlNmxHWWd6QldYUTV3Ym5DVDBRN3NJU2daYVQtN0Q1XzkzWXBsQ0hueVVESXpkTTJvU1hRYTVqZ29CTy00dGJCVU9DUHpPMnNkS2FEalNlbDRYeFg?oc=5",
+      "source": "iPhone in Canada",
+      "published": "2026-08-03T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiqAFBVV95cUxPQXI0NEhlYWF0M1hBYzE3N0JQNmdZMEpFemlPdGNQeTZZYlU3NzB5ekVsWEZWYTItRGpvZmxjcS1fSFZRYjVON1BNX1hqQW5qeUdxclJlNmxHWWd6QldYUTV3Ym5DVDBRN3NJU2daYVQtN0Q1XzkzWXBsQ0hueVVESXpkTTJvU1hRYTVqZ29CTy00dGJCVU9DUHpPMnNkS2FEalNlbDRYeFg?oc=5\" target=\"_blank\">Albertans Rally Against Meta’s Massive $13 Billion AI Data Centre</a>&nbsp;&nbsp;<font color=\"#6f6f6",
+      "tier": "reported",
+      "feedId": "gn-sturgeon",
+      "region": "alberta",
+      "stream": "market",
+      "score": 2,
       "breaking": false
     },
     {
@@ -4460,9 +4551,9 @@
       "breaking": false
     },
     {
-      "title": "Understanding AI's resource needs and sustainability challenges - TechTarget",
+      "title": "Understanding AI's resource needs and sustainability challenges - techtarget.com",
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbjJnYzJsclliOXc1eWpya3kwbTExckp2N2xFNEVJU0c0bWpULWloSWM5SUpSZGZndGhrbnNGYUMyeFBMU0NtVkg5UW9vRmhqejhjT3JRc0h6V19iQkdmbjNaNWVFYVpaVmpBcmtxMVU2akVLdkVVZ0VsZ3FNMWpxMFJhR1Rld0dXa2UyWTg0cE1PT2pvNW0xQk9ZVG9yZ0JyT0NFOUM4U1kwUlU4MEIzQQ?oc=5",
-      "source": "TechTarget",
+      "source": "techtarget.com",
       "published": "2026-08-03T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxQbjJnYzJsclliOXc1eWpya3kwbTExckp2N2xFNEVJU0c0bWpULWloSWM5SUpSZGZndGhrbnNGYUMyeFBMU0NtVkg5UW9vRmhqejhjT3JRc0h6V19iQkdmbjNaNWVFYVpaVmpBcmtxMVU2akVLdkVVZ0VsZ3FNMWpxMFJhR1Rld0dXa2UyWTg0cE1PT2pvNW0xQk9ZVG9yZ0JyT0NFOUM4U1kwUlU4MEIzQQ?oc=5\" target=\"_blank\">Understanding AI's resource needs and sustainability challenges</a>&nbsp;&nbsp;<font colo",
       "tier": "reported",
@@ -4499,11 +4590,11 @@
       "breaking": false
     },
     {
-      "title": "New Texas data center projects frozen until state audits them - texastribune.org",
+      "title": "New Texas data center projects frozen until state audits them - The Texas Tribune",
       "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPM3Y4UlVrMjBGcTl3RkhtVXZFNnR2M25VVkd6QXI2dnlUd2xBY3BLYk53U2VobUQyejdqU0V3VXlkZ3NWQWFsR0hfWXN0OG9jTERsUWcyVHRHeUYwZUxfOTJwNm1rWDh4aHJTZ0tjLXVwLTYzUEV6LWYySTRSUVpLWHVVVERUYjRDdlRySQ?oc=5",
-      "source": "texastribune.org",
+      "source": "The Texas Tribune",
       "published": "2026-08-03T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPM3Y4UlVrMjBGcTl3RkhtVXZFNnR2M25VVkd6QXI2dnlUd2xBY3BLYk53U2VobUQyejdqU0V3VXlkZ3NWQWFsR0hfWXN0OG9jTERsUWcyVHRHeUYwZUxfOTJwNm1rWDh4aHJTZ0tjLXVwLTYzUEV6LWYySTRSUVpLWHVVVERUYjRDdlRySQ?oc=5\" target=\"_blank\">New Texas data center projects frozen until state audits them</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">texastribune.org</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMijAFBVV95cUxPM3Y4UlVrMjBGcTl3RkhtVXZFNnR2M25VVkd6QXI2dnlUd2xBY3BLYk53U2VobUQyejdqU0V3VXlkZ3NWQWFsR0hfWXN0OG9jTERsUWcyVHRHeUYwZUxfOTJwNm1rWDh4aHJTZ0tjLXVwLTYzUEV6LWYySTRSUVpLWHVVVERUYjRDdlRySQ?oc=5\" target=\"_blank\">New Texas data center projects frozen until state audits them</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">The Texas Tribune</font>",
       "tier": "reported",
       "feedId": "gn-grid-global",
       "region": "global",
@@ -4521,19 +4612,6 @@
       "feedId": "gn-dc-alberta",
       "region": "alberta",
       "stream": "municipal",
-      "score": 2,
-      "breaking": false
-    },
-    {
-      "title": "Protestors voice concerns over new Alberta AI data centre - Global News",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPNlFjSThndEpoNUdiVzZicnNocG9hV0xlR2Nvdzd2c05rbXFEMkdpTllCN3Jna1pJSGlGVDE3d3Yxd2xpZ29nbF8zeXRGaU1sNXZjblhJVmxNZzNQSlRJZ0lfMlFMUHJjQnBVMUQ4ZVNSN2ZGWnZnWWpfVTJfVHlOTjVFQjQzSm0wUFptMVQtMlFEYWxFeHU2RWxR?oc=5",
-      "source": "Global News",
-      "published": "2026-08-02T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxPNlFjSThndEpoNUdiVzZicnNocG9hV0xlR2Nvdzd2c05rbXFEMkdpTllCN3Jna1pJSGlGVDE3d3Yxd2xpZ29nbF8zeXRGaU1sNXZjblhJVmxNZzNQSlRJZ0lfMlFMUHJjQnBVMUQ4ZVNSN2ZGWnZnWWpfVTJfVHlOTjVFQjQzSm0wUFptMVQtMlFEYWxFeHU2RWxR?oc=5\" target=\"_blank\">Protestors voice concerns over new Alberta AI data centre</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Global News</font>",
-      "tier": "reported",
-      "feedId": "gn-dc-alberta",
-      "region": "alberta",
-      "stream": "news",
       "score": 2,
       "breaking": false
     },
@@ -4573,6 +4651,19 @@
       "feedId": "gn-sturgeon",
       "region": "alberta",
       "stream": "municipal",
+      "score": 2,
+      "breaking": false
+    },
+    {
+      "title": "Protestors voice concerns over new Alberta AI data centre - Global News",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPNlFjSThndEpoNUdiVzZicnNocG9hV0xlR2Nvdzd2c05rbXFEMkdpTllCN3Jna1pJSGlGVDE3d3Yxd2xpZ29nbF8zeXRGaU1sNXZjblhJVmxNZzNQSlRJZ0lfMlFMUHJjQnBVMUQ4ZVNSN2ZGWnZnWWpfVTJfVHlOTjVFQjQzSm0wUFptMVQtMlFEYWxFeHU2RWxR?oc=5",
+      "source": "Global News",
+      "published": "2026-08-02T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimgFBVV95cUxPNlFjSThndEpoNUdiVzZicnNocG9hV0xlR2Nvdzd2c05rbXFEMkdpTllCN3Jna1pJSGlGVDE3d3Yxd2xpZ29nbF8zeXRGaU1sNXZjblhJVmxNZzNQSlRJZ0lfMlFMUHJjQnBVMUQ4ZVNSN2ZGWnZnWWpfVTJfVHlOTjVFQjQzSm0wUFptMVQtMlFEYWxFeHU2RWxR?oc=5\" target=\"_blank\">Protestors voice concerns over new Alberta AI data centre</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Global News</font>",
+      "tier": "reported",
+      "feedId": "gn-sturgeon",
+      "region": "alberta",
+      "stream": "news",
       "score": 2,
       "breaking": false
     },
@@ -4681,19 +4772,6 @@
       "breaking": false
     },
     {
-      "title": "Grid delays push data center operators toward ‘behind-the-meter’ power - Baton Rouge Business Report",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOZW1jN0NoSnRLN2dWSWtZVmlTa2E2bklzU0hjemN6MU9HdUFKZ2JHNzJVTm42dTZRSUsyYlFXMlRmdEtQZkw0VzBmSEEyNTRQdVVPVndQRzR3T1NlSXhOeGZPel9sNVY5Yk9JS18yeWZXQjJkeVZfd0ZUYmpsc09vMlhwVzZxdmRTRzlvMmllR09sa2dlajlLSkRwX2VPbk91TW1PRjF2LURUNnPSAbMBQVVfeXFMUDBCSS1fQ0N2MUlWRkZTcjZTcVZBbmhPSEVTYlozZGtxQjVRbGtRZy1rOEVaTGlvbWxpZl9YMFA0MkhCU2hrRUIyTnB4NFMwUlA1cm55V09kUkVPRXhMUGxGaGRlTTFVazlfRld5TzJKV2VXUkRNVXNtTzVtTjVpNWZFaHBERVJPVm8yODhMU0haMGNTT0d5cHZKOEp1Qm1HQ05yaVF0cWd1MWRVUWkxOVlJcDA?oc=5",
-      "source": "Baton Rouge Business Report",
-      "published": "2026-07-31T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiqwFBVV95cUxOZW1jN0NoSnRLN2dWSWtZVmlTa2E2bklzU0hjemN6MU9HdUFKZ2JHNzJVTm42dTZRSUsyYlFXMlRmdEtQZkw0VzBmSEEyNTRQdVVPVndQRzR3T1NlSXhOeGZPel9sNVY5Yk9JS18yeWZXQjJkeVZfd0ZUYmpsc09vMlhwVzZxdmRTRzlvMmllR09sa2dlajlLSkRwX2VPbk91TW1PRjF2LURUNnPSAbMBQVVfeXFMUDBCSS1fQ0N2MUlWRkZTcjZTcVZBbmhPSEVTYlozZGtxQjVRbGtRZy1rOEVaTGlvbWxpZl9YMFA0MkhCU2hrRUIyTnB4NFMwUlA1cm55V0",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "news",
-      "score": -4,
-      "breaking": false
-    },
-    {
       "title": "A data centre freeze north of Calgary comes just as Edmonton power producer hails Meta deal - Edmonton Journal",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRzZGcDgxQ2dLOUFRcjJEVmUybmZUZEpta2pjTGdWOWY3c0xWNDJWV2I3cGZEQjZuVXo1NU4zTEQ4eFdaeU5fR2R3d1g2dXlaUjZ2aVBUdDJ3NW51SGRZeWtrYUw2M3ZVWVRMN24tRXU4UFBRZTVWWWtIZ1AtanNrNGZ2dzNtV1lv?oc=5",
       "source": "Edmonton Journal",
@@ -4746,9 +4824,22 @@
       "breaking": false
     },
     {
-      "title": "Nebius publishes 2025 Sustainability Report, outlining blueprint for scaling responsibly - Nebius",
+      "title": "Canada opening exports office as part of strategy to diversify trade - CTV News",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPNk5TVjZZY05IU1FJa0g3ckVjUGJlWjk1S1d5R1p2eU9DMTRYMVVvQi1xR29SNGpVREg3U1I4UFNMWEV2bU5ka2NTeGdEdE9Xa1lBaklPNktRc2xwamRNZHI1bU45UHctOVptZkhLNDd5VHIyamRJT01YVW5EdjNUckRTVFduUk1GNm8wTkRvWmpuemt4Q3lUcER3M05Ldk8tT29Gc1dXZVdYZlp6WHVla3RWQTZ4UWI2OWFFTFRB?oc=5",
+      "source": "CTV News",
+      "published": "2026-07-30T07:00:00.000Z",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMivgFBVV95cUxPNk5TVjZZY05IU1FJa0g3ckVjUGJlWjk1S1d5R1p2eU9DMTRYMVVvQi1xR29SNGpVREg3U1I4UFNMWEV2bU5ka2NTeGdEdE9Xa1lBaklPNktRc2xwamRNZHI1bU45UHctOVptZkhLNDd5VHIyamRJT01YVW5EdjNUckRTVFduUk1GNm8wTkRvWmpuemt4Q3lUcER3M05Ldk8tT29Gc1dXZVdYZlp6WHVla3RWQTZ4UWI2OWFFTFRB?oc=5\" target=\"_blank\">Canada opening exports office as part of strategy to diversify trade</a",
+      "tier": "reported",
+      "feedId": "gn-gov-launch",
+      "region": "canada",
+      "stream": "policy",
+      "score": -1,
+      "breaking": false
+    },
+    {
+      "title": "Nebius publishes 2025 Sustainability Report, outlining blueprint for scaling responsibly - nebius.com",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNTWgzWkpSaW8yWWdnc1RsRDAxQm1GMUdMblQ4TTZ1bTF3cDZfOGpCa0xmX2dKZ3NNczgzVEFEMVBQRXVsQU5kQzM2dFZ6UVZLMmRsSTFDS2c3ZFlMUE5QLUVsYXVSWVdBVzZWdTFpdE12THdIa0wxN2hCT0dGY1ZEV1FpMjZvMktkWnZBTzFPNkRJSzRCUG9hMEpiM2M0X2EyX0RwZjV5b192U0FjQUVhdEtvWGJaQQ?oc=5",
-      "source": "Nebius",
+      "source": "nebius.com",
       "published": "2026-07-30T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMitgFBVV95cUxNTWgzWkpSaW8yWWdnc1RsRDAxQm1GMUdMblQ4TTZ1bTF3cDZfOGpCa0xmX2dKZ3NNczgzVEFEMVBQRXVsQU5kQzM2dFZ6UVZLMmRsSTFDS2c3ZFlMUE5QLUVsYXVSWVdBVzZWdTFpdE12THdIa0wxN2hCT0dGY1ZEV1FpMjZvMktkWnZBTzFPNkRJSzRCUG9hMEpiM2M0X2EyX0RwZjV5b192U0FjQUVhdEtvWGJaQQ?oc=5\" target=\"_blank\">Nebius publishes 2025 Sustainability Report, outlining blueprint for scaling resp",
       "tier": "reported",
@@ -4759,11 +4850,11 @@
       "breaking": false
     },
     {
-      "title": "Q&A: Can Alberta power its data-centre boom with nuclear energy? - BetaKit",
+      "title": "Q&A: Can Alberta power its data-centre boom with nuclear energy? - betakit.com",
       "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdE9PX29hQlRxdlRLbDRQTnZfYUxQTnlWbGxzVFJyaHN0eUNkQWVJUW8xRDdwel9UQjRVVUkzemRYSGxlOE1reHE1NDVmd3NuRGpQd3VLMHRnRjdPQTh1X3JnT2xHQXNSTDlSUG51SkMtVnVmQWlOUllGaFNIZ3ByTXJvUFBuOFlVLVE?oc=5",
-      "source": "BetaKit",
+      "source": "betakit.com",
       "published": "2026-07-29T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxPdE9PX29hQlRxdlRLbDRQTnZfYUxQTnlWbGxzVFJyaHN0eUNkQWVJUW8xRDdwel9UQjRVVUkzemRYSGxlOE1reHE1NDVmd3NuRGpQd3VLMHRnRjdPQTh1X3JnT2xHQXNSTDlSUG51SkMtVnVmQWlOUllGaFNIZ3ByTXJvUFBuOFlVLVE?oc=5\" target=\"_blank\">Q&A: Can Alberta power its data-centre boom with nuclear energy?</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">BetaKit</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiigFBVV95cUxPdE9PX29hQlRxdlRLbDRQTnZfYUxQTnlWbGxzVFJyaHN0eUNkQWVJUW8xRDdwel9UQjRVVUkzemRYSGxlOE1reHE1NDVmd3NuRGpQd3VLMHRnRjdPQTh1X3JnT2xHQXNSTDlSUG51SkMtVnVmQWlOUllGaFNIZ3ByTXJvUFBuOFlVLVE?oc=5\" target=\"_blank\">Q&A: Can Alberta power its data-centre boom with nuclear energy?</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">betakit.com</font>",
       "tier": "reported",
       "feedId": "gn-dc-alberta",
       "region": "alberta",
@@ -4850,9 +4941,9 @@
       "breaking": false
     },
     {
-      "title": "County amends data centres from permitted to discretionary use - cochraneeagle.ca",
+      "title": "County amends data centres from permitted to discretionary use - Cochrane Eagle",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPd0J6RUhhQmN2UEVCT19JeGNaLTlaY2lBekMyUDgtekdKaFBGWDJPYmR2S0k4V0o1elVHeHdVeVJkQlk0WUNidHdiN2QwRXlpZU1zQWFJQ2w4ZnBzazRzaU9HbjZZQ2VKdXRvNkpvU2xiaFl1MThMdXFSc2poem5PQ3VSRGhuVjBOYWViZzF4OFFWaUdLeGU1NnNLRnhSRFRXRGlnU0NsdG1RbXQ2VW90RThsX2J1WTg?oc=5",
-      "source": "cochraneeagle.ca",
+      "source": "Cochrane Eagle",
       "published": "2026-07-28T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMitwFBVV95cUxPd0J6RUhhQmN2UEVCT19JeGNaLTlaY2lBekMyUDgtekdKaFBGWDJPYmR2S0k4V0o1elVHeHdVeVJkQlk0WUNidHdiN2QwRXlpZU1zQWFJQ2w4ZnBzazRzaU9HbjZZQ2VKdXRvNkpvU2xiaFl1MThMdXFSc2poem5PQ3VSRGhuVjBOYWViZzF4OFFWaUdLeGU1NnNLRnhSRFRXRGlnU0NsdG1RbXQ2VW90RThsX2J1WTg?oc=5\" target=\"_blank\">County amends data centres from permitted to discretionary use</a>&nbsp;&nbsp;<f",
       "tier": "reported",
@@ -4902,11 +4993,11 @@
       "breaking": false
     },
     {
-      "title": "Water consumption by data centers: A wrong issue? - Data Center Dynamics",
+      "title": "Water consumption by data centers: A wrong issue? - datacenterdynamics.com",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPdEU1MkFUaFZVVmxYa005WThiYWM0YTNxNFNqSWkzOXgxM2hheVNRaEdVUW45Z0pqWEw0aXlRRnZlbVJMMXlSakI4T1ZZOThNVldGQ0V3VzZrSExaUDdka21tUnhQUEpKQzlxNHdqV3dhZWlLT09yMlVSVjBFeUktaThvM0c5d29SanpKeDVlcDlNLThwMWxFWHZpZw?oc=5",
-      "source": "Data Center Dynamics",
+      "source": "datacenterdynamics.com",
       "published": "2026-07-28T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPdEU1MkFUaFZVVmxYa005WThiYWM0YTNxNFNqSWkzOXgxM2hheVNRaEdVUW45Z0pqWEw0aXlRRnZlbVJMMXlSakI4T1ZZOThNVldGQ0V3VzZrSExaUDdka21tUnhQUEpKQzlxNHdqV3dhZWlLT09yMlVSVjBFeUktaThvM0c5d29SanpKeDVlcDlNLThwMWxFWHZpZw?oc=5\" target=\"_blank\">Water consumption by data centers: A wrong issue?</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Data Center Dynamics</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPdEU1MkFUaFZVVmxYa005WThiYWM0YTNxNFNqSWkzOXgxM2hheVNRaEdVUW45Z0pqWEw0aXlRRnZlbVJMMXlSakI4T1ZZOThNVldGQ0V3VzZrSExaUDdka21tUnhQUEpKQzlxNHdqV3dhZWlLT09yMlVSVjBFeUktaThvM0c5d29SanpKeDVlcDlNLThwMWxFWHZpZw?oc=5\" target=\"_blank\">Water consumption by data centers: A wrong issue?</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">datacenterdynamics.com</font>",
       "tier": "reported",
       "feedId": "gn-cooling",
       "region": "global",
@@ -4967,9 +5058,9 @@
       "breaking": false
     },
     {
-      "title": "Biggest US Grid to Launch Emergency Power Auction for AI Boom - Bloomberg.com",
+      "title": "Biggest US Grid to Launch Emergency Power Auction for AI Boom - bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQc2t3NWp4dUpFdl9UNWZRY1hQc2lZZGZoU0REeXpBbUVTOTVQZ0VSVm5ZYVF0cVhNZzBLU3ZKS0dtdHVrMnBCdlhLSWd4NG1ZZUVjQjhHNkotUG4wZ1pCclVMa1dqVG9fMGtDMnRpQzRfRHNuSXJLdjJMVV9OUV9jQ2ZSOHNjbDdNZHpvb0pmOHkwa0xNT0hGcDFnRHgxTFlpRDd5WEJtSWoyQndrOC1xb2VB?oc=5",
-      "source": "Bloomberg.com",
+      "source": "bloomberg.com",
       "published": "2026-07-27T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMisgFBVV95cUxQc2t3NWp4dUpFdl9UNWZRY1hQc2lZZGZoU0REeXpBbUVTOTVQZ0VSVm5ZYVF0cVhNZzBLU3ZKS0dtdHVrMnBCdlhLSWd4NG1ZZUVjQjhHNkotUG4wZ1pCclVMa1dqVG9fMGtDMnRpQzRfRHNuSXJLdjJMVV9OUV9jQ2ZSOHNjbDdNZHpvb0pmOHkwa0xNT0hGcDFnRHgxTFlpRDd5WEJtSWoyQndrOC1xb2VB?oc=5\" target=\"_blank\">Biggest US Grid to Launch Emergency Power Auction for AI Boom</a>&nbsp;&nbsp;<font colo",
       "tier": "reported",
@@ -5058,11 +5149,11 @@
       "breaking": false
     },
     {
-      "title": "How Alberta won the data infrastructure race New York just lost - financialpost.com",
+      "title": "How Alberta won the data infrastructure race New York just lost - Financial Post",
       "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNRV9KTXNCYkxBbC1zM1I0eVRKUzlGdWtTWVRXenhIaHFLQWVzakVYOTZlcm1aeHZudzNpNV94WUROZl9JNjZ3STJkRzRPanlhWDlUNlV4dWJJVW9mWWpQSnoyTlNYVlFVdldDOWxJcDFYbGNtOURmU0RqMUdXZzJOd2lOR0M?oc=5",
-      "source": "financialpost.com",
+      "source": "Financial Post",
       "published": "2026-07-23T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNRV9KTXNCYkxBbC1zM1I0eVRKUzlGdWtTWVRXenhIaHFLQWVzakVYOTZlcm1aeHZudzNpNV94WUROZl9JNjZ3STJkRzRPanlhWDlUNlV4dWJJVW9mWWpQSnoyTlNYVlFVdldDOWxJcDFYbGNtOURmU0RqMUdXZzJOd2lOR0M?oc=5\" target=\"_blank\">How Alberta won the data infrastructure race New York just lost</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">financialpost.com</font>",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMihAFBVV95cUxNRV9KTXNCYkxBbC1zM1I0eVRKUzlGdWtTWVRXenhIaHFLQWVzakVYOTZlcm1aeHZudzNpNV94WUROZl9JNjZ3STJkRzRPanlhWDlUNlV4dWJJVW9mWWpQSnoyTlNYVlFVdldDOWxJcDFYbGNtOURmU0RqMUdXZzJOd2lOR0M?oc=5\" target=\"_blank\">How Alberta won the data infrastructure race New York just lost</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Financial Post</font>",
       "tier": "reported",
       "feedId": "gn-sturgeon",
       "region": "alberta",
@@ -5097,9 +5188,9 @@
       "breaking": false
     },
     {
-      "title": "White House Warns PJM to Reform Grid Governance ‘Before It Is Too Late’ - datacenterknowledge.com",
+      "title": "White House Warns PJM to Reform Grid Governance ‘Before It Is Too Late’ - Data Center Knowledge",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQYmV3NmUwdVY2YUY3MEQ1YlN5ajFva3VuZDc0TVk1aVpCcVNIeldaNmhYcUxxejBNdl9tUkhQZ3hReFpQXzVGSGhVdHpmMEd6VFdTV21VZWw1V1dWUUtfS3dXTjcybnpILXpSa0FlaDc5ZEdrWHNCTmpqT2tkM3JVTXlTNDhHZ1dSUjZGQ3BRT0c0a2x1Y1JxdnNObkZJN0FaNVJtVjJLbHV1dHc1NnFRUmYzbEZGVVQyTzBmcg?oc=5",
-      "source": "datacenterknowledge.com",
+      "source": "Data Center Knowledge",
       "published": "2026-07-22T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMivAFBVV95cUxQYmV3NmUwdVY2YUY3MEQ1YlN5ajFva3VuZDc0TVk1aVpCcVNIeldaNmhYcUxxejBNdl9tUkhQZ3hReFpQXzVGSGhVdHpmMEd6VFdTV21VZWw1V1dWUUtfS3dXTjcybnpILXpSa0FlaDc5ZEdrWHNCTmpqT2tkM3JVTXlTNDhHZ1dSUjZGQ3BRT0c0a2x1Y1JxdnNObkZJN0FaNVJtVjJLbHV1dHc1NnFRUmYzbEZGVVQyTzBmcg?oc=5\" target=\"_blank\">White House Warns PJM to Reform Grid Governance ‘Before It Is Too Late’</",
       "tier": "reported",
@@ -5123,9 +5214,9 @@
       "breaking": false
     },
     {
-      "title": "The Case for Decarbonizing Singapore’s Data Center Boom Using Geothermal Resources - news.climate.columbia.edu",
+      "title": "The Case for Decarbonizing Singapore’s Data Center Boom Using Geothermal Resources - Columbia University",
       "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQTFMxdFFZUWkzMk03VXFQbmt5b3JZYjlySU1wVVZaX2RibFdqUWJRRGI5N3ZGemNXRkY0aTI4cHppQl90c2hYemhMb1R4SHlCcHVtaGlCMUp2dUg4N1NibDVpU1N1Y3JXRTA0Z0NrakN4NmU4TWpjX0Ixb1V0c3ZBcEZKNkJJS25EMXl0SUtmU1NaNGQzcVNPTjR1T0RDZUxaVEg0NXZFdzNLSDkzQnhzYzl4cnhQd3FlOTgwYW9RNDU5c19qN3c?oc=5",
-      "source": "news.climate.columbia.edu",
+      "source": "Columbia University",
       "published": "2026-07-21T07:00:00.000Z",
       "summary": "<a href=\"https://news.google.com/rss/articles/CBMixgFBVV95cUxQTFMxdFFZUWkzMk03VXFQbmt5b3JZYjlySU1wVVZaX2RibFdqUWJRRGI5N3ZGemNXRkY0aTI4cHppQl90c2hYemhMb1R4SHlCcHVtaGlCMUp2dUg4N1NibDVpU1N1Y3JXRTA0Z0NrakN4NmU4TWpjX0Ixb1V0c3ZBcEZKNkJJS25EMXl0SUtmU1NaNGQzcVNPTjR1T0RDZUxaVEg0NXZFdzNLSDkzQnhzYzl4cnhQd3FlOTgwYW9RNDU5c19qN3c?oc=5\" target=\"_blank\">The Case for Decarbonizing Singapore’s Data Center Boom Usin",
       "tier": "reported",
@@ -5158,19 +5249,6 @@
       "feedId": "gn-grid-global",
       "region": "global",
       "stream": "news",
-      "score": -4,
-      "breaking": false
-    },
-    {
-      "title": "The 60-Day Clock: FERC Just Forced Six Grid Operators to Rewrite the Rules for Every Data Center Over 20 MW - Substack",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBsMXk1eEhuellRb1RQdHJ4YTNOS2JqLWZ2S2ZjZWFuQnN1dFFJR01LTVRPM0x1YnpZaUI3S0UwdEZOWC1rT0dZMnBsUDRtUDN2M2xkTVI2WUt6NlVlakd6T0R5d0NjTVMwOVY3dE1tMmp5Mlp6VkdqTA?oc=5",
-      "source": "Substack",
-      "published": "2026-07-21T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTFBsMXk1eEhuellRb1RQdHJ4YTNOS2JqLWZ2S2ZjZWFuQnN1dFFJR01LTVRPM0x1YnpZaUI3S0UwdEZOWC1rT0dZMnBsUDRtUDN2M2xkTVI2WUt6NlVlakd6T0R5d0NjTVMwOVY3dE1tMmp5Mlp6VkdqTA?oc=5\" target=\"_blank\">The 60-Day Clock: FERC Just Forced Six Grid Operators to Rewrite the Rules for Every Data Center Over 20 MW</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Substack</font>",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "projects",
       "score": -4,
       "breaking": false
     },
@@ -5250,84 +5328,6 @@
       "region": "canada",
       "stream": "news",
       "score": -1,
-      "breaking": false
-    },
-    {
-      "title": "Sturgeon County mayor responds to criticism of lack of public consultation for data centre project - St. Albert Gazette",
-      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQUTdkZ0dJODk0RHI2S3Flc1BWa1NwSGtYdkhrSUlyMFl0SF9GZXB6NmtHUjU2Rlg5RFJmSGc2bm9OZVpYTVA3Z0F3VDBOWG1pem5faUpTUHh6LWJyNGktS29VcnUxVVJ0VjBSV1V3OHNiSktpMGZZZUU1c0ZOUnRpNW9odHk5TE4xR09DTDdPZTN2cUdqamxTS3RWenBrT25EdFk2dXc5RGhtcTIwTzZNTHk4eDJNa19uTU56V2Z5eDVUVWFxNENoMDZZQjhweWNJNmpVdEUzRWdmYlhMNEhhMnpGcHA?oc=5",
-      "source": "St. Albert Gazette",
-      "published": "2026-07-17T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMi5AFBVV95cUxQUTdkZ0dJODk0RHI2S3Flc1BWa1NwSGtYdkhrSUlyMFl0SF9GZXB6NmtHUjU2Rlg5RFJmSGc2bm9OZVpYTVA3Z0F3VDBOWG1pem5faUpTUHh6LWJyNGktS29VcnUxVVJ0VjBSV1V3OHNiSktpMGZZZUU1c0ZOUnRpNW9odHk5TE4xR09DTDdPZTN2cUdqamxTS3RWenBrT25EdFk2dXc5RGhtcTIwTzZNTHk4eDJNa19uTU56V2Z5eDVUVWFxNENoMDZZQjhweWNJNmpVdEUzRWdmYlhMNEhhMnpGcHA?oc=5\" target=\"_blank\">Sturgeon County mayo",
-      "tier": "reported",
-      "feedId": "gn-sturgeon",
-      "region": "alberta",
-      "stream": "policy",
-      "score": 4,
-      "breaking": false
-    },
-    {
-      "title": "Data Center Direct-to-chip Cooling Market worth $17.31 billion by 2032, at 26.5%, says MarketsandMarkets™ - GlobeNewswire",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxNcnFRNTRwbkpnVWI3dEhzdXNXYldhbk5qUk5Va2REQWlkeXoyaDVSXzl6bWk2Q0x6RXdSN0d3dXJ4OElOMjROekZ4TjJGODJhSW5WYjdkSWRSMDNVSlVRNy1UNjloWXAzQVpBMi1nUWZtNUZDUmFWRldDSWxLVC0tNVJQQnN1Nm45MWg0SjNCcXR1ZmZxWnZkWF9ITVg5di1wTGU2M3ZXRVU5dW5SbDEtVk9IUUp3WGxScVhabnpzaEhGNE1HaDcyZ1A2bXVkQV9SVUVNU2E5dmRqa3RmNV84dmJtM01YYV9SREhsZkRnVGx3YXJyRnVLOU9XVjZyOFNtWkE?oc=5",
-      "source": "GlobeNewswire",
-      "published": "2026-07-17T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiggJBVV95cUxNcnFRNTRwbkpnVWI3dEhzdXNXYldhbk5qUk5Va2REQWlkeXoyaDVSXzl6bWk2Q0x6RXdSN0d3dXJ4OElOMjROekZ4TjJGODJhSW5WYjdkSWRSMDNVSlVRNy1UNjloWXAzQVpBMi1nUWZtNUZDUmFWRldDSWxLVC0tNVJQQnN1Nm45MWg0SjNCcXR1ZmZxWnZkWF9ITVg5di1wTGU2M3ZXRVU5dW5SbDEtVk9IUUp3WGxScVhabnpzaEhGNE1HaDcyZ1A2bXVkQV9SVUVNU2E5dmRqa3RmNV84dmJtM01YYV9SREhsZkRnVGx3YXJyRnVLOU9XVjZyOFNtWkE?oc",
-      "tier": "reported",
-      "feedId": "gn-cooling",
-      "region": "global",
-      "stream": "technology",
-      "score": -4,
-      "breaking": false
-    },
-    {
-      "title": "The off-grid data center fantasy - Latitude Media",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMWZTd2FSNmxpSWY5VTFPTzhEa3JyNkV6UF9WMDVoQjV1RnRQS29lUjFZUlJnWi1MZksyTkthWjI3TmdNN1JNWmh6QXlZSmJzRWtUYmRMOC05SC11QVpxbUJYRllhN2RTVnp4OFA3bWdDREl6cWV4cnpNcjAtTjFqdmVXOU1jUjNh?oc=5",
-      "source": "Latitude Media",
-      "published": "2026-07-17T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMWZTd2FSNmxpSWY5VTFPTzhEa3JyNkV6UF9WMDVoQjV1RnRQS29lUjFZUlJnWi1MZksyTkthWjI3TmdNN1JNWmh6QXlZSmJzRWtUYmRMOC05SC11QVpxbUJYRllhN2RTVnp4OFA3bWdDREl6cWV4cnpNcjAtTjFqdmVXOU1jUjNh?oc=5\" target=\"_blank\">The off-grid data center fantasy</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Latitude Media</font>",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "news",
-      "score": -4,
-      "breaking": false
-    },
-    {
-      "title": "Backlash against data centers could cost the US its AI edge - Atlantic Council",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPa0o5YW1UM01aQW94a0VERDVjSDcyZDBuX2JoclpNQWpBUENfVDFmb0o1alRzUGxPb05DZFppajB4N1llaEJlc2k5VDhKRTNsbDNmUVQ2aUdfXzVrTDIwa3FhRzNnRWdWVjNCZDl1SmhBT2N5LTJBcnRXRVVHeGJsZXZCUGsya3U3S2R5TFpzWEhCUGtmTlg1b1Y2OUs5OXFMcGxkdnJVRG5BVzRyVFdKRQ?oc=5",
-      "source": "Atlantic Council",
-      "published": "2026-07-17T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMisAFBVV95cUxPa0o5YW1UM01aQW94a0VERDVjSDcyZDBuX2JoclpNQWpBUENfVDFmb0o1alRzUGxPb05DZFppajB4N1llaEJlc2k5VDhKRTNsbDNmUVQ2aUdfXzVrTDIwa3FhRzNnRWdWVjNCZDl1SmhBT2N5LTJBcnRXRVVHeGJsZXZCUGsya3U3S2R5TFpzWEhCUGtmTlg1b1Y2OUs5OXFMcGxkdnJVRG5BVzRyVFdKRQ?oc=5\" target=\"_blank\">Backlash against data centers could cost the US its AI edge</a>&nbsp;&nbsp;<font color=\"#",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "municipal",
-      "score": -4,
-      "breaking": false
-    },
-    {
-      "title": "Virginia mulls shifting major grid costs to data centers - E&E News by POLITICO",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQMnF1VEo2OXZSbEVPdzV1STJVandodjdzdThoRXdmam1GZVJ6cElXRTMyXzdSZWRsMWpHZERnVXg1QnZMRE0wTTFDQ0VBOGJnSmdnUUc4Z0FSWTRwUjFUUmh3ZkhEYXRwbTlLYVd5VTZldWhwYlhtYXoxV0V2UTkwdE12X0daUHVrd19EcEt2QWt6Qmc?oc=5",
-      "source": "E&E News by POLITICO",
-      "published": "2026-07-16T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMikwFBVV95cUxQMnF1VEo2OXZSbEVPdzV1STJVandodjdzdThoRXdmam1GZVJ6cElXRTMyXzdSZWRsMWpHZERnVXg1QnZMRE0wTTFDQ0VBOGJnSmdnUUc4Z0FSWTRwUjFUUmh3ZkhEYXRwbTlLYVd5VTZldWhwYlhtYXoxV0V2UTkwdE12X0daUHVrd19EcEt2QWt6Qmc?oc=5\" target=\"_blank\">Virginia mulls shifting major grid costs to data centers</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">E&E News by POLITICO</font>",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "news",
-      "score": -4,
-      "breaking": false
-    },
-    {
-      "title": "Hochul says data center mora­torium is an effort to protect large job-creators like Micron - spectrumlocalnews.com",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSElyUGR6VVNJRkZZQ2ZENG40TWhLMW1pRWRtcWJ5Yk5Gb05lSldpeWZiTmpQYktqUzRHN1ZsaDZnWUpPRjdjdHU0RnpQTXRTXzBpS0I5ZVhJWnNDRE1mbmtsUUVfMWZNbmw5NGNjSlc3ZW1pVDFFUzVJd0tUNHlqbE4yYkdVNm95N3dSRlNMYkUwQWJZeHJFUkk5LVFmQ1NSeVNyejgyRU5aQ2psVHc?oc=5",
-      "source": "spectrumlocalnews.com",
-      "published": "2026-07-16T07:00:00.000Z",
-      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirgFBVV95cUxPSElyUGR6VVNJRkZZQ2ZENG40TWhLMW1pRWRtcWJ5Yk5Gb05lSldpeWZiTmpQYktqUzRHN1ZsaDZnWUpPRjdjdHU0RnpQTXRTXzBpS0I5ZVhJWnNDRE1mbmtsUUVfMWZNbmw5NGNjSlc3ZW1pVDFFUzVJd0tUNHlqbE4yYkdVNm95N3dSRlNMYkUwQWJZeHJFUkk5LVFmQ1NSeVNyejgyRU5aQ2psVHc?oc=5\" target=\"_blank\">Hochul says data center mora­torium is an effort to protect large job-creators like Micron</",
-      "tier": "reported",
-      "feedId": "gn-grid-global",
-      "region": "global",
-      "stream": "news",
-      "score": -4,
       "breaking": false
     }
   ]
