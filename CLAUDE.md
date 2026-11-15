@@ -56,6 +56,14 @@ rots and the owner can edit content without a toolchain.
 
 - Every page is a static HTML file that loads `assets/app.js`, then renders
   itself from JSON in `site/data/`.
+- `whatchanged.js` is the front page. Order is digest, "Needs a look", feed —
+  nothing that is not news goes above the feed. A first visit counts the last
+  7 days, not everything on file. Watch alerts are grouped **by page** (the
+  watcher logs one entry per hash change), and entries that share one
+  `detectedAt` and one word-count delta across five or more pages are set apart
+  as a probable watcher artefact — listed, never hidden, not in the headline
+  count. That is a display-side patch; the real fix is in `watch-sources.mjs`
+  (see Pending work).
 - `app.js` injects the sidebar and top bar into `#sidebar` / `#topbar` based on
   `<body data-page="…">`, and exports helpers on `window.ADCH`.
 - `charts.js` (`window.ADCHCharts`) builds the meter, bar chart and sparkline by
@@ -70,8 +78,15 @@ rots and the owner can edit content without a toolchain.
   — a ResizeObserver, not a resize listener, because a print stylesheet changes
   the layout without firing `resize` and the PDF used to come out with the
   arrows drawn for the on-screen geometry. Same column means concurrent; an
-  arrow means it does not. It appears on both the front page and the review page
-  from one data file — edit the JSON, not the markup. It replaced the earlier
+  arrow means it does not. It lives on `approvals.html`; the front page and the
+  review page carry a summary card instead (`data-ap-mode="compact"` on the
+  slot), because the full matrix above the news put six phone screens between
+  "What changed" and the first change. All three come from one data file — edit
+  the JSON, not the markup. On a screen under 760px, or with `?phase=N`, the map
+  opens **phase by phase** (`view = 'steps'`): one phase, lanes stacked, each
+  card's dependencies written out in words since there are no arrows. The legend
+  is folded behind "How to read this map" everywhere except the print sheet,
+  which renders exactly as before. It replaced the earlier
   two-track swimlane, which covered the same ground with less of it.
 
   It draws **two supply routes** from the same file: grid-connected, and
@@ -180,6 +195,15 @@ network access, which is why all ingestion runs there. Test ingestion locally
 with `--fixture`; verify live behaviour from an Actions run.
 
 ## Pending work
+
+- `watch-sources.mjs` records only a word count either side of a change, so an
+  alert cannot say *what* changed, and a change in how text is extracted fires
+  on every watched page at once (46 of 60 entries were "+7 words" in one run).
+  Store the extracted text, diff it, and write the added/removed sentences into
+  `alerts.json`; then `whatchanged.js` can show them and drop its bulk
+  heuristic.
+- `scratch/lub-test.mjs` tests the use-class section that was removed from
+  `rules.html`; it fails on load and should be deleted or rewritten.
 
 - Seeded records marked `"verificationStatus": "pending"` (in `grid.json` and
   `projects.json`) were compiled from research summaries and still need

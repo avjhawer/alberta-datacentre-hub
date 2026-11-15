@@ -18,7 +18,7 @@ async function newPagePrint(){
   return q;
 }
 
-await page.goto(`${B}/permits.html`,{waitUntil:'networkidle'});
+await page.goto(`${B}/approvals.html`,{waitUntil:'networkidle'});
 await page.waitForTimeout(1200);
 
 console.log('\n— provincial through municipal, all five authorities —');
@@ -285,20 +285,63 @@ ok(/win one and lose the other/i.test(ins),'and why it matters');
 ok(/critical path/i.test(ins),'explains the critical path');
 ok(/week one/i.test(ins),'tells you what to start immediately');
 
-console.log('\n— on the front page too —');
+console.log('\n— the legend is there, folded until asked for —');
+ok(await page.$('details.ap-howto')!==null,'the legend sits behind "How to read this map"');
+ok(!(await page.isVisible('.ap-legend-badges')),'and is closed by default');
+await page.click('.ap-howto > summary'); await page.waitForTimeout(150);
+ok(await page.isVisible('.ap-legend-badges'),'one click opens it');
+
+console.log('\n— phase by phase, for narrow screens —');
+const phone=await browser.newPage({viewport:{width:390,height:844}});
+phone.on('pageerror',e=>errors.push(String(e)));
+await phone.goto(`${B}/approvals.html`,{waitUntil:'networkidle'});
+await phone.waitForTimeout(900);
+ok(await phone.$('.ap-steps')!==null,'a phone opens on the phase view');
+ok(await phone.$('.ap-grid')===null,'not on a 1,100px matrix in a 300px window');
+ok(!(await phone.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)),'with no sideways scroll on the page');
+const seenIds=new Set();
+const nPhases=(await phone.$$('.ap-steps-tab')).length;
+ok(nPhases===6,`one tab per phase (${nPhases})`);
+for(let i=0;i<nPhases;i++){
+  for(const id of await phone.$$eval('.ap-steps .ap-node',e=>e.map(x=>x.id))) seenIds.add(id);
+  if(i<nPhases-1){ await phone.click('#ap-next'); await phone.waitForTimeout(120); }
+}
+ok(seenIds.size===28,`every step is reachable by stepping through (${seenIds.size})`);
+ok(await phone.isDisabled('#ap-next'),'next stops at the last phase');
+await phone.click('[data-ap-phase="2"]'); await phone.waitForTimeout(150);
+ok(/Decisions/.test(await phone.textContent('.ap-steps-title')),'a tab jumps straight to its phase');
+ok((await phone.$$('.ap-steps-dep')).length>0,'dependencies are written out, since there are no arrows');
+await phone.click('.ap-steps .ap-node'); await phone.waitForTimeout(400);
+ok(await phone.isVisible('#ap-drawer'),'a step still opens its drawer');
+await phone.click('#ap-close'); await phone.waitForTimeout(300);
+await phone.click('[data-ap-view="map"]'); await phone.waitForTimeout(600);
+ok((await phone.$$('.ap-wire')).length>=14,'and the full map is one tap away, connectors and all');
+await phone.goto(`${B}/approvals.html?phase=4`,{waitUntil:'networkidle'}); await phone.waitForTimeout(600);
+ok(/Construction/.test(await phone.textContent('.ap-steps-title')),'?phase= opens on that phase');
+await phone.close();
+
+console.log('\n— a summary card elsewhere, not the whole map —');
 const home=await browser.newPage({viewport:{width:1500,height:1100}});
 home.on('pageerror',e=>errors.push(String(e)));
 await home.goto(`${B}/index.html`,{waitUntil:'networkidle'});
 await home.waitForTimeout(1200);
-ok((await home.$$('.ap-node')).length===28,'the full diagram renders on the front page');
-ok((await home.$$('.ap-wire')).length>=14,'with its connectors');
-await home.click('#apn-muni-preapp'); await home.waitForTimeout(400);
-ok(await home.isVisible('#ap-drawer'),'and its drawer works there');
+ok(await home.isVisible('.ap-compact'),'the front page carries the summary card');
+ok((await home.$$('.ap-node')).length===0,'and not twenty-eight cards above the news');
+ok((await home.$$('.ap-compact-phase')).length===6,'each phase is a way in');
+ok(/28/.test(await home.textContent('.ap-compact-tally')),'the card says how big the job is');
+const order=await home.evaluate(()=>{const y=s=>document.querySelector(s).getBoundingClientRect().top;
+  return y('#feed-slot')<y('#approvals-slot') && y('#attention-slot')<y('#feed-slot');});
+ok(order,'what changed comes before the reference card');
+await home.click('.ap-compact .btn-primary'); await home.waitForLoadState('networkidle'); await home.waitForTimeout(800);
+ok(home.url().includes('approvals.html') && (await home.$$('.ap-node')).length===28,'the card opens the full map');
 await home.close();
 
-console.log('\n— the review tool underneath still works —');
+console.log('\n— the review tool still works, and comes first on its page —');
+await page.goto(`${B}/permits.html`,{waitUntil:'networkidle'});
 await page.evaluate(()=>localStorage.clear());
 await page.reload({waitUntil:'networkidle'}); await page.waitForTimeout(800);
+ok(await page.evaluate(()=>document.querySelector('#projects-slot').getBoundingClientRect().top <
+   document.querySelector('#approvals-slot').getBoundingClientRect().top),'the tool sits above the approvals card');
 await page.fill('[data-param="capacityMW"]','150');
 await page.waitForTimeout(400);
 const f=await page.$$eval('.finding-title',e=>e.map(x=>x.textContent));
