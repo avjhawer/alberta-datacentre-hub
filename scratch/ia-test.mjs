@@ -21,7 +21,34 @@ ok((await p.$$('.nav-blurb')).length===5,'each nav item states its purpose');
 
 console.log('\n— the front door answers one question —');
 ok(await p.isVisible('.digest'),'a digest leads the page');
-ok(/What changed/.test(await p.textContent('h1')),'h1 is the question, not a label');
+ok(/data centre proposal in Alberta/i.test(await p.textContent('h1')),'h1 says what the site is for');
+ok(/What changed/.test(await p.textContent('#whats-new h2')),'"What changed" heads the news below it');
+
+console.log('\n— a newcomer is told what this is and how to use it —');
+ok(await p.isVisible('#welcome-body'),'the guide is open on a first visit');
+ok((await p.$$('.welcome-task')).length===5,'five things you can do, each a link');
+const taskLinks=await p.$$eval('.welcome-task',e=>e.map(x=>x.getAttribute('href')));
+for(const h of taskLinks.filter(h=>!h.startsWith('#'))){
+  const r=await p.evaluate(u=>fetch(u).then(r=>r.status),h);
+  ok(r===200,`task link resolves: ${h}`);
+}
+const stats=await p.$$eval('.welcome-stat-n',e=>e.map(x=>Number(x.textContent.replace(/,/g,''))));
+ok(stats.length===6 && stats.every(n=>n>0),'"what is inside" is counted from the data: '+stats.join(', '));
+const steps=await p.evaluate(()=>fetch('data/approvals.json').then(r=>r.json()).then(j=>j.nodes.filter(n=>!n.variants||n.variants.includes('grid')).length));
+ok(stats[0]===steps,`the step count matches the map (${steps})`);
+ok((await p.$$('.welcome-trust .chip')).length===3,'the three source tiers are explained');
+await p.click('#welcome-toggle'); await p.waitForTimeout(150);
+ok(!(await p.isVisible('#welcome-body')) && await p.isVisible('.welcome-title'),'it folds to one line that still says what the site is');
+await p.reload({waitUntil:'networkidle'}); await p.waitForTimeout(400);
+ok(!(await p.isVisible('#welcome-body')),'and stays folded on the next visit');
+await p.click('#welcome-toggle'); await p.waitForTimeout(150);
+ok(await p.isVisible('#welcome-body'),'one tap brings it back');
+await p.evaluate(()=>localStorage.removeItem('adch.welcome'));
+await p.reload({waitUntil:'networkidle'}); await p.waitForTimeout(400);
+await p.click('.digest-start #mark-read'); await p.waitForTimeout(300);
+ok(!(await p.isVisible('#welcome-body')),'starting to track folds it');
+await p.evaluate(()=>localStorage.clear());
+await p.reload({waitUntil:'networkidle'}); await p.waitForTimeout(400);
 ok(await p.isVisible('.page-purpose'),'page states its purpose in one line');
 const dig=await p.textContent('.digest');
 ok(/first visit|since/i.test(dig),'digest frames items relative to the last visit');

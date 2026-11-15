@@ -2442,3 +2442,102 @@ body[data-page="approvals"] .page-head { margin-bottom: var(--s-3); }
 .attention-bulk > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
 .attention-bulk p { margin: var(--s-2) 0; max-width: 70ch; }
 .attention-bulk-list { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: var(--t-small); }
+
+
+/* ============================================================================
+   Welcome — what the site is and how to use it. Open on a first visit, one
+   line once the reader has started tracking or closed it.
+   ========================================================================= */
+.page-head h2.page-title { font-size: var(--t-h1); margin: 0 0 var(--s-1); letter-spacing: -.01em; }
+#whats-new { scroll-margin-top: calc(var(--topbar-h) + 16px); }
+
+.welcome {
+  padding: var(--s-5); border-radius: calc(var(--r-card) * 2);
+  background: linear-gradient(135deg, var(--accent-wash), transparent 55%), var(--surface);
+  border: 1px solid var(--border);
+}
+.welcome-head { display: flex; gap: var(--s-4); align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.welcome-headtext { flex: 1 1 420px; min-width: 0; }
+.welcome-title { margin: var(--s-1) 0 var(--s-2); font-size: clamp(26px, 3.4vw, 38px); line-height: 1.15; letter-spacing: -.02em; max-width: 22ch; }
+.welcome-lede { margin: 0; max-width: 68ch; color: var(--ink-secondary); font-size: var(--t-body); line-height: 1.6; }
+.welcome-toggle { flex: none; }
+
+/* Folded: the site still says what it is, in one line. */
+.welcome.is-closed { padding: var(--s-3) var(--s-4); background: var(--surface); }
+.welcome.is-closed .welcome-head { align-items: center; }
+.welcome.is-closed .welcome-title { font-size: var(--t-h3); margin: 0; max-width: none; letter-spacing: 0; }
+.welcome.is-closed .eyebrow, .welcome.is-closed .welcome-lede { display: none; }
+
+.welcome-h {
+  margin: var(--s-5) 0 var(--s-3); font-size: var(--t-micro); font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted);
+}
+.welcome-tasks { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.welcome-task {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: var(--s-4); border-radius: var(--r-card); text-decoration: none; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.welcome-task:hover { border-color: var(--accent); transform: translateY(-2px); }
+.welcome-task:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.welcome-task-icon { color: var(--accent); }
+.welcome-task-icon svg { width: 22px; height: 22px; }
+.welcome-task-title { font-weight: 700; font-size: var(--t-h3); line-height: 1.25; }
+.welcome-task-text { color: var(--ink-secondary); font-size: var(--t-small); line-height: 1.5; flex: 1; }
+.welcome-task-go { font-size: var(--t-small); font-weight: 700; color: var(--accent); }
+
+.welcome-inside { display: grid; gap: var(--s-2); grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.welcome-stat {
+  display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: inherit;
+  padding: var(--s-3); border-radius: var(--r-card); background: var(--surface-sunken);
+  border: 1px solid transparent; transition: border-color var(--dur) var(--ease);
+}
+.welcome-stat:hover { border-color: var(--accent); }
+.welcome-stat:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.welcome-stat-n { font-family: var(--font-display, inherit); font-size: 28px; font-weight: 700; line-height: 1.1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.welcome-stat-l { font-size: var(--t-micro); color: var(--ink-secondary); line-height: 1.35; }
+
+.welcome-trust { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+.welcome-trust li { display: grid; grid-template-columns: 150px 1fr; gap: var(--s-3); align-items: start; font-size: var(--t-small); color: var(--ink-secondary); line-height: 1.5; }
+.welcome-trust .chip { justify-self: start; }
+.welcome-note { display: flex; gap: var(--s-2); align-items: flex-start; margin: var(--s-3) 0 0; font-size: var(--t-small); color: var(--ink-secondary); max-width: 76ch; }
+.welcome-note svg { flex: none; width: 16px; height: 16px; margin-top: 3px; }
+.welcome-tips { margin: 0; padding-left: 1.3em; display: grid; gap: var(--s-2); font-size: var(--t-small); color: var(--ink-secondary); line-height: 1.5; max-width: 76ch; }
+.welcome-tips strong { color: var(--ink); }
+@media (max-width: 720px) {
+  .welcome { padding: var(--s-4); }
+  .welcome-trust li { grid-template-columns: 1fr; gap: 4px; }
+  .welcome-inside { grid-template-columns: 1fr 1fr; }
+}
+@media print { .welcome-toggle { display: none; } }
+
+.welcome-title { max-width: 26ch; }
+@media (min-width: 1280px) { .welcome-tasks { grid-template-columns: repeat(5, 1fr); } }
+.welcome-more { display: grid; gap: 0 var(--s-6, 32px); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
+.welcome-fold > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.welcome-fold > summary::-webkit-details-marker { display: none; }
+.welcome-fold > summary::after { content: '+'; font-weight: 800; color: var(--accent); margin-top: var(--s-2); }
+.welcome-fold[open] > summary::after { content: ''; }
+.welcome-fold[open] > summary { cursor: default; pointer-events: none; }
+.welcome-fold > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.welcome-fold > summary .welcome-h { display: inline-block; }
+.welcome-trust li { grid-template-columns: 130px 1fr; }
+@media (max-width: 720px) {
+  .welcome-fold > summary .welcome-h { margin: var(--s-4) 0 var(--s-2); color: var(--ink-secondary); }
+  .welcome-fold[open] > summary { pointer-events: auto; cursor: pointer; }
+  .welcome-fold[open] > summary::after { content: '\2212'; }
+  .welcome-trust li { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  /* Five full cards stacked is a screen and a half; as rows they fit in one. */
+  .welcome-tasks { gap: var(--s-2); }
+  .welcome-task { display: grid; grid-template-columns: 24px 1fr; column-gap: var(--s-3); row-gap: 2px; padding: var(--s-3); }
+  .welcome-task-icon { grid-row: span 2; margin-top: 2px; }
+  .welcome-task-title { font-size: var(--t-body); }
+  .welcome-task-text { font-size: var(--t-micro); }
+  .welcome-task-go { display: none; }
+  .welcome-title { font-size: 25px; }
+  .welcome-stat { padding: var(--s-2) var(--s-3); }
+  .welcome-stat-n { font-size: 22px; }
+}

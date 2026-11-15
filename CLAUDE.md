@@ -56,8 +56,15 @@ rots and the owner can edit content without a toolchain.
 
 - Every page is a static HTML file that loads `assets/app.js`, then renders
   itself from JSON in `site/data/`.
-- `whatchanged.js` is the front page. Order is digest, "Needs a look", feed —
-  nothing that is not news goes above the feed. A first visit counts the last
+- `welcome.js` is the introduction at the top of the front page: what the site
+  is for, five things you can do, a "what is inside" strip, the source tiers and
+  four tips. It carries the page's `h1`. Open for a newcomer, folded to one line
+  once they press Start tracking or close it (`adch.welcome` in localStorage).
+  Every figure in "what is inside" is counted from the data files — do not
+  hard-code one. Keep its claims literal: a tip that overstates what search or
+  Share does is a small lie on the first screen.
+- `whatchanged.js` is the rest of the front page. Order is digest, "Needs a
+  look", feed — nothing that is not news goes between the welcome and the feed. A first visit counts the last
   7 days, not everything on file. Watch alerts are grouped **by page** (the
   watcher logs one entry per hash change), and entries that share one
   `detectedAt` and one word-count delta across five or more pages are set apart
