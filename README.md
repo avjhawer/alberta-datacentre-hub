@@ -19,6 +19,7 @@ focus, built for development permit review.
 | **Technology trends** | What each technical choice changes about an application you have to assess |
 | **Project tracker** | Only projects confirmed by a primary source |
 | **Municipal matrix** | Side-by-side comparison of how each municipality regulates data centres |
+| **Approvals map** | Every approval from first enquiry to occupancy; phase by phase on a phone |
 | **DP review tool** | A structured permit review with export, shareable summary and print-to-PDF |
 | **Reference library** | The governing documents and the analysis worth reading |
 

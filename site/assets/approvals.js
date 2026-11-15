@@ -24,6 +24,22 @@
   let lastFocus = null;
   let variant = 'grid';
 
+  /* Three presentations of one data file.
+       compact — a summary card with a link, for pages whose job is something
+                 else (the front page, the review tool). The full matrix used
+                 to sit above the news and above the review form, which put
+                 six phone screens of reference between the reader and what
+                 they came for.
+       map     — the five-lane matrix with connectors.
+       steps   — one phase at a time, lanes stacked. A 1,100px matrix in a
+                 300px window is a keyhole; on a narrow screen this is the
+                 default, and the matrix is one tap away. Dependencies are
+                 written out under each card because there are no arrows. */
+  let compact = false;
+  let isPrint = false;
+  let view = 'map';
+  let stepPhase = 0;
+
   const node = id => spec.nodes.find(n => n.id === id);
 
   /* A node, lane note or insight with no `variants` belongs to every route.
@@ -120,35 +136,8 @@
     return bands.join('');
   }
 
-  function render() {
-    assignPairs();
-    root.innerHTML = `
-      <div class="ap-head">
-        <div>
-          <h2 class="ap-title">${esc(spec.title)}</h2>
-          <p class="ap-intro">${esc(routeMeta().intro || spec.intro)}</p>
-        </div>
-        <div class="ap-controls">
-          ${(spec.variants || []).length > 1 ? `
-            <div class="seg ap-routes" id="ap-routes" role="group" aria-label="How the site is powered">
-              ${spec.variants.map(v => `
-                <button class="seg-btn ${v.id === variant ? 'is-on' : ''}" data-route="${esc(v.id)}"
-                        aria-pressed="${v.id === variant}" title="${esc(v.note)}">${esc(v.short)}</button>`).join('')}
-            </div>` : ''}
-          <button class="btn btn-small ${showCriticalOnly ? 'is-on' : ''}" id="ap-critical"
-                  aria-pressed="${showCriticalOnly}">
-            ${showCriticalOnly ? 'Show everything' : 'Highlight critical path'}
-          </button>
-          <a class="btn btn-small" id="ap-print" href="approvals-print.html?route=${esc(variant)}"
-             target="_blank" rel="noopener">Print sheet</a>
-          <a class="btn btn-small" id="ap-download" download
-             href="downloads/alberta-data-centre-approvals-${
-               variant === 'offgrid' ? 'off-grid' : 'grid-connected'}.pdf">Download PDF</a>
-        </div>
-      </div>
-
-      <p class="ap-route-note small">${esc(routeMeta().note || '')}</p>
-
+  function legendHtml() {
+    return `
       <div class="ap-legend" role="list">
         <span role="listitem"><i class="ap-key ap-key-critical"></i>Critical path — delay here moves the finish date</span>
         <span role="listitem"><i class="ap-key ap-key-arrow"></i>Arrow: must finish before</span>
@@ -162,8 +151,11 @@
         <span role="listitem"><span class="ap-tag ap-tag-req">Required on this route</span>Conditional on the other route, not this one</span>
         <span role="listitem"><span class="ap-tag ap-tag-block">Blocks …</span>Blocks what it names — that step cannot start until this is done</span>
         <span role="listitem"><i class="ap-key ap-key-lane"></i>Lane colour marks which authority decides — it is not a ranking</span>
-      </div>
+      </div>`;
+  }
 
+  function gridHtml() {
+    return `
       <div class="ap-scroll">
         <div class="ap-grid" id="ap-grid"
              style="--phases:${spec.phases.length}">
@@ -202,7 +194,143 @@
 
           <svg class="ap-wires" id="ap-wires" aria-hidden="true"></svg>
         </div>
+      </div>`;
+  }
+
+  /* One phase at a time. With no arrows to carry sequence, each card says in
+     words what it waits for — the same dependencies the drawer lists. */
+  function stepsHtml() {
+    const phases = spec.phases;
+    stepPhase = Math.max(0, Math.min(phases.length - 1, stepPhase));
+    const p = phases[stepPhase];
+    const countIn = ph => routeNodes().filter(n => n.phase === ph.id).length;
+    const lanes = spec.lanes.map(raw => {
+      const l = laneFor(raw);
+      const ns = routeNodes().filter(n => n.lane === raw.id && n.phase === p.id);
+      if (!ns.length) return '';
+      return `
+        <div class="ap-steps-lane ap-hue-${esc(l.hue)}">
+          <div class="ap-steps-lane-head">
+            <span class="ap-lane-label">${esc(l.label)}</span>
+            <span class="ap-lane-level ap-level-tag-${esc(l.level)}">${
+              esc((spec.levels || []).find(x => x.id === l.level)?.label || l.level)}</span>
+          </div>
+          ${ns.map(n => {
+            const waits = [...(n.dependsOn || []), ...(n.dependsOnBadged || [])]
+              .map(id => node(id)).filter(x => x && inRoute(x));
+            return `${nodeCard(n)}
+              ${waits.length ? `<p class="ap-steps-dep">Waits for: ${
+                waits.map(x => esc(x.title)).join(' · ')}</p>` : ''}`;
+          }).join('')}
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="ap-steps" id="ap-steps">
+        <div class="ap-steps-tabs" role="tablist" aria-label="Phases">
+          ${phases.map((ph, i) => `
+            <button class="ap-steps-tab ${i === stepPhase ? 'is-on' : ''}" role="tab"
+                    aria-selected="${i === stepPhase}" data-ap-phase="${i}">
+              <span class="ap-steps-tab-n">${i + 1}</span>
+              <span class="ap-steps-tab-name">${esc(ph.name)}</span>
+              <span class="ap-steps-tab-count">${countIn(ph)}</span>
+            </button>`).join('')}
+        </div>
+        <div class="ap-steps-head">
+          <div>
+            <span class="ap-phase-label">${esc(p.label)} of ${phases.length}</span>
+            <h3 class="ap-steps-title">${esc(p.name)}</h3>
+            <p class="ap-phase-sub">${esc(p.sub)}</p>
+          </div>
+        </div>
+        <div class="ap-steps-body">
+          ${lanes || '<div class="empty-state">Nothing is decided in this phase on this route.</div>'}
+        </div>
+        <div class="ap-steps-nav">
+          <button class="btn" id="ap-prev" ${stepPhase === 0 ? 'disabled' : ''}>← ${
+            stepPhase > 0 ? esc(phases[stepPhase - 1].name) : 'Start'}</button>
+          <button class="btn btn-primary" id="ap-next" ${stepPhase === phases.length - 1 ? 'disabled' : ''}>${
+            stepPhase < phases.length - 1 ? esc(phases[stepPhase + 1].name) : 'End'} →</button>
+        </div>
+      </div>`;
+  }
+
+  /* The summary card: enough to say what the map is and how big the job is,
+     with each phase a way in. No cards, no arrows, no legend. */
+  function renderCompact() {
+    const ns = routeNodes();
+    const crit = ns.filter(n => n.critical).length;
+    root.innerHTML = `
+      <div class="ap-compact">
+        <div class="ap-compact-text">
+          <span class="eyebrow">Reference · the approvals path</span>
+          <h2 class="ap-title">${esc(spec.title)}</h2>
+          <p class="ap-intro">${esc(spec.intro)}</p>
+          <p class="ap-compact-tally">
+            <strong>${ns.length}</strong> steps ·
+            <strong>${spec.lanes.length}</strong> authorities ·
+            <strong>${crit}</strong> on the critical path
+          </p>
+        </div>
+        <ol class="ap-compact-phases" aria-label="Phases">
+          ${spec.phases.map((p, i) => `
+            <li><a class="ap-compact-phase" href="approvals.html?phase=${i + 1}">
+              <span class="ap-compact-n">${i + 1}</span>
+              <span class="ap-compact-name">${esc(p.name)}</span>
+              <span class="ap-compact-count">${ns.filter(n => n.phase === p.id).length} steps</span>
+            </a></li>`).join('')}
+        </ol>
+        <div class="ap-compact-actions">
+          <a class="btn btn-primary" href="approvals.html">Open the approvals map</a>
+          <a class="btn" href="downloads/alberta-data-centre-approvals-grid-connected.pdf" download>Download PDF</a>
+        </div>
+      </div>`;
+  }
+
+  function render() {
+    assignPairs();
+    if (compact) { renderCompact(); return; }
+    root.innerHTML = `
+      <div class="ap-head">
+        <div>
+          <h2 class="ap-title">${esc(spec.title)}</h2>
+          <p class="ap-intro">${esc(routeMeta().intro || spec.intro)}</p>
+        </div>
+        <div class="ap-controls">
+          ${isPrint ? '' : `
+            <div class="seg ap-views" id="ap-views" role="group" aria-label="Layout">
+              <button class="seg-btn ${view === 'steps' ? 'is-on' : ''}" data-ap-view="steps"
+                      aria-pressed="${view === 'steps'}">By phase</button>
+              <button class="seg-btn ${view === 'map' ? 'is-on' : ''}" data-ap-view="map"
+                      aria-pressed="${view === 'map'}">Full map</button>
+            </div>`}
+          ${(spec.variants || []).length > 1 ? `
+            <div class="seg ap-routes" id="ap-routes" role="group" aria-label="How the site is powered">
+              ${spec.variants.map(v => `
+                <button class="seg-btn ${v.id === variant ? 'is-on' : ''}" data-route="${esc(v.id)}"
+                        aria-pressed="${v.id === variant}" title="${esc(v.note)}">${esc(v.short)}</button>`).join('')}
+            </div>` : ''}
+          <button class="btn btn-small ${showCriticalOnly ? 'is-on' : ''}" id="ap-critical"
+                  aria-pressed="${showCriticalOnly}">
+            ${showCriticalOnly ? 'Show everything' : 'Highlight critical path'}
+          </button>
+          <a class="btn btn-small" id="ap-print" href="approvals-print.html?route=${esc(variant)}"
+             target="_blank" rel="noopener">Print sheet</a>
+          <a class="btn btn-small" id="ap-download" download
+             href="downloads/alberta-data-centre-approvals-${
+               variant === 'offgrid' ? 'off-grid' : 'grid-connected'}.pdf">Download PDF</a>
+        </div>
       </div>
+
+      <p class="ap-route-note small">${esc(routeMeta().note || '')}</p>
+
+      ${isPrint ? legendHtml() : `
+        <details class="ap-howto" id="ap-howto">
+          <summary>How to read this map</summary>
+          ${legendHtml()}
+        </details>`}
+
+      ${view === 'steps' ? stepsHtml() : gridHtml()}
 
       <div class="ap-insights">
         ${spec.insights.filter(inRoute).map(i => `
@@ -217,8 +345,12 @@
 
       <p class="ap-caution small">${icon('shield')} ${esc(spec.caution)}</p>`;
 
-    observeGrid();
-    requestAnimationFrame(drawWires);
+    if (view === 'map') {
+      observeGrid();
+      requestAnimationFrame(drawWires);
+    } else {
+      gridObserver?.disconnect();
+    }
   }
 
   /* Connectors are computed from where the browser actually put the cards, so
@@ -327,7 +459,7 @@
 
   function drawWires() {
     const svg = $('#ap-wires'), grid = $('#ap-grid');
-    if (!svg || !grid) return;
+    if (!svg || !grid) return;      // compact card and phase view have no wires
     const box = grid.getBoundingClientRect();
     svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
     svg.setAttribute('width', box.width);
@@ -530,7 +662,20 @@
       if (e.target.closest('#ap-close') || e.target.closest('#ap-scrim')) closeDrawer();
       if (e.target.closest('#ap-critical')) { showCriticalOnly = !showCriticalOnly; render(); return; }
       const route = e.target.closest('[data-route]');
-      if (route && root.contains(route)) { variant = route.dataset.route; render(); }
+      if (route && root.contains(route)) { variant = route.dataset.route; render(); return; }
+      const v = e.target.closest('[data-ap-view]');
+      if (v && root.contains(v)) { view = v.dataset.apView; render(); return; }
+      const ph = e.target.closest('[data-ap-phase]');
+      if (ph && root.contains(ph)) { stepPhase = Number(ph.dataset.apPhase); render(); return; }
+      const step = e.target.closest('#ap-prev, #ap-next');
+      if (step && root.contains(step)) {
+        stepPhase += step.id === 'ap-next' ? 1 : -1;
+        render();
+        // The next phase can be much shorter than this one; without this the
+        // reader is left looking at the footer.
+        $('#ap-steps')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        $(`[data-ap-phase="${stepPhase}"]`)?.focus({ preventScroll: true });
+      }
     });
     let t;
     window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(drawWires, 120); });
@@ -546,8 +691,18 @@
     if (!root) return;
     spec = await A.loadData('approvals', null);
     if (!spec) { root.innerHTML = '<div class="empty-state">The approvals map could not be loaded.</div>'; return; }
-    const asked = new URLSearchParams(location.search).get('route');
+    const qs = new URLSearchParams(location.search);
+    const asked = qs.get('route');
     if (asked && (spec.variants || []).some(v => v.id === asked)) variant = asked;
+    compact = root.dataset.apMode === 'compact';
+    isPrint = document.body.dataset.page === 'print';
+    // Narrow screens start phase by phase; so does a link that names a phase.
+    const askedPhase = Number(qs.get('phase'));
+    if (!isPrint && askedPhase >= 1 && askedPhase <= spec.phases.length) {
+      view = 'steps'; stepPhase = askedPhase - 1;
+    } else if (!isPrint && window.matchMedia?.('(max-width: 760px)').matches) {
+      view = 'steps';
+    }
     render();
     wire();
     // Fonts and late layout shift the cards; redraw once things settle.
@@ -559,6 +714,8 @@
     init, drawWires,
     setRoute(id) { if ((spec?.variants || []).some(v => v.id === id)) { variant = id; render(); } },
     route: () => variant,
+    setView(v) { if (!compact && (v === 'map' || v === 'steps')) { view = v; render(); } },
+    view: () => (compact ? 'compact' : view),
   };
   document.addEventListener('DOMContentLoaded', init);
 })();

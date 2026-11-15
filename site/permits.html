@@ -25,13 +25,25 @@
            in this browser; nothing is uploaded.</p>
       </div>
 
-      <!-- The approvals path, provincial through municipal, ending at occupancy.
-           Supersedes the earlier two-track swimlane: same subject, more of it,
-           and it shows concurrency and dependency rather than implying them. -->
-      <section class="section" id="approvals-slot"></section>
-
-      <!-- What a provincial connection actually looks like on a site. -->
-      <div class="section" data-photo="substation"></div>
+      <!-- The three things this page asks of you, in order. Each is a link to
+           where it happens, so the strip doubles as the page's contents. -->
+      <nav class="steps-strip" aria-label="How a review works">
+        <a class="steps-strip-item" href="#params">
+          <span class="steps-strip-n">1</span>
+          <span><strong>Enter what the application states</strong>
+            <span class="steps-strip-sub">Capacity, power, water, site</span></span>
+        </a>
+        <a class="steps-strip-item" href="#findings">
+          <span class="steps-strip-n">2</span>
+          <span><strong>Read what that engages</strong>
+            <span class="steps-strip-sub">Requirements, and questions to establish</span></span>
+        </a>
+        <a class="steps-strip-item" href="#areas">
+          <span class="steps-strip-n">3</span>
+          <span><strong>Assess each area</strong>
+            <span class="steps-strip-sub">Record a status and a note, then export</span></span>
+        </a>
+      </nav>
 
       <!-- Projects -->
       <section class="section" id="projects-slot"></section>
@@ -43,7 +55,7 @@
       <div id="review-pane">
 
         <!-- Parameters -->
-        <section class="section">
+        <section class="section" id="params">
           <div class="card">
             <div class="card-head">
               <h2>Project parameters</h2>
@@ -57,7 +69,7 @@
         <section class="section" id="figures-slot"></section>
 
         <!-- What the parameters trigger -->
-        <section class="section">
+        <section class="section" id="findings">
           <div class="card card-accent" id="findings-slot"></div>
         </section>
 
@@ -86,6 +98,7 @@
         </section>
 
         <!-- Areas -->
+        <div id="areas" class="anchor"></div>
         <section class="section" id="sections-slot"></section>
 
         <p class="small muted" style="margin-top:var(--s-5)">
@@ -94,6 +107,14 @@
           than a requirement.
         </p>
       </div>
+
+      <!-- The approvals path as a summary card, below the tool rather than
+           above it: the tool is what this page is for. The full map is on
+           approvals.html. -->
+      <section class="section" id="approvals-slot" data-ap-mode="compact"></section>
+
+      <!-- What a provincial connection actually looks like on a site. -->
+      <div class="section" data-photo="substation"></div>
 
     </main>
   </div>

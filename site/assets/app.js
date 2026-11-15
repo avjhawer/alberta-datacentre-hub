@@ -43,8 +43,10 @@ function icon(name, cls) {
 
 /* ------------------------------------------------------------ site config */
 
-/* Four destinations, each with a stated job. Nine flat pages meant nothing
-   told you where to start; these are ordered by how often they are needed. */
+/* Five destinations, each with a stated job. Nine flat pages meant nothing
+   told you where to start; these are ordered by how often they are needed.
+   The approvals map earned its own entry when it stopped being embedded in
+   the front page and the review tool — it is reference, and it is big. */
 const NAV = [
   {
     label: 'Working',
@@ -58,6 +60,8 @@ const NAV = [
   {
     label: 'Reference',
     items: [
+      { id: 'approvals', href: 'approvals.html', icon: 'projects', label: 'Approvals map',
+        blurb: 'First enquiry to occupancy' },
       { id: 'rules',   href: 'rules.html',   icon: 'policy',  label: 'Rules & requirements',
         blurb: 'Policy, grid, municipal' },
       { id: 'context', href: 'context.html', icon: 'library', label: 'Context & research',

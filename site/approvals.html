@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approvals map — Alberta Data Centre Hub</title>
+<meta name="description" content="Every approval an Alberta data centre needs, from first enquiry to occupancy: who decides, what runs in parallel, and what blocks what.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232a78d6'/><text y='70' x='50' text-anchor='middle' font-size='54' font-family='system-ui' font-weight='700' fill='white'>AB</text></svg>">
+</head>
+<body data-page="approvals">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="main">
+    <header class="topbar" id="topbar"></header>
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <h1>Approvals map</h1>
+      </div>
+
+      <!-- Drawn by approvals.js from data/approvals.json. Narrow screens open
+           phase by phase; the full matrix is one tap away. -->
+      <section class="section" id="approvals-slot"></section>
+
+    </main>
+  </div>
+</div>
+
+<div class="sq-scrim" id="ap-scrim" hidden></div>
+<aside class="sq-drawer" id="ap-drawer" role="dialog" aria-modal="true"
+       aria-labelledby="ap-drawer-title" hidden></aside>
+
+<script src="assets/app.js"></script>
+<script src="assets/approvals.js"></script>
+</body>
+</html>

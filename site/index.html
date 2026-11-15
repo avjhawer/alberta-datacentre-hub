@@ -24,21 +24,24 @@
            municipal rules since you last looked. Nothing here needs reading twice.</p>
       </div>
 
-      <!-- Headline figures answer the page's question before anything else. -->
+      <!-- Headline figures answer the page's question before anything else.
+           Each figure links to the list it counts. -->
       <section class="section" id="digest-slot"></section>
-
-      <!-- The land at stake. Verified by eye; attribution rendered by photos.js. -->
-      <div class="section" data-photo="hero" data-photo-hero></div>
-
-      <!-- The approvals path, as a full-width feature. It is reference rather
-           than news, so it sits below the digest but above the feed. -->
-      <section class="section feature" id="approvals-slot"></section>
 
       <!-- Anything that needs a decision or a look -->
       <section class="section" id="attention-slot"></section>
 
-      <!-- The new items themselves -->
+      <!-- The new items themselves. Nothing that is not news sits above this:
+           the page is called "What changed", and on a phone the approvals map
+           used to put six screens between that title and the first change. -->
       <section class="section" id="feed-slot"></section>
+
+      <!-- The land at stake. Verified by eye; attribution rendered by photos.js. -->
+      <div class="section" data-photo="hero" data-photo-hero></div>
+
+      <!-- The approvals path as a summary card. The map itself is reference,
+           not news, and lives on approvals.html. -->
+      <section class="section" id="approvals-slot" data-ap-mode="compact"></section>
 
       <!-- Project tracker. projects.html redirects here. -->
       <section class="section subsection" id="tracker">

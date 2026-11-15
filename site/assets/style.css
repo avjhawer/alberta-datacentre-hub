@@ -2274,3 +2274,171 @@ table.data tbody tr:hover { background: var(--accent-wash); }
 .standing-tile { padding: var(--s-5); border-radius: var(--r-card); }
 .standing-value { font-size: 36px; letter-spacing: var(--track-tight); }
 .standing-label { font-size: var(--t-small); font-weight: 600; margin-top: var(--s-2); }
+
+
+/* ============================================================================
+   Front door and approvals map, second pass.
+
+   The front page leads with what changed; the approvals map moved to a page of
+   its own and is represented elsewhere by a summary card. On a narrow screen
+   the map opens one phase at a time.
+   ========================================================================= */
+
+/* ---- digest: figures are links -------------------------------------------- */
+a.digest-fig {
+  text-decoration: none; color: inherit;
+  padding: var(--s-2) var(--s-3); margin: calc(var(--s-2) * -1) calc(var(--s-3) * -1);
+  border-radius: var(--r-card);
+  transition: background var(--dur) var(--ease);
+}
+a.digest-fig:hover { background: var(--surface-sunken); }
+a.digest-fig:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.digest-go { color: var(--ink-muted); font-weight: 600; }
+a.digest-fig:hover .digest-go { color: var(--accent); }
+.digest-fig-serious .digest-n { color: var(--status-serious); }
+.digest-start {
+  display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap;
+  margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px dashed var(--border);
+}
+.digest-start p { margin: 0; flex: 1 1 280px; color: var(--ink-secondary); font-size: var(--t-small); line-height: 1.55; }
+#attention-slot, #feed-slot, .feed-block, #params, #findings, .anchor {
+  scroll-margin-top: calc(var(--topbar-h) + 16px);
+}
+@media (max-width: 720px) {
+  /* Four figures stacked filled the first screen and showed nothing else. */
+  .digest-figures { grid-template-columns: 1fr 1fr; gap: var(--s-4) var(--s-3); }
+  .digest-n { font-size: 34px; }
+}
+
+/* ---- attention: what changed, not just that it did ------------------------ */
+.attention-what { margin-top: 2px; color: var(--ink-secondary); }
+.attention-item.is-moved .attention-what { color: var(--ink); font-weight: 600; }
+.attention-more { margin-top: var(--s-3); }
+
+/* ---- feed filter ---------------------------------------------------------- */
+.feed-filter { display: flex; gap: var(--s-2); flex-wrap: wrap; margin: 0 0 var(--s-4); }
+.chip-btn {
+  font: inherit; font-size: var(--t-small); font-weight: 600; cursor: pointer;
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink-secondary);
+}
+.chip-btn:hover { border-color: var(--border-strong); color: var(--ink); }
+.chip-btn.is-on { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.chip-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ---- approvals: summary card ---------------------------------------------- */
+.ap-compact {
+  display: grid; gap: var(--s-4);
+  padding: var(--s-5); border-radius: calc(var(--r-card) * 2);
+  background: var(--surface); border: 1px solid var(--border);
+  border-top: var(--edge-w, 3px) solid var(--accent);
+}
+.ap-compact .ap-title { font-size: var(--t-h2); margin-top: var(--s-1); }
+.ap-compact-tally { margin: var(--s-3) 0 0; color: var(--ink-secondary); font-size: var(--t-small); }
+.ap-compact-tally strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+.ap-compact-phases {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: var(--s-2); grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.ap-compact-phase {
+  display: grid; grid-template-columns: auto 1fr; column-gap: var(--s-2); align-items: center;
+  padding: var(--s-3); border-radius: var(--r-card); text-decoration: none;
+  background: var(--surface-sunken); border: 1px solid transparent; color: var(--ink);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.ap-compact-phase:hover { border-color: var(--accent); transform: translateY(-1px); }
+.ap-compact-phase:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ap-compact-n {
+  grid-row: span 2; width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center; font-size: var(--t-micro); font-weight: 800;
+  background: var(--accent); color: var(--surface);
+}
+.ap-compact-name { font-weight: 700; font-size: var(--t-small); line-height: 1.25; }
+.ap-compact-count { font-size: var(--t-micro); color: var(--ink-muted); }
+.ap-compact-actions { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+
+/* ---- approvals: folded legend --------------------------------------------- */
+.ap-howto { margin: var(--s-2) 0 var(--s-4); }
+.ap-howto > summary {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  font-size: var(--t-small); font-weight: 600; color: var(--accent);
+  padding: 6px 0; list-style: none;
+}
+.ap-howto > summary::-webkit-details-marker { display: none; }
+.ap-howto > summary::before { content: '+'; font-weight: 800; width: 1ch; }
+.ap-howto[open] > summary::before { content: '\2212'; }
+.ap-howto > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+@media print { .ap-howto > summary { display: none; } }
+
+/* ---- approvals: phase by phase -------------------------------------------- */
+.ap-steps { display: grid; gap: var(--s-4); scroll-margin-top: calc(var(--topbar-h) + 12px); }
+.ap-steps-tabs {
+  display: flex; gap: var(--s-2); overflow-x: auto; padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.ap-steps-tab {
+  flex: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font: inherit;
+  padding: 7px 12px 7px 7px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink-secondary);
+  font-size: var(--t-small); font-weight: 600;
+}
+.ap-steps-tab-n {
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  font-size: var(--t-micro); font-weight: 800; background: var(--surface-sunken); color: var(--ink);
+}
+.ap-steps-tab-count { font-size: var(--t-micro); color: var(--ink-muted); font-weight: 600; }
+.ap-steps-tab.is-on { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.ap-steps-tab.is-on .ap-steps-tab-n { background: var(--accent); color: var(--surface); }
+.ap-steps-tab.is-on .ap-steps-tab-count { color: var(--surface); opacity: .7; }
+.ap-steps-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ap-steps-head { padding-bottom: var(--s-3); border-bottom: 3px solid var(--accent); }
+.ap-steps-title { margin: 2px 0; font-size: var(--t-h2); }
+.ap-steps-body { display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start; }
+.ap-steps-lane { display: grid; gap: var(--s-2); align-content: start; }
+.ap-steps-lane-head { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; margin-bottom: 2px; }
+.ap-steps-dep {
+  margin: -2px 0 var(--s-2) var(--s-3); padding-left: var(--s-3);
+  border-left: 2px solid var(--border-strong);
+  font-size: var(--t-micro); color: var(--ink-secondary); line-height: 1.45;
+}
+.ap-steps-nav { display: flex; justify-content: space-between; gap: var(--s-2); }
+.ap-steps-nav .btn[disabled] { opacity: .4; cursor: default; }
+@media (max-width: 760px) {
+  /* Print and PDF are desktop jobs; on a phone they crowd out the two
+     controls that matter, layout and route. */
+  .ap-controls #ap-print, .ap-controls #ap-download { display: none; }
+}
+
+/* ---- review tool: the three steps ----------------------------------------- */
+.steps-strip {
+  display: grid; gap: var(--s-2); grid-template-columns: repeat(3, 1fr);
+  margin: 0 0 var(--s-5);
+}
+.steps-strip-item {
+  display: flex; gap: var(--s-3); align-items: flex-start;
+  padding: var(--s-3) var(--s-4); border-radius: var(--r-card); text-decoration: none;
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink);
+  font-size: var(--t-small); line-height: 1.35;
+  transition: border-color var(--dur) var(--ease);
+}
+.steps-strip-item:hover { border-color: var(--accent); }
+.steps-strip-item:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.steps-strip-n {
+  flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--surface); font-weight: 800; font-size: var(--t-micro);
+}
+.steps-strip-sub { display: block; color: var(--ink-muted); font-size: var(--t-micro); font-weight: 500; margin-top: 2px; }
+@media (max-width: 860px) { .steps-strip { grid-template-columns: 1fr; } }
+@media print { .steps-strip, .ap-compact { display: none; } }
+
+/* The page already has "Approvals map" as its h1; the map's own heading would
+   say the same thing twice before any step is visible. */
+body[data-page="approvals"] .ap-head .ap-title { display: none; }
+body[data-page="approvals"] .page-head { margin-bottom: var(--s-3); }
+
+/* ---- attention: identical bulk changes, set apart ------------------------- */
+.attention-bulk { margin-top: var(--s-3); }
+.attention-bulk > summary { cursor: pointer; font-size: var(--t-small); font-weight: 600; color: var(--ink-secondary); }
+.attention-bulk > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.attention-bulk p { margin: var(--s-2) 0; max-width: 70ch; }
+.attention-bulk-list { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: var(--t-small); }
